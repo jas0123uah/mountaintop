@@ -14,6 +14,11 @@ class User(db.Model, UserMixin):
         'Getaway', back_populates="userGetaway")
     reservationForUser = db.relationship(
         'Reservation', back_populates="reservationUserId")
+    
+    reviewForUser = db.relationship(
+        'Review', back_populates="reviewUserId")
+    
+    
     firstName = db.Column(db.String(50), nullable=False)
     lastName = db.Column(db.String(50), nullable=False)
     profilePictureUrl = db.Column(db.String(500), nullable=False)
