@@ -11,6 +11,10 @@ class Getaway(db.Model):
         'User', back_populates="getaway")
     getawayReservation = db.relationship(
         'Reservation', back_populates="getawayRes")
+    
+    
+    getawayReview = db.relationship(
+        'Review', back_populates="getawayRev")
 
     address = db.Column(db.String(500), nullable=False)
     city = db.Column(db.String(285), nullable=False)
