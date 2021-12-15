@@ -23,7 +23,6 @@ class Review(db.Model):
     locationRating = db.Column(db.Integer, nullable=False)
     valueRating = db.Column(db.Integer, nullable=False)
     overallRating = db.Column(db.Integer, nullable=False)
-    endDate = db.Column(db.DateTime, nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updatedAt = db.Column(
         db.DateTime, default=datetime.datetime.utcnow, onupdate=func.now())
