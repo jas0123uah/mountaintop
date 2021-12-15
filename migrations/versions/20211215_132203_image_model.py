@@ -21,6 +21,7 @@ def upgrade():
     op.create_table('images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('getawayId', sa.Integer(), nullable=False),
+    sa.Column('url', sa.String(length=50), nullable=False),
     sa.Column('createdAt', sa.DateTime(), nullable=True),
     sa.Column('updatedAt', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['getawayId'], ['getaways.id'], ),
