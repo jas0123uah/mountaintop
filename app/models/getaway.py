@@ -1,15 +1,16 @@
 from .db import db
 import datetime
 from sqlalchemy.sql import func
-#Reservation
 class Getaway(db.Model):
     __tablename__ = 'getaways'
     id = db.Column(db.Integer, primary_key=True)
 
     userId = db.Column(db.Integer, db.ForeignKey(
-        "restaurants.id"), nullable=False)
+        "users.id"), nullable=False)
     userGetaway = db.relationship(
         'User', back_populates="getaway")
+    getawayReservation = db.relationship(
+        'Reservation', back_populates="getawayRes")
 
     address = db.Column(db.String(500), nullable=False)
     city = db.Column(db.String(285), nullable=False)

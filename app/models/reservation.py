@@ -1,20 +1,26 @@
 from .db import db
-import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
 from sqlalchemy.sql import func
-
-class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+import datetime
+class Reservation(db.Model):
+    __tablename__ = 'reservations'
 
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
-    getaway = db.relationship(
-        'Getaway', back_populates="userGetaway")
-    reservationForUser = db.relationship(
-        'Reservation', back_populates="reservationUserId")
-    firstName = db.Column(db.String(50), nullable=False)
+    getawayId = db.Column(db.Integer,db.ForeignKey(
+        "getaways.id"), nullable=False)
+    
+    getawayRes = db.relationship(
+        'Getaway', back_populates="getawayReservation")
+    
+    
+    
+    
+    userId = db.Column(db.Integer,db.ForeignKey(
+        "users.id"), nullable=False)
+    reservationUserId = db.relationship(
+        'User', back_populates="reservationForUser")
+    
+    startDate = db.Column(db.String(255), nullable=False)
+    endDate = db.Column(db.String(50), nullable=False)
     lastName = db.Column(db.String(50), nullable=False)
     profilePictureUrl = db.Column(db.String(500), nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
