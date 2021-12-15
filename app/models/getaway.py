@@ -11,6 +11,8 @@ class Getaway(db.Model):
         'User', back_populates="getaway")
     getawayReservation = db.relationship(
         'Reservation', back_populates="getawayRes")
+    getawayAme = db.relationship(
+        'Amenity', back_populates="getawayAmenity")
     
     
     getawayReview = db.relationship(
