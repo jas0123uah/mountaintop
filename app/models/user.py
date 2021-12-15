@@ -1,4 +1,5 @@
 from .db import db
+import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.sql import func
@@ -11,6 +12,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     getaway = db.relationship(
         'Getaway', back_populates="userGetaway")
+    reservationForUser = db.relationship(
+        'Reservation', back_populates="reservationUserId")
     firstName = db.Column(db.String(50), nullable=False)
     lastName = db.Column(db.String(50), nullable=False)
     profilePictureUrl = db.Column(db.String(500), nullable=False)
