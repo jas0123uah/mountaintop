@@ -15,6 +15,9 @@ class Getaway(db.Model):
     
     getawayReview = db.relationship(
         'Review', back_populates="getawayRev")
+    
+    getawayImg = db.relationship(
+        'Image', back_populates="getawayImage")
 
     address = db.Column(db.String(500), nullable=False)
     city = db.Column(db.String(285), nullable=False)
