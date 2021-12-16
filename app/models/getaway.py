@@ -32,6 +32,10 @@ class Getaway(db.Model):
     name = db.Column(db.String(285), nullable=False)
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.Text, nullable=False)
+    numGuests = db.Column(db.Integer, nullable=False)
+    numBeds = db.Column(db.Integer, nullable=False)
+    numBaths = db.Column(db.Float, nullable=False)
+    numBedrooms = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updatedAt = db.Column(
         db.DateTime, default=datetime.datetime.utcnow, onupdate=func.now())
@@ -49,5 +53,9 @@ class Getaway(db.Model):
             'name': self.name,
             'price': self.price,
             'description': self.description,
+            'numGuests': self.numGuests,
+            'numBedrooms': self.numBedrooms,
+            'numBeds': self.numBeds,
+            'numBaths': self.numBaths,
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt}
