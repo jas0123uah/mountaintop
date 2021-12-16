@@ -1,5 +1,5 @@
 from app.models import db, User
-
+from randomuser import RandomUser
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
@@ -9,11 +9,18 @@ def seed_users():
         firstName='Marnie', lastName='Martin', email='marnie@aa.io', profilePictureUrl="https://i.ibb.co/N19bxXR/Business-Headshot-Women-006.jpg", password='password')
     joe = User(
         firstName='Joe', lastName='Johnson', profilePictureUrl="https://i.ibb.co/37H19Lt/c0899a5fb5be4db614cf9387f2fede31.jpg", email='joe@aa.io', password='password')
-
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(joe)
-
+    for user in range(1,200):
+        user = RandomUser()
+        firstName = user.get_first_name()
+        lastName = user.get_last_name()
+        password = user.get_password()
+        profilePictureUrl = user.get_picture()
+        email = user.get_email()
+        seed_user = User(firstName=firstName, lastName=lastName, password=password, profilePictureUrl=profilePictureUrl, email=email)
+        db.session.add(seed_user)
     db.session.commit()
 
 
