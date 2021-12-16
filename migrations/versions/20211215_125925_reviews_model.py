@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('accuracyRating', sa.Integer(), nullable=False),
     sa.Column('locationRating', sa.Integer(), nullable=False),
     sa.Column('valueRating', sa.Integer(), nullable=False),
-    sa.Column('overallRating', sa.Integer(), nullable=False),
+    sa.Column('overallRating', sa.Float(), nullable=False),
     sa.Column('createdAt', sa.DateTime(), nullable=True),
     sa.Column('updatedAt', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['getawayId'], ['getaways.id'], ),

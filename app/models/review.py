@@ -22,7 +22,7 @@ class Review(db.Model):
     accuracyRating = db.Column(db.Integer, nullable=False)
     locationRating = db.Column(db.Integer, nullable=False)
     valueRating = db.Column(db.Integer, nullable=False)
-    overallRating = db.Column(db.Integer, nullable=False)
+    overallRating = db.Column(db.Float, nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updatedAt = db.Column(
         db.DateTime, default=datetime.datetime.utcnow, onupdate=func.now())
