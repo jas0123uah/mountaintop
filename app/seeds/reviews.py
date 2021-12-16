@@ -20,7 +20,7 @@ def seed_reviews():
         accuracyRating = randrange(1, 3)
         locationRating = randrange(1, 3)
         valueRating = randrange(1, 3)
-        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating])
+        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, checkinRating, locationRating, valueRating])
         reviewText = fake.paragraph(nb_sentences=3)
         seed_review = Review(checkinRating=checkinRating, reviewText=reviewText,
                              userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
@@ -39,7 +39,7 @@ def seed_reviews():
         accuracyRating = randrange(4, 5)
         locationRating = randrange(4, 5)
         valueRating = randrange(4, 5)
-        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating])
+        overallRating = mean([cleanlinessRating, communicationRating, checkinRating, accuracyRating, locationRating, valueRating])
         reviewText = fake.paragraph(nb_sentences=3)
         seed_review = Review(checkinRating=checkinRating, reviewText=reviewText,
                              userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
@@ -60,7 +60,7 @@ def seed_reviews():
         accuracyRating = randrange(2, 3)
         locationRating = randrange(2, 3)
         valueRating = randrange(2, 3)
-        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating])
+        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating, checkinRating])
         reviewText = fake.paragraph(nb_sentences=3)
         seed_review = Review(checkinRating=checkinRating, reviewText=reviewText,
                              userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
@@ -79,7 +79,7 @@ def seed_reviews():
         accuracyRating = randrange(4, 5)
         locationRating = randrange(4, 5)
         valueRating = randrange(4, 5)
-        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating])
+        overallRating = mean([checkinRating, cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating])
         reviewText = fake.paragraph(nb_sentences=3)
         seed_review = Review(checkinRating=checkinRating, reviewText=reviewText,
                              userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
