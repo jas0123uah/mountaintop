@@ -10,16 +10,16 @@ class Getaway(db.Model):
     userGetaway = db.relationship(
         'User', back_populates="getaway")
     getawayReservation = db.relationship(
-        'Reservation', back_populates="getawayRes")
+        'Reservation', back_populates="getawayRes", cascade="all, delete-orphan")
     getawayAme = db.relationship(
-        'Amenity', back_populates="getawayAmenity")
+        'Amenity', back_populates="getawayAmenity", cascade="all, delete-orphan")
     
     
     getawayReview = db.relationship(
-        'Review', back_populates="getawayRev")
+        'Review', back_populates="getawayRev", cascade="all, delete-orphan")
     
     getawayImg = db.relationship(
-        'Image', back_populates="getawayImage")
+        'Image', back_populates="getawayImage", cascade="all, delete-orphan")
 
     address = db.Column(db.String(500), nullable=False)
     city = db.Column(db.String(285), nullable=False)
