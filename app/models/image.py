@@ -8,7 +8,7 @@ class Image(db.Model):
         "getaways.id"), nullable=False)
     getawayImage = db.relationship(
         'Getaway', back_populates="getawayImg")
-    url = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(500), nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updatedAt = db.Column(
         db.DateTime, default=datetime.datetime.utcnow, onupdate=func.now())
