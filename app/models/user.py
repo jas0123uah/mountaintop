@@ -1,4 +1,5 @@
 from .db import db
+from .getaway import get_reservations
 import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -36,10 +37,51 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    
+    def get_reservations(self):
+        res_dict={}
+
+        for reservation in self.getawayReservation:
+            res_dict[reservation.id] = {"id":reservation.id,
+                                        "getawayId":reservation.getawayId,
+                                        "userId":reservation.userId,
+                                        "startDate":reservation.startDate,
+                                        "endDate":reservation.endDate,
+                                        }
+  
+        return res_dict
+    def get_getaways(self):
+        get_dict={}
+
+        for _getaway in self.getaway:
+            get_dict[_getaway.id] = {'id': self.id,
+            'userId': _getaway.userId,
+            'address': _getaway.address,
+            'city': _getaway.city,
+            'state': _getaway.state,
+            'country': _getaway.country,
+            'latitude': _getaway.latitude,
+            'longitude': _getaway.longitude,
+            'name': _getaway.name,
+            'price': _getaway.price,
+            'description': _getaway.description,
+            'numGuests': _getaway.numGuests,
+            'numBedrooms': _getaway.numBedrooms,
+            'numBeds': _getaway.numBeds,
+            'numBaths': _getaway.numBaths}
+  
+        return get_dict
+
 
     def to_dict(self):
+        res_dict = self.get_reservations()
+        get_dict = self.get_getaways()
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'profilePictureUrl': self.profilePictureUrl,
+            'email': self.email,
+            'reservations': res_dict,
+            'getaways': get_dict
         }
