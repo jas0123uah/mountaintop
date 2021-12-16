@@ -20,10 +20,10 @@ def seed_reviews():
         accuracyRating = randrange(1, 3)
         locationRating = randrange(1, 3)
         valueRating = randrange(1, 3)
-        overallRating = mean(cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating)
+        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating])
         reviewText = fake.paragraph(nb_sentences=3)
         seed_review = Review(checkinRating=checkinRating, reviewText=reviewText,
-                             userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, checkinRating=checkinRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
+                             userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
         db.session.add(seed_review)
         
         
@@ -39,10 +39,10 @@ def seed_reviews():
         accuracyRating = randrange(4, 5)
         locationRating = randrange(4, 5)
         valueRating = randrange(4, 5)
-        overallRating = mean(cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating)
+        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating])
         reviewText = fake.paragraph(nb_sentences=3)
         seed_review = Review(checkinRating=checkinRating, reviewText=reviewText,
-                             userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, checkinRating=checkinRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
+                             userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
         db.session.add(seed_review)
         
         
@@ -60,10 +60,10 @@ def seed_reviews():
         accuracyRating = randrange(2, 3)
         locationRating = randrange(2, 3)
         valueRating = randrange(2, 3)
-        overallRating = mean(cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating)
+        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating])
         reviewText = fake.paragraph(nb_sentences=3)
         seed_review = Review(checkinRating=checkinRating, reviewText=reviewText,
-                             userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, checkinRating=checkinRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
+                             userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
         db.session.add(seed_review)
         
 
@@ -79,10 +79,10 @@ def seed_reviews():
         accuracyRating = randrange(4, 5)
         locationRating = randrange(4, 5)
         valueRating = randrange(4, 5)
-        overallRating = mean(cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating)
+        overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, locationRating, valueRating])
         reviewText = fake.paragraph(nb_sentences=3)
         seed_review = Review(checkinRating=checkinRating, reviewText=reviewText,
-                             userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, checkinRating=checkinRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
+                             userId=userId, getawayId=getaway_id, cleanlinessRating=cleanlinessRating,communicationRating=communicationRating, accuracyRating=accuracyRating, locationRating=locationRating, valueRating=valueRating, overallRating=overallRating)
         db.session.add(seed_review)
 
     db.session.commit()
