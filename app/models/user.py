@@ -11,12 +11,12 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     getaway = db.relationship(
-        'Getaway', back_populates="userGetaway")
+        'Getaway', back_populates="userGetaway", cascade="all, delete-orphan")
     reservationForUser = db.relationship(
-        'Reservation', back_populates="reservationUserId")
+        'Reservation', back_populates="reservationUserId", cascade="all, delete-orphan")
     
     reviewForUser = db.relationship(
-        'Review', back_populates="reviewUserId")
+        'Review', back_populates="reviewUserId", cascade="all, delete-orphan")
     
     
     firstName = db.Column(db.String(50), nullable=False)
