@@ -46,3 +46,10 @@ def edit_getaway_by_id(id):
     else:
 
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@getaway_routes.route('/<int:id>/', methods=['DELETE'])
+def delete_getaway_by_id(id):
+    restaurantToDelete = Getaway.query.get(int(id))
+    db.session.delete(restaurantToDelete)
+    db.session.commit()
+    return {'message': f"Deleted getaway {id}"}
