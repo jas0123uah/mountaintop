@@ -14,8 +14,6 @@ def post_review_for_getaway(id):
     form = ReviewForm() 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print(mean([form.data['cleanlinessRating'], 
-                                                 form.data['communicationRating'], form.data['checkinRating'], form.data['accuracyRating'], form.data['valueRating'], form.data['locationRating']]) , "<----- AHHHH")
         newReview = Review(getawayId = form.data['getawayId'], reviewText = form.data['reviewText'], cleanlinessRating = form.data['cleanlinessRating'], communicationRating = form.data['communicationRating'], checkinRating = form.data['checkinRating'], accuracyRating = form.data['accuracyRating'],locationRating = form.data['locationRating'],valueRating = form.data['valueRating'], 
                            overallRating = mean([form.data['cleanlinessRating'], 
                                                  form.data['communicationRating'], form.data['checkinRating'], form.data['accuracyRating'], form.data['valueRating'], form.data['locationRating']]), userId=form.data['userId'])
