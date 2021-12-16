@@ -50,14 +50,38 @@ class User(db.Model, UserMixin):
                                         }
   
         return res_dict
+    def get_getaways(self):
+        get_dict={}
+
+        for _getaway in self.getaway:
+            get_dict[_getaway.id] = {'id': self.id,
+            'userId': _getaway.userId,
+            'address': _getaway.address,
+            'city': _getaway.city,
+            'state': _getaway.state,
+            'country': _getaway.country,
+            'latitude': _getaway.latitude,
+            'longitude': _getaway.longitude,
+            'name': _getaway.name,
+            'price': _getaway.price,
+            'description': _getaway.description,
+            'numGuests': _getaway.numGuests,
+            'numBedrooms': _getaway.numBedrooms,
+            'numBeds': _getaway.numBeds,
+            'numBaths': _getaway.numBaths}
+  
+        return get_dict
+
 
     def to_dict(self):
         res_dict = self.get_reservations()
+        get_dict = self.get_getaways()
         return {
             'id': self.id,
             'firstName': self.firstName,
             'lastName': self.lastName,
             'profilePictureUrl': self.profilePictureUrl,
             'email': self.email,
-            'reservations': res_dict
+            'reservations': res_dict,
+            'getaways': get_dict
         }
