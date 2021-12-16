@@ -12,8 +12,8 @@ class Reservation(db.Model):
         "users.id"), nullable=False)
     reservationUserId = db.relationship(
         'User', back_populates="reservationForUser")
-    startDate = db.Column(db.DateTime, nullable=False)
-    endDate = db.Column(db.DateTime, nullable=False)
+    startDate = db.Column(db.Date, nullable=False)
+    endDate = db.Column(db.Date, nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updatedAt = db.Column(
         db.DateTime, default=datetime.datetime.utcnow, onupdate=func.now())

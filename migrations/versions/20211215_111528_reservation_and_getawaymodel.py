@@ -47,8 +47,8 @@ def upgrade():
     sa.Column('endDate', sa.String(length=50), nullable=False),
     sa.Column('lastName', sa.String(length=50), nullable=False),
     sa.Column('profilePictureUrl', sa.String(length=500), nullable=False),
-    sa.Column('createdAt', sa.DateTime(), nullable=True),
-    sa.Column('updatedAt', sa.DateTime(), nullable=True),
+    sa.Column('createdAt', sa.Date(), nullable=True),
+    sa.Column('updatedAt', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['getawayId'], ['getaways.id'], ),
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
