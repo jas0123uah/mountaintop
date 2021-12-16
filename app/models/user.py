@@ -1,4 +1,5 @@
 from .db import db
+from .getaway import get_reservations
 import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -36,10 +37,27 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    
+    def get_reservations(self):
+        res_dict={}
+
+        for reservation in self.getawayReservation:
+            res_dict[reservation.id] = {"id":reservation.id,
+                                        "getawayId":reservation.getawayId,
+                                        "userId":reservation.userId,
+                                        "startDate":reservation.startDate,
+                                        "endDate":reservation.endDate,
+                                        }
+  
+        return res_dict
 
     def to_dict(self):
+        res_dict = self.get_reservations()
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'profilePictureUrl': self.profilePictureUrl,
+            'email': self.email,
+            'reservations': res_dict
         }
