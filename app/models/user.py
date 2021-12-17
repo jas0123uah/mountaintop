@@ -1,5 +1,4 @@
 from .db import db
-from .getaway import get_reservations
 import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
