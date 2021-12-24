@@ -40,7 +40,7 @@ class User(db.Model, UserMixin):
     def get_reservations(self):
         res_dict={}
 
-        for reservation in self.getawayReservation:
+        for reservation in self.reservationForUser:
             res_dict[reservation.id] = {"id":reservation.id,
                                         "getawayId":reservation.getawayId,
                                         "userId":reservation.userId,
