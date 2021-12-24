@@ -1,1 +1,62 @@
 /* TODO Add site wide styles */
+.fa-mountain, .fa-user-plus, .fa-sign-in{
+    color: #016844;
+}
+
+.searchBar{
+    border-radius: 10px;
+    border: #314d58 1px solid;
+    
+}
+.navBar,.navBar-list, #login-sign-up{
+    list-style-type: none;
+    text-decoration: none;
+    list-style: none;
+}
+#nav-list{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    border-bottom: grey solid ;
+    
+}
+.searchBar{
+    margin-bottom: 10px;
+}
+
+#login-sign-up{
+    margin-top: 20px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+
+}
+.active-login{
+    display: flex;
+}
+.signup-login-link {
+    text-align: left;
+    text-decoration: none;
+    text-decoration-color: none;
+}
+a{
+    text-decoration: none;
+}
+body{
+    background-color: #F3EEE3 ;
+}
+.navBar-list{
+    align-items:flex-end;
+    padding-bottom: 5px;
+}
+.signuploginicons{
+    display: flex;
+}
+.fa-sign-in{
+    margin-left: 40px;
+    margin-right: 40px;
+}
