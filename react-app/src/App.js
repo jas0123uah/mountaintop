@@ -5,10 +5,10 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import BrowseGetawaysButton from'./components/BrowseGetawaysButton'
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -37,12 +37,29 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute path='/profile/' exact={true} >
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
+          <BrowseGetawaysButton/>
         </ProtectedRoute>
+        <Route path='/getaways/:getawayId'>
+          {/* <ViewSingleGetaway /> */}
+        </Route>
+        <Route path='/getaways/:getawayId/new'>
+          {/* <NewGetaway/> */}
+        </Route>
+        <Route path='/getaways/:getawayId/edit'>
+          {/* <EditSingleGetaway/> */}
+        </Route>
+
+        <Route path='/search-results/:term'>
+          {/* <SearchGetaways/> */}
+        </Route>
+        <Route path='/browse'>
+          {/* <BrowseGetaways/> */}
+        </Route>
       </Switch>
     </BrowserRouter>
   );
