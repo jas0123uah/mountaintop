@@ -1,51 +1,51 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {useParams, useHistory} from "react-router-dom";
-import {editGetaway} from '../../store/getaways'
+import { Redirect } from 'react-router-dom';
+import formPageStyling from './formPageStyling.css'
+import {createGetaway} from '../../store/getaways'
+console.log("LINE 6");
 
-export const EditGetaway = () => {
-  const {getawayId} = useParams();
-  const history = useHistory();
-
+export const NewGetaway = () => {
+  const [errors, setErrors] = useState([]);
+  const [password, setPassword] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('')
+  const [state, setState] = useState('');
+  const [latitude, setLatitude] = useState('1.0')
+  const [longitude, setLongitude] = useState('2.0')
+  const [name, setName] =useState('')
+  const [price, setPrice] = useState(1)
+  const [description, setDescription] = useState('Enter a description here')
+  const [numGuests, setNumGuests] = useState(1)
+  const [numBeds, setNumBeds] = useState(1)
+  const [numBaths, setNumBaths] = useState(1)
+  const [numBedrooms, setNumBedrooms] = useState(1)
 
   const user = useSelector(state => state.session.user);
   const userId = user?.id
-  const getawayToEdit = useSelector(user => user.getaways[getawayId])
-  const [errors, setErrors] = useState([]);
-  const [address, setAddress] = useState(getawayToEdit.address);
-  const [city, setCity] = useState(getawayToEdit.city)
-  const [state, setState] = useState(getawayToEdit.state);
-  const [latitude, setLatitude] = useState(getawayToEdit.latitude)
-  const [longitude, setLongitude] = useState(getawayToEdit.longitude)
-  const [name, setName] =useState(getawayToEdit.name)
-  const [price, setPrice] = useState(getawayToEdit.price)
-  const [description, setDescription] = useState(getawayToEdit.description)
-  const [numGuests, setNumGuests] = useState(getawayToEdit.numGuests)
-  const [numBeds, setNumBeds] = useState(getawayToEdit.numBeds)
-  const [numBaths, setNumBaths] = useState(getawayToEdit.numBaths)
-  const [numBedrooms, setNumBedrooms] = useState(getawayToEdit.numBedrooms)
-
 
   const dispatch = useDispatch();
 
   const handleSubmitGetaway = async (e) => {
-    return dispatch(editGetaway({ address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId})).catch(
+    return dispatch(createGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId})).catch(
       async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors); else{
-            history.push(`/getaways/${getawayId}`)
-        }
+        if (data && data.errors) setErrors(data.errors);
       }
     );
 
   }
 
 
+  // if (user) {
+  //   return <Redirect to='/' />;
+  // }
+
   return (
     <div className='formWrapper'onSubmit={handleSubmitGetaway}>
     <form>
       <fieldset className='formflex'>
-        <legend>Edit Getaway</legend>
+        <legend>New Getaway</legend>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -163,7 +163,7 @@ export const EditGetaway = () => {
 
 
       <div>
-        <button type="submit" className="createGetawaySubmitButton">Edit Getaway</button>
+        <button type="submit" className="createGetawaySubmitButton">Create Getaway</button>
       </div>
 
       </fieldset>
