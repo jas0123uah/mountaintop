@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import BrowseGetawaysButton from'./components/BrowseGetawaysButton'
 import UsersList from './components/UsersList';
 import User from './components/User';
+import {NewGetaway} from './components/NewGetaway';
 import { authenticate } from './store/session';
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,15 +41,11 @@ function App() {
         <ProtectedRoute path='/profile/' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-          <BrowseGetawaysButton/>
-        </ProtectedRoute>
+        <Route path='/getaways/new' exact>
+          <NewGetaway/>
+        </Route>
         <Route path='/getaways/:getawayId'>
           {/* <ViewSingleGetaway /> */}
-        </Route>
-        <Route path='/getaways/:getawayId/new'>
-          {/* <NewGetaway/> */}
         </Route>
         <Route path='/getaways/:getawayId/edit'>
           {/* <EditSingleGetaway/> */}
@@ -60,6 +57,10 @@ function App() {
         <Route path='/browse'>
           {/* <BrowseGetaways/> */}
         </Route>
+        <ProtectedRoute path='/' exact={true} >
+          <h1>My Home Page</h1>
+          <BrowseGetawaysButton/>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
