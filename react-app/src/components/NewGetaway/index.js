@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import formPageStyling from './formPageStyling.css'
-import {createGetaway} from '../../store/getaway'
+import {createGetaway} from '../../store/getaways'
 console.log("LINE 6");
 
 export const NewGetaway = () => {

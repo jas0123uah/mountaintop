@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useParams, useHistory} from "react-router-dom";
-import {editGetaway} from '../../store/getaway'
+import {editGetaway} from '../../store/getaways'
 
 export const EditGetaway = () => {
   const {getawayId} = useParams();
