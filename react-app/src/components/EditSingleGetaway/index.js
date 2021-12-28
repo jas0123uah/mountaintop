@@ -3,14 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import {useParams, useHistory} from "react-router-dom";
 import {editGetaway} from '../../store/getaways'
 
-export const EditGetaway = () => {
+export const EditSingleGetaway = () => {
+  console.log("HEKKKKKL");
   const {getawayId} = useParams();
+  console.log(getawayId, "AHHHHHHHHHHHHHHH");
   const history = useHistory();
 
 
   const user = useSelector(state => state.session.user);
   const userId = user?.id
-  const getawayToEdit = useSelector(user => user.getaways[getawayId])
+  const getawayToEdit = useSelector(state => state.session.user.getaways[getawayId])
+  console.log(getawayToEdit, "SHHRTRE")
   const [errors, setErrors] = useState([]);
   const [address, setAddress] = useState(getawayToEdit.address);
   const [city, setCity] = useState(getawayToEdit.city)
@@ -28,21 +31,22 @@ export const EditGetaway = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmitGetaway = async (e) => {
-    return dispatch(editGetaway({ address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId})).catch(
+  const handleEditGetaway = async (e) => {
+  dispatch(editGetaway({ address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId})).catch(
       async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors); else{
-            history.push(`/getaways/${getawayId}`)
+        if (data && data.errors){
+          setErrors(data.errors)
         }
       }
     );
+    history.push(`/getaways/${getawayId}`)
 
   }
 
 
   return (
-    <div className='formWrapper'onSubmit={handleSubmitGetaway}>
+    <div className='formWrapper'onSubmit={handleEditGetaway}>
     <form>
       <fieldset className='formflex'>
         <legend>Edit Getaway</legend>

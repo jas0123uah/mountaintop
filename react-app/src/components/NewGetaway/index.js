@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect , useHistory} from 'react-router-dom';
 import formPageStyling from './formPageStyling.css'
 import {createGetaway} from '../../store/getaways'
 console.log("LINE 6");
@@ -25,21 +25,19 @@ export const NewGetaway = () => {
   const userId = user?.id
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmitGetaway = async (e) => {
-    return dispatch(createGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId})).catch(
+    dispatch(createGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId})).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     );
+    history.push('/profile/')
+    window.location.reload()
 
   }
-
-
-  // if (user) {
-  //   return <Redirect to='/' />;
-  // }
 
   return (
     <div className='formWrapper'onSubmit={handleSubmitGetaway}>
