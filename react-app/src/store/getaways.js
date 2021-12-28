@@ -23,8 +23,6 @@ const deletedGetaway = (deletedGetaway) => ({
 
 export const createGetaway = (newGetawayObj) => async (dispatch) => {
     const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId   } = newGetawayObj;
-    console.log("HELPPPPILYIYOIYU");
-    console.log(userId);
   const response = await fetch(`/api/getaways/`, {
     method: 'POST',
     headers: {
@@ -76,8 +74,8 @@ export const loadGetaways = () => async (dispatch) => {
 }
 
 export const editGetaway = (editedGetawayObj) => async (dispatch) => {
-    const {email, address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId   } = editedGetawayObj;
-  const response = await fetch(`/api/getaways/:id/`, {
+    const {email, address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId   } = editedGetawayObj;
+  const response = await fetch(`/api/getaways/${getawayId}/`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -96,7 +94,8 @@ export const editGetaway = (editedGetawayObj) => async (dispatch) => {
       numBeds, 
       numBaths,  
       numBedrooms, 
-      userId
+      userId,
+      country: 'United States'
     })
   });
   if (response.ok) {
@@ -109,8 +108,8 @@ export const editGetaway = (editedGetawayObj) => async (dispatch) => {
   }
 }
 
-export const deleteGetaway = () => async (dispatch) => {
-  const response = await fetch(`/api/getaways/:id/`, {
+export const deleteGetaway = (getawayId) => async (dispatch) => {
+  const response = await fetch(`/api/getaways/${getawayId}/`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
