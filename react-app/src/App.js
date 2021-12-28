@@ -12,6 +12,8 @@ import ProfilePage from './components/ProfilePage'
 import {EditSingleGetaway} from './components/EditSingleGetaway'
 import {NewGetaway} from './components/NewGetaway';
 import { authenticate } from './store/session';
+import {loadGetaways} from './store/getaways';
+import {ViewSingleGetaway} from './components/ViewSingleGetaway'
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(loadGetaways());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -47,7 +50,7 @@ function App() {
           <NewGetaway/>
         </Route>
         <Route path='/getaways/:getawayId' exact>
-          {/* <ViewSingleGetaway /> */}
+          <ViewSingleGetaway />
         </Route>
         <Route path='/getaways/:getawayId/edit' exact>
           <EditSingleGetaway/> 
