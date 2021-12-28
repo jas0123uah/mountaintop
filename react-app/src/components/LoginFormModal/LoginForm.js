@@ -27,10 +27,11 @@ function LoginForm() {
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label className="modal-label-signup-login">
+      <label className="modal-label-signup-login" >
         Username or Email
         <input
         className="modal-input-signup-login"
+          id="login"
           type="text"
           value={credential}
           onChange={(e) => {setCredential(e.target.value); console.log(e.target.value);}}
@@ -41,6 +42,7 @@ function LoginForm() {
       <label className="modal-label-signup-login">
         Password
         <input
+        id="login"
           className="modal-input-signup-login"
           type="password"
           value={password}
@@ -49,7 +51,7 @@ function LoginForm() {
         />
       </label>
       <br></br>
-      <input type="submit" value="Log in" />
+      <input type="submit" className={`modal-input-signup-login modal-input-signup-login-submit` } id="login" value="Log in" />
       {/* <button className="modal-input-signup-login" id="loginbtn" type="submit">Log In</button> */}
     </form>
   );
