@@ -24,3 +24,17 @@
   display: flex;
   justify-content: center;
 }
+
+.modal-label-signup-login{
+  text-align: center;
+}
+.modal-input-signup-login#login{
+  height: auto;
+  width: 85%;
+  margin-left: 10px;
+  margin-right: 10px;
+  float: none;
+}
+.modal-input-signup-login-submit#login{
+  margin-left: 10.5px;
+}
