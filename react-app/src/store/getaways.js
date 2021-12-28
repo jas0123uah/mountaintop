@@ -3,7 +3,10 @@ const CREATE_GETAWAY_ = 'getaways/CREATE_GETAWAY_';
 const LOAD_GETAWAYS = 'getaways/LOAD_GETAWAYS';
 const EDIT_GETAWAY = 'getaways/EDIT_GETAWAY';
 const DELETE_GETAWAY = 'getaways/DELETE_GETAWAY';
-
+const CREATE_REVIEW = 'REVIEWS/CREATE_REVIEW';
+const LOAD_REVIEWS = 'REVIEWS/LOAD_REVIEWS';
+const EDIT_REVIEW = 'REVIEWS/EDIT_REVIEW';
+const DELETE_REVIEW = 'REVIEWS/DELETE_REVIEW';
 const newGetaway = (newGetaway) => ({
   type: CREATE_GETAWAY_,
   newGetaway
@@ -20,6 +23,85 @@ const deletedGetaway = (deletedGetaway) => ({
   type: DELETE_GETAWAY,
   deletedGetaway
 });
+const newReview = (newReview) => ({
+  type: CREATE_REVIEW,
+  newReview
+});
+const loadedReviews = (loadedReviews) => ({
+  type: LOAD_REVIEWS,
+  loadedReviews
+});
+const editedReview = (editedReview) => ({
+  type: EDIT_REVIEW,
+  editedReview
+});
+const deletedReview = (deletedReview) => ({
+  type: DELETE_REVIEW,
+  deletedReview
+});
+
+
+export const createReview = (newReviewObj) => async (dispatch) => {
+    const {accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId   } = newReviewObj;
+  const response = await fetch(`/api/getaways/${getawayId}/reviews/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 
+      accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId 
+    })
+  });
+  if (response.ok) {
+    const createdReview = await response.json();
+    if (createdReview.errors) {
+      return;
+    }
+  
+    dispatch(newReview(createdReview));
+  }
+}
+
+export const editReview = (editedReviewObj) => async (dispatch) => {
+    const {accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId, reviewId} = editedReviewObj;
+  const response = await fetch(`/api/getaways/${getawayId}/reviews/${reviewId}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 
+      accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId 
+    })
+  });
+  if (response.ok) {
+    const editedReview = await response.json();
+    if (editedReview.errors) {
+      return;
+    }
+  
+    dispatch(editedReview(editedReview));
+  }
+}
+
+
+
+export const deleteReview = (reviewId) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${reviewId}/`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
+  if (response.ok) {
+    const deletedGetawayObj = await response.json();
+    if (deletedGetawayObj.errors) {
+      return;
+    }
+  
+    dispatch(deletedGetaway(deletedGetawayObj));
+  }
+}
+
 
 export const createGetaway = (newGetawayObj) => async (dispatch) => {
     const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId   } = newGetawayObj;
