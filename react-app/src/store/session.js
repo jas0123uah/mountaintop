@@ -1,6 +1,10 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const ADD_USER_RESERVATION = 'session/ADD_USER_RESEVATION';
+const REMOVE_USER_RESERVATION = 'session/REMOVE_USER_RESEVATION';
+
+
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -10,6 +14,57 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
+
+const addUserReservation = (newReservation) => ({
+  type: ADD_USER_RESERVATION,
+  newReservation
+})
+
+const removeUserReservation = (cancelledReservation) => ({
+  type: REMOVE_USER_RESERVATION,
+  cancelledReservation
+})
+
+
+export const createReservation = (reservationObj) => async (dispatch) => {
+  const {userId, startDate,endDate, getawayId} = reservationObj
+  const response = await fetch(`/api/getaways/${getawayId}/reservations`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({userId, startDate,endDate})
+  });
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
+  
+    dispatch(addUserReservation(data));
+  }
+}
+
+
+export const deleteReservation = (getawayId) => async (dispatch) => {
+  const response = await fetch(`/api/getaways/reservations${getawayId}/`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
+  
+    dispatch(removeUserReservation(data));
+  }
+}
+
+
+
 
 const initialState = { user: null };
 
@@ -104,12 +159,22 @@ export const signUp = (signupInfo) => async (dispatch) => {
   }
 }
 
+let newState
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case ADD_USER_RESERVATION:
+      newState = {...initialState}
+      newState.reservations[action.newReservation].id = action.newReservation
+      return newState
+    case REMOVE_USER_RESERVATION:
+      newState = {...initialState}
+      delete newState.reservations[action.cancelledReservation.id]
+      return newState
+
     default:
       return state;
   }
