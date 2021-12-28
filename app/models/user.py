@@ -53,7 +53,8 @@ class User(db.Model, UserMixin):
         get_dict={}
 
         for _getaway in self.getaway:
-            get_dict[_getaway.id] = {'id': self.id,
+            images =_getaway.get_images()
+            get_dict[_getaway.id] = {'id': _getaway.id,
             'userId': _getaway.userId,
             'address': _getaway.address,
             'city': _getaway.city,
@@ -61,6 +62,7 @@ class User(db.Model, UserMixin):
             'country': _getaway.country,
             'latitude': _getaway.latitude,
             'longitude': _getaway.longitude,
+            'images': images,
             'name': _getaway.name,
             'price': _getaway.price,
             'description': _getaway.description,
