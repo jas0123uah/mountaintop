@@ -28,20 +28,23 @@ const removeUserReservation = (cancelledReservation) => ({
 
 export const createReservation = (reservationObj) => async (dispatch) => {
   const {userId, startDate,endDate, getawayId} = reservationObj
-  const response = await fetch(`/api/getaways/${getawayId}/reservations`, {
+  console.log("oioij", userId, startDate,endDate, getawayId )
+  const response = await fetch(`/api/getaways/${getawayId}/reservations/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({userId, startDate,endDate})
+    body: JSON.stringify({userId,startDate, endDate, getawayId})
   });
   if (response.ok) {
-    const data = await response.json();
-    if (data.errors) {
-      return;
+    const newReservation = await response.json();
+    if (newReservation.errors) {
+      console.log('HERE',  newReservation)
+      return newReservation;
     }
+    console.log(newReservation, "YES")
   
-    dispatch(addUserReservation(data));
+    dispatch(addUserReservation(newReservation));
   }
 }
 
@@ -159,7 +162,7 @@ export const signUp = (signupInfo) => async (dispatch) => {
   }
 }
 
-let newState
+let newState ={}
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
@@ -167,11 +170,13 @@ export default function reducer(state = initialState, action) {
     case REMOVE_USER:
       return { user: null }
     case ADD_USER_RESERVATION:
+      console.log(action.newReservation, "YESTERDAY")
       newState = {...initialState}
+      console.log(newState, "JTDYJTRYUTTRTUYTRUYRUFTYH")
+      return state
       newState.reservations[action.newReservation].id = action.newReservation
-      return newState
     case REMOVE_USER_RESERVATION:
-      newState = {...initialState}
+      newState = {...state}
       delete newState.reservations[action.cancelledReservation.id]
       return newState
 
