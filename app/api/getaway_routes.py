@@ -76,7 +76,6 @@ def edit_getaway_by_id(id):
         db.session.commit()
         return getawayToEdit.to_dict()
     else:
-
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @getaway_routes.route('/<int:id>/', methods=['DELETE'])
