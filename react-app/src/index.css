@@ -1,10 +1,8 @@
 /* TODO Add site wide styles */
 .fa-mountain, .fa-user-plus, .fa-sign-in{
-    color: #016844;
+    color: #000;
 }
-.fa-user-plus, .fa-sign-in{
-    color: #1e662a;
-}
+
 
 .searchBar{
     border-radius: 15px;
@@ -23,7 +21,7 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 5px;
-    border-bottom: grey solid ;
+    border-bottom: black solid 1px ;
     
 }
 .searchBar{
@@ -78,4 +76,77 @@ body{
     justify-content: space-between;
     overflow-y: scroll;
 
+}
+.example-custom-input{
+    display:inline !important;
+}
+.reservationDates{
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+#deleteReservationForm{
+    display: flex;
+    justify-content: flex-start;
+    
+}
+.viewGetawayButton{
+    margin-right: 4vw;;
+    margin-left: 192px;
+
+}
+.pastReservations{
+    /* display: flex;
+    justify-content: flex-start;
+    width: 60vw;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory; */
+    display: flex;
+    overflow-x: auto;
+    width: 38vw;
+    scroll-snap-type: x mandatory;
+    margin-left: 8px;
+}
+.pastReservations::-webkit-scrollbar{
+    background-color: none;
+    width: 5px;
+  height: 10px;
+}
+.pastReservations::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px     rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+body {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.pastReservations::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px     rgba(0,0,0,0.5); 
+}
+.singlepastReservation{
+    scroll-snap-align: start;
+    
+
+    /* margin-right: 50px;
+    width: 60vw; */
+  
+}
+#previousReservations{
+    margin-left: 30vw;
+    background-color:white;
+}
+.profileContainer{
+    display: flex;
+    flex-direction: column;
+}
+.viewGetawayButton{
+    background-color:  #8a8f2e;
+    height: 40px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: none;
+
+
+    width: 123.696px;
 }
