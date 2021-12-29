@@ -24,26 +24,73 @@ export const NewReservation = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState('');
   const user = useSelector(state => state.session.user);
+  const getaways = useSelector(state => state.getaways);
   const userId = user?.id
   const { getawayId }  = useParams();
-  console.log(startDate)
 
   const dispatch = useDispatch();
   const history = useHistory();
-  var array = ["2021-12-29","2013-03-15","2013-03-16"]
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
 
 
-
-const isWeekday = (date) => {
-    const day = new Date(date);
-    console.log(day, "AGG")
-    day.getDay()
-    return day.getDay() !== 0 && day.getDay() !== 6;
+  const [isOpenStart, setIsOpenStart] = useState(false);
+  const [isOpenEnd, setIsOpenEnd] = useState(false);
+  const handleStartChange = (e) => {
+    setIsOpenStart(!isOpenStart);
+    setStartDate(e);
+  };
+  const handleStartClick = (e) => {
+    e.preventDefault();
+    setIsOpenStart(!isOpenStart);
+  };
+  const handleEndChange = (e) => {
+    setIsOpenEnd(!isOpenEnd);
+    setEndDate(e);
+  };
+  const handleEndClick = (e) => {
+    e.preventDefault();
+    setIsOpenEnd(!isOpenEnd);
   };
 
+
+
+
+
+function getDatesBetween(startDate, stopDate) {
+    const dateArray = new Array();
+    let currentDate = new Date(startDate);
+    let endDate = new Date(stopDate);
+
+
+    while (currentDate <= endDate) {
+        currentDate.setHours(0,0,0,0);
+        
+        dateArray.push(new Date (currentDate).toString());
+        currentDate.setDate(currentDate.getDate()+1);
+    }
+    dateArray.push(endDate.toString())
+    return dateArray;
+}
+
+  const getBookedDays=() =>{
+  const bookedDays = [];
+
+  const reservations = Object.values(getaways[getawayId].reservations)
+  reservations.forEach( reservation => {
+    bookedDays.push(new Date(reservation.startDate).toString())
+    bookedDays.push(...getDatesBetween(reservation.startDate, reservation.endDate))
+  })
+  return bookedDays
+
+}
+
+
+const removeBookedDays = (date) => {
+  let bookedDays = getBookedDays()
+  let dateasString = date.toString()
+  return !bookedDays.includes(dateasString)
+
+
+}
 
   
 
@@ -64,11 +111,46 @@ const isWeekday = (date) => {
           <div key={ind}>{error}</div>
         ))}
       </div>
-    
-        <DatePicker selected={startDate} format="yyyy-MM-dd" filterDate={isWeekday}  onChange={(date) => setStartDate(date)} minDate={new Date()} maxDate={new Date(endDate)} />
+        {/* <label>Check-in Date</label>
+        <DatePicker selected={startDate} format="yyyy-MM-dd" filterDate={removeBookedDays}  onChange={(date) => setStartDate(date)} minDate={new Date()} maxDate={new Date(endDate)} />
+        <label>Check-out Date</label> */}
 
+
+        <>
+      <button className="example-custom-input" onClick={handleStartClick}>
+        Check-In Date
+      </button>
+      {isOpenStart && (
+        <DatePicker selected={startDate} onChange={handleStartChange}
+        format="yyyy-MM-dd"
+        minDate={new Date(startDate)} filterDate={removeBookedDays}  
+         inline />
+      )}
+    </>
+
+        
+        {/* <button>
+          AHHHHHHHHHH
+        </button>
         <DatePicker selected={endDate} format="yyyy-MM-dd"
-        minDate={new Date(startDate)} filterDate={isWeekday}  onChange={(date) => setEndDate(date)} />
+        minDate={new Date(startDate)} filterDate={removeBookedDays}  onChange={(date) => setEndDate(date)}  inline/> */}
+
+
+        <>
+      <button className="example-custom-input" onClick={handleEndClick}>
+        Check-out Date
+      </button>
+      {isOpenEnd && (
+        <DatePicker selected={endDate} onChange={handleEndChange}
+        format="yyyy-MM-dd"
+        minDate={new Date(startDate)} filterDate={removeBookedDays}  
+         inline />
+      )}
+    </>
+
+
+
+
         <button type="submit" className="createGetawaySubmitButton">Book Reservation</button>
       </fieldset>
 
