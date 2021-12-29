@@ -9,7 +9,7 @@ from .auth_routes import validation_errors_to_error_messages
 reservation_routes = Blueprint('reservations', __name__)
 
 @reservation_routes.route('getaways/<int:id>/reservations/', methods=['POST'])
-def post_review_for_getaway(id):
+def post_reservation_for_getaway(id):
     form = ReservationForm() 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -22,7 +22,7 @@ def post_review_for_getaway(id):
 
 
 @reservation_routes.route('reservations/<int:id>/', methods=['DELETE'])
-def delete_review_by_id(id):
+def delete_reservation_by_id(id):
     reservationToDelete = Reservation.query.get(int(id))
     db.session.delete(reservationToDelete)
     db.session.commit()
