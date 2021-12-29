@@ -1,45 +1,105 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect , useHistory, useParams } from 'react-router-dom';
-//import DatePicker from "react-datepicker";
-//import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment"
 import {createReservation} from '../../store/session'
 import $ from "jquery";
+import "jquery-ui";
+import 'jquery-ui/ui/widgets/datepicker'
+import 'jquery-ui/themes/base/core.css'
+import 'jquery-ui/themes/base/datepicker.css'
+import 'jquery-ui/themes/base/theme.css'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+//import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
+// import 'jquery-ui/themes/base/core.css';
+// import 'jquery-ui/themes/base/theme.css';
+// import 'jquery-ui/themes/base/selectable.css';
+// import 'jquery-ui/ui/core';
+// import 'jquery-ui/ui/widgets/selectable';
 //import $ from '../node_modules';
 export const NewReservation = () => {
   const [errors, setErrors] = useState([]);
-  const [startDate, setStartDate] = useState('');
+  // const [startDate, setStartDate] = useState('');
+  const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState('');
   const user = useSelector(state => state.session.user);
+  const getaways = useSelector(state => state.getaways);
   const userId = user?.id
   const { getawayId }  = useParams();
-//   var $j = $.noConflict();
 
   const dispatch = useDispatch();
   const history = useHistory();
-//   var array = ["2021-12-29","2013-03-15","2013-03-16"]
-//   $( function() {
-//   $j('#datepicker').datepicker({
-//     beforeShowDay: function(date){
-//         var string = $('#datepicker').datepicker.formatDate('yy-mm-dd', date);
-//         return [ array.indexOf(string) == -1 ]
-//     }
-// })
-// });
+
+
+  const [isOpenStart, setIsOpenStart] = useState(false);
+  const [isOpenEnd, setIsOpenEnd] = useState(false);
+  const handleStartChange = (e) => {
+    setIsOpenStart(!isOpenStart);
+    setStartDate(e);
+  };
+  const handleStartClick = (e) => {
+    e.preventDefault();
+    setIsOpenStart(!isOpenStart);
+  };
+  const handleEndChange = (e) => {
+    setIsOpenEnd(!isOpenEnd);
+    setEndDate(e);
+  };
+  const handleEndClick = (e) => {
+    e.preventDefault();
+    setIsOpenEnd(!isOpenEnd);
+  };
+
+
+
+
+
+function getDatesBetween(startDate, stopDate) {
+    const dateArray = new Array();
+    let currentDate = new Date(startDate);
+    let endDate = new Date(stopDate);
+
+
+    while (currentDate <= endDate) {
+        currentDate.setHours(0,0,0,0);
+        
+        dateArray.push(new Date (currentDate).toString());
+        currentDate.setDate(currentDate.getDate()+1);
+    }
+    dateArray.push(endDate.toString())
+    return dateArray;
+}
+
+  const getBookedDays=() =>{
+  const bookedDays = [];
+
+  const reservations = Object.values(getaways[getawayId].reservations)
+  reservations.forEach( reservation => {
+    bookedDays.push(new Date(reservation.startDate).toString())
+    bookedDays.push(...getDatesBetween(reservation.startDate, reservation.endDate))
+  })
+  return bookedDays
+
+}
+
+
+const removeBookedDays = (date) => {
+  let bookedDays = getBookedDays()
+  let dateasString = date.toString()
+  return !bookedDays.includes(dateasString)
+
+
+}
 
   
 
   const handleSubmitReservation = async (e) => {
-    dispatch(createReservation({getawayId, startDate, endDate, userId})).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
-   // history.push('/profile/')
-    //window.location.reload()
+    dispatch(createReservation({getawayId, startDate, endDate, userId}))
+    history.push('/profile')
 
   }
+
 
   return (
     <div className='formWrapper'onSubmit={handleSubmitReservation}>
@@ -51,29 +111,47 @@ export const NewReservation = () => {
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div className="input-div">
-          <label htmlFor="start_date">Start Date:</label>
-          <input
-            type="date"
-            name="start-date"
-            min="2021-12-09"
-            max="2022-12-31"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          ></input>
-        </div>
-       <div className="input-div">
-          <label htmlFor="end_date">End Date:</label>
-          <input
-            type="date"
-            name="end-date"
-            min={startDate}
-            max="2022-12-31"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          ></input>
-        </div>
-        <p>Date:<input id="datepicker" type="text"></input></p>
+        {/* <label>Check-in Date</label>
+        <DatePicker selected={startDate} format="yyyy-MM-dd" filterDate={removeBookedDays}  onChange={(date) => setStartDate(date)} minDate={new Date()} maxDate={new Date(endDate)} />
+        <label>Check-out Date</label> */}
+
+
+        <>
+      <button className="example-custom-input" onClick={handleStartClick}>
+        Check-In Date
+      </button>
+      {isOpenStart && (
+        <DatePicker selected={startDate} onChange={handleStartChange}
+        format="yyyy-MM-dd"
+        minDate={new Date(startDate)} filterDate={removeBookedDays}  
+         inline />
+      )}
+    </>
+
+        
+        {/* <button>
+          AHHHHHHHHHH
+        </button>
+        <DatePicker selected={endDate} format="yyyy-MM-dd"
+        minDate={new Date(startDate)} filterDate={removeBookedDays}  onChange={(date) => setEndDate(date)}  inline/> */}
+
+
+        <>
+      <button className="example-custom-input" onClick={handleEndClick}>
+        Check-out Date
+      </button>
+      {isOpenEnd && (
+        <DatePicker selected={endDate} onChange={handleEndChange}
+        format="yyyy-MM-dd"
+        minDate={new Date(startDate)} filterDate={removeBookedDays}  
+         inline />
+      )}
+    </>
+
+
+
+
+        <button type="submit" className="createGetawaySubmitButton">Book Reservation</button>
       </fieldset>
 
 

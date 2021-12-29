@@ -13,7 +13,7 @@ def post_review_for_getaway(id):
     form = ReservationForm() 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        newReservation = Reservation(getawayId = form.data['getawayId'], userId=form.data['userId'], startDate=form.data['startDate'], endDate=form.data['endDate'])
+        newReservation = Reservation( userId=form.data['userId'], startDate=form.data['startDate'], endDate=form.data['endDate'], getawayId=form.data['getawayId'])
         db.session.add(newReservation)
         db.session.commit()
         return newReservation.to_dict()

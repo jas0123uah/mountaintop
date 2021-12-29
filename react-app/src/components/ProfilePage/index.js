@@ -51,7 +51,6 @@ export const ProfilePage = () => {
         <li id={`carouselSlide${item.id}`} key={item.id} tabIndex="0" className="carouselSlide">
           <div className="carouselSnapper">
             <h1>{item.name}</h1>
-            {console.log(Object.values(item.images)[0], "********************")}
             <img className="carouselImg" src={Object.values(item.images)[0]?.url}></img>
             <NavLink to={`/getaways/${item.id}/edit`}><button>Edit Getaway</button></NavLink>
 
