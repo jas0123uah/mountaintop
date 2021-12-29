@@ -220,12 +220,13 @@ ol, li {
   
 }
 .DeleteButton{
-  background-color: red;
-  border-radius: 15px;
+  background-color: #f28350;
+  border-radius: 25px;
   /* height: 25px; */
   height: 25%;
-  height: 10vh;
+  height: 40px;
   border: none;
+  font-weight: bold;
   
 }
 .carousel::after,
@@ -277,10 +278,23 @@ ol, li {
   margin: 0;
   padding: 0;
   max-width: 30vw;
-  background-color: WHITE;
-  position: fixed;
-  height: 100%;
+  /* background-color: WHITE; */
+  /* background-color: #dfd9c4; */
+  background-color: rgb(204, 213, 205);
+  /* background-color: rgb(49, 77, 88); */
+  position: absolute;
+  /* z-index: 8;
+  height: 12vh; */
+  /* height: 100%; */
   overflow: auto;
+  border-right: 1px solid #000;
+  margin-top:-14px; 
+  
+
+
+
+  
+
 }
 
 .profilePicture{
@@ -293,4 +307,19 @@ ol, li {
 .addNewGetaway{
   height: auto;
   min-height: 5.5vh;
+}
+.profileMainContent{
+  margin-left: 30vw;
+  background-color: #fff;
+  margin-top:-15px;
+}
+span{
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.UpcomingReservations{
+  padding-bottom: 5px;
+  border-bottom: solid 2px #000;
+  text-align: center;
 }
