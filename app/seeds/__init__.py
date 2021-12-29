@@ -4,7 +4,7 @@ from .amenities import seed_amenities, undo_amenities
 from .getaways import seed_getaways, undo_getaways
 from .images import seed_images, undo_images
 from .reviews import seed_reviews, undo_reviews
-
+from .reservations import seed_reservations, undo_reservations
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -19,6 +19,7 @@ def seed():
     seed_reviews()
     seed_images()
     seed_amenities()
+    seed_reservations()
     # Add other seed functions here
 
 
@@ -30,4 +31,5 @@ def undo():
     undo_reviews()
     undo_images()
     undo_amenities()
+    undo_reservations()
     # Add other undo functions here
