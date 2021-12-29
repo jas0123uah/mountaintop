@@ -14,8 +14,8 @@ def seed_users():
     db.session.add(joe)
     for user in range(1,200):
         user = RandomUser()
-        firstName = user.get_first_name()
-        lastName = user.get_last_name()
+        firstName = str(user.get_first_name())
+        lastName = str(user.get_last_name())
         password = user.get_password()
         profilePictureUrl = user.get_picture()
         email = user.get_email()
