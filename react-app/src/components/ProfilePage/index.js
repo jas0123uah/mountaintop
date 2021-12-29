@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, NavLink, Link } from 'react-router-dom';
 import {createGetaway, deleteGetaway } from '../../store/getaways'
 import './carousel.css'
-
+import { UpcomingUserReservations } from '../UpcomingUserReservations';
+import { PreviousUserReservations } from '../PreviousReservations';
 export const ProfilePage = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
@@ -41,9 +42,6 @@ export const ProfilePage = () => {
   
   }
 
-  const upcomingUserReservations = () => { 
-    
-  }
 
   const createGetawayDiv = (item, prevSlide , nextSlide) => {
       return (
@@ -77,6 +75,7 @@ export const ProfilePage = () => {
     </section>
   return (
     <>
+    <div className="profileContainer">
     <div className='profileSidebar'>
       <h1>{`Hello ${user.firstName}!`}</h1>
       <img className='profilePicture' src={user.profilePictureUrl} ></img>
@@ -90,12 +89,18 @@ export const ProfilePage = () => {
       {userGetaways.length? imageCarousel : null}
     </div>
 
-    <div>
-      <h1> Upcoming Reservations</h1>
+    <div className="profileMainContent">
       <div className="UpcomingReservations">
-
+      <h1> Upcoming Reservations</h1>
+        <UpcomingUserReservations></UpcomingUserReservations>
       </div>
     </div>
+    <div className="UpcomingReservations" id="previousReservations">
+    <h1>Previous Reservations</h1>
+    <PreviousUserReservations/>
+    </div>
+    </div>
+    
     </>
   );
 };
