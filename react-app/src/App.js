@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import BrowseGetawaysButton from'./components/BrowseGetawaysButton'
 import UsersList from './components/UsersList';
+import Footer from './components/Footer'
 import User from './components/User';
 import ProfilePage from './components/ProfilePage'
 import {EditSingleGetaway} from './components/EditSingleGetaway'
@@ -70,6 +71,7 @@ function App() {
           <BrowseGetawaysButton/>
         </ProtectedRoute>
       </Switch>
+      <Footer></Footer>
     </BrowserRouter>
   );
 }
