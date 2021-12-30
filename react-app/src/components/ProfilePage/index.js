@@ -5,6 +5,7 @@ import {createGetaway, deleteGetaway } from '../../store/getaways'
 import './carousel.css'
 import { UpcomingUserReservations } from '../UpcomingUserReservations';
 import { PreviousUserReservations } from '../PreviousReservations';
+import {UpcomingUserReservationsCarousel} from '../UpcomingReservationsCarousel'
 export const ProfilePage = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
@@ -100,7 +101,7 @@ export const ProfilePage = () => {
     <PreviousUserReservations/>
     </div>
     </div>
-    
+    <UpcomingUserReservationsCarousel/>
     </>
   );
 };

@@ -18,7 +18,10 @@ const NavBar = () => {
     await dispatch(
       sessionActions.login( credential , password)
     );
+    
     history.push("/profile");
+
+  
   };
   return (
     <nav className="navBar">
