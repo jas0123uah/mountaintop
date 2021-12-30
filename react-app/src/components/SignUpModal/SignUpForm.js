@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import validator from 'validator'
+import { signUp } from '../../store/session';
+
 function SignUpForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
@@ -13,9 +15,18 @@ function SignUpForm() {
   const [profilePicture, setProfilePicture] = useState('')
   const [errors, setErrors] = useState([]);
 
-  async function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+
+  const onSignUp = async (e) => {
+    e.preventDefault();
+    console.log(firstName, lastName, email, password, profilePicture, "AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+    if (password === confirmPassword) {
+      const data = await dispatch(signUp({firstName, lastName, email, password, profilePicture}));
+      if (data) {
+        setErrors(data)
+      }
+    }
+  };
+
 
   const validateEmail = () => {return validator.isEmail(email) }
   const validatePasswordsMatch = () => { return password === confirmPassword ? true : false;}
@@ -30,32 +41,31 @@ function SignUpForm() {
           return true;
       }
   }
-  const handleSubmit = (e) => {
-      console.log("GHREHGEHGEH")
-    //e.preventDefault();
-    setErrors([]);
-    console.log("AHAHSAHFSHS");
-    console.log({firstName, lastName, email, password, profilePicture})
-    sleep(10000000000)
-    return dispatch(sessionActions.signUp({firstName, lastName, email, password, profilePicture    })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
-  };
+  // const handleSubmit = (e) => {
+  //     console.log("GHREHGEHGEH")
+  //   //e.preventDefault();
+  //   setErrors([]);
+  //   console.log({firstName, lastName, email, password, profilePicture})
+  //   return dispatch(sessionActions.signUp({firstName, lastName, email, password, profilePicture    })).catch(
+  //     async (res) => {
+  //       const data = await res.json();
+  //       if (data && data.errors) setErrors(data.errors);
+  //     }
+  //   );
+  // };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSignUp}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
+      <label className="modal-label-signup-login">
           First Name
         <input
         className="modal-input-signup-login"
+        id="firstNameField"
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
@@ -69,20 +79,19 @@ function SignUpForm() {
         <input
         className="modal-input-signup-login"
           type="text"
+          id="lastNameField"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
         />
-        <br />
       </label>
-
-
-
+        <br />
       <label className="modal-label-signup-login">
         Email
         <input
         className="modal-input-signup-login"
           type="text"
+          id="emailField"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -92,6 +101,7 @@ function SignUpForm() {
       <label className="modal-label-signup-login">
         Password
         <input
+        id="passwordField"
           className="modal-input-signup-login"
           type="password"
           value={password}
@@ -104,6 +114,7 @@ function SignUpForm() {
       <label className="modal-label-signup-login">
         Confirm Password
         <input
+        id="confirmPasswordField"
           className="modal-input-signup-login"
           type="password"
           value={confirmPassword}
@@ -114,8 +125,9 @@ function SignUpForm() {
       <br></br>
 
       <label className="modal-label-signup-login">
-        Profile Picture uRL
+        Profile Picture URL
         <input
+        id="profilePictureField"
           className="modal-input-signup-login"
           value={profilePicture}
           onChange={(e) => setProfilePicture(e.target.value)}
@@ -123,7 +135,7 @@ function SignUpForm() {
         />
       </label>
       <br></br>
-      <button className="modal-input-signup-login" id="loginbtn"  type="submit">Sign Up</button>
+      <button className="modal-input-signup-login" id="signupbtn"  type="submit">Sign Up</button>
     </form>
   );
 }
