@@ -4,16 +4,10 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './LoginFormModal';
 import SignUpFormModal from './SignUpModal'
+import { useDispatch, useSelector } from "react-redux";
 const NavBar = () => {
-  const displayLoginandSignupMenu = (e) =>{
-    return (
-      <div>
-        <button> Sign up</button>
-        <button></button>
-      </div>
-    )
-
-  }
+  const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
   return (
     <nav className="navBar">
       <ul className="navBar-list" id="nav-list">
@@ -27,10 +21,12 @@ const NavBar = () => {
         </li>
         <div className="signuploginicons">
         <li>
-            <SignUpFormModal/>          
+            {user ?  <NavLink to="/profile" className="submitButton"> <i class="fas fa-home fa-3x"></i></NavLink> : <SignUpFormModal/>}          
         </li>
         <li>
-            <LoginFormModal></LoginFormModal>
+          {user ?  <LogoutButton/> :  <LoginFormModal/> }
+         
+
 
         </li>
         </div>
