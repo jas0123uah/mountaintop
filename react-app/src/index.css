@@ -143,7 +143,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-.viewGetawayButton{
+.viewGetawayButton,#demo-button{
     background-color:  #8a8f2e;
     height: 40px;
     border-radius: 25px;
@@ -152,6 +152,11 @@ body {
 
 
     width: 123.696px;
+}
+#demo-button{
+    margin-left: 40px;
+    position: relative;
+    bottom: 7px;
 }
 .fa-sign-out-alt{
     margin-left: 55px;
@@ -207,4 +212,10 @@ body {
 .singleGetawayPageProfilePicture{
     max-height: 200px;
     border-radius: 50%;
+}
+
+.fa-sign-in{
+    position: relative;
+    top: 6px;
+
 }
