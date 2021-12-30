@@ -1,5 +1,5 @@
 /* TODO Add site wide styles */
-.fa-mountain, .fa-user-plus, .fa-sign-in{
+.fa-mountain, .fa-user-plus, .fa-sign-in, .fa-home{
     color: #000;
 }
 
@@ -95,6 +95,9 @@ body{
     margin-left: 192px;
 
 }
+.viewGetawayButton#getawayBlurb{
+    margin-left: 375px;
+}
 .pastReservations{
     /* display: flex;
     justify-content: flex-start;
@@ -149,4 +152,59 @@ body {
 
 
     width: 123.696px;
+}
+.fa-sign-out-alt{
+    margin-left: 55px;
+}
+.modal-input-signup-login{
+  height: auto;
+  width: 85%;
+  margin-left: 10px;
+  margin-right: 10px;
+  float: none;
+}
+.modal-input-signup-login-submit{
+  margin-left: 10.5px;
+}
+#USERNAME, #PASSWORD, #firstNameField, #confirmPasswordField, #passwordField, #emailField, #lastNameField, #firstNameField {
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:10px;
+    padding-right:10px;
+    width:150px;
+    float: none;
+}
+#confirmPasswordField, #passwordField, #emailField, #lastNameField, #firstNameField{
+    width: 85%;
+    float: none;
+}
+#LOGINBUTTON{
+    margin-left: 30px;
+}
+#signupbtn{
+    margin-bottom:10px ;
+}
+/* #root :last-child {
+  display: none;
+} */
+/* #root{
+    background-color:black;
+} */
+.getawayBlurb{
+    position:absolute;
+    top:350px;
+    left:825px;
+    letter-spacing: 2.5px;
+}
+
+
+#interestedDiv{
+    position:absolute;
+    top:700px;
+    right: 650px;
+}
+.getawayDescription { grid-area: getawayDescription; }
+.singleGetawayPageProfilePicture{
+    max-height: 200px;
+    border-radius: 50%;
 }
