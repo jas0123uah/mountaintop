@@ -14,6 +14,10 @@ import {EditSingleGetaway} from './components/EditSingleGetaway'
 import {NewGetaway} from './components/NewGetaway';
 import { authenticate } from './store/session';
 import {loadGetaways} from './store/getaways';
+import {HomePage}  from './components/HomePage';
+import './context/Modal.css';
+import './index.css'
+import './components/ProfilePage/carousel.css'
 import {ViewSingleGetaway} from './components/ViewSingleGetaway'
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,6 +39,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true}>
+          <HomePage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
