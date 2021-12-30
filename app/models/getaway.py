@@ -86,15 +86,23 @@ class Getaway(db.Model):
                                         "amenity":amenity.amenity,
                                         }
         return ame_dict
+    def get_host_info(self):
+        host_dict={}
+        
+        return host_dict
     
     def to_dict(self):
         res_dict = self.get_reservations() 
         rev_dict = self.get_reviews()
         img_dict = self.get_images()
         ame_dict = self.get_amenities()
+        #host_dict = self.get_host_info()
+        print(self.userGetaway, "HERES THE HOST DICTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
         return {
             'id': self.id,
             'userId': self.userId,
+            'hostFirstName': self.userGetaway.firstName,
+            'hostProfilePicture':self.userGetaway.profilePictureUrl,
             'address': self.address,
             'city': self.city,
             'state': self.state,
