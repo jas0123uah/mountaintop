@@ -1,13 +1,25 @@
 
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './LoginFormModal';
 import SignUpFormModal from './SignUpModal'
+import * as sessionActions from "../store/session";
 import { useDispatch, useSelector } from "react-redux";
 const NavBar = () => {
+  const [credential, setCredential] = useState("");
+  const [password, setPassword] = useState("");
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const demoLogin = async () =>{
+    setCredential("demo@aa.io");
+    setPassword("password");
+    await dispatch(
+      sessionActions.login( credential , password)
+    );
+    history.push("/profile");
+  };
   return (
     <nav className="navBar">
       <ul className="navBar-list" id="nav-list">
@@ -24,6 +36,7 @@ const NavBar = () => {
             {user ?  <NavLink to="/profile" className="submitButton"> <i class="fas fa-home fa-3x"></i></NavLink> : <SignUpFormModal/>}          
         </li>
         <li>
+          {user ? null :<button id="demo-button" onClick={demoLogin}> Demo user</button>}
           {user ?  <LogoutButton/> :  <LoginFormModal/> }
          
 
