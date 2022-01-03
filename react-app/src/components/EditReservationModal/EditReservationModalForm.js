@@ -25,6 +25,9 @@ export const EditReservationModalForm = () => {
   // console.log(reservationToEdit.startDate, "************", typeof reservationToEdit.startDate);
   // console.log(startDate, "PPPP");
   // console.log(endDate, "MMMM");
+  console.log(startDate, "START DATEEEE");
+  console.log(endDate, "END DATEEEE");
+
   const getaways = useSelector(state => state.getaways);
   const userId = user?.id
 
@@ -98,12 +101,18 @@ const removeBookedDays = (date) => {
   
 
   const handleEditReservation = async (e) => {
-     await dispatch(editReservation({getawayId, startDate, endDate, userId, reservationId})).catch(async err => {
-      const data = await err.json();
-      if (data && data.errors) setErrors(data.errors);
-    })
-    await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push("/profile"))
-    //return <Redirect to='/profile' />;
+    e.preventDefault()
+    setErrors([])
+    const editedReservation = await dispatch(editReservation({getawayId, startDate, endDate, userId, reservationId}))
+    if (editedReservation.errors) {
+      return setErrors(editedReservation.errors)
+
+    }
+    await dispatch(loadGetaways())
+    await dispatch(authenticate())
+    history.push('/profile')
+
+
 
   }
 
