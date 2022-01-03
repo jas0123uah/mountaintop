@@ -7,7 +7,7 @@ const GetawayCarousel = () => {
     const arrayOfGetaways = Object.values(getawaysObject)
     const randomGetaway = arrayOfGetaways[Math.floor(Math.random() * arrayOfGetaways.length)];
     const randomGetawayImagesObjs = Object.values(randomGetaway.images);
-    console.log(randomGetawayImagesObjs);
+    //console.log(randomGetawayImagesObjs);
     const goodImages =[]
     for (let index = 0; index < randomGetawayImagesObjs.length; index++) {
         const imageObj = randomGetawayImagesObjs[index];
