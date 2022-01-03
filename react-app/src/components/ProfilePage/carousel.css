@@ -282,7 +282,7 @@ ol, li {
   /* background-color: #dfd9c4; */
   background-color: rgb(204, 213, 205);
   /* background-color: rgb(49, 77, 88); */
-  position: absolute;
+  /* position: absolute; */
   /* z-index: 8;
   height: 12vh; */
   /* height: 100%; */
@@ -309,7 +309,7 @@ ol, li {
   min-height: 5.5vh;
 }
 .profileMainContent{
-  margin-left: 30vw;
+  /* margin-left: 30vw; */
   background-color: #fff;
   margin-top:-15px;
 }
