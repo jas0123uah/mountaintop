@@ -95,7 +95,7 @@ input[type="password"]:focus, input[type="number"]:focus, input[type="url"]:focu
     box-shadow:0 0 5px rgba(4, 129, 177, 0.5);
     opacity:1.0;
 }
-input[type="submit"]{
+input[type="submit"], #signupbtn {
     background: #222;
     border: none;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.3);

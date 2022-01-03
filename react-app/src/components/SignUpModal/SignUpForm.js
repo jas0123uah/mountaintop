@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import validator from 'validator'
@@ -14,6 +14,35 @@ function SignUpForm() {
   const [lastName, setLastName] = useState("")
   const [profilePicture, setProfilePicture] = useState('')
   const [errors, setErrors] = useState([]);
+
+  useEffect(()=> {
+    const user = {email, password, confirmPassword, firstName, lastName, profilePicture}
+    const errors = [];
+    if (!email) errors.push('Please enter an e-mail.');
+
+    if (!password.length) errors.push('Please enter a password.');
+    if (password.length < 10) errors.push('Password must be 10 characters.')
+
+    if (!confirmPassword.length) errors.push('Please confirm your password.');
+
+    if (password !=confirmPassword) errors.push("Passwords don't match.");
+
+
+    if (email.includes('@.com'  || '@.edu' || '@.org' || '@.net' || '@aa.io')) {
+
+      errors.push("Please enter a valid email address.")
+    }
+    
+    
+    if (!firstName.length) errors.push('Please enter your first name.');
+
+    if (!lastName.length) errors.push('Please enter your last name.');
+
+    if (!profilePicture) errors.push('Please enter a url for a profile picture.');
+    
+    
+    setErrors(errors);
+  }, [email, password, confirmPassword, firstName, lastName, profilePicture])
 
 
   const onSignUp = async (e) => {
@@ -55,12 +84,16 @@ function SignUpForm() {
   // };
 
   return (
+    <div className='formWrapper'>
+
     <form onSubmit={onSignUp}>
-      <ul>
+      <ul className="formErrors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
+      <div className="signup-inputs">
+
       <label className="modal-label-signup-login">
           First Name
         <input
@@ -135,8 +168,10 @@ function SignUpForm() {
         />
       </label>
       <br></br>
-      <button className="modal-input-signup-login" id="signupbtn"  type="submit">Sign Up</button>
+      </div>
+      <button className="modal-input-signup-login" id="signupbtn" disabled={errors.length ? true : false}  type="submit">Sign Up</button>
     </form>
+    </div>
   );
 }
 
