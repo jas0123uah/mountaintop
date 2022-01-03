@@ -176,7 +176,7 @@ body {
 .modal-input-signup-login-submit{
   margin-left: 10.5px;
 }
-#USERNAME, #PASSWORD, #firstNameField, #confirmPasswordField, #passwordField, #emailField, #lastNameField, #firstNameField {
+#USERNAME, #PASSWORD, #firstNameField, #confirmPasswordField, #passwordField, #emailField, #lastNameField, #firstNameField, #profilePictureField {
     margin-left:auto;
     margin-right:auto;
     padding-left:10px;
@@ -188,8 +188,12 @@ body {
     width: 85%;
     float: none;
 }
-#LOGINBUTTON{
+#LOGINBUTTON, #signupbtn{
     margin-left: 30px;
+}
+#signupbtn{
+    position: relative;
+    left: 30px;
 }
 #signupbtn{
     margin-bottom:10px ;
@@ -346,4 +350,8 @@ div#getawayImgsSubmissions:empty{
 }
 .singleGetawayHost{
     margin-left: 15px;
+}
+.signup-inputs{
+    position: relative;
+    left: 80px;
 }
