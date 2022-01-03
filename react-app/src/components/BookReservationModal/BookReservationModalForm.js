@@ -92,11 +92,29 @@ const removeBookedDays = (date) => {
   
 
   const handleSubmitReservation = async (e) => {
-     await dispatch(createReservation({getawayId, startDate, endDate, userId})).catch(async err => {
-      const data = await err.json();
-      if (data && data.errors) setErrors(data.errors);
-    })
-    await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push("/profile"))
+    e.preventDefault()
+    setErrors([])
+    const newReservation = await dispatch(createReservation({getawayId, startDate, endDate, userId}))
+    if (newReservation.errors) {
+      return setErrors(newReservation.errors)
+    }
+    await dispatch(loadGetaways())
+    await dispatch(authenticate())
+    history.push('/profile')
+
+    // await dispatch(createReservation({getawayId, startDate, endDate, userId})).catch(async err => {
+    //    console.log("JAYYYYYYYYYYYYY IMIN THE CATCH")
+    //    console.log("CATCHH");
+    //    console.log("CATCHH");
+    //   const data = await err.json();
+    //   if (data && data.errors) setErrors(data.errors);
+    // })
+
+
+    // console.log("HELLLOOOOO");
+    // await dispatch(loadGetaways())
+    // await dispatch(authenticate())
+    // history.push('/profile')
     //return <Redirect to='/profile' />;
 
   }
