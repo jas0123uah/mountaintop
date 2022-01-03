@@ -282,7 +282,7 @@ height: 6px;
 width: 6px;
 }
 .maybe2::-webkit-scrollbar-thumb{
-  background-color: #ccc;
+  background-color: #242020;
   border-radius: 10px;
 }
 .getawayImages{
@@ -343,4 +343,7 @@ div#getawayImgsSubmissions:empty{
 .singleResultInfo{
     margin-left: 50px;
 
+}
+.singleGetawayHost{
+    margin-left: 15px;
 }
