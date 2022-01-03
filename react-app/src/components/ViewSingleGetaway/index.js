@@ -8,7 +8,6 @@ export const ViewSingleGetaway = () => {
      return(<div>
          <CarouselSingleGetaway/>
          <div id="interestedDiv">
-         <h1>Interested?</h1>
          <BookReservationModal/>
          </div>
          <SingleGetawayInfo/>
