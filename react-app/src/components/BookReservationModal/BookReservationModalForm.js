@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect , useHistory, useParams } from 'react-router-dom';
+import {loadGetaways} from '../../store/getaways'
+import {authenticate} from '../../store/session'
 import moment from "moment"
 import {createReservation} from '../../store/session'
 import $ from "jquery";
@@ -32,9 +34,12 @@ export const BookReservationModalForm = () => {
   };
   const handleStartClick = (e) => {
     e.preventDefault();
+    setIsOpenEnd(false);
     setIsOpenStart(!isOpenStart);
   };
   const handleEndChange = (e) => {
+    setIsOpenStart(false);
+    console.log(isOpenStart, "IS OPEN START")
     setIsOpenEnd(!isOpenEnd);
     setEndDate(e);
   };
@@ -87,48 +92,55 @@ const removeBookedDays = (date) => {
   
 
   const handleSubmitReservation = async (e) => {
-    dispatch(createReservation({getawayId, startDate, endDate, userId}))
-    history.push('/profile')
+     await dispatch(createReservation({getawayId, startDate, endDate, userId})).catch(async err => {
+      const data = await err.json();
+      if (data && data.errors) setErrors(data.errors);
+    })
+    await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push("/profile"))
+    //return <Redirect to='/profile' />;
 
   }
 
 
+
+
+
   return (
-    <div className='formWrapper'onSubmit={handleSubmitReservation}>
+    <div className='formWrapper' id="bookResModal"onSubmit={  handleSubmitReservation}>
     <form>
-      <fieldset className='formflex'>
+      <fieldset className='formflex' id="formflex-bookRes">
         <legend>Book a reservation</legend>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-        <>
-      <button className="example-custom-input" onClick={handleStartClick}>
-        Check-In Date
+
+
+
+
+     
+        <button className="example-custom-input" onClick={handleStartClick}>
+        Check-in Date
       </button>
       {isOpenStart && (
-        <DatePicker selected={startDate} onChange={handleStartChange}
+        <DatePicker selected={startDate} onChange={handleStartChange} onCalendarOpen={ () => setIsOpenEnd(false)}
         format="yyyy-MM-dd"
-        minDate={new Date(startDate)} filterDate={removeBookedDays}  
-         inline />
+        minDate={new Date()} filterDate={removeBookedDays}  
+          inline/>
       )}
-    </>
-
-
-
-        <>
       <button className="example-custom-input" onClick={handleEndClick}>
         Check-out Date
       </button>
       {isOpenEnd && (
         <DatePicker selected={endDate} onChange={handleEndChange}
         format="yyyy-MM-dd"
+        onCalendarOpen={() => setIsOpenStart(false)}
         minDate={new Date(startDate)} filterDate={removeBookedDays}  
          inline />
       )}
-    </>
-        <button type="submit" className="createGetawaySubmitButton">Book Reservation</button>
+    
+        <button type="submit" className="createGetawaySubmitButton" id="bookReservationSubmitButton">Book Reservation</button>
       </fieldset>
 
 
