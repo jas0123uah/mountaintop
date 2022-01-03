@@ -104,7 +104,9 @@ export const deleteReview = (reviewId) => async (dispatch) => {
 
 
 export const createGetaway = (newGetawayObj) => async (dispatch) => {
-    const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId   } = newGetawayObj;
+    let {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10   } = newGetawayObj;
+
+
   const response = await fetch(`/api/getaways/`, {
     method: 'POST',
     headers: {
@@ -124,14 +126,19 @@ export const createGetaway = (newGetawayObj) => async (dispatch) => {
       numBaths,  
       numBedrooms, 
       userId,
-      country: 'United States'
+      country: 'United States', 
+      img1, img2, img3, img4, img5, img6, img7, img8, img9, img10
     })
   });
+  console.log("HELLOOOOYFIUFUFYIUFY");
   if (response.ok) {
     const createdGetaway = await response.json();
+    console.log(createdGetaway, "HERE Ya Go");
     if (createdGetaway.errors) {
       return;
     }
+  
+  
   
     dispatch(newGetaway(createdGetaway));
   }
@@ -156,14 +163,17 @@ export const loadGetaways = () => async (dispatch) => {
 }
 
 export const editGetaway = (editedGetawayObj) => async (dispatch) => {
-    const {email, address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId   } = editedGetawayObj;
+    const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId , img1, img2, img3, img4, img5, img6, img7, img8, img9, img10  } = editedGetawayObj;
+    console.log(address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId , img1, img2, img3, img4, img5, img6, img7, img8, img9, img10);
+
+    console.log("THUNK")
+
   const response = await fetch(`/api/getaways/${getawayId}/`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      email, 
+    body: JSON.stringify({ 
       address, 
       city, 
       state, 
@@ -177,9 +187,12 @@ export const editGetaway = (editedGetawayObj) => async (dispatch) => {
       numBaths,  
       numBedrooms, 
       userId,
-      country: 'United States'
+      country: 'United States',
+      img1, img2, img3, img4, img5, img6, img7, img8, img9, img10
     })
   });
+  console.log(response);
+  console.log(response)
   if (response.ok) {
     const editedGetawayRes = await response.json();
     if (editedGetawayRes.errors) {
@@ -215,20 +228,17 @@ let newState = {};
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_GETAWAY_:
-        newState = {...initialState}
-        newState[action.newGetaway.id] =action.newGetaway
+        newState = action.newGetaway
         return newState
     case LOAD_GETAWAYS:
         newState = action.loadedGetaways
         return newState
     case EDIT_GETAWAY:
-        newState = {...initialState}
-        newState[action.editedGetaway.id] = action.editedGetaway
+        newState = action.editedGetaway
         return newState
 
     case DELETE_GETAWAY:
-        newState = {...initialState}
-        newState[action.deletedGetaway.id] = action.deletedGetaway
+        newState = action.deletedGetaway 
         return newState
     default:
       return state;
