@@ -98,7 +98,7 @@ body{
 }
 .viewGetawayButton{
     margin-right: 4vw;;
-    margin-left: 192px;
+    /* margin-left: 192px; */
 
 }
 .viewGetawayButton#getawayBlurb{
@@ -320,4 +320,27 @@ div#getawayImgsSubmissions:empty{
 .containerForSidebarAndMainContent{
     display: flex;
     flex-direction: row;
+}
+.UpcomingReservations.maybe{
+    overflow-x: scroll;
+    max-width: 75vw;
+}
+.upcomingGetawayImage,.singleResultImage{
+    border-radius:25px;
+}
+.singleResultImage{
+    width: 540px;
+}
+.browseGetawaysContainer{
+    display: flex;
+}
+.singleResult{
+    border-bottom: 1px solid #000;
+    display: flex;
+    margin-top: 16px;
+    
+}
+.singleResultInfo{
+    margin-left: 50px;
+
 }

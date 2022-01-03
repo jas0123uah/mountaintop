@@ -16,11 +16,13 @@ import {NewGetaway} from './components/NewGetaway';
 import { authenticate } from './store/session';
 import {loadGetaways} from './store/getaways';
 import {HomePage}  from './components/HomePage';
+//import {BrowseGetaway} from './components/BrowseGetawaysPage'
 import './context/Modal.css';
 import './index.css'
 import './components/ProfilePage/carousel.css'
 import {ViewSingleGetaway} from './components/ViewSingleGetaway'
 import { EditReservationPage } from './components/EditReservationPage';
+import BrowseGetawaysPage from './components/BrowseGetawaysPage'
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -76,14 +78,13 @@ function App() {
           {/* <SearchGetaways/> */}
         </Route>
         <Route path='/browse'>
-          {/* <BrowseGetaways/> */}
+          <BrowseGetawaysPage/>
         </Route>
         <Route>
           <h1>Page Not Found</h1>
         </Route>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
-          <BrowseGetawaysButton/>
         </ProtectedRoute>
       </Switch>
       <Footer></Footer>

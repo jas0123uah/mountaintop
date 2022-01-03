@@ -9,6 +9,7 @@ export const HomePage = () => {
 
     return (<div>
         <GetawayCarousel/>
+        
         {/* <div>
             <p>Welcome to Mountaintop! Mountaintop is your destination for booking the most beautiful getaways in the Great Smoky Mountains!</p>
             <button>Check this getaway</button>
