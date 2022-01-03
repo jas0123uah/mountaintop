@@ -161,6 +161,7 @@ function SignUpForm() {
         Profile Picture URL
         <input
         id="profilePictureField"
+          type="text"
           className="modal-input-signup-login"
           value={profilePicture}
           onChange={(e) => setProfilePicture(e.target.value)}
