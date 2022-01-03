@@ -81,6 +81,7 @@ export const editReservation = (reservationObj) => async (dispatch) => {
     console.log(editedReservation, "YES")
   
     dispatch(editedUserReservation(editedReservation));
+    return editedReservation;
   }
 }
 
