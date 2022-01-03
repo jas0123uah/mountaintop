@@ -13,9 +13,14 @@ getaway_routes = Blueprint('getaways', __name__)
 
 @getaway_routes.route('/')
 def get_most_recent_getaways():
-    recent_getaways = db.session.query(Getaway).order_by(Getaway.id.desc()).limit(5)
+    # recent_getaways = db.session.query(Getaway).order_by(Getaway.id.desc()).limit(5)
+    # getawaydict ={}
+    # for getaway in recent_getaways:
+    #     getawaydict[getaway.id]=getaway.to_dict()
+    # return getawaydict
+    all_getaways = db.session.query(Getaway)
     getawaydict ={}
-    for getaway in recent_getaways:
+    for getaway in all_getaways:
         getawaydict[getaway.id]=getaway.to_dict()
     return getawaydict
 

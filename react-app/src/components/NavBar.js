@@ -29,9 +29,9 @@ const NavBar = () => {
             <i class="fas fa-mountain fa-3x"></i>
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <input type="search" name="" id="" className="searchBar" />
-        </li>
+        </li> */}
         <div className="signuploginicons">
         <li>
             {user ?  <NavLink to="/profile" className="submitButton"> <i class="fas fa-home fa-3x"></i></NavLink> : <SignUpFormModal/>}          
