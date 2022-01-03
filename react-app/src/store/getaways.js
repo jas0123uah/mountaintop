@@ -204,6 +204,7 @@ export const editGetaway = (editedGetawayObj) => async (dispatch) => {
 }
 
 export const deleteGetaway = (getawayId) => async (dispatch) => {
+  console.log(getawayId, "THUNK GETAWAY ID")
   const response = await fetch(`/api/getaways/${getawayId}/`, {
     method: 'DELETE',
     headers: {

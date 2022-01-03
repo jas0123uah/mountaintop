@@ -21,10 +21,10 @@ export const EditReservationModalForm = () => {
   const { getawayId }  = useParams();
   const [startDate, setStartDate] = useState(new Date(reservationToEdit.startDate));
   const [endDate, setEndDate] = useState(new Date(reservationToEdit.endDate));
-  console.log(reservationToEdit.endDate, "END DATE", typeof  reservationToEdit.endDate)
-  console.log(reservationToEdit.startDate, "************", typeof reservationToEdit.startDate);
-  console.log(startDate, "PPPP");
-  console.log(endDate, "MMMM");
+  //console.log(reservationToEdit.endDate, "END DATE", typeof  reservationToEdit.endDate)
+  // console.log(reservationToEdit.startDate, "************", typeof reservationToEdit.startDate);
+  // console.log(startDate, "PPPP");
+  // console.log(endDate, "MMMM");
   const getaways = useSelector(state => state.getaways);
   const userId = user?.id
 

@@ -14,7 +14,7 @@ export const EditSingleGetaway = () => {
   const userId = user?.id
   const { getawayId }  = useParams();
   const getawayBeforeEdits = useSelector(state => state.getaways[getawayId]);
-  console.log(getawayBeforeEdits, "LOOK")
+  //console.log(getawayBeforeEdits, "LOOK")
   const [errors, setErrors] = useState([]);
   const [address, setAddress] = useState(getawayBeforeEdits.address);
   const [city, setCity] = useState(getawayBeforeEdits.city)
@@ -44,7 +44,7 @@ export const EditSingleGetaway = () => {
   const [img8, setImg8] = useState(allImgUrls[7])
   const [img9, setImg9] = useState(allImgUrls[8])
   const [img10, setImg10] = useState(allImgUrls[9])
-  console.log(allImgObjs, 'ALL IMG OBJS')
+  //console.log(allImgObjs, 'ALL IMG OBJS')
 
 
   console.log(allImgUrls, "ALL IMG URLS")

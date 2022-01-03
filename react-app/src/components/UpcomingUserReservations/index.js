@@ -9,7 +9,7 @@ export const UpcomingUserReservations = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const getaways = useSelector(state => state?.getaways);
-  console.log(getaways, "LOL");
+  //console.log(getaways, "LOL");
   const userId = user?.id
   const numUserGetaways = Object.values(user?.getaways).length - 1 ;
   const userGetaways = Object.values(user?.getaways)
@@ -21,10 +21,10 @@ export const UpcomingUserReservations = () => {
 
   //let newuserGetaways = userGetaways.map(getaway => {getaway.upladed})
 //   const pastUserReservations = userReservations.filter(reservation => new Date(reservation.startDate) < currentDate && new Date(reservation.endDate) < currentDate)
-console.log(userReservations, "ALL USER RESERVATIONS")
+//console.log(userReservations, "ALL USER RESERVATIONS")
 let upcomingReservations = userReservations?.filter(reservation => new Date(reservation.endDate) > currentDate)
-  console.log(upcomingReservations, "UPCOMING")
-  console.log(upcomingReservations, "UP COMINGGGGGGGGGGGGGGGGGGGGGG")
+  //console.log(upcomingReservations, "UPCOMING")
+  //console.log(upcomingReservations, "UP COMINGGGGGGGGGGGGGGGGGGGGGG")
   //upcomingReservations = Object.values(upcomingReservations)
   const handleDeleteReservation =(reservationId) => {
       dispatch(deleteReservation(reservationId)).catch(
@@ -42,17 +42,10 @@ let upcomingReservations = userReservations?.filter(reservation => new Date(rese
       <>
       {console.log(upcomingReservations, "UPCOMING LINE 43")}
         {upcomingReservations?.map((reservation) =><div key={reservation?.id}>
-            {console.log(getaways, reservation, "DAGDAG", reservation?.getawayId)}
-            {console.log(getaways[reservation?.getawayId], "LOOK")}
             
 
             
 
-            
-            {console.log(reservation, "RES OBJ")}
-
-
-            {console.log(Object.values((getaways[reservation?.getawayId]?.images))[0].url,"AGGGGGGGGGGGG" )}
             <h2 className="reservationsGetawayHeader">{getaways[reservation.getawayId]?.name}</h2>
             <img className="upcomingGetawayImage" src={Object.values((getaways[reservation?.getawayId]?.images))[0].url}></img>
             <br></br>
@@ -61,7 +54,7 @@ let upcomingReservations = userReservations?.filter(reservation => new Date(rese
             <div id="deleteReservationForm">
 
             <form onSubmit={ (reservation) =>{handleDeleteReservation(reservation.currentTarget.dataset.id)}} data-id={reservation.id} id="deleteReservationFormChild">
-                {console.log(getaways[reservation.getawayId], "WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")}
+           
                 <NavLink to={`/getaways/${getaways[reservation.getawayId].id}/reservations/${reservation.id}/edit`}><button className="viewGetawayButton">Edit Reservation</button></NavLink>
               <button className="DeleteButton"type="submit">Cancel Reservation</button>
             </form>

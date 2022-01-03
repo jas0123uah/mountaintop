@@ -149,7 +149,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-.viewGetawayButton,#demo-button, .SignInButton{
+.viewGetawayButton,#demo-button, .SignInButton, .addNewGetaway{
     background-color:  #8a8f2e;
     height: 40px;
     border-radius: 25px;
@@ -239,9 +239,9 @@ body {
 .formflex#formflex-bookRes{
     background: #dfd9c4;
 }
-.footer-container{
+/* .footer-container{
     margin-top: 15px;
-}
+} */
 .UpcomingReservations{
     display: flex;
 
@@ -308,4 +308,16 @@ div#getawayImgsSubmissions:empty{
     /* opacity: 0.5; */
     background-color: #f28350;
     font-weight: normal;
+}
+.in-line-delete#deleteGetawayForm{
+    display: inline;
+}
+.upcomingGetawayImage#host-getaway-images{
+    height: 320px; 
+    width: 400px; 
+
+}
+.containerForSidebarAndMainContent{
+    display: flex;
+    flex-direction: row;
 }

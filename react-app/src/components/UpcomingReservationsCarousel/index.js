@@ -13,7 +13,7 @@ export const UpcomingUserReservationsCarousel = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const getaways = useSelector(state => state?.getaways);
-  console.log(getaways, "LOL");
+  //console.log(getaways, "LOL");
   const userId = user?.id
   const numUserGetaways = Object.values(user?.getaways).length - 1 ;
   const userGetaways = Object.values(user?.getaways)
@@ -23,7 +23,7 @@ export const UpcomingUserReservationsCarousel = () => {
 
 
   const upcomingReservations = userReservations.filter(reservation => new Date(reservation.endDate) > currentDate)
-  console.log(upcomingReservations)
+  //console.log(upcomingReservations)
   const handleDeleteReservation =(reservationId) => {
       dispatch(deleteReservation(reservationId)).catch(
       async (res) => {
