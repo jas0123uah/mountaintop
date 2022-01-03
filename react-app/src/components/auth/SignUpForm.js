@@ -39,7 +39,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/profile' />;
   }
 
   return (
@@ -86,7 +86,7 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <button type='submit' disabled={errors.length ? true: false}>Sign Up</button>
     </form>
   );
 };
