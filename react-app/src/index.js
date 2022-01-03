@@ -9,8 +9,9 @@ import App from './App';
 import configureStore from './store';
 import { ModalProvider } from './context/Modal';
 const store = configureStore();
-
-ReactDOM.render(
+window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ModalProvider>
@@ -20,3 +21,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+});
