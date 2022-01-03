@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect , useHistory, useParams } from 'react-router-dom';
 import moment from "moment"
 import {createReservation} from '../../store/session'
+import {loadGetaways} from '../../store/getaways'
+import {authenticate} from '../../store/session'
 import $ from "jquery";
 import "jquery-ui";
 import 'jquery-ui/ui/widgets/datepicker'
@@ -94,9 +96,19 @@ const removeBookedDays = (date) => {
 
   
 
+  // const handleSubmitReservation = async (e) => {
+  //   dispatch(createReservation({getawayId, startDate, endDate, userId}))
+  //   history.push('/profile')
+
+  // }
+
   const handleSubmitReservation = async (e) => {
-    dispatch(createReservation({getawayId, startDate, endDate, userId}))
-    history.push('/profile')
+     await dispatch(createReservation({getawayId, startDate, endDate, userId})).catch(async err => {
+      const data = await err.json();
+      if (data && data.errors) setErrors(data.errors);
+    })
+    await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push("/profile"))
+    //return <Redirect to='/profile' />;
 
   }
 
@@ -105,7 +117,7 @@ const removeBookedDays = (date) => {
     <div className='formWrapper'onSubmit={handleSubmitReservation}>
     <form>
       <fieldset className='formflex'>
-        <legend>Book a reservation</legend>
+        <legend>Book a STRSYSYSY</legend>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -123,7 +135,7 @@ const removeBookedDays = (date) => {
       {isOpenStart && (
         <DatePicker selected={startDate} onChange={handleStartChange}
         format="yyyy-MM-dd"
-        minDate={new Date(startDate)} filterDate={removeBookedDays}  
+        minDate={new Date()} filterDate={removeBookedDays}  
          inline />
       )}
     </>
