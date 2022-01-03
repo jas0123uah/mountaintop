@@ -62,9 +62,18 @@ export const PF = () => {
 // )
 return(
     <>
+    <div className="containerForSidebarAndMainContent">
+<div class="div1"><SideBar></SideBar> </div>
+<div class="div2"><ProfileMainContent></ProfileMainContent> </div>
+    </div>
+</>)
+}
+
+
+{/* <>
+    
 <div class="div1"><SideBar></SideBar> </div>
 <div class="parent">
 <div class="div2"><ProfileMainContent></ProfileMainContent> </div>
 </div>
-</>)
-}
+</> */}
