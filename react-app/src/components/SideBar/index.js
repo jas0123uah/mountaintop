@@ -8,6 +8,7 @@ import 'react-gallery-carousel/dist/index.css';
 import {useHistory } from 'react-router-dom';
 import $ from 'jquery';
 import ProfileMainContent from '../ProfileMainContent'
+import {AllUserGetaways} from '../UserGetawaysSideBar'
 export const SideBar = () => {
     let hostGetawayLoadedinCarousel;
     let HostGetawayTitle
@@ -161,7 +162,7 @@ export const SideBar = () => {
    const history = useHistory()
   for (let index = 0; index < userGetaways.length; index++) {
         const getAwayObj = userGetaways[index];
-        console.log(Object.values(getAwayObj.images), "BAHHHHHHHHHHHHHHHH");
+        //console.log(Object.values(getAwayObj.images), "BAHHHHHHHHHHHHHHHH");
         let arrayOfImageObjs = Object.values(getAwayObj.images)
         for (let index = 0; index < arrayOfImageObjs.length; index++) {
             const imageObj = arrayOfImageObjs[index];
@@ -174,7 +175,7 @@ export const SideBar = () => {
         // const randomImageUrlFromCurrentGetaway= Object.values(getAwayObj.images).find(image=>{image.url.includes("w=720")})
         //goodImages.push(randomImageUrlFromCurrentGetaway)
     }
-    console.log(goodImages, "LOOGAGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGK");
+    //console.log(goodImages, "LOOGAGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGK");
     const images = goodImages.map((goodImgAndGetawayName) => ({
     src: `${goodImgAndGetawayName.url}`,
     GO: "POOOOO",
@@ -265,7 +266,8 @@ onTransitionEnd: () =>{console.log("SLid")}
         </button>
       </NavLink>
       <h2>My Getaways:</h2>
-      <Carousel isAutoPlaying={true} images={images} style={{ height: 320, width: 400 }} autoPlayInterval={3500} />
+      <AllUserGetaways/>
+      {/* <Carousel isAutoPlaying={true} images={images} style={{ height: 320, width: 400 }} autoPlayInterval={3500} />
       <h1 className="HostGetawayTitle">{hostGetawayH1}</h1>
 
       
@@ -274,7 +276,7 @@ onTransitionEnd: () =>{console.log("SLid")}
 
     {userGetaways.map(getawayObj => <form id="deleteGetawayForm" onSubmit={(item) =>{handleDeleteGetaway(item.currentTarget.dataset.id)}} data-id={getawayObj.id}>
             <button className="DeleteButton"type="submit" id="deleteGetaway">Delete Getaway</button>
-          </form>)}
+    </form>)} */}
     
       
     </div>
