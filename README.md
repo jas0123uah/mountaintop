@@ -13,11 +13,11 @@ Mountaintop is a fullstack app that uses Python, React and Node. The app allows 
 
 The home page randomly loads a getaway for potential guests to check out and features a carousel of images of the getaway. 
 
-##### Mountaintop Homepage
+<!-- ##### Mountaintop Homepage
 ![Mountaintop Homepage](url) ##Image Here
 
 ##### Mountaintop Getaway Page
-![Mountaintop Getaway Listing](url)
+![Mountaintop Getaway Listing](url) -->
 
 
 ## Technologies Used
