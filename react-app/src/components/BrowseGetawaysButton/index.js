@@ -16,7 +16,7 @@ function BrowseGetawaysButton() {
     history.push('/browse')
   };
   return (
-    <button onClick={handleBrowseGetaways}>Browse Getaways</button>
+    <button onClick={handleBrowseGetaways} className="browseGetawaysbtn">Browse Getaways</button>
   );
 }
 
