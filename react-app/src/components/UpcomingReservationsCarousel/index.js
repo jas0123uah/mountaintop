@@ -34,6 +34,12 @@ export const UpcomingUserReservationsCarousel = () => {
     window.location.reload();
   }
 console.log(upcomingReservations, "Line 36 Upcoming reservations")
+
+
+
+
+
+
 const goodImages = upcomingReservations.find((reservation) =>{Object.values((getaways[reservation.getawayId].images))[0].url.includes("w=720")})
 console.log(goodImages, "LINE 37");
 
