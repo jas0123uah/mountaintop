@@ -21,7 +21,7 @@ function SignUpForm() {
     if (!email) errors.push('Please enter an e-mail.');
 
     if (!password.length) errors.push('Please enter a password.');
-    if (password.length < 10) errors.push('Password must be 10 characters.')
+    if (password.length < 5) errors.push('Password must be 5 characters.')
 
     if (!confirmPassword.length) errors.push('Please confirm your password.');
 
