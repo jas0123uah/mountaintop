@@ -4,7 +4,7 @@ import { Redirect , useHistory, useParams } from 'react-router-dom';
 import {loadGetaways} from '../../store/getaways'
 import {authenticate} from '../../store/session'
 import moment from "moment"
-import {createReservation} from '../../store/session'
+import {editReservation} from '../../store/session'
 import $ from "jquery";
 import "jquery-ui";
 import 'jquery-ui/ui/widgets/datepicker'
@@ -13,14 +13,20 @@ import 'jquery-ui/themes/base/datepicker.css'
 import 'jquery-ui/themes/base/theme.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-export const BookReservationModalForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState('');
+export const EditReservationModalForm = () => {
   const user = useSelector(state => state.session.user);
+  const [errors, setErrors] = useState([]);
+  const { reservationId }  = useParams();
+  const reservationToEdit = user.reservations[reservationId]
+  const { getawayId }  = useParams();
+  const [startDate, setStartDate] = useState(new Date(reservationToEdit.startDate));
+  const [endDate, setEndDate] = useState(new Date(reservationToEdit.endDate));
+  console.log(reservationToEdit.endDate, "END DATE", typeof  reservationToEdit.endDate)
+  console.log(reservationToEdit.startDate, "************", typeof reservationToEdit.startDate);
+  console.log(startDate, "PPPP");
+  console.log(endDate, "MMMM");
   const getaways = useSelector(state => state.getaways);
   const userId = user?.id
-  const { getawayId }  = useParams();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -91,8 +97,8 @@ const removeBookedDays = (date) => {
 
   
 
-  const handleSubmitReservation = async (e) => {
-     await dispatch(createReservation({getawayId, startDate, endDate, userId})).catch(async err => {
+  const handleEditReservation = async (e) => {
+     await dispatch(editReservation({getawayId, startDate, endDate, userId, reservationId})).catch(async err => {
       const data = await err.json();
       if (data && data.errors) setErrors(data.errors);
     })
@@ -106,10 +112,10 @@ const removeBookedDays = (date) => {
 
 
   return (
-    <div className='formWrapper' id="bookResModal"onSubmit={  handleSubmitReservation}>
+    <div className='formWrapper' id="bookResModal"onSubmit={  handleEditReservation}>
     <form>
       <fieldset className='formflex' id="formflex-bookRes">
-        <legend>Book a reservation</legend>
+        <legend>Edit your reservation</legend>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -140,7 +146,7 @@ const removeBookedDays = (date) => {
          inline />
       )}
     
-        <button type="submit" className="createGetawaySubmitButton" id="bookReservationSubmitButton">Book Reservation</button>
+        <button type="submit" className="createGetawaySubmitButton" id="bookReservationSubmitButton">Edit Reservation</button>
       </fieldset>
 
 

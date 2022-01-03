@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
+import {PF} from './components/PF/PF'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import BrowseGetawaysButton from'./components/BrowseGetawaysButton'
 import UsersList from './components/UsersList';
@@ -19,6 +20,7 @@ import './context/Modal.css';
 import './index.css'
 import './components/ProfilePage/carousel.css'
 import {ViewSingleGetaway} from './components/ViewSingleGetaway'
+import { EditReservationPage } from './components/EditReservationPage';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -52,7 +54,8 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/profile/' exact={true} >
-          <ProfilePage/>
+          {/* <ProfilePage/> */}
+          <PF/>
         </ProtectedRoute>
         <Route path='/getaways/new' exact>
           <NewGetaway/>
@@ -63,6 +66,11 @@ function App() {
         <Route path='/getaways/:getawayId/edit' exact>
           <EditSingleGetaway/> 
         </Route>
+
+        <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/edit' exact={true} >
+          {/* <ProfilePage/> */}
+          <EditReservationPage/>
+        </ProtectedRoute>
 
         <Route path='/search-results/:term'>
           {/* <SearchGetaways/> */}

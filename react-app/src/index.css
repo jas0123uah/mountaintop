@@ -2,7 +2,13 @@
 .fa-mountain, .fa-user-plus, .fa-sign-in, .fa-home{
     color: #000;
 }
-
+.fa-times{
+    z-index: 4;
+    position: relative;
+    right: 20px;
+    background: none!important;
+    color: red;
+}
 
 .searchBar{
     border-radius: 15px;
@@ -87,7 +93,7 @@ body{
 }
 #deleteReservationForm{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     
 }
 .viewGetawayButton{
@@ -143,7 +149,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-.viewGetawayButton,#demo-button{
+.viewGetawayButton,#demo-button, .SignInButton{
     background-color:  #8a8f2e;
     height: 40px;
     border-radius: 25px;
@@ -156,7 +162,6 @@ body {
 #demo-button{
     margin-left: 40px;
     position: relative;
-    bottom: 7px;
 }
 .fa-sign-out-alt{
     margin-left: 55px;
@@ -218,4 +223,89 @@ body {
     position: relative;
     top: 6px;
 
+}
+.formWrapper#bookResModal{
+    position: absolute;
+    left: -180px;
+    bottom: 150px;
+    right: 180px;
+
+}
+.createGetawaySubmitButton#bookReservationSubmitButton{
+    position: relative;
+    right: 80px;
+    margin-top: 15px;
+}
+.formflex#formflex-bookRes{
+    background: #dfd9c4;
+}
+.footer-container{
+    margin-top: 15px;
+}
+.UpcomingReservations{
+    display: flex;
+
+}
+.UpcomingReservations *{
+    margin: 0 5px;
+}
+.upcomingGetawayImage,.previousGetawayImage{
+    height:540px;
+    width: 720px;
+}
+
+.maybe {
+    flex: 1;
+    display: flex;
+}
+.maybe#containerForgetawayImgsSubmissions{
+width:260px;
+}
+.maybe#containerForgetawayImgsSubmissions *{
+margin-left: 5px;
+margin-top: 5px;
+background-color: white;
+}
+.maybe2#getawayImgsSubmissions{
+    overflow: scroll;
+}
+.maybe2 {
+    display: flex;
+    min-height: min-content; /* needs vendor prefixes */
+    
+    
+    overflow-x: auto;
+}
+
+.maybe2::-webkit-scrollbar {
+height: 6px;
+width: 6px;
+}
+.maybe2::-webkit-scrollbar-thumb{
+  background-color: #ccc;
+  border-radius: 10px;
+}
+.getawayImages{
+    display: flex;
+}
+.newGetawayImg{
+    width: 120px;
+    
+}
+div#getawayImgsSubmissions:empty{
+    display: none;
+}
+.formErrors{
+    color: red;
+    font-weight: bold;
+
+}
+.createGetawaySubmitButton{
+    background-color: #f28350;
+    font-weight: bold;
+}
+.createGetawaySubmitButton:disabled{
+    /* opacity: 0.5; */
+    background-color: #f28350;
+    font-weight: normal;
 }

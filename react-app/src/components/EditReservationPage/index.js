@@ -1,14 +1,14 @@
 import { NewReservation } from "../BookReservationForm"
 import CarouselSingleGetaway from '../CarouselSingleGetaway'
 import SingleGetawayInfo from '../SingleGetawayInfo'
-import BookReservationModal from '../BookReservationModal'
-export const ViewSingleGetaway = () => {
+import EditReservationModal from '../EditReservationModal'
+export const EditReservationPage = () => {
     
     
      return(<div>
          <CarouselSingleGetaway/>
          <div id="interestedDiv">
-         <BookReservationModal/>
+         <EditReservationModal/>
          </div>
          <SingleGetawayInfo/>
      </div>)

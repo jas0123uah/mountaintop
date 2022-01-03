@@ -15,8 +15,8 @@ export const PreviousUserReservations = () => {
   const userGetawaysAsObj = user?.getaways
   const currentDate = new Date()
   const userReservations = Object.values(user?.reservations)
-  console.log(userReservations, "HELLO")
-const pastUserReservations = userReservations.filter(reservation => new Date(reservation.startDate) < currentDate && new Date(reservation.endDate) < currentDate)
+let pastUserReservations = userReservations.filter(reservation => new Date(reservation.startDate) < currentDate && new Date(reservation.endDate) < currentDate)
+pastUserReservations = Object.values(pastUserReservations)
   console.log(pastUserReservations)
   const handleDeleteReservation =(reservationId) => {
       dispatch(deleteReservation(reservationId)).catch(
@@ -32,22 +32,21 @@ const pastUserReservations = userReservations.filter(reservation => new Date(res
 
   return(
       <>
-      <div className="pastReservations">
-        {pastUserReservations.map((reservation) =><div key={reservation.id} className="singlepastReservation">
-            {console.log(getaways, reservation, "DAGDAG", reservation.getawayId)}
-            {console.log(getaways[reservation.getawayId], "LOOK")}
-            {console.log(Object.values((getaways[reservation.getawayId].images))[0].url,"AGGGGGGGGGGGG" )}
-            <h2 className="reservationsGetawayHeader">{getaways[reservation.getawayId]?.name}</h2>
-            <img src={Object.values((getaways[reservation.getawayId].images))[0].url}></img>
+      <div className="maybe2">
+        {pastUserReservations?.map((reservation) =><div key={reservation?.id}>
+            <h2 className="reservationsGetawayHeader">{getaways[reservation?.getawayId]?.name}</h2>
+            <img className="upcomingGetawayImage" src={Object.values((getaways[reservation?.getawayId]?.images))[0].url}></img>
             <br></br>
-            <span classname="reservationDates">{`Check-in date: ${reservation.startDate.split("T")[0]}`}</span>
-            <span classname="reservationDates">{`Check-out date: ${reservation.endDate.split("T")[0]}`}</span>
+            <span classname="reservationDates">{`Check-in date: ${[reservation.startDate.split(" ")[2]+ " "+ reservation?.startDate.split(" ")[1]+", "+ reservation?.startDate.split(" ")[3]]}`}</span>
+            
+
+            
+            <span classname="reservationDates">{`Check-out date: ${[reservation.endDate.split(" ")[2]+ " "+ reservation.endDate.split(" ")[1]+", "+ reservation.endDate.split(" ")[3]]}`}</span>
             <div id="deleteReservationForm">
 
             <form onSubmit={ (reservation) =>{handleDeleteReservation(reservation.currentTarget.dataset.id)}} data-id={reservation.id} id="deleteReservationFormChild">
                 
-                <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}><button className="viewGetawayButton">Leave A Review</button></NavLink>
-              <button className="DeleteButton"type="submit">Cancel Reservation</button>
+                <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}><button className="viewGetawayButton">View Getaway</button></NavLink>
             </form>
             </div>
         </div>)}

@@ -3,19 +3,19 @@ import { Modal } from '../../context/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import LoginFormModal from '../LoginFormModal';
 
-import {BookReservationModalForm} from './BookReservationModalForm'
+import {EditReservationModalForm} from './EditReservationModalForm'
 import { useEffect } from 'react';
-function BookReservationModal() {
+function EditReservationModal() {
   const [showModal, setShowModal] = useState(false);
   const user = useSelector(state => state.session.user);
-  const bookingButton= <BookReservationModalForm/>
+  const bookingButton= <EditReservationModalForm/>
   const buttonToDisplay = user ? bookingButton: <LoginFormModal/>
 
   return (
     <>
     {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <BookReservationModalForm />
+          <EditReservationModalForm />
         </Modal>
       )}
     {buttonToDisplay}
@@ -25,4 +25,4 @@ function BookReservationModal() {
   );
 }
 
-export default BookReservationModal;
+export default EditReservationModal;
