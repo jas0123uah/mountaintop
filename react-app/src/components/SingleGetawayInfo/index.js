@@ -22,7 +22,8 @@ const SingleGetawayInfo = () => {
     //   </div>
     <div>
         <h2>{currentGetaway.name}</h2>
-        <h3>{`${currentGetaway.numGuests} guests |${currentGetaway.numBeds} beds |${currentGetaway.numBaths} baths |`}</h3>
+        <h3>{`${currentGetaway.numGuests} guests | ${currentGetaway.numBedrooms} bedrooms | ${currentGetaway.numBeds} beds | ${currentGetaway.numBaths} baths`}</h3>
+        <h4> {`$${currentGetaway.price}/night`}</h4>
         <div class="getawayDescription">{`${currentGetaway.description}`}</div>
         <div>
         <span>{`Hosted by ${currentGetaway.hostFirstName}`}</span>
