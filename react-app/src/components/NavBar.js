@@ -13,10 +13,8 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const demoLogin = async () =>{
-    setCredential("demo@aa.io");
-    setPassword("password");
     await dispatch(
-      sessionActions.login( credential , password)
+      sessionActions.login("demo@aa.io" , "password")
     );
     
     history.push("/profile");
