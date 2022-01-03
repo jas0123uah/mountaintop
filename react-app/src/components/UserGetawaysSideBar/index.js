@@ -50,7 +50,7 @@ pastUserReservations = Object.values(pastUserReservations)
   return(
       <>
       <div className="maybe2">
-        {userGetaways?.map((getaway) =><div key={getaway?.id}>
+        {userGetaways?.map((getaway) =><div key={getaway?.id} className="singleGetawayHost">
             <h2 className="reservationsGetawayHeader">{getaway?.name}</h2>
             <img className="upcomingGetawayImage" id="host-getaway-images" src={Object.values(getaway.images)[0].url}></img>
             <br></br>
