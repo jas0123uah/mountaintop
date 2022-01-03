@@ -38,6 +38,8 @@ const removeUserReservation = (cancelledReservation) => ({
 
 export const createReservation = (reservationObj) => async (dispatch) => {
   const {userId, startDate,endDate, getawayId} = reservationObj
+  console.log(userId, startDate,endDate, getawayId);
+  console.log("IN THE THUNK");
   const response = await fetch(`/api/getaways/${getawayId}/reservations/`, {
     method: 'POST',
     headers: {
@@ -54,6 +56,7 @@ export const createReservation = (reservationObj) => async (dispatch) => {
     console.log(newReservation, "YES")
   
     dispatch(addUserReservation(newReservation));
+    return newReservation;
   }
 }
 
