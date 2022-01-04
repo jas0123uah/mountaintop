@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect , useHistory, useParams } from 'react-router-dom';
+import {useHistory, useParams } from 'react-router-dom';
 import {loadGetaways} from '../../store/getaways'
 import {authenticate} from '../../store/session'
-import moment from "moment"
 import {editReservation} from '../../store/session'
-import $ from "jquery";
 import "jquery-ui";
 import 'jquery-ui/ui/widgets/datepicker'
 import 'jquery-ui/themes/base/core.css'
@@ -21,12 +19,6 @@ export const EditReservationModalForm = () => {
   const { getawayId }  = useParams();
   const [startDate, setStartDate] = useState(new Date(reservationToEdit.startDate));
   const [endDate, setEndDate] = useState(new Date(reservationToEdit.endDate));
-  //console.log(reservationToEdit.endDate, "END DATE", typeof  reservationToEdit.endDate)
-  // console.log(reservationToEdit.startDate, "************", typeof reservationToEdit.startDate);
-  // console.log(startDate, "PPPP");
-  // console.log(endDate, "MMMM");
-  console.log(startDate, "START DATEEEE");
-  console.log(endDate, "END DATEEEE");
 
   const getaways = useSelector(state => state.getaways);
   const userId = user?.id
@@ -48,7 +40,6 @@ export const EditReservationModalForm = () => {
   };
   const handleEndChange = (e) => {
     setIsOpenStart(false);
-    console.log(isOpenStart, "IS OPEN START")
     setIsOpenEnd(!isOpenEnd);
     setEndDate(e);
   };
@@ -56,10 +47,6 @@ export const EditReservationModalForm = () => {
     e.preventDefault();
     setIsOpenEnd(!isOpenEnd);
   };
-
-
-
-
 
 function getDatesBetween(startDate, stopDate) {
     const dateArray = new Array();

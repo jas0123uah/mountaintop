@@ -23,7 +23,6 @@ export function ModalProvider({ children }) {
 }
 
 export function Modal({ onClose, children }) {
-    console.log("WHYYYYY")
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
 

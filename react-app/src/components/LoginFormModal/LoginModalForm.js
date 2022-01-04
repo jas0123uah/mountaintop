@@ -1,44 +1,22 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
-import { Redirect } from 'react-router-dom';
 function LoginModalForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const user = useSelector(state => state.session.user);
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(credential, password));
     if (data) {
       setErrors(data);
     }
-    // window.location.reload()
-    console.log("HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-    console.log("HFSFHSFHGSHGFS");
-    // <Redirect to='/profile' />;
     history.push("/profile")
     
   };
-  // if (user) {
-  //   return <Redirect to='/' />;
-  // }
-  //return <Redirect to='/profile' />;
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setErrors([]);
-  //   dispatch(sessionActions.login( credential, password )).catch(
-  //     async (res) => {
-  //       const data = await res.json();
-  //       if (data && data.errors) setErrors(data.errors);
-  //     }
-  //   );
-  //   window.location.reload()
-  // };
 
   return (
     <form onSubmit={onLogin}>
@@ -54,7 +32,7 @@ function LoginModalForm() {
         id="USERNAME"
           type="text"
           value={credential}
-          onChange={(e) => {setCredential(e.target.value); console.log(e.target.value);}}
+          onChange={(e) => {setCredential(e.target.value)}}
           required
         />
       </label>

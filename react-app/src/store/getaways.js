@@ -130,10 +130,8 @@ export const createGetaway = (newGetawayObj) => async (dispatch) => {
       img1, img2, img3, img4, img5, img6, img7, img8, img9, img10
     })
   });
-  console.log("HELLOOOOYFIUFUFYIUFY");
   if (response.ok) {
     const createdGetaway = await response.json();
-    console.log(createdGetaway, "HERE Ya Go");
     if (createdGetaway.errors) {
       return;
     }
@@ -164,9 +162,6 @@ export const loadGetaways = () => async (dispatch) => {
 
 export const editGetaway = (editedGetawayObj) => async (dispatch) => {
     const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId , img1, img2, img3, img4, img5, img6, img7, img8, img9, img10  } = editedGetawayObj;
-    console.log(address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId , img1, img2, img3, img4, img5, img6, img7, img8, img9, img10);
-
-    console.log("THUNK")
 
   const response = await fetch(`/api/getaways/${getawayId}/`, {
     method: 'PUT',
@@ -191,8 +186,6 @@ export const editGetaway = (editedGetawayObj) => async (dispatch) => {
       img1, img2, img3, img4, img5, img6, img7, img8, img9, img10
     })
   });
-  console.log(response);
-  console.log(response)
   if (response.ok) {
     const editedGetawayRes = await response.json();
     if (editedGetawayRes.errors) {
@@ -204,7 +197,6 @@ export const editGetaway = (editedGetawayObj) => async (dispatch) => {
 }
 
 export const deleteGetaway = (getawayId) => async (dispatch) => {
-  console.log(getawayId, "THUNK GETAWAY ID")
   const response = await fetch(`/api/getaways/${getawayId}/`, {
     method: 'DELETE',
     headers: {

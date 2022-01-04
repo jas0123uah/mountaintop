@@ -38,8 +38,6 @@ const removeUserReservation = (cancelledReservation) => ({
 
 export const createReservation = (reservationObj) => async (dispatch) => {
   const {userId, startDate,endDate, getawayId} = reservationObj
-  console.log(userId, startDate,endDate, getawayId);
-  console.log("IN THE THUNK");
   const response = await fetch(`/api/getaways/${getawayId}/reservations/`, {
     method: 'POST',
     headers: {
@@ -50,10 +48,8 @@ export const createReservation = (reservationObj) => async (dispatch) => {
   if (response.ok) {
     const newReservation = await response.json();
     if (newReservation.errors) {
-      console.log('HERE',  newReservation)
       return newReservation;
     }
-    console.log(newReservation, "YES")
   
     dispatch(addUserReservation(newReservation));
     return newReservation;
@@ -75,11 +71,8 @@ export const editReservation = (reservationObj) => async (dispatch) => {
   if (response.ok) {
     const editedReservation = await response.json();
     if (editedReservation.errors) {
-      console.log('HERE',  editedReservation)
       return editedReservation;
-    }
-    console.log(editedReservation, "YES")
-  
+    }  
     dispatch(editedUserReservation(editedReservation));
     return editedReservation;
   }
@@ -87,7 +80,6 @@ export const editReservation = (reservationObj) => async (dispatch) => {
 
 
 export const deleteReservation = (reservationId) => async (dispatch) => {
-  console.log(reservationId, "THUNK")
   const response = await fetch(`/api/reservations/${reservationId}/`, {
     method: 'DELETE',
     headers: {
@@ -97,11 +89,8 @@ export const deleteReservation = (reservationId) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     if (data.errors) {
-      console.log(data.errors, "ERRORS")
       return;
-    }
-    console.log(data, "DATA")
-  
+    }  
     dispatch(removeUserReservation(data));
   }
 }
@@ -128,7 +117,6 @@ export const authenticate = () => async (dispatch) => {
 }
 
 export const login = (email, password) => async (dispatch) => {
-  console.log(email, password);
   const response = await fetch('/api/auth/login', {
     method: 'POST',
     headers: {
@@ -174,7 +162,6 @@ export const signUp = (signupInfo) => async (dispatch) => {
   setTimeout(() => {
     
   }, 10000);
-  console.log(firstName, lastName, email, password, profilePicture);
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -211,24 +198,12 @@ export default function reducer(state = initialState, action) {
     case REMOVE_USER:
       return { user: null }
     case ADD_USER_RESERVATION:
-      //Prev
-
-      // console.log(action.newReservation, "YESTERDAY")
-      // newState = action.newReservation
-      // console.log(newState, "JTDYJTRYUTTRTUYTRUYRUFTYH")
-      // return state
-
-      // Prev
 
       return {user: action.newReservation}
-      newState.reservations[action.newReservation].id = action.newReservation
     case EDIT_USER_RESERVATION:
       return {user: action.editedReservation}
     case REMOVE_USER_RESERVATION:
       return {user: action.cancelledReservation}
-      // newState = {...state}
-      // delete newState.reservations[action.cancelledReservation.id]
-      // return newState
 
     default:
       return state;

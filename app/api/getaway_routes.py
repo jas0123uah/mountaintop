@@ -1,10 +1,6 @@
-import re
-from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask import Blueprint, request
 from app.forms import GetawayForm
-from app.forms import ImageForm
 from app.models import db, Getaway, Image
-from app.seeds import images
 
 
 from .auth_routes import validation_errors_to_error_messages
@@ -60,9 +56,7 @@ def create_getaway():
             description = form.data['description'])
         db.session.add(newGetaway)
         db.session.commit()
-        
-        print(newGetaway.id, "LOOK AT THIS")
-        
+                
         if form.data['img1'] is not None:
             db.session.add(Image(url=form.data['img1'], getawayId=newGetaway.id))
             db.session.commit()
@@ -98,9 +92,6 @@ def create_getaway():
         getawaydict ={}
         for getaway in all_getaways:
             getawaydict[getaway.id]=getaway.to_dict()
-            print("THIS IS GETAWAY OBJ", getaway)
-            print("THIS IS GETAWAY OBJ ID", getaway.id)
-        print(getawaydict, "<-------- FINAL DICT")
         return getawaydict
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
@@ -175,11 +166,9 @@ def edit_getaway_by_id(id):
         getawaydict ={}
         for getaway in all_getaways:
             getawaydict[getaway.id]=getaway.to_dict()
-            print("THIS IS GETAWAY OBJ", getaway)
-            print("THIS IS GETAWAY OBJ ID", getaway.id)
+
         return getawaydict
     else:
-        print({'errors': validation_errors_to_error_messages(form.errors)}, "JAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY")
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @getaway_routes.route('/<int:id>/', methods=['DELETE'])
