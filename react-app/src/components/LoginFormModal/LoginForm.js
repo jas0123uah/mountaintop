@@ -34,7 +34,7 @@ function LoginForm() {
           id="login"
           type="text"
           value={credential}
-          onChange={(e) => {setCredential(e.target.value); console.log(e.target.value);}}
+          onChange={(e) => {setCredential(e.target.value)}}
           required
         />
       </label>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect , useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import formPageStyling from './formPageStyling.css'
 import {createGetaway} from '../../store/getaways'
 import {loadGetaways} from '../../store/getaways'
@@ -30,9 +30,7 @@ export const NewGetaway = () => {
   const [img8, setImg8] = useState('')
   const [img9, setImg9] = useState('')
   const [img10, setImg10] = useState('')
-  
-  //let images = []
-  console.log(newImages)
+
 
 
   useEffect(()=> {
@@ -136,14 +134,9 @@ export const NewGetaway = () => {
     if(img10.length && (img10 == img1 || img10 == img2 ||img10 == img3 || img10 == img4 || img10 == img5 || img10 == img6 || img10 == img7 || img10 == img8 || img9 == img10)  ){
       errors.push(`You cannot upload the same image twice, ${img10} found twice.`)
     }
-    console.log(errors, "ERRORS")
-    console.log(errors.length)
     setErrors(errors);
   }, [name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10])
 
-  const chckErrorsLength = () =>{ 
-    return errors.length !== 0
-  }
 
 
   const user = useSelector(state => state.session.user);

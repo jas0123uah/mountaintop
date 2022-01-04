@@ -10,7 +10,6 @@ import configureStore from './store';
 import { ModalProvider } from './context/Modal';
 const store = configureStore();
 window.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed');
     ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect , useHistory, useParams } from 'react-router-dom';
+import {useHistory, useParams } from 'react-router-dom';
 import {loadGetaways} from '../../store/getaways'
 import {authenticate} from '../../store/session'
-import moment from "moment"
 import {createReservation} from '../../store/session'
-import $ from "jquery";
 import "jquery-ui";
 import 'jquery-ui/ui/widgets/datepicker'
 import 'jquery-ui/themes/base/core.css'
@@ -39,7 +37,6 @@ export const BookReservationModalForm = () => {
   };
   const handleEndChange = (e) => {
     setIsOpenStart(false);
-    console.log(isOpenStart, "IS OPEN START")
     setIsOpenEnd(!isOpenEnd);
     setEndDate(e);
   };
@@ -101,21 +98,6 @@ const removeBookedDays = (date) => {
     await dispatch(loadGetaways())
     await dispatch(authenticate())
     history.push('/profile')
-
-    // await dispatch(createReservation({getawayId, startDate, endDate, userId})).catch(async err => {
-    //    console.log("JAYYYYYYYYYYYYY IMIN THE CATCH")
-    //    console.log("CATCHH");
-    //    console.log("CATCHH");
-    //   const data = await err.json();
-    //   if (data && data.errors) setErrors(data.errors);
-    // })
-
-
-    // console.log("HELLLOOOOO");
-    // await dispatch(loadGetaways())
-    // await dispatch(authenticate())
-    // history.push('/profile')
-    //return <Redirect to='/profile' />;
 
   }
 

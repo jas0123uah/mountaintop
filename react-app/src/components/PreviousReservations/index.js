@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, NavLink, Link } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {deleteReservation} from '../../store/session'
 
 export const PreviousUserReservations = () => {
@@ -8,16 +8,10 @@ export const PreviousUserReservations = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const getaways = useSelector(state => state?.getaways);
-  //console.log(getaways, "LOL");
-  const userId = user?.id
-  const numUserGetaways = Object.values(user?.getaways).length - 1 ;
-  const userGetaways = Object.values(user?.getaways)
-  const userGetawaysAsObj = user?.getaways
   const currentDate = new Date()
   const userReservations = Object.values(user?.reservations)
 let pastUserReservations = userReservations.filter(reservation => new Date(reservation.startDate) < currentDate && new Date(reservation.endDate) < currentDate)
 pastUserReservations = Object.values(pastUserReservations)
-  //console.log(pastUserReservations)
   const handleDeleteReservation =(reservationId) => {
       dispatch(deleteReservation(reservationId)).catch(
       async (res) => {
