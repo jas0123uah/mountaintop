@@ -134,3 +134,13 @@ textarea{
     padding-left: 126px;
     margin-bottom: 15px;
 }
+.submitImgFlexbox:empty{
+display: none;
+}
+
+.maybe2:empty{
+    display: none;
+}
+.maybe:empty{
+    display: none;
+}
