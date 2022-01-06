@@ -13,7 +13,7 @@ export const NewGetaway = () => {
   const [latitude, setLatitude] = useState('1.0')
   const [longitude, setLongitude] = useState('2.0')
   const [name, setName] =useState('')
-  const [price, setPrice] = useState(1)
+  const [price, setPrice] = useState(100)
   const [description, setDescription] = useState('Enter a description here')
   const [numGuests, setNumGuests] = useState(1)
   const [numBeds, setNumBeds] = useState(1)
@@ -30,6 +30,11 @@ export const NewGetaway = () => {
   const [img8, setImg8] = useState('')
   const [img9, setImg9] = useState('')
   const [img10, setImg10] = useState('')
+  const [hasHotTub, setHasHotTub] = useState(false)
+  const [hasWifi, setHasWifi] = useState(false)
+  const [hasPatio, setHasPatio] = useState(false)
+  const [hasFireplace, setHasFireplace] = useState(false)
+  const [hasKitchen, setHasKitchen] = useState(false)
 
 
 
@@ -153,7 +158,7 @@ export const NewGetaway = () => {
     e.preventDefault();
     if(!errors.length){
       await dispatch(
-        createGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10 })
+        createGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace })
         ).catch(async (res) => {
           const data = await res.json();if (data && data.errors) setErrors(data.errors);
         });
@@ -267,17 +272,28 @@ export const NewGetaway = () => {
           onChange={(e) => {setDescription(e.target.value)}}
         />
       </div>
+      
 
       <div>
         <label htmlFor='price'>Cost per night</label>
         <input
           name='price'
-          min="1"
+          min="100"
           type='number'
           value={price}
           onChange={(e) => {setPrice(e.target.value)}}
         />
       </div>
+
+    <fieldset>              
+    <legend>Amenities</legend>             
+    <input type="checkbox" checked={hasHotTub} onChange={(e) => {setHasHotTub(!hasHotTub)}}/>Hot tub
+    <input type="checkbox" checked={hasWifi} onChange={(e) => {setHasWifi(!hasWifi)}}/>WiFi  
+    <input type="checkbox" checked={hasPatio} onChange={(e) => {setHasPatio(!hasPatio)}}/>Patio
+    <input type="checkbox" checked={hasKitchen} onChange={(e) => {setHasKitchen(!hasKitchen)}}/> Kitchen
+    <input type="checkbox" checked={hasFireplace} onChange={(e) => {setHasFireplace(!hasFireplace)}}/>Fireplace            
+                    
+  </fieldset> 
 
       <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>

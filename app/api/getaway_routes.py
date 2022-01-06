@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.forms import GetawayForm
-from app.models import db, Getaway, Image
+from app.models import db, Getaway, Image, Amenity
 
 
 from .auth_routes import validation_errors_to_error_messages
@@ -63,7 +63,6 @@ def create_getaway():
         if form.data['img2'] is not None:
             db.session.add(Image(url=form.data['img2'], getawayId=newGetaway.id))
             db.session.commit()
-            
         if form.data['img3'] is not None:
             db.session.add(Image(url=form.data['img3'], getawayId=newGetaway.id))
             db.session.commit()
@@ -87,6 +86,22 @@ def create_getaway():
             db.session.commit()
         if form.data['img10'] is not None:
             db.session.add(Image(url=form.data['img10'], getawayId=newGetaway.id))
+            db.session.commit()
+        
+        if form.data['hasHotTub'] is True:
+            db.session.add(Amenity(amenity='Hot Tub', getawayId=newGetaway.id))
+            db.session.commit()
+        if form.data['hasWifi'] is True:
+            db.session.add(Amenity(amenity='Wifi', getawayId=newGetaway.id))
+            db.session.commit()
+        if form.data['hasPatio'] is True:
+            db.session.add(Amenity(amenity='Patio', getawayId=newGetaway.id))
+            db.session.commit()
+        if form.data['hasKitchen'] is True:
+            db.session.add(Amenity(amenity='Kitchen', getawayId=newGetaway.id))
+            db.session.commit()
+        if form.data['hasFireplace'] is True:
+            db.session.add(Amenity(amenity='Fireplace', getawayId=newGetaway.id))
             db.session.commit()
         all_getaways = db.session.query(Getaway)
         getawaydict ={}
@@ -158,6 +173,28 @@ def edit_getaway_by_id(id):
             db.session.commit()
         if form.data['img10'] is not None:
             db.session.add(Image(url=form.data['img10'], getawayId=getawayToEdit.id))
+            db.session.commit()
+        
+        
+        currentAmenities = db.session.query(Amenity).filter(Amenity.getawayId == getawayToEdit.id)
+        for amenity in currentAmenities:
+            db.session.delete(amenity)
+            db.session.commit()
+
+        if form.data['hasHotTub'] is True:
+            db.session.add(Amenity(amenity='Hot Tub', getawayId=getawayToEdit.id))
+            db.session.commit()
+        if form.data['hasWifi'] is True:
+            db.session.add(Amenity(amenity='Wifi', getawayId=getawayToEdit.id))
+            db.session.commit()
+        if form.data['hasPatio'] is True:
+            db.session.add(Amenity(amenity='Patio', getawayId=getawayToEdit.id))
+            db.session.commit()
+        if form.data['hasKitchen'] is True:
+            db.session.add(Amenity(amenity='Kitchen', getawayId=getawayToEdit.id))
+            db.session.commit()
+        if form.data['hasFireplace'] is True:
+            db.session.add(Amenity(amenity='Fireplace', getawayId=getawayToEdit.id))
             db.session.commit()
         
         
