@@ -1,16 +1,6 @@
-// frontend/src/components/Navigation/index.js
 import React from 'react';
-import {useState} from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import * as sessionActions from "../../store/session";
-
 import './Footer.css';
-
-
-function Footer({ isLoaded }){
-
-
+function Footer(){
     return (
         <div className="footer-container">
             <h2 className="a1">Source Code Repository</h2>
