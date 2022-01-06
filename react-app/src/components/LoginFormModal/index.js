@@ -4,10 +4,8 @@ import LoginModalForm from './LoginModalForm';
 
 function LoginFormModal() {
   const [showModal, setShowModal] = useState(false);
-
   return (
     <>
-    
       <button className="SignInButton" onClick={() => {setShowModal(true);}} >Sign in</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
@@ -17,5 +15,4 @@ function LoginFormModal() {
     </>
   );
 }
-
 export default LoginFormModal;
