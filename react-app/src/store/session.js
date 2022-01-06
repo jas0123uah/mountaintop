@@ -1,11 +1,6 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-const ADD_USER_RESERVATION = 'session/ADD_USER_RESEVATION';
-const EDIT_USER_RESERVATION = 'session/EDIT_USER_RESEVATION'
-const REMOVE_USER_RESERVATION = 'session/REMOVE_USER_RESEVATION';
-
-
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -15,26 +10,6 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
-
-const addUserReservation = (newReservation) => ({
-  type: ADD_USER_RESERVATION,
-  newReservation
-})
-
-const editedUserReservation = (editedReservation) => ({
-  type: EDIT_USER_RESERVATION,
-  editedReservation
-})
-
-const removeUserReservation = (cancelledReservation) => ({
-  type: REMOVE_USER_RESERVATION,
-  cancelledReservation
-})
-
-
-
-
-
 
 export const createReservation = (reservationObj) => async (dispatch) => {
   const {userId, startDate,endDate, getawayId} = reservationObj
@@ -46,13 +21,13 @@ export const createReservation = (reservationObj) => async (dispatch) => {
     body: JSON.stringify({userId,startDate, endDate, getawayId})
   });
   if (response.ok) {
-    const newReservation = await response.json();
-    if (newReservation.errors) {
-      return newReservation;
+    const user = await response.json();
+    if (user.errors) {
+      return user;
     }
   
-    dispatch(addUserReservation(newReservation));
-    return newReservation;
+    dispatch(setUser(user));
+    return user;
   }
 }
 
@@ -69,12 +44,12 @@ export const editReservation = (reservationObj) => async (dispatch) => {
     body: JSON.stringify({userId,startDate, endDate, getawayId})
   });
   if (response.ok) {
-    const editedReservation = await response.json();
-    if (editedReservation.errors) {
-      return editedReservation;
+    const user = await response.json();
+    if (user.errors) {
+      return user;
     }  
-    dispatch(editedUserReservation(editedReservation));
-    return editedReservation;
+    dispatch(setUser(user));
+    return user;
   }
 }
 
@@ -87,11 +62,12 @@ export const deleteReservation = (reservationId) => async (dispatch) => {
     },
   });
   if (response.ok) {
-    const data = await response.json();
-    if (data.errors) {
-      return;
+    const user = await response.json();
+    if (user.errors) {
+      return user;
     }  
-    dispatch(removeUserReservation(data));
+    dispatch(setUser(user));
+    return user
   }
 }
 
@@ -107,12 +83,13 @@ export const authenticate = () => async (dispatch) => {
     }
   });
   if (response.ok) {
-    const data = await response.json();
-    if (data.errors) {
-      return;
+    const user = await response.json();
+    if (user.errors) {
+      return user;
     }
   
-    dispatch(setUser(data));
+    dispatch(setUser(user));
+    return user
   }
 }
 
@@ -130,13 +107,13 @@ export const login = (email, password) => async (dispatch) => {
   
   
   if (response.ok) {
-    const data = await response.json();
-    dispatch(setUser(data))
-    return null;
+    const user = await response.json();
+    dispatch(setUser(user))
+    return user;
   } else if (response.status < 500) {
-    const data = await response.json();
-    if (data.errors) {
-      return data.errors;
+    const user = await response.json();
+    if (user.errors) {
+      return user;
     }
   } else {
     return ['An error occurred. Please try again.']
@@ -177,9 +154,9 @@ export const signUp = (signupInfo) => async (dispatch) => {
   });
   
   if (response.ok) {
-    const data = await response.json();
-    dispatch(setUser(data))
-    return null;
+    const user = await response.json();
+    dispatch(setUser(user))
+    return user;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
@@ -197,14 +174,6 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
-    case ADD_USER_RESERVATION:
-
-      return {user: action.newReservation}
-    case EDIT_USER_RESERVATION:
-      return {user: action.editedReservation}
-    case REMOVE_USER_RESERVATION:
-      return {user: action.cancelledReservation}
-
     default:
       return state;
   }
