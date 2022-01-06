@@ -355,3 +355,19 @@ div#getawayImgsSubmissions:empty{
     position: relative;
     left: 80px;
 }
+.deleteImgBtn{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+.containerForPreviouslyUploadedImage{
+    position: relative;
+    height: 200px;
+}
+.getawayImgsSubmissions{
+    height: 200px;
+}
+.previouslyUploadedImage {
+    height: 200px;
+}
