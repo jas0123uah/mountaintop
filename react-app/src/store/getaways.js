@@ -104,7 +104,7 @@ export const deleteReview = (reviewId) => async (dispatch) => {
 
 
 export const createGetaway = (newGetawayObj) => async (dispatch) => {
-    let {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10   } = newGetawayObj;
+    let {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace   } = newGetawayObj;
 
 
   const response = await fetch(`/api/getaways/`, {
@@ -127,7 +127,21 @@ export const createGetaway = (newGetawayObj) => async (dispatch) => {
       numBedrooms, 
       userId,
       country: 'United States', 
-      img1, img2, img3, img4, img5, img6, img7, img8, img9, img10
+      img1, 
+      img2, 
+      img3, 
+      img4, 
+      img5, 
+      img6, 
+      img7, 
+      img8, 
+      img9, 
+      img10, 
+      hasHotTub, 
+      hasWifi, 
+      hasPatio, 
+      hasKitchen, 
+      hasFireplace
     })
   });
   if (response.ok) {
@@ -161,7 +175,7 @@ export const loadGetaways = () => async (dispatch) => {
 }
 
 export const editGetaway = (editedGetawayObj) => async (dispatch) => {
-    const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId , img1, img2, img3, img4, img5, img6, img7, img8, img9, img10  } = editedGetawayObj;
+    const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId , img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace  } = editedGetawayObj;
 
   const response = await fetch(`/api/getaways/${getawayId}/`, {
     method: 'PUT',
@@ -183,7 +197,21 @@ export const editGetaway = (editedGetawayObj) => async (dispatch) => {
       numBedrooms, 
       userId,
       country: 'United States',
-      img1, img2, img3, img4, img5, img6, img7, img8, img9, img10
+      img1, 
+      img2, 
+      img3, 
+      img4, 
+      img5, 
+      img6, 
+      img7, 
+      img8, 
+      img9, 
+      img10,
+      hasHotTub, 
+      hasWifi, 
+      hasPatio, 
+      hasKitchen, 
+      hasFireplace
     })
   });
   if (response.ok) {
