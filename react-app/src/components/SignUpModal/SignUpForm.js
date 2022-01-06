@@ -11,6 +11,11 @@ function SignUpForm() {
   const [lastName, setLastName] = useState("")
   const [profilePicture, setProfilePicture] = useState('')
   const [errors, setErrors] = useState([]);
+  const validateEmail = (email) => {
+    let loweremail = email.toLowerCase()
+    const emailRegex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    return emailRegex.test(loweremail);
+};
 
   useEffect(()=> {
     const user = {email, password, confirmPassword, firstName, lastName, profilePicture}
@@ -24,9 +29,13 @@ function SignUpForm() {
 
     if (password !=confirmPassword) errors.push("Passwords don't match.");
 
+    if (firstName.length > 50)
+    errors.push('First name must be fewer than 50 characters.')
 
-    if (email.includes('@.com'  || '@.edu' || '@.org' || '@.net' || '@aa.io')) {
+    if (lastName.length > 50) errors.push('Last name must be fewer than 50 characters.')
 
+
+    if (!validateEmail(email)) {
       errors.push("Please enter a valid email address.")
     }
     
