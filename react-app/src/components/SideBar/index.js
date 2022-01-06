@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import 'react-gallery-carousel/dist/index.css';
-import ProfileMainContent from '../ProfileMainContent'
 import {AllUserGetaways} from '../UserGetawaysSideBar'
 export const SideBar = () => {  
    
