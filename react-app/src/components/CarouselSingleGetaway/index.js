@@ -12,7 +12,7 @@ const CarouselSingleGetaway = () => {
     for (let index = 0; index < currentGetawayImagesObjs.length; index++) {
         const imageObj = currentGetawayImagesObjs[index];
         const url = imageObj.url
-        if (url && url.includes("w=720")) {
+        if (url) {
             goodImages.push(url)
         }   
     }
