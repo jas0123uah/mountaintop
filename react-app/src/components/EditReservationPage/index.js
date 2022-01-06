@@ -1,4 +1,3 @@
-import { NewReservation } from "../BookReservationForm"
 import CarouselSingleGetaway from '../CarouselSingleGetaway'
 import SingleGetawayInfo from '../SingleGetawayInfo'
 import EditReservationModal from '../EditReservationModal'
