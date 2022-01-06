@@ -5,7 +5,7 @@
 // import {createReservation} from '../../store/session'
 // import {loadGetaways} from '../../store/getaways'
 // import {authenticate} from '../../store/session'
-// import $ from "jquery";
+// import $ from "";
 // import "jquery-ui";
 // import 'jquery-ui/ui/widgets/datepicker'
 // import 'jquery-ui/themes/base/core.css'
