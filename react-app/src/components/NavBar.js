@@ -6,9 +6,9 @@ import LoginFormModal from './LoginFormModal';
 import SignUpFormModal from './SignUpModal'
 import * as sessionActions from "../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import {searchGetaways} from "../store/search"
 const NavBar = () => {
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const [searchTerm, setSearchTerm] = React.useState("");
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -21,6 +21,12 @@ const NavBar = () => {
 
   
   };
+  const onSearch = async (e) => {
+    e.preventDefault();
+    await dispatch(searchGetaways(searchTerm))
+    history.push(`/search/${searchTerm}`);
+
+  }
   return (
     <nav className="navBar">
       <ul className="navBar-list" id="nav-list">
@@ -29,9 +35,12 @@ const NavBar = () => {
             <i class="fas fa-mountain fa-3x"></i>
           </NavLink>
         </li>
-        {/* <li>
-          <input type="search" name="" id="" className="searchBar" />
-        </li> */}
+        <li>
+          <form onSubmit={onSearch} >
+          <input type="search" name="" id="" className="searchBar" value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
+          <button type="submit" className="search-btn"><i class="fa fa-search"></i></button>
+          </form>
+        </li>
         <div className="signuploginicons">
         <li>
             {user ?  <NavLink to="/profile" className="submitButton"> <i class="fas fa-home fa-3x"></i></NavLink> : <SignUpFormModal/>}          
