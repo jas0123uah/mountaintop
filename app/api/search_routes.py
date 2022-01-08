@@ -19,4 +19,7 @@ def searchGetaways(term):
 @search_routes.route('/<term>/')
 def get_search(term):
     searchResults = searchGetaways(term)
-    return {'search': [getaway.to_dict() for getaway in searchResults]}
+    searchResultsDict = {}
+    for count, searchResult in enumerate(searchResults):
+        searchResultsDict[count] = searchResult.to_dict()
+    return searchResultsDict

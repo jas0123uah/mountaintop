@@ -1,7 +1,9 @@
 import { NavLink} from 'react-router-dom';
+import {getAmenitiesObjectForGetaway} from '../../utils/helperFunctions'
 export const SingleGetawaySearchOrBrowseResult = ({getaway}) => {
+  const amenitiesObject = getAmenitiesObjectForGetaway(getaway)
     return(
-    <div className="singleResult">
+    <div className="singleResult" data-patio={amenitiesObject.Patio} data-kitchen={amenitiesObject.Kitchen} data-fireplace={amenitiesObject.Fireplace} data-hottub={amenitiesObject.HotTub} data-wifi={amenitiesObject.Wifi}>
           <img className="singleResultImage" src={`${Object.values(getaway.images)[0].url}`} alt="" />
           <div className="singleResultInfo">
           <NavLink to={`/getaways/${getaway.id}`} exact={true} activeClassName='active'>

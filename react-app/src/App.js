@@ -15,6 +15,7 @@ import {EditSingleGetaway} from './components/EditSingleGetaway'
 import {NewGetaway} from './components/NewGetaway';
 import { authenticate } from './store/session';
 import {loadGetaways} from './store/getaways';
+import { SearchGetaways } from './components/SearchGetaways';
 import {HomePage}  from './components/HomePage';
 //import {BrowseGetaway} from './components/BrowseGetawaysPage'
 import './context/Modal.css';
@@ -74,8 +75,8 @@ function App() {
           <EditReservationPage/>
         </ProtectedRoute>
 
-        <Route path='/search-results/:term'>
-          {/* <SearchGetaways/> */}
+        <Route path='/search/:term'>
+          <SearchGetaways/>
         </Route>
         <Route path='/browse'>
           <BrowseGetawaysPage/>

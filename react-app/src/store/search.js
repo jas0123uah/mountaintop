@@ -46,9 +46,9 @@ let initialState = {};
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SEARCH_GETAWAYS:
-      return { search: action.searchResults }
+      return action.searchResults
     case BROWSE_GETAWAYS:
-      return { search: action.searchResults }
+      return action.searchResults
     default:
       return state;
   }
