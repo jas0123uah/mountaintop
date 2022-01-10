@@ -35,7 +35,11 @@ export const AllUserGetaways = () => {
       <div className="maybe2">
         {userGetaways?.map((getaway) =><div key={getaway?.id} className="singleGetawayHost">
             <h2 className="reservationsGetawayHeader">{getaway?.name}</h2>
+            <NavLink to={`/getaways/${getaway?.id}`}>
+
             <img className="upcomingGetawayImage" id="host-getaway-images" src={Object.values(getaway.images)[0].url}></img>
+
+            </NavLink>
             <br></br>
             
             <div id="deleteReservationForm">
