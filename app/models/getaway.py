@@ -146,7 +146,7 @@ class Getaway(db.Model):
             'numBeds': self.numBeds,
             'numBaths': self.numBaths,
             'reservations': res_dict,
-            'reviews': rev_dict,
+            #'reviews': rev_dict,
             'amenities':ame_dict,
             'images':img_dict,
             'createdAt': self.createdAt,
