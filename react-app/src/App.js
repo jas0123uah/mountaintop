@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -13,10 +14,13 @@ import User from './components/User';
 import ProfilePage from './components/ProfilePage'
 import {EditSingleGetaway} from './components/EditSingleGetaway'
 import {NewGetaway} from './components/NewGetaway';
+import {EditReview} from './components/EditReview';
 import { authenticate } from './store/session';
 import {loadGetaways} from './store/getaways';
 import { SearchGetaways } from './components/SearchGetaways';
 import {HomePage}  from './components/HomePage';
+//import {NewReview} from './components/NewReview';
+import {NewReview} from './components/NewReview';
 //import {BrowseGetaway} from './components/BrowseGetawaysPage'
 import './context/Modal.css';
 import './index.css'
@@ -73,6 +77,16 @@ function App() {
         <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/edit' exact={true} >
           {/* <ProfilePage/> */}
           <EditReservationPage/>
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/reviews/new/' exact={true} >
+          <NewReview/>
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/reviews/:reviewId/edit/' exact={true} >
+          {/* '/getaways/:getawayId/reservations/:reservationId/reviews/:reviewId/edit/' */}
+          <h2>HELLO</h2>
+          <EditReview/> 
         </ProtectedRoute>
 
         <Route path='/search/:term'>
