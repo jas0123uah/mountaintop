@@ -42,44 +42,46 @@ const deletedReview = (deletedReview) => ({
 
 
 export const createReview = (newReviewObj) => async (dispatch) => {
-    const {accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId   } = newReviewObj;
+    const {accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId, reservationsId   } = newReviewObj;
   const response = await fetch(`/api/getaways/${getawayId}/reviews/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ 
-      accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId 
+      accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId, reservationsId 
     })
   });
   if (response.ok) {
     const createdReview = await response.json();
     if (createdReview.errors) {
-      return;
+      return createdReview;
     }
   
     dispatch(newReview(createdReview));
+    return createdReview
   }
 }
 
 export const editReview = (editedReviewObj) => async (dispatch) => {
-    const {accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId, reviewId} = editedReviewObj;
+    const {accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId, reviewId, reservationsId} = editedReviewObj;
   const response = await fetch(`/api/getaways/${getawayId}/reviews/${reviewId}/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ 
-      accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId 
+      accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId, reservationsId 
     })
   });
   if (response.ok) {
     const editedReview = await response.json();
     if (editedReview.errors) {
-      return;
+      return editedReview;
     }
   
     dispatch(editedReview(editedReview));
+    return editedReview
   }
 }
 
@@ -95,10 +97,11 @@ export const deleteReview = (reviewId) => async (dispatch) => {
   if (response.ok) {
     const deletedGetawayObj = await response.json();
     if (deletedGetawayObj.errors) {
-      return;
+      return deletedGetawayObj;
     }
   
     dispatch(deletedGetaway(deletedGetawayObj));
+    return deletedGetawayObj
   }
 }
 
