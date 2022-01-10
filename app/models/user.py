@@ -46,7 +46,29 @@ class User(db.Model, UserMixin):
                                         "userId":reservation.userId,
                                         "startDate":reservation.startDate,
                                         "endDate":reservation.endDate,
+                                        "reviewId":None,
+                                        "reviewText":None,
+                                        "cleanlinessRating":None,
+                                        "communicationRating":None,
+                                        "checkinRating":None,
+                                        "accuracyRating":None,
+                                        "locationRating":None,
+                                        "valueRating":None,
+                                        "overallRating":None,
                                         }
+            
+            if reservation.reviews is not None:
+                dict_to_edit = res_dict[reservation.id]
+                dict_to_edit['reviewId'] = reservation.reviews.id
+                dict_to_edit['reviewText'] = reservation.reviews.reviewText
+                dict_to_edit['cleanlinessRating'] = reservation.reviews.cleanlinessRating
+                dict_to_edit['communicationRating'] = reservation.reviews.communicationRating
+                dict_to_edit['checkinRating'] = reservation.reviews.checkinRating
+                dict_to_edit['accuracyRating'] = reservation.reviews.accuracyRating
+                dict_to_edit['locationRating'] = reservation.reviews.locationRating
+                dict_to_edit['valueRating'] = reservation.reviews.valueRating
+                dict_to_edit['overallRating'] = reservation.reviews.overallRating
+                res_dict[reservation.id] = dict_to_edit
   
         return res_dict
     def get_getaways(self):

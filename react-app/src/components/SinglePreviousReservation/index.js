@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom"
 import {deleteReservation} from '../../store/session'
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { ReviewButton } from "../NewReviewButton";
+import {DeleteReviewButton} from '../DeleteReviewButton'
 export const SinglePreviousReservation = ({reservation, getaways}) =>{
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
@@ -29,6 +31,10 @@ export const SinglePreviousReservation = ({reservation, getaways}) =>{
                 
                 <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}><button className="viewGetawayButton">View Getaway</button></NavLink>
             </form>
+
+            <ReviewButton getaways={getaways} reservation={reservation}/>
+            <DeleteReviewButton reservation={reservation}/>
+    
             </div>
         </div>)
 }

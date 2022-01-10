@@ -13,3 +13,4 @@ class ReviewForm(FlaskForm):
     locationRating = IntegerField("Location Rating",validators=[DataRequired()])
     valueRating = IntegerField("Value Rating",validators=[DataRequired()])
     userId = IntegerField("User Id",validators=[DataRequired()])
+    reservationsId = IntegerField("Reservation Id",validators=[DataRequired()])

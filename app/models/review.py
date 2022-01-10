@@ -1,5 +1,6 @@
 from .db import db
 from sqlalchemy.sql import func
+from sqlalchemy.orm import backref
 import datetime
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -14,6 +15,11 @@ class Review(db.Model):
         "users.id"), nullable=False)
     reviewUserId = db.relationship(
         'User', back_populates="reviewForUser")
+    
+    
+    reservationsId = db.Column(db.Integer, db.ForeignKey('reservations.id'))
+    reservations = db.relationship("Reservation", back_populates="reviews")
+    
     
     reviewText = db.Column(db.Text, nullable=False)
     cleanlinessRating = db.Column(db.Integer, nullable=False)
@@ -40,6 +46,9 @@ class Review(db.Model):
             'valueRating':self.valueRating,
             'overallRating': self.overallRating,
             'userId': self.userId,
+            'userProfilePicture': self.reviewUserId.profilePictureUrl,
+            'reservationStartDate':self.reservationReview.startDate,
+            'reservationEndDate':self.reservationReview.endDate,
             'createdAt':self.createdAt,
             'updatedAt':self.updatedAt   
         }

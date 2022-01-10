@@ -12,7 +12,7 @@ def seed_users():
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(joe)
-    for user in range(1,200):
+    for user in range(1,51):
         user = RandomUser()
         firstName = str(user.get_first_name())
         lastName = str(user.get_last_name())
