@@ -41,7 +41,8 @@ def edit_review_by_id(id):
         reviewToEdit.accuracyRating = form.data['accuracyRating']
         reviewToEdit.locationRating = form.data['locationRating']
         reviewToEdit.valueRating = form.data['valueRating']
-        reviewToEdit.overallRating = mean([form.data['cleanlinessRating'], form.data['communicationRating'], form.data['checkinRating'], form.data['accuracyRating'], form.data['valueRating'], form.data['locationRating']], reservationsId = form.data['reservationsId'])
+        reviewToEdit.overallRating = mean([form.data['cleanlinessRating'], form.data['communicationRating'], form.data['checkinRating'], form.data['accuracyRating'], form.data['valueRating'], form.data['locationRating']])
+        reviewToEdit.reservationsId = form.data['reservationsId']
         db.session.commit()
         all_getaways = db.session.query(Getaway)
         getawaydict ={}
@@ -49,7 +50,6 @@ def edit_review_by_id(id):
             getawaydict[getaway.id]=getaway.to_dict()
         return getawaydict
     else:
-
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @review_routes.route('reviews/<int:id>/', methods=['DELETE'])
