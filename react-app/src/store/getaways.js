@@ -65,8 +65,8 @@ export const createReview = (newReviewObj) => async (dispatch) => {
 
 export const editReview = (editedReviewObj) => async (dispatch) => {
     const {accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId, reviewId, reservationsId} = editedReviewObj;
-  const response = await fetch(`/api/getaways/${getawayId}/reviews/${reviewId}/`, {
-    method: 'POST',
+  const response = await fetch(`/api/reviews/${reviewId}/`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -75,13 +75,13 @@ export const editReview = (editedReviewObj) => async (dispatch) => {
     })
   });
   if (response.ok) {
-    const editedReview = await response.json();
-    if (editedReview.errors) {
-      return editedReview;
+    const data = await response.json();
+    if (data.errors) {
+      return data;
     }
   
-    dispatch(editedReview(editedReview));
-    return editedReview
+    dispatch(editedReview(data));
+    return data
   }
 }
 
