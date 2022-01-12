@@ -13,21 +13,104 @@
 .searchBar{
     border-radius: 15px;
     display: inline-block;
-    border: #314d58 1px solid;
-    width: 400px;
+    /* border: #314d58 1px solid; */
+    /* width: 400px; */
     height: 30px;
+    padding-left: 8px;
+    outline: none;
+    padding-right: 8px;
     
+}
+.searchBar:active{
+    outline: none;
 }
 .navBar,.navBar-list, #login-sign-up{
     list-style-type: none;
     text-decoration: none;
     list-style: none;
 }
+.search-container{
+    position: relative;
+    left: 25px;
+}
+
+.search-icon {
+  position: absolute;
+  right: 3px; 
+  top: 7px;
+  bottom: 3px;
+  border: 0;
+  outline: none;
+  /* margin: 0;
+  padding: 0 10px;
+  border-radius: 100px; */
+  z-index: 2;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+/* #root{
+    overflow-x: hidden;
+} */
+.navBar{
+    display: flex;
+    position: fixed;
+    width: 100vw;
+
+}
+.scrolledNavbar-false{
+    transition: 0.5s;
+}
+.scrolledNavbar-true{
+    background-color: white;
+    transition: 0.5s;
+    border: 1px solid #a7a7a7;
+}
+.splashBlurb{
+    position: relative;
+    left: 70vh;
+    bottom: 100vh;
+
+}
+.browse-button{
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding: 8px;
+    border-radius: 30px;
+    margin-top: 8px;
+    border: none;
+    position: relative;
+    left: 45px;
+    /* width: 180px; */
+    text-align: center;
+    background-color: #6f7f8b;
+}
+.splashText{
+    color: white;
+}
+.SignInButton{
+    margin-left: 5px;
+}
+
+.navBar-list{
+    flex: 1;
+}
+.splashBackground{ 
+    height: 100%;
+    width: 100vw;
+}
+.navContainer{
+    z-index: 10;
+}
 #nav-list{
     display: flex;
     justify-content: space-between;
     padding-bottom: 5px;
     border-bottom: black solid 1px ;
+    margin-bottom: 0;
     
 }
 .searchBar{
@@ -61,7 +144,8 @@ body{
     /* background-color: #E8F3F5; */
     /* background-color: #ECFEF1;  */
     /* background-color: #EBD894;  */
-    background-color: #dfd9c4; 
+    background-color: #dfd9c4;
+    overflow-x: hidden;
     /* background-color: #9DB0A3; */
 }
 .navBar-list{
@@ -370,4 +454,7 @@ div#getawayImgsSubmissions:empty{
 }
 .previouslyUploadedImage {
     height: 200px;
+}
+.fa-search{
+    background: none;
 }
