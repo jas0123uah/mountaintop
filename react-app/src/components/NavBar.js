@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './LoginFormModal';
@@ -8,7 +8,32 @@ import * as sessionActions from "../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import {searchGetaways} from "../store/search"
 const NavBar = () => {
-  const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchTerm, setSearchTerm] = React.useState("Find your next getaway...");
+  const[scrolled, setScrolled] = React.useState(false);
+  
+
+   const changeLogo = () => {
+    console.log(window)
+    if (window.scrollY >= 10) {
+      setScrolled(true);
+    } else {
+      setScrolled(false)
+    }
+  }
+
+  useEffect(() => {
+    changeLogo()
+    // adding the event when scroll change Logo
+    window.addEventListener("scroll", changeLogo)
+  })
+  
+  
+  // useEffect(() => {
+  //   effect
+  //   return () => {
+  //     cleanup
+  //   }
+  // }, [input])
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -28,7 +53,9 @@ const NavBar = () => {
 
   }
   return (
-    <nav className="navBar">
+    <div className="navContainer">
+
+    <nav className={`navBar scrolledNavbar-${scrolled}`}>
       <ul className="navBar-list" id="nav-list">
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
@@ -36,10 +63,11 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <form onSubmit={onSearch} >
+          <div className="search-container">
+
           <input type="search" name="" id="" className="searchBar" value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
-          <button type="submit" className="search-btn"><i class="fa fa-search"></i></button>
-          </form>
+         <i class="fa fa-search search-icon" onClick={onSearch}></i>
+          </div>
         </li>
         <div className="signuploginicons">
         <li>
@@ -47,14 +75,19 @@ const NavBar = () => {
         </li>
         <li>
           {user ? null :<button id="demo-button" onClick={demoLogin}> Demo user</button>}
-          {user ?  <LogoutButton/> :  <LoginFormModal/> }
+          {/* {user ?  <LogoutButton/> :  <LoginFormModal/> } */}
          
 
+
+        </li>
+        <li>
+          {user ?  <LogoutButton/> :  <LoginFormModal/> }
 
         </li>
         </div>
       </ul>
     </nav>
+    </div>
   );
 }
 
