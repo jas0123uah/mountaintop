@@ -69,7 +69,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 .splashBlurb{
     position: relative;
-    left: 70vh;
+    left: 83vh;
     bottom: 100vh;
 
 }
@@ -109,6 +109,10 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     position: relative;
     left: 310px;
     margin-top: 8px;
+}
+.selected-amenity-filter-true.amenity-filter{
+    border: 1px solid #000;
+
 }
 #nav-list{
     display: flex;
@@ -370,7 +374,14 @@ background-color: white;
     overflow: scroll;
 }
 .searchResultsContainer{
-    margin-top: 65px;
+    /* margin-top: 65px; */
+    margin-top: 115px;
+}
+.searchResultsContainer-browse{
+margin-top: 65px;
+}
+.browse{
+    margin-top: 15px;
 }
 .maybe2 {
     display: flex;
