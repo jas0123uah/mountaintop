@@ -81,7 +81,7 @@ const NavBar = () => {
 
         </li>
         </div>
-      {location.pathname.includes("/search/") ?  <AmenitiesFilterNavBar/>: null}
+      {location.pathname.includes("/search/")||location.pathname.includes("/browse") ?  <AmenitiesFilterNavBar/>: null}
       </ul>
     </nav>
     </div>
