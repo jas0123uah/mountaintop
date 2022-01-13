@@ -1,19 +1,22 @@
 
 import React, {useState, useEffect} from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import {AmenitiesFilterNavBar} from '../components/AmenitiesFilterNavBar'
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './LoginFormModal';
 import SignUpFormModal from './SignUpModal'
 import * as sessionActions from "../store/session";
+
 import { useDispatch, useSelector } from "react-redux";
 import {searchGetaways} from "../store/search"
 const NavBar = () => {
-  const [searchTerm, setSearchTerm] = React.useState("Find your next getaway...");
-  const[scrolled, setScrolled] = React.useState(false);
+  const location = useLocation();
+  const [searchTerm, setSearchTerm] = useState("Find your next getaway...");
+  const[scrolled, setScrolled] = useState(false);
   
 
    const changeLogo = () => {
-    console.log(window)
+    //console.log(window)
     if (window.scrollY >= 10) {
       setScrolled(true);
     } else {
@@ -27,13 +30,6 @@ const NavBar = () => {
     window.addEventListener("scroll", changeLogo)
   })
   
-  
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -85,6 +81,7 @@ const NavBar = () => {
 
         </li>
         </div>
+      {location.pathname.includes("/search/") ?  <AmenitiesFilterNavBar/>: null}
       </ul>
     </nav>
     </div>
