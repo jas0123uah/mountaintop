@@ -105,13 +105,22 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .navContainer{
     z-index: 10;
 }
+.amenitiesNav{
+    position: relative;
+    left: 310px;
+    margin-top: 8px;
+}
 #nav-list{
     display: flex;
     justify-content: space-between;
     padding-bottom: 5px;
     border-bottom: black solid 1px ;
     margin-bottom: 0;
+    flex-wrap: wrap;
     
+}
+.breaker{ 
+    width: 100%;
 }
 .searchBar{
     margin-bottom: 10px;
@@ -349,6 +358,9 @@ body {
 .maybe#containerForgetawayImgsSubmissions{
 width:260px;
 }
+.amenityListing{
+    height: 23.409px;
+}
 .maybe#containerForgetawayImgsSubmissions *{
 margin-left: 5px;
 margin-top: 5px;
@@ -356,6 +368,9 @@ background-color: white;
 }
 .maybe2#getawayImgsSubmissions{
     overflow: scroll;
+}
+.searchResultsContainer{
+    margin-top: 65px;
 }
 .maybe2 {
     display: flex;
@@ -418,6 +433,15 @@ div#getawayImgsSubmissions:empty{
 }
 .singleResultImage{
     width: 540px;
+    margin-bottom: 12px;
+}
+.amenity-filter {
+    border-radius:30px;
+    height: 32px;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
 }
 .browseGetawaysContainer{
     display: flex;
