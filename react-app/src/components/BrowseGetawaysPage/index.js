@@ -6,7 +6,7 @@ const BrowseGetawaysPage = () => {
     const getawaysObject = useSelector(state => state.getaways);
     const getawaysArray = Object.values(getawaysObject)
   return (
-    <div>
+    <div className="searchResultsContainer">
       {getawaysArray.map( getaway => {
         return <SingleGetawaySearchOrBrowseResult getaway={getaway} key={getaway.id}/>
       })}
