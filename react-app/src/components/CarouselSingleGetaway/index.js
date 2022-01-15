@@ -23,7 +23,7 @@ const CarouselSingleGetaway = () => {
 
   return (
       <>
-    <Carousel isAutoPlaying={true} images={images} style={{ height: 620, width: 800 }} autoPlayInterval={3500} />
+    <Carousel hasSizeButton={false} hasMediaButton={false} isAutoPlaying={true} images={images} style={{ height: 620, width: 800 }} autoPlayInterval={7000} />
     </>
   );
 };
