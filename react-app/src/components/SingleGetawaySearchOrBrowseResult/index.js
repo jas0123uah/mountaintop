@@ -1,5 +1,6 @@
 import { NavLink} from 'react-router-dom';
-import {getAmenitiesObjectForGetaway} from '../../utils/helperFunctions'
+import {getAmenitiesObjectForGetaway, getAmenitiesAndIcon} from '../../utils/helperFunctions'
+import { AmenityListing } from '../AmenityListing';
 export const SingleGetawaySearchOrBrowseResult = ({getaway}) => {
   const amenitiesObject = getAmenitiesObjectForGetaway(getaway)
     return(
@@ -10,6 +11,9 @@ export const SingleGetawaySearchOrBrowseResult = ({getaway}) => {
           <h1>{getaway.name}</h1>
           </NavLink>
           <h3>{`${getaway.numGuests} guests | ${getaway.numBedrooms} bedrooms | ${getaway.numBeds} beds | ${getaway.numBaths} baths`}</h3>
+          <h3>{Object.entries(amenitiesObject).map( amenity => {
+            return(<AmenityListing amenity={amenity}/>)
+          })}</h3>
           <h4> {`$${getaway.price}/night`}</h4>
           </div>
         </div>)
