@@ -4,7 +4,7 @@ import EditReservationModal from '../EditReservationModal'
 export const EditReservationPage = () => {
     
     
-     return(<div>
+     return(<div className="editReservationContainer">
          <CarouselSingleGetaway/>
          <div id="interestedDiv">
          <EditReservationModal/>
