@@ -15,7 +15,6 @@ export const NewReview = () => {
   const [accuracyRating, setAccuracyRating] = useState(1)
   const [locationRating, setLocationRating] = useState(1)
   const [valueRating, setValueRating] = useState(1)
-  console.log(cleanlinessRating, "CLEANLINESS");
   const numStars = [1,2,3,4,5]
 
 

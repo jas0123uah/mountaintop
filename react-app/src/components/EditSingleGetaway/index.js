@@ -13,7 +13,6 @@ export const EditSingleGetaway = () => {
   const userId = user?.id
   const { getawayId }  = useParams();
   const getawayBeforeEdits = useSelector(state => state.getaways[getawayId]);
-  console.log(getawayBeforeEdits, "LOOK AT GETAWAY BEFORE EDITS");
   const arrayOfAmenityObjects = Object.values(getawayBeforeEdits.amenities)
   const amenitiesObject ={'HotTub': false, 'Wifi': false, 'Fireplace': false, 'Kitchen': false, 'Patio' : false}
   arrayOfAmenityObjects.forEach(amenityObj => {

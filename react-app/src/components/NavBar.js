@@ -16,7 +16,6 @@ const NavBar = () => {
   
 
    const changeLogo = () => {
-    //console.log(window)
     if (window.scrollY >= 10) {
       setScrolled(true);
     } else {

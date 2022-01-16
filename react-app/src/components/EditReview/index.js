@@ -22,7 +22,6 @@ export const EditReview = () => {
   const [accuracyRating, setAccuracyRating] = useState(reservationObj.accuracyRating)
   const [locationRating, setLocationRating] = useState(reservationObj.locationRating)
   const [valueRating, setValueRating] = useState(reservationObj.valueRating)
-  console.log(cleanlinessRating, "CLEANLINESS");
   const numStars = [1,2,3,4,5]
 
 

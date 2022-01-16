@@ -1,9 +1,7 @@
 import BalconyLogo from '../assets/balcony-svgrepo-com.svg';
 import FireplaceLogo from '../assets/fireplace-svgrepo-com.svg'
 import ChefHatLogo from '../assets/chef-svgrepo-com.svg'
-import { ReactSVG } from 'react-svg'
 export const AmenityListing = ({amenity})=>{
-console.log(amenity, "LOOK");
 let amenityToReturn = null;
 if (amenity[1] == true) {
     if (amenity[0]== "HotTub"){
