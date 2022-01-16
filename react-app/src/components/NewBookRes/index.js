@@ -5,6 +5,7 @@ import { createReservation, authenticate } from "../../store/session";
 import {loadGetaways} from '../../store/getaways'
 import {useHistory, useParams } from 'react-router-dom';
 import SingleGetawayInfo from '../SingleGetawayInfo'
+import {getAverageReviewRating, getTotalPrice} from '../../utils/helperFunctions'
 
 export const NewBookRes = () => {
   const [startDate, setStartDate] = useState(null);
@@ -17,12 +18,14 @@ export const NewBookRes = () => {
 
   const userId = user?.id
   const { getawayId }  = useParams();
+  const currentGetaway = getaways[getawayId];
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const getBookedDays=() =>{
   const bookedDays = [];
+  
 
   const reservations = Object.values(getaways[getawayId].reservations)
   reservations.forEach( reservation => {
@@ -125,9 +128,21 @@ const getValidEndDate = () => {
     setStartDate(start);
     setEndDate(end);
   };
-  const startDateString = startDate ? ((startDate.getMonth() > 8) ? (startDate.getMonth() + 1) : ('0' + (startDate.getMonth() + 1))) + '/' + ((startDate.getDate() > 9) ? startDate.getDate() : ('0' + startDate.getDate())) + '/' + startDate.getFullYear() : ''
+  // const startDateString = startDate ? ((startDate.getMonth() > 8) ? (startDate.getMonth() + 1) : ('0' + (startDate.getMonth() + 1))) + '/' + ((startDate.getDate() > 9) ? startDate.getDate() : ('0' + startDate.getDate())) + '/' + startDate.getFullYear() : ''
+
+  
+
+
+  
+  
 
   const endDateString = endDate ? ((endDate.getMonth() > 8) ? (endDate.getMonth() + 1) : ('0' + (endDate.getMonth() + 1))) + '/' + ((endDate.getDate() > 9) ? endDate.getDate() : ('0' + endDate.getDate())) + '/' + endDate.getFullYear() : ''
+
+  const price = getaways[getawayId].price
+  const costOfStay = getTotalPrice(startDate, endDate, price)
+
+  const averageRatingAndReviews= getAverageReviewRating(currentGetaway)
+  const [averageRating, numReviews, ...otherRatings] = averageRatingAndReviews
 
   return (
       <>
@@ -135,7 +150,21 @@ const getValidEndDate = () => {
       
       <SingleGetawayInfo/>
       </>
-      <div>
+      <div className="bookAResContainer">
+        <div className="respricePerNightAndOverallRating">
+          <div className="priceContainer">
+          <li className="bookingPrice">{`$${price}`}</li>
+          <li className="perNight">/night</li>
+          </div>
+          <div className="resReviewsContainer">
+            <i class="fas fa-star"></i>
+            <div className="avgRatingAndNumRev">
+              <span className="bookingAvgRating">{averageRating}</span>
+              <span className="bookingNumReviews">{`(${numReviews} reviews)`}</span>
+            </div>
+          </div>
+          
+        </div>
       <DatePicker
         selected={startDate}
         filterDate={removeInvalidDays}
@@ -145,9 +174,13 @@ const getValidEndDate = () => {
         selectsRange
         inline
       />
-      <h4>{`Check-in Date: ${startDateString}`}</h4>
-      <h4>{`Check-out Date: ${endDateString}`}</h4>
-      <button onClick={handleSubmitReservation}>Book Reservation</button>
+      {/* <h4 className="checkin-out-Date">{`Check-in date: ${startDateString}`}</h4>
+      <h4 className="checkin-out-Date">{`Check-out date: ${endDateString}`}</h4> */}
+      <button className="resButton" onClick={handleSubmitReservation}>Book Reservation</button>
+      <div className="totalFlex">
+        <span className="totalText">Total</span>
+        <span className="totalPrice">{`$${costOfStay}`}</span>
+      </div>
 
       </div>
       
