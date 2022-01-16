@@ -84,8 +84,6 @@ function App() {
         </ProtectedRoute>
 
         <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/reviews/:reviewId/edit/' exact={true} >
-          {/* '/getaways/:getawayId/reservations/:reservationId/reviews/:reviewId/edit/' */}
-          <h2>HELLO</h2>
           <EditReview/> 
         </ProtectedRoute>
 
