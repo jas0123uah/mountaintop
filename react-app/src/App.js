@@ -76,7 +76,8 @@ function App() {
 
         <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/edit' exact={true} >
           {/* <ProfilePage/> */}
-          <EditReservationPage/>
+          {/* <EditReservationPage/> */}
+          <ViewSingleGetaway />
         </ProtectedRoute>
 
         <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/reviews/new/' exact={true} >

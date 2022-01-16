@@ -6,7 +6,7 @@ import {NewBookRes} from '../NewBookRes'
 import { useSelector } from "react-redux";
 import {  useParams } from 'react-router-dom';
 import {getGetawayImagesArray} from '../../utils/helperFunctions'
-import { getAverageReviewRating, getReviewObjects } from "../../utils/helperFunctions"
+import { getAverageReviewRating, getReviewObjects, getMonthandYear } from "../../utils/helperFunctions"
 export const Reviews = () => {
 
     const getawaysObject = useSelector(state => state.getaways);
@@ -86,7 +86,7 @@ export const Reviews = () => {
                             </div>
                             <div className="reviewerNameAndDate">
                                 <h5 className="reviewerName">{review.userFirstName}</h5>
-                                <span className="reviewDate">{review.startDate}</span>
+                                <span className="reviewDate">{getMonthandYear(review.startDate)}</span>
                             </div>
                             </div>
                             <div className="review-text">

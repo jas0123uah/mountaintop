@@ -186,7 +186,32 @@ export const getGetawayImagesArray = (getaway) => {
 }
 
 
-export const getAverageCleaniness=(getaway)=>{
+export const getNumDaysBetweenDates = (startDate, endDate) =>{
+  if(!startDate || !endDate){
+    return null
+  }
+  const differenceInTime = endDate.getTime() - startDate.getTime()
+  return ((differenceInTime/ (1000*3600*24)) + 1)
 
 
+}
+
+export const getTotalPrice = (startDate, endDate, pricePerNight) =>{
+  const numDays = getNumDaysBetweenDates(startDate, endDate)
+  return numDays * pricePerNight
+} 
+
+export const getMonthandYear = (date) => {
+  const dateAsDateObject = new Date(date)
+  if (!dateAsDateObject){
+    return null
+  }
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+]
+
+  const startDateString =  monthNames[dateAsDateObject.getMonth()] + ' ' + dateAsDateObject.getFullYear()
+
+  return startDateString
 }

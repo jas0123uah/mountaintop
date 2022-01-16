@@ -7,10 +7,7 @@ import {useHistory, useParams } from 'react-router-dom';
 import SingleGetawayInfo from '../SingleGetawayInfo'
 import {getAverageReviewRating, getTotalPrice} from '../../utils/helperFunctions'
 
-export const NewBookRes = () => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [errors, setErrors] = useState([])
+export const EditRes = () => {
   const user = useSelector(state => state.session.user);
 
   const getaways = useSelector(state => state.getaways);
@@ -18,10 +15,15 @@ export const NewBookRes = () => {
 
   const userId = user?.id
   const { getawayId }  = useParams();
+  const { reservationId }  = useParams();
+  const reservationToEdit = user.reservations[reservationId]
   const currentGetaway = getaways[getawayId];
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const [startDate, setStartDate] = useState(new Date(reservationToEdit.startDate));
+  const [endDate, setEndDate] = useState(new Date(reservationToEdit.endDate));
+  const [errors, setErrors] = useState([])
 
   const getBookedDays=() =>{
   const bookedDays = [];
@@ -128,15 +130,6 @@ const getValidEndDate = () => {
     setStartDate(start);
     setEndDate(end);
   };
-  // const startDateString = startDate ? ((startDate.getMonth() > 8) ? (startDate.getMonth() + 1) : ('0' + (startDate.getMonth() + 1))) + '/' + ((startDate.getDate() > 9) ? startDate.getDate() : ('0' + startDate.getDate())) + '/' + startDate.getFullYear() : ''
-
-  
-
-
-  
-  
-
-  const endDateString = endDate ? ((endDate.getMonth() > 8) ? (endDate.getMonth() + 1) : ('0' + (endDate.getMonth() + 1))) + '/' + ((endDate.getDate() > 9) ? endDate.getDate() : ('0' + endDate.getDate())) + '/' + endDate.getFullYear() : ''
 
   const price = getaways[getawayId].price
   const costOfStay = getTotalPrice(startDate, endDate, price)
@@ -174,8 +167,6 @@ const getValidEndDate = () => {
         selectsRange
         inline
       />
-      {/* <h4 className="checkin-out-Date">{`Check-in date: ${startDateString}`}</h4>
-      <h4 className="checkin-out-Date">{`Check-out date: ${endDateString}`}</h4> */}
       <button className="resButton" onClick={handleSubmitReservation}>Book Reservation</button>
       <div className="totalFlex">
         <span className="totalText">Total</span>
