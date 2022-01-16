@@ -71,7 +71,6 @@ export const compareDesiredAmenitiesToCurrentGetawaysAmenities =  (desiredAmenit
   const currentGetawayAmenities = getAmenitiesObjectForGetaway(currentGetaway)
   for (const [key, value] of Object.entries(desiredAmenities)) {
     if (value == true && currentGetawayAmenities[key] == false ) {
-      console.log(key, value, "AINT GOT IT");
       return false}}
   return true
 
@@ -100,9 +99,94 @@ export const getAmenitiesJSONForGetaway = (getaway) => {
   return JSON.stringify(amenitiesObject)
 }
 
+export const getAverageReviewRating = (getaway)=> {
+  const arrayOfReservations=Object.values(getaway.reservations)
+  let numReviews = 0
+  let totalOverallRating = 0
+  let totalCleanliness = 0
+  let totalCommunication = 0
+  let totalCheckin = 0
+  let totalAccuracy = 0
+  let totalLocation = 0
+  let totalValue = 0
+  arrayOfReservations.forEach(reservation => {
+    if (reservation.overallRating) {
+      totalOverallRating+=reservation.overallRating
+      totalCleanliness+=reservation.cleanlinessRating
+      totalCommunication+=reservation.communicationRating
+      totalCheckin+=reservation.checkinRating
+      totalAccuracy+=reservation.accuracyRating
+      totalLocation+=reservation.locationRating
+      totalValue+=reservation.valueRating
+      
+      numReviews++;
+    }
+  })
+const avgRating = (totalOverallRating / numReviews).toFixed(2)
+totalCleanliness = (totalCleanliness/numReviews).toFixed(1)
+totalCommunication = (totalCommunication/numReviews).toFixed(1)
+totalCheckin = (totalCheckin/numReviews).toFixed(1)
+totalAccuracy = (totalAccuracy/numReviews).toFixed(1)
+totalLocation = (totalLocation/numReviews).toFixed(1)
+totalValue = (totalValue/numReviews).toFixed(1)
 
-//Need to get Object of amenities desired for
+return [avgRating, numReviews, totalCleanliness, totalCommunication, totalCheckin, totalAccuracy, totalLocation, totalValue]
+}
+export const getReviewObjects =(userId, getaway) => {
+  const reviewObjArray = []
+  const arrayOfReservations=Object.values(getaway.reservations)
+  arrayOfReservations.forEach(reservation => {
+    if (reservation.overallRating) {
+      reviewObjArray.push(reservation)
+    }
+  })
+  if (userId) {
+    reviewObjArray.sort(
+      function (a, b) {
+        if((a.userId) ==  (userId)) {  
+          if (a.userId == b.userId) {
+             return new Date(a.startDate)  > new Date(b.startDate) ? -1 : 1
+  
+          }else{
+            return -1
+          }
+        }
+        
+        // return new Date(a.startDate) < new Date(b.startDate)
+        return new Date(a.startDate) >  new Date(b.startDate) ? -1 : 1
+      }
+    )
+  }else{
 
-//Need to get Object of amenities getaways has
+    reviewObjArray.sort(
+      function (a, b) {
+        if(new Date(a.startDate) > (b.startDate)){ return 1;}
+        else{ return -1;}
+      
+        // if (a.userId === b.userId) {
+        //   return (new Date(b.startDate > a.startDate))
+        // }
+      }
+    )
 
-//Use a fn to iterate over desired for and compare to has
+  }
+  return reviewObjArray 
+
+
+}
+
+
+export const getGetawayImagesArray = (getaway) => {
+  const getawayImages=[]
+
+  Object.values(getaway.images).forEach((image) => {
+    getawayImages.push( {"src": image.url})
+  })
+  return getawayImages
+}
+
+
+export const getAverageCleaniness=(getaway)=>{
+
+
+}
