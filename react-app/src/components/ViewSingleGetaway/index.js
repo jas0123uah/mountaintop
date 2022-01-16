@@ -1,11 +1,8 @@
-import { NewReservation } from "../BookReservationForm"
-import CarouselSingleGetaway from '../CarouselSingleGetaway'
-import SingleGetawayInfo from '../SingleGetawayInfo'
-import BookReservationModal from '../BookReservationModal'
 import {NewBookRes} from '../NewBookRes'
+import {EditRes} from '../EditRes'
 import {Reviews} from '../Reviews'
 import { useSelector } from "react-redux";
-import {  useParams } from 'react-router-dom';
+import {  useParams, useLocation } from 'react-router-dom';
 import {getGetawayImagesArray} from '../../utils/helperFunctions'
 import { getAverageReviewRating } from "../../utils/helperFunctions"
 export const ViewSingleGetaway = () => {
@@ -17,6 +14,9 @@ export const ViewSingleGetaway = () => {
 
     const imagesArray = getGetawayImagesArray(currentGetaway)
     const averageRatingAndReviews= getAverageReviewRating(currentGetaway)
+
+    const location = useLocation();
+    console.log(location, "Location");
     
     
      return(<div className="viewGetawayContainer">
@@ -24,7 +24,6 @@ export const ViewSingleGetaway = () => {
         <h2 className="listingName">{currentGetaway.name}</h2>
         <h4 className="listingSnapshot"> <i class="fas fa-star"></i> {`${averageRatingAndReviews[0]} (${averageRatingAndReviews[1]} reviews)`} <i class="fas fa-map-marker-alt"></i> {`${currentGetaway.city}, ${currentGetaway.state}`} <i class="fas fa-home"></i> {`${currentGetaway.numGuests} ${guestOrGuests}`} </h4>
          </div>
-        {/* <CarouselSingleGetaway/> */}
         <div className="containerForPhotosContainer">
 
         <div className="photosContainer">
@@ -61,31 +60,16 @@ export const ViewSingleGetaway = () => {
                 </div>
             </div>
         </div>
-
-
-
-
         </div>
-
-
-        {/* <div className="getawayImagesContainer">
-            {imagesArray.map ((imageObj,idx) => {
-                return <img src={imageObj.src} key={idx}></img>
-            } )}
-        </div> */}
-         {/* <div id="interestedDiv">
-         <BookReservationModal/>
-         </div> */}
          <div className="getaway-info-reservationForm-flex">
         <div className="bookingContainer">
-            <NewBookRes/>
+            {location.pathname.includes("/edit")? <EditRes/> :<NewBookRes/>
+            }
 
         </div>
         <>
         <Reviews/>
         </>
-         {/* <NewBookRes/>
-         <SingleGetawayInfo/> */}
          </div>
      </div>)
 }
