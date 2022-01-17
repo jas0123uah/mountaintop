@@ -62,9 +62,9 @@ function SignUpForm() {
   };
 
   return (
-    <div className='formWrapper'>
+    <div className='formWrapper' id="signup">
 
-    <form onSubmit={onSignUp}>
+    <form onSubmit={onSignUp} className="signUpFlex">
       <ul className="formErrors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
