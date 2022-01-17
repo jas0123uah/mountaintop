@@ -275,6 +275,7 @@ ol, li {
 .profileSidebar {
   flex-direction: column;
   align-items: flex-start;
+  /* display: flex; */
   margin: 0;
   padding: 0;
   max-width: 30vw;
@@ -285,16 +286,25 @@ ol, li {
   /* position: absolute; */
   /* z-index: 8;
   height: 12vh; */
-  /* height: 100%; */
+  height: 100%;
   overflow: auto;
   border-right: 1px solid #000;
-  margin-top:-14px; 
+  padding-left: 15px;
+  /* margin-top:-14px;  */
   
 
 
 
   
 
+}
+button:hover {
+  filter: brightness(115%);
+  transition: filter 0.3s ease;
+}
+button{
+  filter: brightness(100%);
+  transition: filter 0.3s ease;
 }
 
 .profilePicture{
@@ -311,7 +321,13 @@ ol, li {
 .profileMainContent{
   /* margin-left: 30vw; */
   background-color: #fff;
-  margin-top:-15px;
+  /* margin-top:-15px; */
+  padding-left:15px
+}
+.profileHeader{
+  margin: 0;
+  padding-top: 21.4px;
+  margin-bottom: 10px;
 }
 span{
   margin-right: 10px;
