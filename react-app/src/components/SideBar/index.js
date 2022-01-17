@@ -11,6 +11,8 @@ export const SideBar = () => {
 
   return (
     <div className='profileSidebar'>
+      <div className="userInfo">
+
       <h1>{`Hello ${user.firstName}!`}</h1>
       <img className='profilePicture' alt={`${user.firstName}'s profile image`} src={user.profilePictureUrl} ></img>
       <br></br>
@@ -19,6 +21,7 @@ export const SideBar = () => {
           <i className="fas fa-plus"></i> Add New Getaway
         </button>
       </NavLink>
+      </div>
       <h2>My Getaways:</h2>
       <AllUserGetaways/>
     </div>
