@@ -66,7 +66,7 @@ useEffect(() => {
         ))}
       </div>
 
-<div class="parent">
+<div class="parentRev">
 <div class="div1"> Cleanliness rating </div>
 <div class="div2"> {numStars.map(num => {return <RatingStar key={num} ratingSetter={setCleanlinessRating} desiredRating={num} currentRating={cleanlinessRating}/> })}
 </div>
