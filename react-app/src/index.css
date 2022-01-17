@@ -332,6 +332,12 @@ body {
     right: 180px;
 
 }
+
+.formWrapper{
+margin: 90px auto 45px auto;
+width: fit-content;
+display: flex;
+}
 .createGetawaySubmitButton#bookReservationSubmitButton{
     position: relative;
     right: 80px;
@@ -495,6 +501,7 @@ div#getawayImgsSubmissions:empty{
 
 }
 .containerForSidebarAndMainContent{
+    margin-top: 70px;
     display: flex;
     flex-direction: row;
 }
