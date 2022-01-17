@@ -35,12 +35,12 @@ def seed_reservations():
         for x in range(1, 10):
             randUser = randint(1, 50)
             reservation = Reservation(userId = randUser, endDate=dates[dateCount+1], startDate=dates[dateCount], getawayId = i)
-            cleanlinessRating = randrange(1, 5)
-            communicationRating = randrange(1, 5)
-            checkinRating = randrange(1, 5)
-            accuracyRating = randrange(1, 5)
-            locationRating = randrange(1, 5)
-            valueRating = randrange(1, 5)
+            cleanlinessRating = randrange(3, 5)
+            communicationRating = randrange(3, 5)
+            checkinRating = randrange(3, 5)
+            accuracyRating = randrange(3, 5)
+            locationRating = randrange(3, 5)
+            valueRating = randrange(3, 5)
             overallRating = mean([cleanlinessRating, communicationRating, accuracyRating, checkinRating, locationRating, valueRating])
             reviewText = fake.paragraph(nb_sentences=3)
             seed_review = Review(checkinRating=checkinRating, reviewText=reviewText,
