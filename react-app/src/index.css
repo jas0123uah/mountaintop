@@ -288,13 +288,13 @@ body {
 #LOGINBUTTON, #signupbtn{
     margin-left: 30px;
 }
-#signupbtn{
+/* #signupbtn{
     position: relative;
     left: 30px;
 }
 #signupbtn{
     margin-bottom:10px ;
-}
+} */
 /* #root :last-child {
   display: none;
 } */
@@ -335,6 +335,12 @@ body {
 
 .formWrapper{
 margin: 90px auto 45px auto;
+/* margin: 0px auto 10px auto; */
+width: fit-content;
+display: flex;
+}
+.formWrapper#signup{
+margin: 0px auto 10px auto;
 width: fit-content;
 display: flex;
 }
@@ -387,6 +393,7 @@ display: flex;
     margin: 0;
     font-weight: normal;
     font-size: 16px;
+    overflow-wrap: break-word;
 }
 .rating-num{
     width: 20px;
@@ -481,7 +488,11 @@ div#getawayImgsSubmissions:empty{
 .formErrors{
     color: red;
     font-weight: bold;
+    margin-bottom: 16px;
 
+}
+.amenities-fieldset{
+    margin-bottom: 15px ;
 }
 .createGetawaySubmitButton{
     background-color: #f28350;
@@ -540,9 +551,15 @@ div#getawayImgsSubmissions:empty{
 .singleGetawayHost{
     margin-left: 15px;
 }
-.signup-inputs{
+/* .signup-inputs{
     position: relative;
     left: 80px;
+} */
+.signUpFlex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
 }
 .deleteImgBtn{
     position: absolute;
@@ -741,4 +758,7 @@ grid-row-gap: 0px;
     font-size: 17px;
     font-weight: 600;
     /* gap: 0px; */
+}
+.revModal#modal-content{
+    background: none;
 }

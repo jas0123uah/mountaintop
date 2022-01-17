@@ -143,17 +143,35 @@ export const getReviewObjects =(userId, getaway) => {
   if (userId) {
     reviewObjArray.sort(
       function (a, b) {
-        if((a.userId) ==  (userId)) {  
-          if (a.userId == b.userId) {
-             return new Date(a.startDate)  > new Date(b.startDate) ? -1 : 1
-  
-          }else{
-            return -1
-          }
+
+        if (a.userId ==userId && b.userId != userId) {
+          return -1
+          
         }
+        if (b.userId == userId && a.userId != userId) {
+          return 1
+          
+        }
+        if (a.userId == userId && b.userId == userId) {
+          return new Date(a.startDate)  > new Date(b.startDate) ? -1 : 1
+          
+        }
+        if (a.userId!=userId && b.userId!=userId) {
+          return new Date(a.startDate)  > new Date(b.startDate) ? -1 : 1
+          
+        }
+
+        // if((a.userId) ==  (userId)) {  
+        //   if (a.userId == b.userId) {
+        //      return new Date(a.startDate)  > new Date(b.startDate) ? -1 : 1
+  
+        //   }else{
+        //     return -1
+        //   }
+        // }
         
-        // return new Date(a.startDate) < new Date(b.startDate)
-        return new Date(a.startDate) >  new Date(b.startDate) ? -1 : 1
+        // // return new Date(a.startDate) < new Date(b.startDate)
+        // return new Date(a.startDate) >  new Date(b.startDate) ? -1 : 1
       }
     )
   }else{

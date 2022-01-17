@@ -12,7 +12,7 @@ function LoginModalForm() {
     e.preventDefault();
     const data = await dispatch(login(credential, password));
     if (data) {
-      setErrors(data);
+      setErrors(data.errors);
     }
     history.push("/profile")
     
@@ -20,28 +20,25 @@ function LoginModalForm() {
 
   return (
     <form onSubmit={onLogin}>
+      <div className="center">
       <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
+        {errors.length ? <li className="invalidLogin">Error: Invalid login credentials</li> : null}
       </ul>
-      <label className="modal-label-signup-login">
+      <label id="usernameInputLabel">
         Username or Email
         <input
-        className="modal-input-signup-login"
-        id="USERNAME"
           type="text"
           value={credential}
+          id="usernameInput"
           onChange={(e) => {setCredential(e.target.value)}}
           required
         />
       </label>
       <br></br>
-      <label className="modal-label-signup-login">
+      <label id="passwordInputLabel" >
         Password
         <input
-          className="modal-input-signup-login"
-          id="PASSWORD"
+          id="passwordInput"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -49,8 +46,11 @@ function LoginModalForm() {
         />
       </label>
       <br></br>
-      <input type="submit" value="Log in" id="LOGINBUTTON" />
-      {/* <button className="modal-input-signup-login" id="loginbtn" type="submit">Log In</button> */}
+      <input id='loginbttn' type="submit" value="Log in"  />
+
+
+
+      </div>
     </form>
   );
 }

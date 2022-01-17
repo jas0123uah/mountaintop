@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {editReview, loadGetaways} from '../../store/getaways'
+import {createGetaway, createReview, loadGetaways} from '../../store/getaways'
 import {authenticate} from '../../store/session'
 import { useParams } from 'react-router-dom';
+//import './reviewPage.css'
 import {RatingStar} from '../RatingStar'
-export const EditReview = () => {
-  const user = useSelector(state => state.session.user);
-  const userId = user?.id
-  const {getawayId} = useParams()
-  const {reservationId} = useParams()
-  const {reviewId} = useParams()
+export const NewReviewForm = ({reservationId, getawayId}) => {
   const reservationsId = reservationId
-  const reservationObj = useSelector(state => state.session.user.reservations[reservationsId]);
-
   const [errors, setErrors] = useState([]);
-  const [reviewText, setReviewText] = useState(reservationObj.reviewText);
-  const [cleanlinessRating, setCleanlinessRating] = useState(reservationObj.cleanlinessRating)
-  const [communicationRating, setCommunicationRating] = useState(reservationObj.cleanlinessRating)
-  const [checkinRating, setCheckinRating] = useState(reservationObj.checkinRating)
-  const [accuracyRating, setAccuracyRating] = useState(reservationObj.accuracyRating)
-  const [locationRating, setLocationRating] = useState(reservationObj.locationRating)
-  const [valueRating, setValueRating] = useState(reservationObj.valueRating)
+  const [reviewText, setReviewText] = useState('Review your stay');
+  const [cleanlinessRating, setCleanlinessRating] = useState(1)
+  const [communicationRating, setCommunicationRating] = useState(1)
+  const [checkinRating, setCheckinRating] = useState(1)
+  const [accuracyRating, setAccuracyRating] = useState(1)
+  const [locationRating, setLocationRating] = useState(1)
+  const [valueRating, setValueRating] = useState(1)
   const numStars = [1,2,3,4,5]
 
 
@@ -38,7 +32,12 @@ useEffect(() => {
 
 
 
-  
+  const user = useSelector(state => state.session.user);
+  const userId = user?.id
+
+  //const {reservationId} = useParams()
+  //const reservationsId = reservationId
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -46,11 +45,11 @@ useEffect(() => {
   
   
 
-  const handleEditReview = async (e) => {
+  const handleSubmitReview = async (e) => {
     e.preventDefault();
     if(!errors.length){
     await dispatch(
-    editReview({accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId, reservationsId, reviewId })
+    createReview({accuracyRating, checkinRating, cleanlinessRating, communicationRating, getawayId, locationRating, reviewText, valueRating, userId, reservationsId })
     ).catch(async (res) => {
     const data = await res.json();if (data && data.errors) setErrors(data.errors);
         });
@@ -59,9 +58,9 @@ useEffect(() => {
     }
   return (
     <div className='formWrapper'>
-    <form onSubmit={ (e) => handleEditReview(e)}>
+    <form onSubmit={ (e) => handleSubmitReview(e)}>
       <fieldset className='formflex'>
-        <legend>New Getaway</legend>
+        <legend>New Review</legend>
       <div className="formErrors">
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>

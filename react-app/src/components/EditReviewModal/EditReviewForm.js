@@ -3,14 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {editReview, loadGetaways} from '../../store/getaways'
 import {authenticate} from '../../store/session'
-import { useParams } from 'react-router-dom';
 import {RatingStar} from '../RatingStar'
-export const EditReview = () => {
+export const EditReviewForm = ({getawayId, reservationId, reviewId}) => {
   const user = useSelector(state => state.session.user);
   const userId = user?.id
-  const {getawayId} = useParams()
-  const {reservationId} = useParams()
-  const {reviewId} = useParams()
+
   const reservationsId = reservationId
   const reservationObj = useSelector(state => state.session.user.reservations[reservationsId]);
 
@@ -61,7 +58,7 @@ useEffect(() => {
     <div className='formWrapper'>
     <form onSubmit={ (e) => handleEditReview(e)}>
       <fieldset className='formflex'>
-        <legend>New Getaway</legend>
+        <legend>Edit Review</legend>
       <div className="formErrors">
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>

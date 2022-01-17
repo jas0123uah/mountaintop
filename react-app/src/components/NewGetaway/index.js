@@ -285,7 +285,7 @@ export const NewGetaway = () => {
         />
       </div>
 
-    <fieldset>              
+    <fieldset className="amenities-fieldset">              
     <legend>Amenities</legend>             
     <input type="checkbox" checked={hasHotTub} onChange={(e) => {setHasHotTub(!hasHotTub)}}/>Hot tub
     <input type="checkbox" checked={hasWifi} onChange={(e) => {setHasWifi(!hasWifi)}}/>WiFi  

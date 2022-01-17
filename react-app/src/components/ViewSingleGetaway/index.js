@@ -42,24 +42,6 @@ export const ViewSingleGetaway = () => {
             </div>
         </div>
 
-
-
-
-        {/* <div className="photosContainer">
-            <div >
-                <img className="bigPic" src={imagesArray[5].src}></img>
-            </div>
-            <div className="smallerPics">
-                <div className="smallerPicsTop">
-                    <img className="smallerPic" src={imagesArray[6].src}></img>
-                    <img className="smallerPic" src={imagesArray[7].src}></img>
-                </div>
-                <div className="smallerPicsBottom">
-                    <img className="smallerPic" src={imagesArray[8].src}></img>
-                    <img className="smallerPic" src={imagesArray[9].src}></img>
-                </div>
-            </div>
-        </div> */}
         </div>
          <div className="getaway-info-reservationForm-flex">
         <div className="bookingContainer">

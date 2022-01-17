@@ -3,6 +3,8 @@ import {deleteReservation} from '../../store/session'
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ReviewButton } from "../NewReviewButton";
+import NewReviewFormModal from "../NewReviewModal"
+import EditReviewFormModal from "../EditReviewModal"
 import {DeleteReviewButton} from '../DeleteReviewButton'
 export const SinglePreviousReservation = ({reservation, getaways}) =>{
     const [errors, setErrors] = useState([]);
@@ -32,12 +34,15 @@ export const SinglePreviousReservation = ({reservation, getaways}) =>{
             <span classname="reservationDates">{`Check-out date: ${[reservation.endDate.split(" ")[2]+ " "+ reservation.endDate.split(" ")[1]+", "+ reservation.endDate.split(" ")[3]]}`}</span>
             <div id="deleteReservationForm">
 
-            {/* <form onSubmit={ (reservation) =>{handleDeleteReservation(reservation.currentTarget.dataset.id)}} data-id={reservation.id} id="deleteReservationFormChild">
-                
-                <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}><button className="viewGetawayButton">View Getaway</button></NavLink>
-            </form> */}
 
-            <ReviewButton getaways={getaways} reservation={reservation}/>
+
+            {/* <ReviewButton getaways={getaways} reservation={reservation}/> */}
+
+            {reservation.reviewId ? <EditReviewFormModal reservationId={reservation.id} getawayId={reservation.getawayId} reviewId={reservation.reviewId}/> : <NewReviewFormModal reservationId={reservation.id} getawayId={reservation.getawayId}/>}
+
+
+
+
             <DeleteReviewButton reservation={reservation}/>
     
             </div>

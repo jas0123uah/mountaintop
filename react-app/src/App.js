@@ -1,32 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import {PF} from './components/PF/PF'
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import BrowseGetawaysButton from'./components/BrowseGetawaysButton'
 import UsersList from './components/UsersList';
 import Footer from './components/Footer'
-import User from './components/User';
-import ProfilePage from './components/ProfilePage'
 import {EditSingleGetaway} from './components/EditSingleGetaway'
 import {NewGetaway} from './components/NewGetaway';
-import {EditReview} from './components/EditReview';
 import { authenticate } from './store/session';
 import {loadGetaways} from './store/getaways';
 import { SearchGetaways } from './components/SearchGetaways';
 import {HomePage}  from './components/HomePage';
-//import {NewReview} from './components/NewReview';
-import {NewReview} from './components/NewReview';
-//import {BrowseGetaway} from './components/BrowseGetawaysPage'
 import './context/Modal.css';
 import './index.css'
 import './components/ProfilePage/carousel.css'
 import {ViewSingleGetaway} from './components/ViewSingleGetaway'
-import { EditReservationPage } from './components/EditReservationPage';
 import BrowseGetawaysPage from './components/BrowseGetawaysPage'
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -61,7 +52,6 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/profile/' exact={true} >
-          {/* <ProfilePage/> */}
           <PF/>
         </ProtectedRoute>
         <Route path='/getaways/new' exact>
@@ -75,19 +65,8 @@ function App() {
         </Route>
 
         <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/edit' exact={true} >
-          {/* <ProfilePage/> */}
-          {/* <EditReservationPage/> */}
           <ViewSingleGetaway />
         </ProtectedRoute>
-
-        <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/reviews/new/' exact={true} >
-          <NewReview/>
-        </ProtectedRoute>
-
-        <ProtectedRoute path='/getaways/:getawayId/reservations/:reservationId/reviews/:reviewId/edit/' exact={true} >
-          <EditReview/> 
-        </ProtectedRoute>
-
         <Route path='/search/:term'>
           <SearchGetaways/>
         </Route>
