@@ -317,7 +317,7 @@ export const EditSingleGetaway = () => {
       </div>
 
       <fieldset>              
-    <legend>Amenities</legend>             
+    <legend className="amenities-fieldset">Amenities</legend>             
     <input type="checkbox" checked={hasHotTub} onChange={(e) => {setHasHotTub(!hasHotTub)}}/>Hot tub
     <input type="checkbox" checked={hasWifi} onChange={(e) => {setHasWifi(!hasWifi)}}/>WiFi  
     <input type="checkbox" checked={hasPatio} onChange={(e) => {setHasPatio(!hasPatio)}}/>Patio
