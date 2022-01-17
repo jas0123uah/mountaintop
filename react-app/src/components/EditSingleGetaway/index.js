@@ -100,8 +100,8 @@ export const EditSingleGetaway = () => {
 
     if (numBedrooms < 1) errors.push('Getaway must have at least 1 bedroom.');
 
-    if(numImages < 2){
-      errors.push(`Please upload at least 2 images.`)
+    if(numImages != 5){
+      errors.push(`Please upload 5 images.`)
     }
 
     if(img1.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img1) == false){
@@ -360,35 +360,6 @@ export const EditSingleGetaway = () => {
 
       </div>
 
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl" value={img6}    onChange={(e)=>{setImg6(e.target.value)}} />
-
-      </div>
-
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl" value={img7}   onChange={(e)=>{setImg7(e.target.value)}} />
-
-      </div>
-
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl" value={img8}   onChange={(e)=>{setImg8(e.target.value)}} />
-
-      </div>
-
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"  value={img9}  onChange={(e)=>{setImg9(e.target.value)}} />
-
-      </div>
-
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"  value={img10}  onChange={(e)=>{setImg10(e.target.value)}} />
-
-      </div>
       <div className="submitImgFlexbox">
       <div className="maybe" id="containerForgetawayImgsSubmissions">
         

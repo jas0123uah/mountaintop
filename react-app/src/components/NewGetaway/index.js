@@ -70,8 +70,8 @@ export const NewGetaway = () => {
 
     if (numBedrooms < 1) errors.push('Getaway must have at least 1 bedroom.');
 
-    if(numImages < 2){
-      errors.push(`Please upload at least 2 images.`)
+    if(numImages != 5){
+      errors.push(`Please upload 5 images.`)
     }
 
     if(img1.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img1) == false){
@@ -329,35 +329,7 @@ export const NewGetaway = () => {
 
       </div>
 
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg6(e.target.value)}} />
-
-      </div>
-
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg7(e.target.value)}} />
-
-      </div>
-
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg8(e.target.value)}} />
-
-      </div>
-
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg9(e.target.value)}} />
-
-      </div>
-
-      <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg10(e.target.value)}} />
-
-      </div>
+      
       <div className="submitImgFlexbox">
       <div className="maybe" id="containerForgetawayImgsSubmissions">
         
