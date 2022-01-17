@@ -5,7 +5,7 @@ export const ProfileMainContent = () => {
   return (
       <div>
     <div className="profileMainContent">
-      <h1> Upcoming Reservations</h1>
+      <h1 className="profileHeader"> Upcoming Reservations</h1>
       <div className="UpcomingReservations maybe">
           <div className="maybe2">
         <UpcomingUserReservations></UpcomingUserReservations>

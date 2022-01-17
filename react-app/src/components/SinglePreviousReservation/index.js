@@ -18,7 +18,12 @@ export const SinglePreviousReservation = ({reservation, getaways}) =>{
   }
     return (<div key={reservation?.id}>
             <h2 className="reservationsGetawayHeader">{getaways[reservation?.getawayId]?.name}</h2>
+            <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}>
+
+
             <img className="upcomingGetawayImage" src={Object.values((getaways[reservation?.getawayId]?.images))[0].url}></img>
+
+            </NavLink>
             <br></br>
             <span classname="reservationDates">{`Check-in date: ${[reservation.startDate.split(" ")[2]+ " "+ reservation?.startDate.split(" ")[1]+", "+ reservation?.startDate.split(" ")[3]]}`}</span>
             
@@ -27,10 +32,10 @@ export const SinglePreviousReservation = ({reservation, getaways}) =>{
             <span classname="reservationDates">{`Check-out date: ${[reservation.endDate.split(" ")[2]+ " "+ reservation.endDate.split(" ")[1]+", "+ reservation.endDate.split(" ")[3]]}`}</span>
             <div id="deleteReservationForm">
 
-            <form onSubmit={ (reservation) =>{handleDeleteReservation(reservation.currentTarget.dataset.id)}} data-id={reservation.id} id="deleteReservationFormChild">
+            {/* <form onSubmit={ (reservation) =>{handleDeleteReservation(reservation.currentTarget.dataset.id)}} data-id={reservation.id} id="deleteReservationFormChild">
                 
                 <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}><button className="viewGetawayButton">View Getaway</button></NavLink>
-            </form>
+            </form> */}
 
             <ReviewButton getaways={getaways} reservation={reservation}/>
             <DeleteReviewButton reservation={reservation}/>

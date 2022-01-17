@@ -18,7 +18,7 @@ export const DeleteReviewButton = ({reservation}) =>{
         await dispatch(authenticate())
         history.push('/profile')
     }
-    const deleteButton = <button onClick={handleDeleteReview}>Delete review</button>
+    const deleteButton = <button onClick={handleDeleteReview} className="DeleteButton">Delete Review</button>
     return (
         <>
         {reservation.reviewId != null ? deleteButton : null }
