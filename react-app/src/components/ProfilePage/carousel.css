@@ -219,7 +219,7 @@ ol, li {
   /* left: -1rem; */
   
 }
-.DeleteButton, .browseGetawaysbtn{
+.DeleteButton, .browseGetawaysbtn, .reviewSubmitButton{
   background-color: #f28350;
   border-radius: 25px;
   /* height: 25px; */
