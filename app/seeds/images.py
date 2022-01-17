@@ -6,22 +6,27 @@ def seed_images():
     image3 = Image(getawayId = 1, url = "https://a0.muscache.com/im/pictures/8c259bb5-561d-4724-8076-90764f661fe5.jpg?im_w=720")
     image4 = Image(getawayId = 1, url = "https://a0.muscache.com/im/pictures/da7d5cd2-dc74-47ed-aaeb-59cf7414262e.jpg?im_w=720")
     image5 = Image(getawayId = 1, url = "https://a0.muscache.com/im/pictures/beb670d9-8a55-487e-a607-f3c9d761b330.jpg?im_w=720")
+
     # image6 = Image(getawayId = 1, url = "https://a0.muscache.com/im/pictures/user/43cbfc45-503f-4179-99d3-fe2a3f8fbde7.jpg?im_w=240")
     # image7 = Image(getawayId = 1, url = "https://a0.muscache.com/im/pictures/932a634d-af75-45b4-bbc6-af9771885279.jpg?im_w=720")
     # image8 = Image(getawayId = 1, url = "https://a0.muscache.com/im/pictures/adfb517c-f209-45ea-8d1c-f4241f5eed4e.jpg?im_w=720")
     # image9 = Image(getawayId = 1, url = "https://a0.muscache.com/im/pictures/36902a27-363a-43d8-a9a9-dd800f396294.jpg?im_w=720")
     # image10 = Image(getawayId = 1, url = "https://a0.muscache.com/im/pictures/0a04cd5c-aeea-4338-818d-0a70a977a5b3.jpg?im_w=720")
     # image11 = Image(getawayId = 1, url = "https://a0.muscache.com/im/pictures/d29ed4a9-678a-492c-8787-4e885c6c5bed.jpg?im_w=720")
+
     image12 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-20602855/original/0279e241-81c2-47e0-a031-e0a746a10573.jpeg?im_w=720")
     image13 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-20602855/original/e177354b-2c8e-4204-bb30-2e36e65efabb.jpeg?im_w=720")
     image14 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-20602855/original/ad6682e3-1e74-40b0-a46a-dd907c7b0533.jpeg?im_w=720")
     image15 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-20602855/original/be7d969f-ad56-4e05-aa89-d45b7592e921.jpeg?im_w=720")
     image16 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-20602855/original/bf5ecec2-4a52-43cd-850e-14cb690da9cd.jpeg?im_w=720")
+
     # image17 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/user/5a5a6ac1-c7ea-4fec-afd8-fb01d8d0248c.jpg?im_w=240")
     # image18 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-20602855/original/47efb9cd-4351-4f8f-afdb-667176925161.jpeg?im_w=720")
     # image19 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-20602855/original/06ea3de7-3d89-4c3c-af1e-0a2e87f7a143.jpeg?im_w=720")
     # image20 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-20602855/original/f78f25be-a965-44a7-b6fd-568f1f42ae70.jpeg?im_w=720")
     # image21 = Image(getawayId = 2, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-20602855/original/c24e46c5-3f04-4957-b7e6-d5e38cdbca95.jpeg?im_w=720")
+
+
     image22 = Image(getawayId = 3, url = "https://a0.muscache.com/im/pictures/6eb1704f-cc30-4daf-a3fd-e89cc44b71d1.jpg?im_w=720")
     image23 = Image(getawayId = 3, url = "https://a0.muscache.com/im/pictures/72582834-d5e2-4f4f-8c5b-d9cd94425608.jpg?im_w=720")
     image24 = Image(getawayId = 3, url = "https://a0.muscache.com/im/pictures/3993d1e3-e4dc-42ad-94ad-a8421faf734a.jpg?im_w=720")
@@ -32,11 +37,13 @@ def seed_images():
     # image29 = Image(getawayId = 3, url = "https://a0.muscache.com/im/pictures/b9739b4a-7b27-43e3-b531-ed3cf8dc2aaa.jpg?im_w=720")
     # image30 = Image(getawayId = 3, url = "https://a0.muscache.com/im/pictures/a1ee6007-8900-4cea-8bfa-ab95ce578f48.jpg?im_w=720")
     # image31 = Image(getawayId = 3, url = "https://a0.muscache.com/im/pictures/a634358b-18d7-4a98-a753-601d801d2cc4.jpg?im_w=720")
+
     image32 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/7ab68c4a-1693-49a0-874a-791c9282356e.jpg?im_w=720")
     image33 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/2e45f61d-aff3-4fe7-b2e6-8fbf37a2f932.jpg?im_w=720")
     image34 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/6a57df04-f643-440d-9910-a7347c59cbeb.jpg?im_w=720")
     image35 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/eb7c3efa-7422-4cfe-aa05-9d925b3a54fd.jpg?im_w=720")
     image36 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/05684bd1-f210-48b7-bc1e-a21108fa8bfc.jpg?im_w=720")
+
     # image37 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/user/d6618de5-1bd7-47b4-a19d-c7d624872a88.jpg?im_w=240")
     # image38 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/user/cca93675-cd98-4f42-89d0-0ee9a2eedf75.jpg?im_w=240")
     # image39 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/user/c633e8cf-733e-46da-a549-a1617cc96a4f.jpg?im_w=240")
@@ -45,6 +52,7 @@ def seed_images():
     # image42 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/c2d99b0f-6a02-4ad4-a5fa-b39bcd54313c.jpg?im_w=720")
     # image43 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/2095c2c8-58f0-455c-a240-9a23a89e319d.jpg?im_w=720")
     # image44 = Image(getawayId = 4, url = "https://a0.muscache.com/im/pictures/cbb04d82-48ae-4cee-b1d4-cea35028dfdd.jpg?im_w=720")
+
     image45 = Image(getawayId = 5, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-52941663/original/318286db-65b2-4322-8849-8321818878df.jpeg?im_w=720")
     image46 = Image(getawayId = 5, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-52941663/original/7952b19f-36bb-47c7-8b18-735db65aa6fc.jpeg?im_w=720")
     image47 = Image(getawayId = 5, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-52941663/original/354bb0f3-8208-4293-9292-bd4349172166.jpeg?im_w=720")
@@ -55,6 +63,7 @@ def seed_images():
     # image52 = Image(getawayId = 5, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-52941663/original/b6c81827-ab1e-4766-95f0-f8115cc411b7.jpeg?im_w=720")
     # image53 = Image(getawayId = 5, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-52941663/original/537d1ee8-6f9c-4a89-9225-ebd42485e210.jpeg?im_w=720")
     # image54 = Image(getawayId = 5, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-52941663/original/d8c57df0-ef5c-4036-957c-4a3c77a46ed7.jpeg?im_w=720")
+
     image55 = Image(getawayId = 6, url = "https://a0.muscache.com/im/pictures/2387be45-8f69-4f44-a2a4-ae4447b5a87e.jpg?im_w=720")
     image56 = Image(getawayId = 6, url = "https://a0.muscache.com/im/pictures/9468d526-e3bd-441b-9e75-f8f400f07bdb.jpg?im_w=720")
     image57 = Image(getawayId = 6, url = "https://a0.muscache.com/im/pictures/e05358cc-8c1d-4ba3-a867-a5d7202174fa.jpg?im_w=720")
@@ -86,6 +95,7 @@ def seed_images():
     image83 = Image(getawayId = 8, url = "https://a0.muscache.com/im/pictures/b584c44e-3999-4163-904e-e68189b68769.jpg?im_w=720")
     image84 = Image(getawayId = 8, url = "https://a0.muscache.com/im/pictures/d1488bbf-038a-4797-a988-8373a6a57907.jpg?im_w=720")
     image85 = Image(getawayId = 8, url = "https://a0.muscache.com/im/pictures/8c7a9fd8-5912-4844-b452-f555b4ec50eb.jpg?im_w=720")
+
     # image86 = Image(getawayId = 8, url = "https://a0.muscache.com/im/pictures/user/37d6a27d-3846-4f03-b48e-62dc7a9f9d8b.jpg?im_w=240")
     # image87 = Image(getawayId = 8, url = "https://a0.muscache.com/im/pictures/84c055a1-eae5-4468-adfb-2f82310ff785.jpg?im_w=720")
     # image88 = Image(getawayId = 8, url = "https://a0.muscache.com/im/pictures/3f844dfa-7bad-4286-9944-d151bb3cc7b8.jpg?im_w=720")
@@ -113,6 +123,7 @@ def seed_images():
     # image110 = Image(getawayId = 10, url = "https://a0.muscache.com/im/pictures/8cd22b60-eb94-4634-ab81-3aad49915097.jpg?im_w=720")
     # image111 = Image(getawayId = 10, url = "https://a0.muscache.com/im/pictures/83183ddb-2f46-4ed5-b88b-e0b7f6980b1a.jpg?im_w=720")
     # image112 = Image(getawayId = 10, url = "https://a0.muscache.com/im/pictures/ad788588-f220-4bf9-9bb1-2c1e4efa8f2d.jpg?im_w=720")
+
     image113 = Image(getawayId = 11, url = "https://a0.muscache.com/im/pictures/4832b42f-4172-4342-a976-e0c5d8a79342.jpg?im_w=720")
     image114 = Image(getawayId = 11, url = "https://a0.muscache.com/im/pictures/7ceff96a-f0c6-4e20-aea8-d74f977e3b0f.jpg?im_w=720")
     image115 = Image(getawayId = 11, url = "https://a0.muscache.com/im/pictures/fc76a8ef-f1e7-4f09-8b39-6c8d5140878a.jpg?im_w=720")
@@ -134,6 +145,7 @@ def seed_images():
     # image131 = Image(getawayId = 12, url = "https://a0.muscache.com/im/pictures/e6eac881-9ae6-4999-9613-16498a2d2a8c.jpg?im_w=720")
     # image132 = Image(getawayId = 12, url = "https://a0.muscache.com/im/pictures/ada98de3-35c2-4378-802c-1f27c7ae6e40.jpg?im_w=720")
     # image133 = Image(getawayId = 12, url = "https://a0.muscache.com/im/pictures/ad3517c5-cbc8-4285-bd2b-2c5544173508.jpg?im_w=720")
+
     image134 = Image(getawayId = 13, url = "https://a0.muscache.com/im/pictures/80d476fe-deac-4e5c-ab47-6340fc3acf8f.jpg?im_w=720")
     image135 = Image(getawayId = 13, url = "https://a0.muscache.com/im/pictures/miso/Hosting-42861527/original/2377530d-d202-4840-bd1c-8036800ed7b6.jpeg?im_w=720")
     image136 = Image(getawayId = 13, url = "https://a0.muscache.com/im/pictures/3d1d5005-cdeb-49e1-9fd1-67ba02b91b31.jpg?im_w=720")
@@ -157,6 +169,7 @@ def seed_images():
     # image156 = Image(getawayId = 14, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-36133910/original/cec4a3ab-d628-4c4b-b082-2a0c6817b62e.jpeg?im_w=720")
     # image157 = Image(getawayId = 14, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-36133910/original/f0aa5202-3c16-400a-89bc-00ac737be425.jpeg?im_w=720")
     # image158 = Image(getawayId = 14, url = "https://a0.muscache.com/im/pictures/prohost-api/Hosting-36133910/original/b887b55d-a6ff-412d-b1ec-a4a8410a1be4.jpeg?im_w=720")
+
     image159 = Image(getawayId = 15, url = "https://a0.muscache.com/im/pictures/eec93f8e-349b-48e2-830f-fa3fb27c24b6.jpg?im_w=1200")
     image160 = Image(getawayId = 15, url = "https://a0.muscache.com/im/pictures/eec93f8e-349b-48e2-830f-fa3fb27c24b6.jpg?im_w=720")
     image161 = Image(getawayId = 15, url = "https://a0.muscache.com/im/pictures/8089e06f-4940-4ab9-b798-fd1f4e9cd657.jpg?im_w=720")
@@ -185,6 +198,7 @@ def seed_images():
     # db.session.add(image9)
     # db.session.add(image10)
     # db.session.add(image11)
+
     db.session.add(image12)
     db.session.add(image13)
     db.session.add(image14)
@@ -195,6 +209,7 @@ def seed_images():
     # db.session.add(image19)
     # db.session.add(image20)
     # db.session.add(image21)
+
     db.session.add(image22)
     db.session.add(image23)
     db.session.add(image24)
@@ -205,6 +220,7 @@ def seed_images():
     # db.session.add(image29)
     # db.session.add(image30)
     # db.session.add(image31)
+
     db.session.add(image32)
     db.session.add(image33)
     db.session.add(image34)
@@ -228,6 +244,7 @@ def seed_images():
     # db.session.add(image52)
     # db.session.add(image53)
     # db.session.add(image54)
+
     db.session.add(image55)
     db.session.add(image56)
     db.session.add(image57)
@@ -238,6 +255,7 @@ def seed_images():
     # db.session.add(image62)
     # db.session.add(image63)
     # db.session.add(image64)
+
     db.session.add(image65)
     db.session.add(image66)
     db.session.add(image67)
@@ -254,6 +272,7 @@ def seed_images():
     # db.session.add(image78)
     # db.session.add(image79)
     # db.session.add(image80)
+
     db.session.add(image81)
     db.session.add(image82)
     db.session.add(image83)
@@ -264,6 +283,7 @@ def seed_images():
     # db.session.add(image88)
     # db.session.add(image89)
     # db.session.add(image90)
+
     db.session.add(image91)
     db.session.add(image92)
     db.session.add(image93)
@@ -275,6 +295,7 @@ def seed_images():
     # db.session.add(image99)
     # db.session.add(image100)
     # db.session.add(image101)
+
     db.session.add(image102)
     db.session.add(image103)
     db.session.add(image104)
@@ -286,6 +307,7 @@ def seed_images():
     # db.session.add(image110)
     # db.session.add(image111)
     # db.session.add(image112)
+
     db.session.add(image113)
     db.session.add(image114)
     db.session.add(image115)
@@ -307,6 +329,7 @@ def seed_images():
     # db.session.add(image131)
     # db.session.add(image132)
     # db.session.add(image133)
+
     db.session.add(image134)
     db.session.add(image135)
     db.session.add(image136)
@@ -320,6 +343,7 @@ def seed_images():
     # db.session.add(image145)
     # db.session.add(image146)
     # db.session.add(image147)
+
     db.session.add(image148)
     db.session.add(image149)
     db.session.add(image150)
@@ -330,6 +354,7 @@ def seed_images():
     # db.session.add(image156)
     # db.session.add(image157)
     # db.session.add(image158)
+
     db.session.add(image159)
     db.session.add(image160)
     db.session.add(image161)
@@ -347,6 +372,7 @@ def seed_images():
     # db.session.add(image173)
     # db.session.add(image174)
     # db.session.add(image175)
+
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
