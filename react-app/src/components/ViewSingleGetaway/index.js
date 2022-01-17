@@ -45,7 +45,7 @@ export const ViewSingleGetaway = () => {
 
 
 
-        <div className="photosContainer">
+        {/* <div className="photosContainer">
             <div >
                 <img className="bigPic" src={imagesArray[5].src}></img>
             </div>
@@ -59,7 +59,7 @@ export const ViewSingleGetaway = () => {
                     <img className="smallerPic" src={imagesArray[9].src}></img>
                 </div>
             </div>
-        </div>
+        </div> */}
         </div>
          <div className="getaway-info-reservationForm-flex">
         <div className="bookingContainer">
