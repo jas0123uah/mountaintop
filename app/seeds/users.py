@@ -10,7 +10,7 @@ def seed_users():
     profilePictureUrl = user.get_picture()
     email = user.get_email()
     demo = User(
-        firstName=firstName, lastName=lastName, profilePictureUrl=profilePictureUrl, email=email, password='password')
+        firstName=firstName, lastName=lastName, profilePictureUrl=profilePictureUrl, email="demo@aa.io", password='password')
     user = RandomUser()
     firstName = str(user.get_first_name())
     lastName = str(user.get_last_name())
