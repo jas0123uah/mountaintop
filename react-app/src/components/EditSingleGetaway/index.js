@@ -202,6 +202,7 @@ export const EditSingleGetaway = () => {
     <form onSubmit={ (e) => handleEditGetaway(e)}>
       <fieldset className='formflex'>
         <legend>Edit Getaway</legend>
+      <div className='form-fields-flex'>
       <div className="formErrors">
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -316,7 +317,7 @@ export const EditSingleGetaway = () => {
         />
       </div>
 
-      <fieldset>              
+      <fieldset className="amenities-fieldset">              
     <legend className="amenities-fieldset">Amenities</legend>             
     <input type="checkbox" checked={hasHotTub} onChange={(e) => {setHasHotTub(!hasHotTub)}}/>Hot tub
     <input type="checkbox" checked={hasWifi} onChange={(e) => {setHasWifi(!hasWifi)}}/>WiFi  
@@ -373,6 +374,7 @@ export const EditSingleGetaway = () => {
 
       <div>
         <button type="submit" disabled={errors.length ? true : false}className="createGetawaySubmitButton">Edit Getaway</button>
+      </div>
       </div>
 
       </fieldset>
