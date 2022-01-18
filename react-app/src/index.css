@@ -68,9 +68,10 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     border: 1px solid #a7a7a7;
 }
 .splashBlurb{
-    position: relative;
+    position: absolute;
     left: 83vh;
-    bottom: 100vh;
+    /* bottom: 100vh; */
+    top: 40vh;
 
 }
 .browse-button{
@@ -301,6 +302,9 @@ body {
 /* #root{
     background-color:black;
 } */
+html, body {
+    height: fit-content;
+}
 .getawayBlurb{
     position:absolute;
     top:350px;
@@ -515,6 +519,8 @@ div#getawayImgsSubmissions:empty{
     margin-top: 70px;
     display: flex;
     flex-direction: row;
+    height: fit-content;
+    min-height: 700px;
 }
 .UpcomingReservations.maybe{
     overflow-x: scroll;
@@ -635,6 +641,7 @@ grid-row-gap: 0px;
      display:flex;
      gap: 8px;
      width: 100% ;
+     overflow: hidden;
  }
  .bigPic{
      height: 500px !important; 
@@ -752,6 +759,9 @@ grid-row-gap: 0px;
     font-size: 16px;
     margin-top: 5px;
 }
+.splashContainer{
+    display: flex;
+}
 .totalFlex{
     display: flex;
     justify-content: space-between;
@@ -761,4 +771,24 @@ grid-row-gap: 0px;
 }
 .revModal#modal-content{
     background: none;
+}
+
+#root{
+    height: 100%;
+}
+
+.div2#pf{
+    width: 100%;
+}
+
+.profileMainContent{
+    height: 100%;
+     display: flex;
+    flex-direction: column;
+
+}
+
+.profileMainContentContainer{
+    height: 100%;
+   
 }
