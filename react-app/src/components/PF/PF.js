@@ -9,7 +9,7 @@ return(
     <>
     <div className="containerForSidebarAndMainContent">
 <div class="div1"><SideBar></SideBar> </div>
-<div class="div2"><ProfileMainContent></ProfileMainContent> </div>
+<div class="div2" id="pf"><ProfileMainContent></ProfileMainContent> </div>
     </div>
 </>)
 }
