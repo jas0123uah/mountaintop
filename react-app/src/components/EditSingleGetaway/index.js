@@ -111,64 +111,25 @@ export const EditSingleGetaway = () => {
     if(img2.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false){
       errors.push(`Images must be URLs ${img2} is not a url.`)
     }
-    // if(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img3) == false){
-    //   errors.push(`Images must be URLs ${img3} is not a url.`)
-    // }
-    // if(img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img4) == false){
-    //   errors.push(`Images must be URLs ${img4} is not a url.`)
-    // }
-    // if(img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img5) == false){
-    //   errors.push(`Images must be URLs ${img5} is not a url.`)
-    // }
-    // if(img6.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img6) == false){
-    //   errors.push(`Images must be URLs ${img6} is not a url.`)
-    // }
-    // if(img7.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img7) == false){
-    //   errors.push(`Images must be URLs ${img7} is not a url.`)
-    // }
-    // if(img8.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img8) == false){
-    //   errors.push(`Images must be URLs ${img8} is not a url.`)
-    // }
-    // if(img9.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img9) == false){
-    //   errors.push(`Images must be URLs ${img9} is not a url.`)
-    // }
-    // if(img10.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img10) == false){
-    //   errors.push(`Images must be URLs ${img10} is not a url.`)
-    // }
-
-    // if(img1.length && (img1 == img2 || img1 == img3 ||img1 == img4 || img1 == img5 || img1 == img6 || img1 == img7 || img1 == img8 || img1 == img9 || img1 == img10)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img1} found twice.`)
-    // }
-    // if(img2.length && (img2 == img1 || img2 == img3 ||img2 == img4 || img2 == img5 || img2 == img6 || img2 == img7 || img2 == img8 || img2 == img9 || img2 == img10)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img2} found twice.`)
-    // }
-    // if(img3.length && (img3 == img1 || img3 == img2 ||img3 == img4 || img3 == img5 || img3 == img6 || img3 == img7 || img3 == img8 || img3 == img9 || img3 == img10)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img3} found twice.`)
-    // }
-    // if(img4.length && (img4 == img1 || img4 == img2 ||img4 == img3 || img4 == img5 || img4 == img6 || img4 == img7 || img4 == img8 || img4 == img9 || img4 == img10)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img4} found twice.`)
-    // }
-    // if(img5.length && (img5 == img1 || img5 == img2 ||img5 == img3 || img5 == img4 || img5 == img6 || img5 == img7 || img5 == img8 || img5 == img9 || img5 == img10)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img5} found twice.`)
-    // }
-    // if(img6.length && (img6 == img1 || img6 == img2 ||img6 == img3 || img6 == img4 || img6 == img5 || img6 == img7 || img6 == img8 || img6 == img9 || img6 == img10)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img6} found twice.`)
-    // }
-
-    // if(img7.length && (img7 == img1 || img7 == img2 ||img7 == img3 || img7 == img4 || img7 == img5 || img7 == img6 || img7 == img8 || img7 == img9 || img7 == img10)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img7} found twice.`)
-    // }
-
-    // if(img8.length && (img8 == img1 || img8 == img2 ||img8 == img3 || img8 == img4 || img8 == img5 || img8 == img6 || img8 == img7 || img8 == img9 || img8 == img10)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img8} found twice.`)
-    // }
-    // if(img9.length && (img9 == img1 || img9 == img2 ||img9 == img3 || img9 == img4 || img9 == img5 || img9 == img10 || img9 == img7 || img9 == img8 || img9 == img10)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img9} found twice.`)
-    // }
-
-    // if(img10.length && (img10 == img1 || img10 == img2 ||img10 == img3 || img10 == img4 || img10 == img5 || img10 == img6 || img10 == img7 || img10 == img8 || img10 == img9)  ){
-    //   errors.push(`You cannot upload the same image twice, ${img10} found twice.`)
-    // }
+    if(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false){
+      errors.push(`Images must be URLs ${img2} is not a url.`)
+    }
+    if(img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false){
+      errors.push(`Images must be URLs ${img2} is not a url.`)
+    }
+    if(img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false){
+      errors.push(`Images must be URLs ${img2} is not a url.`)
+    }
+    if(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img3) == false){
+      errors.push(`Images must be URLs ${img3} is not a url.`)
+    }
+    if(img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img4) == false){
+      errors.push(`Images must be URLs ${img4} is not a url.`)
+    }
+    if(img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img5) == false){
+      errors.push(`Images must be URLs ${img5} is not a url.`)
+    }
+    
     setErrors(errors);
   }, [name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10])
 
