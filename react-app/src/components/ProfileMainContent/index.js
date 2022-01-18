@@ -3,7 +3,7 @@ import { UpcomingUserReservations } from '../UpcomingUserReservations';
 import { PreviousUserReservations } from '../PreviousReservations';
 export const ProfileMainContent = () => {
   return (
-      <div>
+      <div className="profileMainContentContainer">
     <div className="profileMainContent">
       <h1 className="profileHeader"> Upcoming Reservations</h1>
       <div className="UpcomingReservations maybe">
