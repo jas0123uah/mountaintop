@@ -1,4 +1,4 @@
-# Mountainto
+# Mountaintop
 ** An AirBnb clone By Jay Spencer - [Visit Mountaintop](https://mountain-top.herokuapp.com/)*
 
 **Table of Contents**
