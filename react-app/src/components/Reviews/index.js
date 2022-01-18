@@ -19,7 +19,36 @@ export const Reviews = () => {
 
     const imagesArray = getGetawayImagesArray(currentGetaway)
     const averageRatingAndReviews= getAverageReviewRating(currentGetaway)
-    const [averageRating,numReviews,averageCleanliness, averageCommunication, averagecheckIn, averageAccuracy, averageLocation, averageValue] = averageRatingAndReviews
+    let [averageRating,numReviews,averageCleanliness, averageCommunication, averagecheckIn, averageAccuracy, averageLocation, averageValue] = averageRatingAndReviews
+    if (isNaN(averageRating)) {
+        averageRating = 0
+        
+    }
+    if (isNaN(averageCleanliness)) {
+        averageCleanliness = 0
+        
+    }
+    if (isNaN(averageCommunication)) {
+        averageCommunication = 0
+        
+    }
+
+    if (isNaN(averagecheckIn)) {
+        averagecheckIn = 0
+        
+    }
+    if (isNaN(averageAccuracy)) {
+        averageAccuracy = 0
+        
+    }
+    if (isNaN(averageLocation)) {
+        averageLocation = 0
+        
+    }
+    if (isNaN(averageValue)) {
+        averageValue = 0
+        
+    }
     const reviews = getReviewObjects(userId, currentGetaway)
     return (
         <div className="revContainer">

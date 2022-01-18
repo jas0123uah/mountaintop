@@ -14,6 +14,13 @@ export const ViewSingleGetaway = () => {
 
     const imagesArray = getGetawayImagesArray(currentGetaway)
     const averageRatingAndReviews= getAverageReviewRating(currentGetaway)
+    let averageRating = averageRatingAndReviews[0]
+
+    // if (isNaN(averageRating)) {
+    //     averageRating = String(0)
+        
+    // }
+    console.log(averageRating, "AVERAGE");
 
     const location = useLocation();
     console.log(location, "Location");
@@ -22,7 +29,7 @@ export const ViewSingleGetaway = () => {
      return(<div className="viewGetawayContainer">
          <div className="listingContainer">
         <h2 className="listingName">{currentGetaway.name}</h2>
-        <h4 className="listingSnapshot"> <i class="fas fa-star"></i> {`${averageRatingAndReviews[0]} (${averageRatingAndReviews[1]} reviews)`} <i class="fas fa-map-marker-alt"></i> {`${currentGetaway.city}, ${currentGetaway.state}`} <i class="fas fa-home"></i> {`${currentGetaway.numGuests} ${guestOrGuests}`} </h4>
+        <h4 className="listingSnapshot"> <i class="fas fa-star"></i> {`${averageRating} (${averageRatingAndReviews[1]} reviews)`} <i class="fas fa-map-marker-alt"></i> {`${currentGetaway.city}, ${currentGetaway.state}`} <i class="fas fa-home"></i> {`${currentGetaway.numGuests} ${guestOrGuests}`} </h4>
          </div>
         <div className="containerForPhotosContainer">
 
