@@ -122,15 +122,18 @@ export const getAverageReviewRating = (getaway)=> {
       numReviews++;
     }
   })
-const avgRating = (totalOverallRating / numReviews).toFixed(2)
+let avgRating = (totalOverallRating / numReviews).toFixed(2)
 totalCleanliness = (totalCleanliness/numReviews).toFixed(1)
 totalCommunication = (totalCommunication/numReviews).toFixed(1)
 totalCheckin = (totalCheckin/numReviews).toFixed(1)
 totalAccuracy = (totalAccuracy/numReviews).toFixed(1)
 totalLocation = (totalLocation/numReviews).toFixed(1)
 totalValue = (totalValue/numReviews).toFixed(1)
-
-return [avgRating, numReviews, totalCleanliness, totalCommunication, totalCheckin, totalAccuracy, totalLocation, totalValue]
+if (isNaN(avgRating)) {
+  avgRating = 0
+  
+}
+return [avgRating || 0, numReviews ||0, totalCleanliness, totalCommunication, totalCheckin, totalAccuracy, totalLocation, totalValue]
 }
 export const getReviewObjects =(userId, getaway) => {
   const reviewObjArray = []
