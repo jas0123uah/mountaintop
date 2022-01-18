@@ -1,8 +1,8 @@
 # Mountaintop
-** An AirBnb clone By Jay Spencer - [Visit Mountaintop](https://mountain-top.herokuapp.com/)*
+**An AirBnb clone by Jay Spencer** - [Visit Mountaintop](https://mountain-top.herokuapp.com/)
 
 **Table of Contents**
-* [Incapables Overview](#incapables-overview)
+* [Mountaintop Overview](#mountaintop-overview)
 * [Technologies Used](#technologies-used)
 * [Backend Technology](#backend-technology)
 * [Frontend Technology](#frontend-technology)
@@ -11,13 +11,16 @@
 ## Mountaintop Overview
 Mountaintop is a fullstack app that uses Python, React and Node. The app allows guests to book reservations at different getaways located in the Great Smoky Mountains area. 
 
-The home page randomly loads a getaway for potential guests to check out and features a carousel of images of the getaway. 
+The home page features a background of the Great Smoky Mountains
 
-<!-- ##### Mountaintop Homepage
-![Mountaintop Homepage](url) ##Image Here
+### Mountaintop Homepage
+![Mountaintop Homepage](https://i.ibb.co/dftd3LT/screenshot-mountain-top-herokuapp-com-2022-01-18-12-47-38.png)
 
-##### Mountaintop Getaway Page
-![Mountaintop Getaway Listing](url) -->
+### Mountaintop Getaway Page
+![Mountaintop Getaway Listing](https://i.ibb.co/Kx16WdK/screenshot-mountain-top-herokuapp-com-2022-01-18-12-52-17.png)
+
+### Mountaintop Profile Page
+![Mountaintop Getaway Listing](https://i.ibb.co/Kx16WdK/screenshot-mountain-top-herokuapp-com-2022-01-18-12-52-17.png)
 
 
 ## Technologies Used
@@ -39,9 +42,13 @@ The JavaScript library React is used in combination with the state manager Redux
 * [Node.js](https://nodejs.org/docs/latest-v12.x/api/)
 
 
-### Planned features
+### Features
+* Getaways
+* Reservations
 * Reviews
 * Search
+
+### Planned features
 * AWS for image uploads
 
 
