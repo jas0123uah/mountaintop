@@ -19,8 +19,6 @@ The home page features a background of the Great Smoky Mountains
 ### Mountaintop Getaway Page
 ![Mountaintop Getaway Listing](https://i.ibb.co/Kx16WdK/screenshot-mountain-top-herokuapp-com-2022-01-18-12-52-17.png)
 
-### Mountaintop Profile Page
-![Mountaintop Getaway Listing](https://i.ibb.co/Kx16WdK/screenshot-mountain-top-herokuapp-com-2022-01-18-12-52-17.png)
 
 
 ## Technologies Used
