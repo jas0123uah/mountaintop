@@ -170,6 +170,10 @@ export const NewGetaway = () => {
     <form onSubmit={ (e) => handleSubmitGetaway(e)}>
       <fieldset className='formflex'>
         <legend>New Getaway</legend>
+        <div className="form-fields-flex">
+
+
+
       <div className="formErrors">
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -344,6 +348,7 @@ export const NewGetaway = () => {
       <div>
         <button type="submit" disabled={errors.length ? true : false}className="createGetawaySubmitButton">Create Getaway</button>
       </div>
+        </div>
 
       </fieldset>
 
