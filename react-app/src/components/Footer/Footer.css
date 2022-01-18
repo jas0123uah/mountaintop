@@ -27,7 +27,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    height: 100%;
 }
 .github-icon,.linkedin-icon,.mail-icon{
     padding-left:8px;

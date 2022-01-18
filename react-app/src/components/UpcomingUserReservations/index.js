@@ -25,7 +25,7 @@ let upcomingReservations = userReservations?.filter(reservation => new Date(rese
 
   return(
       <>
-        {upcomingReservations?.map((reservation) =><div key={reservation?.id}>
+        { upcomingReservations.length ? upcomingReservations?.map((reservation) =><div key={reservation?.id}>
             <h2 className="reservationsGetawayHeader">{getaways[reservation.getawayId]?.name}</h2>
             <img className="upcomingGetawayImage" src={Object.values((getaways[reservation?.getawayId]?.images))[0].url}></img>
             <br></br>
@@ -39,7 +39,7 @@ let upcomingReservations = userReservations?.filter(reservation => new Date(rese
               <button className="DeleteButton"type="submit">Cancel Reservation</button>
             </form>
             </div>
-        </div>)}
+        </div>) : <h1>No upcoming reservations</h1>}
       </>
   )
 }
