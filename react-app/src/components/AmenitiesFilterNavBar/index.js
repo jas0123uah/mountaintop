@@ -8,6 +8,7 @@ export const AmenitiesFilterNavBar = () => {
     return(
     <>
     <div className="breaker"></div>
+    <div className="spacingDiv1"></div>
     <div className="amenitiesNav">
     <button className={`amenity-filter selected-amenity-filter-${hasHotTub}`} onClick={(e) => {setHasHotTub(!hasHotTub)}}> <i class="fas fa-hot-tub"></i> Hot tub</button>
     
@@ -19,5 +20,7 @@ export const AmenitiesFilterNavBar = () => {
 
     <button className={`amenity-filter selected-amenity-filter-${hasFireplace}`} onClick={(e) => {setHasFireplace(!hasFireplace)}}> <img className="amenityListing" src={FireplaceLogo}></img>Fireplace</button>       
     </div>
+    <div className="spacingDiv2"></div>
+    <div className="spacingDiv3"></div>
     </>)
 }
