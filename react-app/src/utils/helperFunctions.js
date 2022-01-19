@@ -133,7 +133,33 @@ if (isNaN(avgRating)) {
   avgRating = 0
   
 }
-return [avgRating || 0, numReviews ||0, totalCleanliness, totalCommunication, totalCheckin, totalAccuracy, totalLocation, totalValue]
+
+if (isNaN(totalCleanliness)) {
+        totalCleanliness = 0
+        
+    }
+    if (isNaN(totalCommunication)) {
+        totalCommunication = 0
+        
+    }
+
+    if (isNaN(totalCheckin)) {
+        totalCheckin = 0
+        
+    }
+    if (isNaN(totalAccuracy)) {
+        totalAccuracy = 0
+        
+    }
+    if (isNaN(totalLocation)) {
+        totalLocation = 0
+        
+    }
+    if (isNaN(totalValue)) {
+        totalValue = 0
+        
+    }
+return [avgRating, numReviews, totalCleanliness, totalCommunication, totalCheckin, totalAccuracy, totalLocation, totalValue]
 }
 export const getReviewObjects =(userId, getaway) => {
   const reviewObjArray = []

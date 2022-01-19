@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
-import {AmenitiesFilterNavBar} from '../components/AmenitiesFilterNavBar'
+import {AmenitiesFilterNavBar} from '../components/AmenityComponents/AmenitiesFilterNavBar'
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './LoginFormModal';
@@ -69,11 +69,7 @@ const NavBar = () => {
             {user ?  <NavLink to="/profile" className="submitButton"> <i class="fas fa-home fa-3x"></i></NavLink> : <SignUpFormModal/>}          
         </li>
         <li>
-          {user ? null :<button id="demo-button" onClick={demoLogin}> Demo user</button>}
-          {/* {user ?  <LogoutButton/> :  <LoginFormModal/> } */}
-         
-
-
+          {user ? null :<button id="demo-button" onClick={demoLogin}> Demo user</button>}         
         </li>
         <li>
           {user ?  <LogoutButton/> :  <LoginFormModal/> }

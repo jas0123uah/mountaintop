@@ -4,21 +4,24 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
-import {PF} from './components/PF/PF'
+import {PF} from './components/ProfilePageComponents/PF/PF'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import Footer from './components/Footer'
-import {EditSingleGetaway} from './components/EditSingleGetaway'
-import {NewGetaway} from './components/NewGetaway';
+import {EditSingleGetaway} from './components/GetawayComponents/EditSingleGetaway'
+import {NewGetaway} from './components/GetawayComponents/NewGetaway';
 import { authenticate } from './store/session';
 import {loadGetaways} from './store/getaways';
-import { SearchGetaways } from './components/SearchGetaways';
+import { SearchGetaways } from './components/SearchComponents/SearchGetaways';
 import {HomePage}  from './components/HomePage';
 import './context/Modal.css';
 import './index.css'
-import './components/ProfilePage/carousel.css'
+import './components/assets/carousel.css'
+import './components/assets/reviewPage.css'
+import './components/assets/formPageStyling.css'
+import "react-datepicker/dist/react-datepicker.css";
 import {ViewSingleGetaway} from './components/ViewSingleGetaway'
-import BrowseGetawaysPage from './components/BrowseGetawaysPage'
+import BrowseGetawaysPage from './components/BrowseGetawaysComponents/BrowseGetawaysPage'
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
