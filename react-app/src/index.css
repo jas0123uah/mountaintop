@@ -75,7 +75,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 }
 .browse-button{
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 700;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -187,7 +187,7 @@ body{
 .reservationDates{
   margin-right: 10px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.25;
 }
 #deleteReservationForm{
     display: flex;
@@ -396,16 +396,16 @@ display: flex;
 .revText{
     margin: 0;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 1rem;
     overflow-wrap: anywhere;
 }
 .rating-num{
     width: 20px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
 }
 .rating-category{
-    font-size: 17px;justify-self: flex-start;
+    font-size: 1.063rem;justify-self: flex-start;
     color: #2c2c2c;
     font-weight: normal;
     margin: 0;
@@ -692,7 +692,7 @@ grid-row-gap: 0px;
 }
 .reviewerName{
     text-align: left;
-    font-size: 17px;
+    font-size: 1.063rem;
     font-weight: 600;
     margin: 0;
 
@@ -700,7 +700,7 @@ grid-row-gap: 0px;
 .reviewDate, .bookingAvgRating, .bookingNumReviews, .checkin-out-Date{
     margin: 0;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 1rem;
 }
 .checkin-out-Date{
     margin: 5px 0px;
@@ -726,7 +726,7 @@ grid-row-gap: 0px;
     /* margin-left: 20px; */
 }
 .bookingPrice{
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 500;
     /* margin-left: 10px; */
     list-style: none;
@@ -756,7 +756,7 @@ grid-row-gap: 0px;
     width: 200px;
     margin-bottom: 10px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 1rem;
     margin-top: 5px;
 }
 .splashContainer{
@@ -765,7 +765,7 @@ grid-row-gap: 0px;
 .totalFlex{
     display: flex;
     justify-content: space-between;
-    font-size: 17px;
+    font-size: 1.063rem;
     font-weight: 600;
     /* gap: 0px; */
 }
