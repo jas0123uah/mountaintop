@@ -1,6 +1,6 @@
-import {NewBookRes} from '../NewBookRes'
-import {EditRes} from '../EditRes'
-import {Reviews} from '../Reviews'
+import {NewBookRes} from '../ReservationComponents/NewBookRes'
+import {EditRes} from '../ReservationComponents/EditRes'
+import {Reviews} from '../ReviewComponents/Reviews'
 import { useSelector } from "react-redux";
 import {  useParams, useLocation } from 'react-router-dom';
 import {getGetawayImagesArray} from '../../utils/helperFunctions'
@@ -11,19 +11,10 @@ export const ViewSingleGetaway = () => {
     const { getawayId }  = useParams();
     const currentGetaway = getawaysObject[getawayId];
     const guestOrGuests = currentGetaway.numGuests>1 ? "guests":"guest"
-
     const imagesArray = getGetawayImagesArray(currentGetaway)
     const averageRatingAndReviews= getAverageReviewRating(currentGetaway)
     let averageRating = averageRatingAndReviews[0]
-
-    // if (isNaN(averageRating)) {
-    //     averageRating = String(0)
-        
-    // }
-    console.log(averageRating, "AVERAGE");
-
     const location = useLocation();
-    console.log(location, "Location");
     
     
      return(<div className="viewGetawayContainer">
