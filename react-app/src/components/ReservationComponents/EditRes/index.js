@@ -1,7 +1,7 @@
 import DatePicker from "react-datepicker";
 import {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createReservation, authenticate } from "../../../store/session";
+import { editReservation, authenticate } from "../../../store/session";
 import {loadGetaways} from '../../../store/getaways'
 import {useHistory, useParams } from 'react-router-dom';
 import SingleGetawayInfo from '../../SingleGetawayComponents/SingleGetawayInfo'
@@ -90,17 +90,29 @@ const getValidEndDate = () => {
 
 }
   
-  const handleSubmitReservation = async (e) => {
+  // const handleSubmitReservation = async (e) => {
+  //   e.preventDefault()
+  //   setErrors([])
+  //   const newReservation = await dispatch(createReservation({getawayId, startDate, endDate, userId}))
+  //   if (newReservation.errors) {
+  //     return setErrors(newReservation.errors)
+  //   }
+  //   await dispatch(loadGetaways())
+  //   await dispatch(authenticate())
+  //   history.push('/profile')
+
+  // }
+  const handleEditReservation = async (e) => {
     e.preventDefault()
     setErrors([])
-    const newReservation = await dispatch(createReservation({getawayId, startDate, endDate, userId}))
-    if (newReservation.errors) {
-      return setErrors(newReservation.errors)
+    const editedReservation = await dispatch(editReservation({getawayId, startDate, endDate, userId, reservationId}))
+    if (editedReservation.errors) {
+      return setErrors(editedReservation.errors)
+
     }
     await dispatch(loadGetaways())
     await dispatch(authenticate())
     history.push('/profile')
-
   }
   const onChange = (dates) => {
     const [start, end] = dates;
@@ -150,7 +162,7 @@ const getValidEndDate = () => {
         selectsRange
         inline
       />
-      <button className="resButton" onClick={handleSubmitReservation}>Book Reservation</button>
+      <button className="resButton" onClick={handleEditReservation}>Edit Reservation</button>
       <div className="totalFlex">
         <span className="totalText">Total</span>
         <span className="totalPrice">{`$${costOfStay}`}</span>
