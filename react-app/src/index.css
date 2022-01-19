@@ -250,13 +250,16 @@ body {
 }
 .viewGetawayButton,#demo-button, .SignInButton, .addNewGetaway{
     background-color:  #8a8f2e;
-    height: 40px;
+    /* height: 40px; */
     border-radius: 25px;
     font-weight: bold;
     border: none;
 
 
-    width: 123.696px;
+    /* width: 123.696px; */
+
+    height: 3.13em;
+    width: 10.2em;
 }
 #demo-button{
     margin-left: 40px;
@@ -626,6 +629,10 @@ grid-row-gap: 0px;
  }
 .listingContainer {
     align-self: baseline;
+
+
+
+    width: max-content;
 }
  .listingName,.listingSnapshot{
      padding-left:13px;
@@ -835,3 +842,62 @@ margin-bottom: 15px;
     color: black;
 
 }
+#mobile-carousel{
+    display: none;
+
+}
+
+
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) {
+        /* .listingContainer{
+            width: 95%;
+        }
+        .listingSnapshot{
+            overflow-wrap: break-word;
+        } */
+        /* .containerForPhotosContainer{
+            display: none;
+        } */
+
+        .listingContainer{
+            margin-top: 30px;
+            margin-left: -80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        #mobile-carousel{
+    display:contents;}
+        #mobile-carousel:first-child{
+            width: 600px;
+
+        }
+
+        .photosContainer{
+            display: none;
+        }
+        .getaway-info-reservationForm-flex{
+            width: 100vw;
+            margin-left: 100px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .bookingContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+        }
+        .info {
+            width: auto;
+        }
+
+
+
+
+     }

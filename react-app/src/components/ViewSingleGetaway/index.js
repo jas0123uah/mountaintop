@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import {  useParams, useLocation } from 'react-router-dom';
 import {getGetawayImagesArray} from '../../utils/helperFunctions'
 import { getAverageReviewRating } from "../../utils/helperFunctions"
+import CarouselSingleGetaway from '../CarouselSingleGetaway'
 export const ViewSingleGetaway = () => {
 
     const getawaysObject = useSelector(state => state.getaways);
@@ -23,6 +24,10 @@ export const ViewSingleGetaway = () => {
         <h4 className="listingSnapshot"> <i class="fas fa-star"></i> {`${averageRating} (${averageRatingAndReviews[1]} reviews)`} <i class="fas fa-map-marker-alt"></i> {`${currentGetaway.city}, ${currentGetaway.state}`} <i class="fas fa-home"></i> {`${currentGetaway.numGuests} ${guestOrGuests}`} </h4>
          </div>
         <div className="containerForPhotosContainer">
+        <div id="mobile-carousel">
+
+        <CarouselSingleGetaway/>
+        </div>
 
         <div className="photosContainer">
             <div >

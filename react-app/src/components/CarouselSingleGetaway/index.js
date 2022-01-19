@@ -3,7 +3,7 @@ import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
 import { useSelector } from "react-redux";
 import {  useParams } from 'react-router-dom';
-const CarouselSingleGetaway = () => {
+const CarouselSingleGetaway = ({id}) => {
     const getawaysObject = useSelector(state => state.getaways);
     const { getawayId }  = useParams();
     const currentGetaway = getawaysObject[getawayId];
@@ -23,7 +23,7 @@ const CarouselSingleGetaway = () => {
 
   return (
       <>
-    <Carousel hasSizeButton={false} hasMediaButton={false} isAutoPlaying={true} images={images} style={{ height: 620, width: 800 }} autoPlayInterval={7000} />
+    <Carousel id={id} hasSizeButton={false} hasMediaButton={false} isAutoPlaying={true} images={images} style={{ height: 620, width: 800 }} autoPlayInterval={7000} />
     </>
   );
 };
