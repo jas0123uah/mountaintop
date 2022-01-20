@@ -28,7 +28,7 @@ jobs:
 
       - name: Install python pipenv
         run: |
-          pipenv install --python
+          pipenv install --python "/opt/hostedtoolcache/Python/3.10.1/x64"
         
 
       - name: Install dependencies
