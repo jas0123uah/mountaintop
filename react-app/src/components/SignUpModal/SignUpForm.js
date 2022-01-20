@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from '../../store/session';
 import {loadGetaways} from '../../store/getaways'
-import {authenticate} from '../../store/session'
+import {authenticate, checkForEmail} from '../../store/session'
 import {useHistory} from 'react-router-dom';
 
 function SignUpForm() {
@@ -58,10 +58,13 @@ function SignUpForm() {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      const data = await dispatch(signUp({firstName, lastName, email, password, profilePicture})).catch(async (res) => {
-    const data = await res.json();if (data && data.errors) setErrors(data.errors);
-        });
-        await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push(`/profile`))
+    const data = await dispatch(signUp({firstName, lastName, email, password, profilePicture}))
+    if (data && data.errors){ 
+      setErrors(data.errors)
+
+    ;}
+        
+    await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push(`/profile`))
     }
   };
 
