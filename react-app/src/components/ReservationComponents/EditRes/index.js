@@ -134,6 +134,10 @@ const getValidEndDate = () => {
   const averageRatingAndReviews= getAverageReviewRating(currentGetaway)
   const [averageRating, numReviews, ...otherRatings] = averageRatingAndReviews
 
+  if (!user) {
+    return null
+  }
+
   return (
       <>
       <>

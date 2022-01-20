@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {searchGetaways} from "../store/search"
 const NavBar = () => {
   const location = useLocation();
-  const [searchTerm, setSearchTerm] = useState("Find your next getaway...");
+  const [searchTerm, setSearchTerm] = useState("");
   const[scrolled, setScrolled] = useState(false);
   
 
@@ -60,7 +60,7 @@ const NavBar = () => {
         <li>
           <div className="search-container">
 
-          <input type="search" name="" id="" className="searchBar" value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
+          <input type="search" name="" id="" className="searchBar" placeholder="Find your next getaway..." value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
          <i class="fa fa-search search-icon" onClick={onSearch}></i>
           </div>
         </li>
