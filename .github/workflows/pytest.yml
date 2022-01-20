@@ -17,6 +17,5 @@ jobs:
         uses: dschep/install-pipenv-action@v1
       - name: Run tests
         run: |
-          pipenv shell
-          pipenv install
+          pipenv install -r requirements.txt
           pipenv run pytest -v
