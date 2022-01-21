@@ -225,10 +225,9 @@ def test_post_getaway(client):
     except BaseException as e:
             print(e, "THIS IS E")
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
+    print(r.headers.get("Content-Type"), "LOOK JAY")
+
     assert r.headers.get("Content-Type") == mimetype
-
-
-
 
 def test_delete_getaway():
     from app import app
