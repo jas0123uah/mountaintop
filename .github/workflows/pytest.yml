@@ -15,7 +15,7 @@ jobs:
           python-version: 3.9
       - name: Install pipenv
         uses: dschep/install-pipenv-action@v1
-      - name: Run tests
+      - name: Run Pytest
         run: |
           pipenv install -r requirements.txt
           pipenv run pytest -v
