@@ -47,6 +47,13 @@ const NavBar = () => {
     history.push(`/search/${searchTerm}`);
 
   }
+
+  const handleEnter = async (e) => {
+    if (e.charCode == 13) {
+      await dispatch(searchGetaways(searchTerm))
+    history.push(`/search/${searchTerm}`);
+    }
+  };
   return (
     <div className="navContainer">
 
@@ -60,8 +67,8 @@ const NavBar = () => {
         <li>
           <div className="search-container">
 
-          <input type="search" name="" id="" className="searchBar" placeholder="Find your next getaway..." value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
-         <i class="fa fa-search search-icon" onClick={onSearch}></i>
+          <input type="search" name="" id="" className="searchBar" placeholder="Find your next getaway..." value={searchTerm} onKeyPress={handleEnter}  onChange={event => setSearchTerm(event.target.value)}  />
+         <i class="fa fa-search search-icon" onClick={onSearch} ></i>
           </div>
         </li>
         <div className="signuploginicons">
