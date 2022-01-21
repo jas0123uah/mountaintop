@@ -1,14 +1,18 @@
-import pytest, json
+import pytest, json, requests
 from wtforms import IntegerField, StringField, SubmitField, TextAreaField
 from flask_wtf import FlaskForm
 from dotenv import load_dotenv
+from ..models import Getaway
+from ..models import db
+from flask import jsonify
+from werkzeug.exceptions import BadRequest
 load_dotenv()
 
 @pytest.fixture
 def client():
     from app import app
     app.config["TESTING"] = True
-    app.config["WTF_CSRF_ENABLED"] = False
+    app.config["WTF_CSRF_ENABLED"] = True
     app.config["DEBUG"] = False
 
     with app.test_client() as client:
@@ -184,7 +188,7 @@ def test_browse_getaways_results_has_key_state(client):
     assert r.status_code == 200
     assert "state" in first_getaway.keys(), "the key state was not found in the response dictionary's keys."
 
-def test_browse_getaways_results_has_key_userId(client):
+def test_browse_getaways_results_has_key_userId(client):    
     r = client.get("/api/getaways/")
     res_dict = json.loads(r.data.decode('utf-8'))
     
@@ -193,3 +197,48 @@ def test_browse_getaways_results_has_key_userId(client):
     print(res_dict.keys())
     assert r.status_code == 200
     assert "userId" in first_getaway.keys(), "the key userId was not found in the response dictionary's keys."
+
+
+def test_post_getaway(client):
+    mimetype = 'application/json'
+    headers = {
+        'Content-Type': mimetype,
+    
+    }
+    newGetaway = {"userId" : "1",
+            "address" : "FINALLY",
+            "city" : "fakeCity",
+            "state" : "fakeState",
+            "country" : "fakeCountry",
+            "latitude" : "1.0",
+            "longitude" : "1.1",
+            "name" : "fakeName",
+            "price" : "100",
+            "numGuests" : "4",
+            "numBedrooms" : "3",
+            "numBeds" : "3",
+            "numBaths" : "2",
+            "description" : "fakeDescription"}
+    try:
+        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
+        assert r.content_type == mimetype
+    except BaseException as e:
+            print(e, "THIS IS E")
+    r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
+    assert r.headers.get("Content-Type") == mimetype
+
+
+
+
+def test_delete_getaway():
+    from app import app
+    db.init_app(app)
+    with app.app_context():
+        fake_post = db.session.query(Getaway).filter(Getaway.city=="fakeCity").all()
+        mimetype = 'application/json'
+        headers = {
+            'Content-Type': mimetype,        
+        }
+        for post in fake_post:
+            x = requests.delete(f'http://127.0.0.1:5000/api/getaways/{post.id}/')
+            assert x.headers['Content-Type']==mimetype

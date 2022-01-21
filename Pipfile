@@ -29,6 +29,8 @@ faker = "*"
 randomuser = "*"
 boto3 = "*"
 pytest = "*"
+requests = "*"
+flask-restful = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"
