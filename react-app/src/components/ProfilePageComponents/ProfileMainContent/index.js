@@ -8,7 +8,7 @@ export const ProfileMainContent = () => {
       <h1 className="profileHeader"> Upcoming Reservations</h1>
       <div className="UpcomingReservations maybe">
           <div className="maybe2">
-        <UpcomingUserReservations></UpcomingUserReservations>
+        <UpcomingUserReservations/>
           </div>
     </div>
     <h1>Previous Reservations</h1>
