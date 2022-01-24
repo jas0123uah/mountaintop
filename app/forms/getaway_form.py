@@ -25,7 +25,7 @@ class GetawayForm(FlaskForm):
                                 DataRequired()])
     numBedrooms = IntegerField("Number of Bedrooms", validators=[
                                 DataRequired()])
-    price = DecimalField("Price", validators=[
+    price = DecimalField("Price", places=2, validators=[
                                 DataRequired()])
     img1 = TextAreaField("Image1", )
     img2 = TextAreaField("Image2", )
