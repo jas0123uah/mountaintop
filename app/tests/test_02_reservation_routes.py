@@ -102,3 +102,72 @@ def test_delete_reservation(client):
         x = client.delete(f'http://127.0.0.1:5000/api/reservations/{fake_post_id}/', headers=headers)
         assert x.status_code == 200
         assert x.headers['Content-Type']==mimetype
+
+def test_no_null_reservation_user_id(client):
+    mimetype = 'application/json'
+    headers = {
+        'Content-Type': mimetype,
+    
+    }
+    newReservation = {"userId" : "",
+            "getawayId" : "4",
+            "startDate" : "2035-10-03 05:00:00",
+            "endDate" : "2035-10-08 05:00:00"}
+
+    r = client.post('/api/getaways/4/reservations/', data=json.dumps(newReservation), headers=headers)
+    r = client.post('/api/getaways/4/reservations/', data=json.dumps(newReservation), headers=headers)
+    res_dict = json.loads(r.data.decode('utf-8'))
+    print(res_dict['errors'], "ERRORS 120")
+    assert res_dict['errors'][0] == 'userId : This field is required.'
+
+def test_no_null_reservation_getaway_id(client):
+    mimetype = 'application/json'
+    headers = {
+        'Content-Type': mimetype,
+    
+    }
+    newReservation = {"userId" : "1",
+            "getawayId" : "",
+            "startDate" : "2035-10-03 05:00:00",
+            "endDate" : "2035-10-08 05:00:00"}
+
+    r = client.post('/api/getaways/4/reservations/', data=json.dumps(newReservation), headers=headers)
+    r = client.post('/api/getaways/4/reservations/', data=json.dumps(newReservation), headers=headers)
+    res_dict = json.loads(r.data.decode('utf-8'))
+    print(res_dict['errors'], "ERRORS 137")
+    assert res_dict['errors'][0] == 'getawayId : This field is required.'
+
+def test_no_null_reservation_start_date(client):
+    mimetype = 'application/json'
+    headers = {
+        'Content-Type': mimetype,
+    
+    }
+    newReservation = {"userId" : "1",
+            "getawayId" : "4",
+            "startDate" : "",
+            "endDate" : "2035-10-08 05:00:00"}
+
+    r = client.post('/api/getaways/4/reservations/', data=json.dumps(newReservation), headers=headers)
+    r = client.post('/api/getaways/4/reservations/', data=json.dumps(newReservation), headers=headers)
+    res_dict = json.loads(r.data.decode('utf-8'))
+    print(res_dict['errors'], "ERRORS 154")
+    assert res_dict['errors'][0] == 'startDate : This field is required.'
+
+
+def test_no_null_reservation_end_date(client):
+    mimetype = 'application/json'
+    headers = {
+        'Content-Type': mimetype,
+    
+    }
+    newReservation = {"userId" : "1",
+            "getawayId" : "4",
+            "startDate" : "2035-10-03 05:00:00",
+            "endDate" : ""}
+
+    r = client.post('/api/getaways/4/reservations/', data=json.dumps(newReservation), headers=headers)
+    r = client.post('/api/getaways/4/reservations/', data=json.dumps(newReservation), headers=headers)
+    res_dict = json.loads(r.data.decode('utf-8'))
+    print(res_dict['errors'], "ERRORS 172")
+    assert res_dict['errors'][0] == 'endDate : This field is required.'
