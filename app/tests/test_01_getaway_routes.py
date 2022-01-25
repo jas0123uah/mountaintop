@@ -8,6 +8,7 @@ from ..models import db
 from flask import jsonify
 from werkzeug.exceptions import BadRequest
 load_dotenv()
+from ..pytest_helper_functions import demo_login, remove_extra_keys_from_dict, get_header_and_mimetype
 
 @pytest.fixture
 def client():
@@ -46,11 +47,7 @@ def test_browse_getaways_returns_results(client):
 
 
 def test_post_getaway(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "rrrrrrrrrr",
             "city" : "fakeCity",
@@ -65,22 +62,9 @@ def test_post_getaway(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-    print(r.headers.get("Content-Type"), "LOOK JAY")
-    print(r.__dict__.keys(), "KEYS")
-    print(r.status_code, "STATUS_CODE")
-    print(client, "CLIENT")
-    print(client.__dict__, "CLIENT DICT")
-    print(type(client), "TYPE CLIENT")
-
     assert r.headers.get("Content-Type") == mimetype
-
-
 
 def test_edit_getaway(client):
     from app import app
@@ -89,19 +73,14 @@ def test_edit_getaway(client):
         fake_post = db.session.query(Getaway).filter(Getaway.city=="fakeCity").first()
         fake_post.address = "AN ADDRESS"
         fake_post = fake_post.to_dict()
-        for key in ["hostProfilePicture", 'hostFirstName', 'reservations', 'amenities', 'images', 'createdAt', 'updatedAt']:
-            fake_post.pop(key)
+        
+        fake_post = remove_extra_keys_from_dict(fake_post, ["hostProfilePicture", 'hostFirstName', 'reservations', 'amenities', 'images', 'createdAt', 'updatedAt'])
+        
             
-        #cookies = {'csrf_token': generate_csrf()}
         fake_post_id = fake_post["id"]
         fake_post_json = json.dumps(fake_post)
-        print(client.__dict__.keys(), "KEYSSSSSS FOR CLIENT")
-        mimetype = 'application/json'
-        headers = {
-            'Content-Type': mimetype,        
-        }
-        x = client.put(f'http://127.0.0.1:5000/api/getaways/{fake_post_id}/', headers=headers, data=fake_post_json)
-        
+        headers, mimetype = get_header_and_mimetype()
+        x = demo_login(client)
         x = client.put(f'http://127.0.0.1:5000/api/getaways/{fake_post_id}/', headers=headers, data=fake_post_json)
         assert x.status_code == 200
         assert x.headers['Content-Type']==mimetype
@@ -111,17 +90,14 @@ def test_delete_getaway():
     db.init_app(app)
     with app.app_context():
         fake_post = db.session.query(Getaway).filter(Getaway.city=="fakeCity").all()
-        mimetype = 'application/json'
+        headers, mimetype = get_header_and_mimetype()
         for post in fake_post:
+            #x = demo_login(client)
             x = requests.delete(f'http://127.0.0.1:5000/api/getaways/{post.id}/')
             assert x.headers['Content-Type']==mimetype
 
 def test_no_null_address(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "",
             "city" : "fakeCity",
@@ -136,20 +112,10 @@ def test_no_null_address(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-    
-    print(r, "RESPONSE")
-    print(r.__dict__, "DICTTTT")
-    print(r.data, "data")
-    print(r.response, "resp")
+    assert r.content_type == mimetype
     res_dict = json.loads(r.data.decode('utf-8'))
-    print(res_dict, "DICTT")
-    print(res_dict.keys(), "KEYS")
     assert res_dict['errors'][0] == 'address : This field is required.'
 
 def test_no_null_city(client):
@@ -172,21 +138,14 @@ def test_no_null_city(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
+    assert r.content_type == mimetype
     res_dict = json.loads(r.data.decode('utf-8'))
     assert res_dict['errors'][0] == 'city : This field is required.'
 
 def test_no_null_state(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -201,21 +160,14 @@ def test_no_null_state(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'state : This field is required.'
 
 def test_no_null_country(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -230,21 +182,14 @@ def test_no_null_country(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'country : This field is required.'
     
 def test_no_null_latitude(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -259,23 +204,16 @@ def test_no_null_latitude(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'latitude : This field is required.'
     
 
 
 def test_no_null_longitude(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -290,21 +228,14 @@ def test_no_null_longitude(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'longitude : This field is required.'
     
 def test_no_null_name(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -319,22 +250,15 @@ def test_no_null_name(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'name : This field is required.'
     
 
 def test_no_null_price(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -349,21 +273,14 @@ def test_no_null_price(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'price : This field is required.'
 
 def test_price_is_num(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -378,22 +295,16 @@ def test_price_is_num(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'price : This field is required.'
 
 
 def test_no_null_num_guests(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -408,22 +319,15 @@ def test_no_null_num_guests(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'numGuests : This field is required.'
 
 
 def test_no_null_num_bedrooms(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -438,22 +342,15 @@ def test_no_null_num_bedrooms(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'numBedrooms : This field is required.'
 
 
 def test_no_null_num_beds(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -468,22 +365,15 @@ def test_no_null_num_beds(client):
             "numBeds" : "",
             "numBaths" : "2",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'numBeds : This field is required.'
 
 
 def test_no_null_num_baths(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-    
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -498,21 +388,14 @@ def test_no_null_num_baths(client):
             "numBeds" : "3",
             "numBaths" : "",
             "description" : "fakeDescription"}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
     res_dict = json.loads(r.data.decode('utf-8'))
+    assert r.content_type == mimetype
     assert res_dict['errors'][0] == 'numBaths : This field is required.'
     
 def test_no_null_description(client):
-    mimetype = 'application/json'
-    headers = {
-        'Content-Type': mimetype,
-
-    }
+    headers, mimetype = get_header_and_mimetype()
     newGetaway = {"userId" : "1",
             "address" : "fakeAddress",
             "city" : "fakeCity",
@@ -527,11 +410,8 @@ def test_no_null_description(client):
             "numBeds" : "3",
             "numBaths" : "2",
             "description" : ""}
-    try:
-        r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
-        assert r.content_type == mimetype
-    except BaseException as e:
-            print(e, "THIS IS E")
+    r = demo_login(client)
     r = client.post('/api/getaways/', data=json.dumps(newGetaway), headers=headers)
+    assert r.content_type == mimetype
     res_dict = json.loads(r.data.decode('utf-8'))
     assert res_dict['errors'][0] == 'description : This field is required.'
