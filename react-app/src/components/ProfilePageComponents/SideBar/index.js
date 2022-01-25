@@ -13,7 +13,7 @@ export const SideBar = () => {
       <img className='profilePicture' alt={`${user.firstName}'s profile image`} src={user.profilePictureUrl} ></img>
       <br></br>
       <NavLink to="/getaways/new/">
-        <button className='addNewGetaway'>
+        <button id="add-new-getaway-button" className='addNewGetaway'>
           <i className="fas fa-plus"></i> Add New Getaway
         </button>
       </NavLink>

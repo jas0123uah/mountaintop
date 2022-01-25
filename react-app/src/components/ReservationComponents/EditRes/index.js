@@ -166,7 +166,7 @@ const getValidEndDate = () => {
         selectsRange
         inline
       />
-      <button className="resButton" onClick={handleEditReservation}>Edit Reservation</button>
+      <button className="resButton" id="edit-reservation-button" onClick={handleEditReservation}>Edit Reservation</button>
       <div className="totalFlex">
         <span className="totalText">Total</span>
         <span className="totalPrice">{`$${costOfStay}`}</span>

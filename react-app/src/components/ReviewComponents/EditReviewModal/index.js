@@ -8,7 +8,7 @@ function EditReviewFormModal({reservationId, getawayId, reviewId}) {
   return (
     <>
     
-      <button className="viewGetawayButton" onClick={() => {setShowModal(true);}}>Edit Review</button>
+      <button className="viewGetawayButton edit-review-button" onClick={() => {setShowModal(true);}}>Edit Review</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)} modalClass="revModal">
           <EditReviewForm reservationId={reservationId} getawayId={getawayId} reviewId={reviewId} />
