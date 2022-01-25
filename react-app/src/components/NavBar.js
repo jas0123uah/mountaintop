@@ -61,7 +61,7 @@ const NavBar = () => {
       <ul className="navBar-list" id="nav-list">
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <i class="fas fa-mountain fa-3x"></i>
+            <i id="logo" class="fas fa-mountain fa-3x"></i>
           </NavLink>
         </li>
         <li>
@@ -73,7 +73,7 @@ const NavBar = () => {
         </li>
         <div className="signuploginicons">
         <li>
-            {user ?  <NavLink to="/profile" className="submitButton"> <i class="fas fa-home fa-3x"></i></NavLink> : <SignUpFormModal/>}          
+            {user ?  <NavLink to="/profile" className="submitButton"> <i class="fas fa-home fa-3x" id="home-button"></i></NavLink> : <SignUpFormModal/>}          
         </li>
         <li>
           {user ? null :<button id="demo-button" onClick={demoLogin}> Demo user</button>}         

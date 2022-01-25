@@ -174,6 +174,7 @@ export const EditSingleGetaway = () => {
         <input
           name='address'
           type='text'
+          id='address'
           value={address}
           onChange={(e) => {setAddress(e.target.value)}}
         />
@@ -183,6 +184,7 @@ export const EditSingleGetaway = () => {
         <label htmlFor='city'>City</label>
         <input
           name='city'
+          id='city'
           type='text'
           value={city}
           onChange={(e) => {setCity(e.target.value)}}
@@ -193,6 +195,7 @@ export const EditSingleGetaway = () => {
         <label htmlFor='state'>State</label>
         <input
           name='state'
+          id='state'
           type='text'
           value={state}
           onChange={(e) => {setState(e.target.value)}}
@@ -204,6 +207,7 @@ export const EditSingleGetaway = () => {
         <label htmlFor='bedrooms'>Number of bedrooms</label>
         <input
           name='bedrooms'
+          id='bedrooms'
           min="1"
           type='number'
           value={numBedrooms}
@@ -214,6 +218,7 @@ export const EditSingleGetaway = () => {
         <label htmlFor='beds'>Number of beds</label>
         <input
           name='beds'
+          id='beds'
           min="1"
           type='number'
           value = {numBeds}
@@ -225,6 +230,7 @@ export const EditSingleGetaway = () => {
         <label htmlFor='bathrooms'>Number of bathrooms</label>
         <input
           name='bathrooms'
+          id='bathrooms'
           type='number'
           min="1"
           value={numBaths}
@@ -235,6 +241,7 @@ export const EditSingleGetaway = () => {
         <label htmlFor='guests'> Maximum number of guests</label>
         <input
           name='guests'
+          id='guests'
           min="1"
           type='number'
           value={numGuests}
@@ -248,6 +255,7 @@ export const EditSingleGetaway = () => {
         <label htmlFor='name'>Getaway name</label>
         <input
           name='name'
+          id='name'
           type='text'
           value={name}
           onChange={(e) => {setName(e.target.value)}}
@@ -261,6 +269,7 @@ export const EditSingleGetaway = () => {
         <label htmlFor='description'>Getaway description </label>
         <textarea
           name='description'
+          id='description'
           type='text'
           value={description}
           onChange={(e) => {setDescription(e.target.value)}}
@@ -271,6 +280,7 @@ export const EditSingleGetaway = () => {
         <label htmlFor='price'>Cost per night</label>
         <input
           name='price'
+          id='price'
           min="1"
           type='number'
           value={price}
@@ -280,17 +290,17 @@ export const EditSingleGetaway = () => {
 
       <fieldset className="amenities-fieldset">              
     <legend className="amenities-fieldset">Amenities</legend>             
-    <input type="checkbox" checked={hasHotTub} onChange={(e) => {setHasHotTub(!hasHotTub)}}/>Hot tub
-    <input type="checkbox" checked={hasWifi} onChange={(e) => {setHasWifi(!hasWifi)}}/>WiFi  
-    <input type="checkbox" checked={hasPatio} onChange={(e) => {setHasPatio(!hasPatio)}}/>Patio
-    <input type="checkbox" checked={hasKitchen} onChange={(e) => {setHasKitchen(!hasKitchen)}}/> Kitchen
-    <input type="checkbox" checked={hasFireplace} onChange={(e) => {setHasFireplace(!hasFireplace)}}/>Fireplace            
+    <input type="checkbox" id='hottub' checked={hasHotTub} onChange={(e) => {setHasHotTub(!hasHotTub)}}/>Hot tub
+    <input type="checkbox" id='wifi' checked={hasWifi} onChange={(e) => {setHasWifi(!hasWifi)}}/>WiFi  
+    <input type="checkbox" id='patio' checked={hasPatio} onChange={(e) => {setHasPatio(!hasPatio)}}/>Patio
+    <input type="checkbox" id='kitchen' checked={hasKitchen} onChange={(e) => {setHasKitchen(!hasKitchen)}}/> Kitchen
+    <input type="checkbox" id='fireplace' checked={hasFireplace} onChange={(e) => {setHasFireplace(!hasFireplace)}}/>Fireplace            
                     
   </fieldset> 
 
       <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl" value={img1}   onChange={(e)=>{setImg1(e.target.value)}} />
+        <input id='img1' type="url" className="IMGS" name="imgUrl" value={img1}   onChange={(e)=>{setImg1(e.target.value)}} />
 
       </div>
 
@@ -298,27 +308,27 @@ export const EditSingleGetaway = () => {
 
        <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input value={img2} className="IMGS" type="url" name="imgUrl" id=""  onChange={(e)=>{setImg2(e.target.value)}} />
+        <input id='img2' value={img2} className="IMGS" type="url" name="imgUrl" id=""  onChange={(e)=>{setImg2(e.target.value)}} />
 
       </div>
 
 
       <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" value={img3}  className="IMGS" name="imgUrl"   onChange={(e)=>{setImg3(e.target.value)}} />
+        <input type="url" id='img3' value={img3}  className="IMGS" name="imgUrl"   onChange={(e)=>{setImg3(e.target.value)}} />
 
       </div>
 
 
       <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" value={img4}  className="IMGS" name="imgUrl"   onChange={(e)=>{setImg4(e.target.value)}} />
+        <input type="url" id='img4' value={img4}  className="IMGS" name="imgUrl"   onChange={(e)=>{setImg4(e.target.value)}} />
 
       </div>
 
       <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl" value={img5}    onChange={(e)=>{setImg5(e.target.value)}} />
+        <input type="url" id='img5' className="IMGS" name="imgUrl" value={img5}    onChange={(e)=>{setImg5(e.target.value)}} />
 
       </div>
 
@@ -334,7 +344,7 @@ export const EditSingleGetaway = () => {
 
 
       <div>
-        <button type="submit" disabled={errors.length ? true : false}className="createGetawaySubmitButton">Edit Getaway</button>
+        <button type="submit" id='edit-getaway-submit-button' disabled={errors.length ? true : false}className="createGetawaySubmitButton">Edit Getaway</button>
       </div>
       </div>
 

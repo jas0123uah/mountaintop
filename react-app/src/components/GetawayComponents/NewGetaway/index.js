@@ -146,6 +146,7 @@ export const NewGetaway = () => {
       <div>
         <label htmlFor='address'>Address</label>
         <input
+          id='address'
           name='address'
           type='text'
           value={address}
@@ -156,6 +157,7 @@ export const NewGetaway = () => {
       <div>
         <label htmlFor='city'>City</label>
         <input
+          id='city'
           name='city'
           type='text'
           value={city}
@@ -166,6 +168,7 @@ export const NewGetaway = () => {
       <div>
         <label htmlFor='state'>State</label>
         <input
+          id='state'
           name='state'
           type='text'
           value={state}
@@ -177,6 +180,7 @@ export const NewGetaway = () => {
       <div>
         <label htmlFor='bedrooms'>Number of bedrooms</label>
         <input
+          id='bedrooms'
           name='bedrooms'
           min="1"
           type='number'
@@ -187,6 +191,7 @@ export const NewGetaway = () => {
       <div>
         <label htmlFor='beds'>Number of beds</label>
         <input
+          id='beds'
           name='beds'
           min="1"
           type='number'
@@ -198,6 +203,7 @@ export const NewGetaway = () => {
       <div>
         <label htmlFor='bathrooms'>Number of bathrooms</label>
         <input
+          id='bathrooms'
           name='bathrooms'
           type='number'
           min="1"
@@ -208,6 +214,7 @@ export const NewGetaway = () => {
       <div>
         <label htmlFor='guests'> Maximum number of guests</label>
         <input
+          id='guests'
           name='guests'
           min="1"
           type='number'
@@ -221,6 +228,7 @@ export const NewGetaway = () => {
       <div>
         <label htmlFor='name'>Getaway name</label>
         <input
+          id='name'
           name='name'
           type='text'
           value={name}
@@ -234,6 +242,7 @@ export const NewGetaway = () => {
       <div className="textareaFormField">
         <label htmlFor='description'>Getaway description </label>
         <textarea
+          id='description'
           name='description'
           type='text'
           value={description}
@@ -245,6 +254,7 @@ export const NewGetaway = () => {
       <div>
         <label htmlFor='price'>Cost per night</label>
         <input
+          id='price'
           name='price'
           min="100"
           type='number'
@@ -255,17 +265,17 @@ export const NewGetaway = () => {
 
     <fieldset className="amenities-fieldset">              
     <legend>Amenities</legend>             
-    <input type="checkbox" checked={hasHotTub} onChange={(e) => {setHasHotTub(!hasHotTub)}}/>Hot tub
-    <input type="checkbox" checked={hasWifi} onChange={(e) => {setHasWifi(!hasWifi)}}/>WiFi  
-    <input type="checkbox" checked={hasPatio} onChange={(e) => {setHasPatio(!hasPatio)}}/>Patio
-    <input type="checkbox" checked={hasKitchen} onChange={(e) => {setHasKitchen(!hasKitchen)}}/> Kitchen
-    <input type="checkbox" checked={hasFireplace} onChange={(e) => {setHasFireplace(!hasFireplace)}}/>Fireplace            
+    <input id='hottub' type="checkbox" checked={hasHotTub} onChange={(e) => {setHasHotTub(!hasHotTub)}}/>Hot tub
+    <input id='wifi' type="checkbox" checked={hasWifi} onChange={(e) => {setHasWifi(!hasWifi)}}/>WiFi  
+    <input id='patio' type="checkbox" checked={hasPatio} onChange={(e) => {setHasPatio(!hasPatio)}}/>Patio
+    <input id='kitchen' type="checkbox" checked={hasKitchen} onChange={(e) => {setHasKitchen(!hasKitchen)}}/> Kitchen
+    <input id='fireplace' type="checkbox" checked={hasFireplace} onChange={(e) => {setHasFireplace(!hasFireplace)}}/>Fireplace            
                     
   </fieldset> 
 
       <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg1(e.target.value)}} />
+        <input id='img1' type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg1(e.target.value)}} />
 
       </div>
 
@@ -273,27 +283,27 @@ export const NewGetaway = () => {
 
        <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input className="IMGS" type="url" name="imgUrl" id=""  onChange={(e)=>{setImg2(e.target.value)}} />
+        <input id='img2' className="IMGS" type="url" name="imgUrl"  onChange={(e)=>{setImg2(e.target.value)}} />
 
       </div>
 
 
       <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg3(e.target.value)}} />
+        <input id='img3' type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg3(e.target.value)}} />
 
       </div>
 
 
       <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg4(e.target.value)}} />
+        <input id='img4' type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg4(e.target.value)}} />
 
       </div>
 
       <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg5(e.target.value)}} />
+        <input id='img5'type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg5(e.target.value)}} />
 
       </div>
 
@@ -310,7 +320,7 @@ export const NewGetaway = () => {
 
 
       <div>
-        <button type="submit" disabled={errors.length ? true : false}className="createGetawaySubmitButton">Create Getaway</button>
+        <button type="submit" id='create-getaway-submit-button' disabled={errors.length ? true : false}className="createGetawaySubmitButton">Create Getaway</button>
       </div>
         </div>
 

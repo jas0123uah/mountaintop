@@ -7,7 +7,7 @@ function NewReviewFormModal({reservationId, getawayId}) {
 
   return (
     <>
-      <button className="viewGetawayButton" onClick={() => {setShowModal(true);}}>Leave a review</button>
+      <button className="viewGetawayButton leave-a-review-button" onClick={() => {setShowModal(true);}}>Leave a review</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)} modalClass="revModal">
           <NewReviewForm reservationId={reservationId} getawayId={getawayId} />

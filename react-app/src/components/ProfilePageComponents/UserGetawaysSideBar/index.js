@@ -46,11 +46,11 @@ export const AllUserGetaways = () => {
 
             <form onSubmit={ (getaway) =>{handleDeleteReservation(getaway.currentTarget.dataset.id)}} data-id={getaway.id} id="deleteReservationFormChild">
                 
-                <NavLink to={`/getaways/${getaway.id}/edit`}><button className="viewGetawayButton">Edit Getaway</button></NavLink>
+                <NavLink to={`/getaways/${getaway.id}/edit`}><button className="viewGetawayButton edit-getaway-button">Edit Getaway</button></NavLink>
                 </form>
                 <form id="deleteGetawayForm" className="in-line-delete" onSubmit={(item) =>{
                   handleDeleteGetaway(item.currentTarget.dataset.id);}} data-id={getaway.id}>
-            <button className="DeleteButton"type="submit" id="deleteGetaway">Delete Getaway</button>
+            <button className="DeleteButton delete-getaway-button"type="submit" id="deleteGetaway">Delete Getaway</button>
           </form>
             </div>
         </div>)}

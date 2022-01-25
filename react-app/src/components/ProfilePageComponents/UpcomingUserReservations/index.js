@@ -37,8 +37,8 @@ let upcomingReservations = userReservations?.filter(reservation => new Date(rese
 
             <form onSubmit={ (reservation) =>{handleDeleteReservation(reservation.currentTarget.dataset.id)}} data-id={reservation.id} id="deleteReservationFormChild">
            
-                <NavLink to={`/getaways/${getaways[reservation.getawayId].id}/reservations/${reservation.id}/edit`}><button className="viewGetawayButton">Edit Reservation</button></NavLink>
-              <button className="DeleteButton"type="submit">Cancel Reservation</button>
+                <NavLink to={`/getaways/${getaways[reservation.getawayId].id}/reservations/${reservation.id}/edit`}><button className="viewGetawayButton edit-reservation-button">Edit Reservation</button></NavLink>
+              <button className="DeleteButton cancel-reservation-button"type="submit">Cancel Reservation</button>
             </form>
             </div>
         </div>) : <h1>No upcoming reservations</h1>}

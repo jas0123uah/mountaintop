@@ -180,7 +180,7 @@ const getValidEndDate = () => {
       />
       {/* <h4 className="checkin-out-Date">{`Check-in date: ${startDateString}`}</h4>
       <h4 className="checkin-out-Date">{`Check-out date: ${endDateString}`}</h4> */}
-      <button className="resButton" onClick={handleSubmitReservation}>Book Reservation</button>
+      <button className="resButton" id="book-reservation-button" onClick={handleSubmitReservation}>Book Reservation</button>
       <div className="totalFlex">
         <span className="totalText">Total</span>
         <span className="totalPrice">{`$${costOfStay}`}</span>

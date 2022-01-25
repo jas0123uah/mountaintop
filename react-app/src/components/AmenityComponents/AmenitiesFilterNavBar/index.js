@@ -10,15 +10,15 @@ export const AmenitiesFilterNavBar = () => {
     <div className="breaker"></div>
     <div className="spacingDiv1"></div>
     <div className="amenitiesNav">
-    <button className={`amenity-filter selected-amenity-filter-${hasHotTub}`} onClick={(e) => {setHasHotTub(!hasHotTub)}}> <i class="fas fa-hot-tub"></i> Hot tub</button>
+    <button id="hottub" className={`amenity-filter selected-amenity-filter-${hasHotTub}`} onClick={(e) => {setHasHotTub(!hasHotTub)}}> <i class="fas fa-hot-tub"></i> Hot tub</button>
     
-    <button className={`amenity-filter selected-amenity-filter-${hasWifi}`} onClick={(e) => {setHasWifi(!hasWifi)}}> <i class="fas fa-wifi"></i> WiFi</button>
+    <button id="wifi" className={`amenity-filter selected-amenity-filter-${hasWifi}`} onClick={(e) => {setHasWifi(!hasWifi)}}> <i class="fas fa-wifi"></i> WiFi</button>
     
-    <button className={`amenity-filter selected-amenity-filter-${hasPatio}`} onClick={(e) => {setHasPatio(!hasPatio)}}> <img className="amenityListing" src={BalconyLogo}></img> Patio</button>
+    <button id="patio" className={`amenity-filter selected-amenity-filter-${hasPatio}`} onClick={(e) => {setHasPatio(!hasPatio)}}> <img className="amenityListing" src={BalconyLogo}></img> Patio</button>
 
-    <button className={`amenity-filter selected-amenity-filter-${hasKitchen}`} onClick={(e) => {setHasKitchen(!hasKitchen)}}> <img className="amenityListing" src={ChefHatLogo}></img>Kitchen</button>
+    <button id="kitchen" className={`amenity-filter selected-amenity-filter-${hasKitchen}`} onClick={(e) => {setHasKitchen(!hasKitchen)}}> <img className="amenityListing" src={ChefHatLogo}></img>Kitchen</button>
 
-    <button className={`amenity-filter selected-amenity-filter-${hasFireplace}`} onClick={(e) => {setHasFireplace(!hasFireplace)}}> <img className="amenityListing" src={FireplaceLogo}></img>Fireplace</button>       
+    <button id="fireplace" className={`amenity-filter selected-amenity-filter-${hasFireplace}`} onClick={(e) => {setHasFireplace(!hasFireplace)}}> <img className="amenityListing" src={FireplaceLogo}></img>Fireplace</button>       
     </div>
     <div className="spacingDiv2"></div>
     <div className="spacingDiv3"></div>
