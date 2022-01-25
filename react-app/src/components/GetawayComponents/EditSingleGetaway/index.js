@@ -308,7 +308,7 @@ export const EditSingleGetaway = () => {
 
        <div className="getawayImgFields">
         <label htmlFor='imgUrl'>Image URL</label>
-        <input id='img2' value={img2} className="IMGS" type="url" name="imgUrl" id=""  onChange={(e)=>{setImg2(e.target.value)}} />
+        <input id='img2' value={img2} className="IMGS" type="url" name="imgUrl" onChange={(e)=>{setImg2(e.target.value)}} />
 
       </div>
 
