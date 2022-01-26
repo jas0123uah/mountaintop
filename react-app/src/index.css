@@ -499,6 +499,10 @@ div#getawayImgsSubmissions:empty{
     margin-bottom: 16px;
 
 }
+.is-red-false{
+    color: red;
+    font-weight: bold;
+}
 .amenities-fieldset{
     margin-bottom: 15px ;
 }

@@ -262,3 +262,24 @@ export const getMonthandYear = (date) => {
 
   return startDateString
 }
+export const checkURL = (url) => {
+    return(url.match(/\.(jpeg|jpg|png)/) != null);
+}
+
+export const checkURLisReachable =(url) =>{
+const request = new XMLHttpRequest();
+try {
+  request.open('GET', url, false);
+  request.send(); // there will be a 'pause' here until the response to come.
+  if (request.status === 200) {
+    return true;
+    
+  }else{
+    return false;
+  }
+  
+} catch (error) {
+  console.log("Line 277");
+  return false;
+}
+}

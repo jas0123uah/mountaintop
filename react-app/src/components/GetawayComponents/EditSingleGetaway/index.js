@@ -6,7 +6,7 @@ import {useHistory, useParams} from 'react-router-dom';
 import {editGetaway} from '../../../store/getaways'
 import {loadGetaways} from '../../../store/getaways'
 import {authenticate} from '../../../store/session'
-
+import {checkURL, checkURLisReachable} from '../../../utils/helperFunctions'
 export const EditSingleGetaway = () => {
 
   const user = useSelector(state => state.session.user);
@@ -61,17 +61,89 @@ export const EditSingleGetaway = () => {
   const [img3, setImg3] = useState(allImgUrls[2])
   const [img4, setImg4] = useState(allImgUrls[3])
   const [img5, setImg5] = useState(allImgUrls[4])
-  const [img6, setImg6] = useState(allImgUrls[5])
-  const [img7, setImg7] = useState(allImgUrls[6])
-  const [img8, setImg8] = useState(allImgUrls[7])
-  const [img9, setImg9] = useState(allImgUrls[8])
-  const [img10, setImg10] = useState(allImgUrls[9])
+  const [validImg1, setValidImg1] = useState(true)
+  const [validImg2, setValidImg2] = useState(true)
+  const [validImg3, setValidImg3] = useState(true)
+  const [validImg4, setValidImg4] = useState(true)
+  const [validImg5, setValidImg5] = useState(true)
+
+  const img1IsValid = (img) => {
+    if(!img.target.value.length){
+      setValidImg1(true)
+      return
+    }
+    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+      setValidImg1(true)
+      return 
+    }
+    setValidImg1(false)
+  }
+
+  const img2IsValid = (img) => {
+    if(!img.target.value.length){
+      setValidImg2(true)
+      return
+    }
+    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+      setValidImg2(true)
+      return 
+    }
+    setValidImg2(false)
+  }
+
+  const img3IsValid = (img) => {
+    if(!img.target.value.length){
+      setValidImg3(true)
+      return
+    }
+    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+      setValidImg3(true)
+      return 
+    }
+    setValidImg3(false)
+  }
+
+  
+
+  const img4IsValid = (img) => {
+    if(!img.target.value.length){
+      setValidImg4(true)
+      return
+    }
+    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+      setValidImg4(true)
+      return 
+    }
+    setValidImg4(false)
+  }
+
+  const img5IsValid = (img) => {
+    if(!img.target.value.length){
+      setValidImg5(true)
+      return
+    }
+    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+      setValidImg5(true)
+      return 
+    }
+    setValidImg5(false)
+  }
+
+  // useEffect(() => {
+  //   img1IsValid(img1)
+  //   img2IsValid(img2)
+  //   img3IsValid(img3)
+  //   img4IsValid(img4)
+  //   img5IsValid(img5)
+
+  // }, [img1, img2, img3, img4, img5])
+
 
 
   useEffect(()=> {
-    const getaway = {name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10}
+    const getaway = {name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5}
     const errors = [];
-    const allImages= [ img1 ? true : false, img2 ? true : false, img3 ? true : false, img4 ? true : false, img5 ? true : false, img6 ? true : false, img7 ? true : false, img8 ? true : false, img9 ? true : false, img10 ? true : false]
+    const allImages= [ img1 ? true : false, img2 ? true : false, img3 ? true : false, img4 ? true : false, img5 ? true : false]
     const numImages = allImages.reduce(function(n, val) {
     return n + (val === true);
 }, 0);
@@ -104,34 +176,12 @@ export const EditSingleGetaway = () => {
       errors.push(`Please upload 5 images.`)
     }
 
-    if(img1.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img1) == false){
-      errors.push(`Images must be URLs ${img1} is not a url.`)
+    if ((img1.length && !checkURL(img1)) || (img2.length && !checkURL(img2)) || (img3.length && !checkURL(img3)) || (img4.length && !checkURL(img4)) || (img5.length && !checkURL(img5)) || (img1.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img1) == false) || (img2.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false) ||(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img3) == false) || (img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img4) == false) || (img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img5) == false)) {
+      errors.push(`Fields in red are invalid image urls.`)
+      
     }
-    
-    if(img2.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false){
-      errors.push(`Images must be URLs ${img2} is not a url.`)
-    }
-    if(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false){
-      errors.push(`Images must be URLs ${img2} is not a url.`)
-    }
-    if(img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false){
-      errors.push(`Images must be URLs ${img2} is not a url.`)
-    }
-    if(img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false){
-      errors.push(`Images must be URLs ${img2} is not a url.`)
-    }
-    if(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img3) == false){
-      errors.push(`Images must be URLs ${img3} is not a url.`)
-    }
-    if(img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img4) == false){
-      errors.push(`Images must be URLs ${img4} is not a url.`)
-    }
-    if(img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img5) == false){
-      errors.push(`Images must be URLs ${img5} is not a url.`)
-    }
-    
     setErrors(errors);
-  }, [name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10])
+  }, [name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5])
 
   
   //let images = []
@@ -151,7 +201,7 @@ export const EditSingleGetaway = () => {
     e.preventDefault();
     if(!errors.length){
       await dispatch(
-        editGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, getawayId, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace })
+        editGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, getawayId, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace })
         ).catch(async (res) => {
           const data = await res.json();if (data && data.errors) setErrors(data.errors);
         });
@@ -299,36 +349,36 @@ export const EditSingleGetaway = () => {
   </fieldset> 
 
       <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input id='img1' type="url" className="IMGS" name="imgUrl" value={img1}   onChange={(e)=>{setImg1(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg1}`}>Image URL</label>
+        <input id='img1' type="url" className="IMGS" name="imgUrl" value={img1}  onBlur={img1IsValid} onChange={(e)=>{setImg1(e.target.value)}} />
 
       </div>
 
 
 
        <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input id='img2' value={img2} className="IMGS" type="url" name="imgUrl" onChange={(e)=>{setImg2(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg2}`}>Image URL</label>
+        <input id='img2' value={img2} className="IMGS" type="url" name="imgUrl" onBlur={img2IsValid} onChange={(e)=>{setImg2(e.target.value)}} />
 
       </div>
 
 
       <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" id='img3' value={img3}  className="IMGS" name="imgUrl"   onChange={(e)=>{setImg3(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg3}`}>Image URL</label>
+        <input type="url" id='img3' value={img3}  className="IMGS" name="imgUrl" onBlur={img3IsValid}   onChange={(e)=>{setImg3(e.target.value)}} />
 
       </div>
 
 
       <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" id='img4' value={img4}  className="IMGS" name="imgUrl"   onChange={(e)=>{setImg4(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg4}`}>Image URL</label>
+        <input type="url" id='img4' value={img4}  className="IMGS" name="imgUrl" onBlur={img4IsValid}   onChange={(e)=>{setImg4(e.target.value)}} />
 
       </div>
 
       <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input type="url" id='img5' className="IMGS" name="imgUrl" value={img5}    onChange={(e)=>{setImg5(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg5}`}>Image URL</label>
+        <input type="url" id='img5' className="IMGS" name="imgUrl" value={img5}    onBlur={img5IsValid} onChange={(e)=>{setImg5(e.target.value)}} />
 
       </div>
 

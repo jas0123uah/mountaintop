@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {createGetaway} from '../../../store/getaways'
 import {loadGetaways} from '../../../store/getaways'
 import {authenticate} from '../../../store/session'
+import {checkURL, checkURLisReachable} from '../../../utils/helperFunctions'
 export const NewGetaway = () => {
   const [errors, setErrors] = useState([]);
   const [address, setAddress] = useState('');
@@ -23,23 +24,88 @@ export const NewGetaway = () => {
   const [img3, setImg3] = useState('')
   const [img4, setImg4] = useState('')
   const [img5, setImg5] = useState('')
-  const [img6, setImg6] = useState('')
-  const [img7, setImg7] = useState('')
-  const [img8, setImg8] = useState('')
-  const [img9, setImg9] = useState('')
-  const [img10, setImg10] = useState('')
+  const [validImg1, setValidImg1] = useState(true)
+  const [validImg2, setValidImg2] = useState(true)
+  const [validImg3, setValidImg3] = useState(true)
+  const [validImg4, setValidImg4] = useState(true)
+  const [validImg5, setValidImg5] = useState(true)
   const [hasHotTub, setHasHotTub] = useState(false)
   const [hasWifi, setHasWifi] = useState(false)
   const [hasPatio, setHasPatio] = useState(false)
   const [hasFireplace, setHasFireplace] = useState(false)
   const [hasKitchen, setHasKitchen] = useState(false)
 
+  const img1IsValid = (img) => {
+    if(!img.length){
+      setValidImg1(true)
+      return
+    }
+    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+      setValidImg1(true)
+      return 
+    }
+    setValidImg1(false)
+  }
+  const img2IsValid = (img) => {
+    if(!img.length){
+      setValidImg2(true)
+      return
+    }
+    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+      setValidImg2(true)
+      return 
+    }
+    setValidImg2(false)
+  }
+  const img3IsValid = (img) => {
+    if(!img.length){
+      setValidImg3(true)
+      return
+    }
+    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+      setValidImg3(true)
+      return 
+    }
+    setValidImg3(false)
+  }
 
+  const img4IsValid = (img) => {
+    if(!img.length){
+      setValidImg4(true)
+      return
+    }
+    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+      setValidImg4(true)
+      return 
+    }
+    setValidImg4(false)
+  }
+
+  const img5IsValid = (img) => {
+    if(!img.length){
+      setValidImg5(true)
+      return
+    }
+    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+      setValidImg5(true)
+      return 
+    }
+    setValidImg5(false)
+  }
+
+  useEffect(() => {
+    img1IsValid(img1)
+    img2IsValid(img2)
+    img3IsValid(img3)
+    img4IsValid(img4)
+    img5IsValid(img5)
+
+  }, [img1, img2, img3, img4, img5])
 
   useEffect(()=> {
-    const getaway = {name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10}
+    const getaway = {name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5}
     const errors = [];
-    const allImages= [ img1 ? true : false, img2 ? true : false, img3 ? true : false, img4 ? true : false, img5 ? true : false, img6 ? true : false, img7 ? true : false, img8 ? true : false, img9 ? true : false, img10 ? true : false]
+    const allImages= [ img1 ? true : false, img2 ? true : false, img3 ? true : false, img4 ? true : false, img5 ? true : false]
     const numImages = allImages.reduce(function(n, val) {
     return n + (val === true);
 }, 0);
@@ -72,39 +138,13 @@ export const NewGetaway = () => {
       errors.push(`Please upload 5 images.`)
     }
 
-    if(img1.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img1) == false){
-      errors.push(`Images must be URLs ${img1} is not a url.`)
-    }
-    
-    if(img2.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false){
-      errors.push(`Images must be URLs ${img2} is not a url.`)
-    }
-    if(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img3) == false){
-      errors.push(`Images must be URLs ${img3} is not a url.`)
-    }
-    if(img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img4) == false){
-      errors.push(`Images must be URLs ${img4} is not a url.`)
-    }
-    if(img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img5) == false){
-      errors.push(`Images must be URLs ${img5} is not a url.`)
-    }
-    if(img6.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img6) == false){
-      errors.push(`Images must be URLs ${img6} is not a url.`)
-    }
-    if(img7.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img7) == false){
-      errors.push(`Images must be URLs ${img7} is not a url.`)
-    }
-    if(img8.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img8) == false){
-      errors.push(`Images must be URLs ${img8} is not a url.`)
-    }
-    if(img9.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img9) == false){
-      errors.push(`Images must be URLs ${img9} is not a url.`)
-    }
-    if(img10.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img10) == false){
-      errors.push(`Images must be URLs ${img10} is not a url.`)
+
+    if ((img1.length && !checkURL(img1)) || (img2.length && !checkURL(img2)) || (img3.length && !checkURL(img3)) || (img4.length && !checkURL(img4)) || (img5.length && !checkURL(img5)) || (img1.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img1) == false) || (img2.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false) ||(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img3) == false) || (img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img4) == false) || (img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img5) == false)) {
+      errors.push(`Fields in red are invalid image urls.`)
+      
     }
     setErrors(errors);
-  }, [name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10])
+  }, [name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5])
 
 
 
@@ -122,7 +162,7 @@ export const NewGetaway = () => {
     e.preventDefault();
     if(!errors.length){
       await dispatch(
-        createGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace })
+        createGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5,  hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace })
         ).catch(async (res) => {
           const data = await res.json();if (data && data.errors) setErrors(data.errors);
         });
@@ -274,36 +314,36 @@ export const NewGetaway = () => {
   </fieldset> 
 
       <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input id='img1' type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg1(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg1}`}>Image URL</label>
+        <input id='img1' type="url" className={`IMGS`} name="imgUrl"   onBlur={(e)=>{setImg1(e.target.value)}} />
 
       </div>
 
 
 
        <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input id='img2' className="IMGS" type="url" name="imgUrl"  onChange={(e)=>{setImg2(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg2}`}>Image URL</label>
+        <input id='img2' className="IMGS" type="url" name="imgUrl"  onBlur={(e)=>{setImg2(e.target.value)}} />
 
       </div>
 
 
       <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input id='img3' type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg3(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg3}`}>Image URL</label>
+        <input id='img3' type="url" className="IMGS" name="imgUrl"   onBlur={(e)=>{setImg3(e.target.value)}} />
 
       </div>
 
 
       <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input id='img4' type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg4(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg4}`}>Image URL</label>
+        <input id='img4' type="url" className="IMGS" name="imgUrl"   onBlur={(e)=>{setImg4(e.target.value)}} />
 
       </div>
 
       <div className="getawayImgFields">
-        <label htmlFor='imgUrl'>Image URL</label>
-        <input id='img5'type="url" className="IMGS" name="imgUrl"   onChange={(e)=>{setImg5(e.target.value)}} />
+        <label htmlFor='imgUrl' className={`is-red-${validImg5}`}>Image URL</label>
+        <input id='img5'type="url" className="IMGS" name="imgUrl"   onBlur={(e)=>{setImg5(e.target.value)}} />
 
       </div>
 
