@@ -72,7 +72,7 @@ useEffect(() => {
 <div class="div12"> {numStars.map(num => {return <RatingStar key={num} ratingSetter={setValueRating} desiredRating={num} currentRating={valueRating}/> })} </div>
 </div>
 <div>
-    <textarea name="" value={reviewText} onChange={(e) => setReviewText(e.target.value)} id="" cols="30" rows="10"></textarea>
+    <textarea name="" value={reviewText} onChange={(e) => setReviewText(e.target.value)} id="review-text-area" cols="30" rows="10"></textarea>
 </div>
       <div>
         <button type="submit" disabled={errors.length ? true : false}className="reviewSubmitButton">Submit Review</button>
