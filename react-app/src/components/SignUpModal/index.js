@@ -8,7 +8,7 @@ function SignUpFormModal() {
   return (
     <>
     
-      <i class="fas fa-user-plus fa-3x" onClick={() => {setShowModal(true);}}></i>
+      <i class="fas fa-user-plus fa-3x" id="sign-up-button" onClick={() => {setShowModal(true);}}></i>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <SignUpForm />

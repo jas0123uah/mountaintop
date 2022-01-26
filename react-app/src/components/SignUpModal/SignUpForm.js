@@ -4,7 +4,7 @@ import { signUp } from '../../store/session';
 import {loadGetaways} from '../../store/getaways'
 import {authenticate, checkForEmail} from '../../store/session'
 import {useHistory} from 'react-router-dom';
-
+import {checkURL, checkURLisReachable} from '../../utils/helperFunctions'
 function SignUpForm() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -14,13 +14,26 @@ function SignUpForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("")
   const [profilePicture, setProfilePicture] = useState('')
+  const [validImg1, setValidImg1]= useState(true)
   const [errors, setErrors] = useState([]);
   const validateEmail = (email) => {
     let loweremail = email.toLowerCase()
     const emailRegex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
     return emailRegex.test(loweremail);
 };
-
+const img1IsValid = (img) => {
+  console.log(img, "25");
+  console.log((img.target.value), '26');
+    if(!img.target.value.length){
+      setValidImg1(true)
+      return
+    }
+    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+      setValidImg1(true)
+      return 
+    }
+    setValidImg1(false)
+  }
   useEffect(()=> {
     const user = {email, password, confirmPassword, firstName, lastName, profilePicture}
     const errors = [];
@@ -49,10 +62,17 @@ function SignUpForm() {
     if (!lastName.length) errors.push('Please enter your last name.');
 
     if (!profilePicture) errors.push('Please enter a url for a profile picture.');
+
+    if ((profilePicture.length && (!checkURL(profilePicture) || !validImg1))){
+      console.log(validImg1, "67");
+      errors.push(`Profile picture is not a valid image url.`)
+
+
+    }
     
     
     setErrors(errors);
-  }, [email, password, confirmPassword, firstName, lastName, profilePicture])
+  }, [email, password, confirmPassword, firstName, lastName, profilePicture, validImg1])
 
 
   const onSignUp = async (e) => {
@@ -142,13 +162,14 @@ function SignUpForm() {
       </label>
       <br></br>
 
-      <label className="modal-label-signup-login">
+      <label  className={`is-red-${validImg1} modal-label-signup-login"`}>
         Profile Picture URL
         <input
         id="profilePictureField"
           type="text"
           className="modal-input-signup-login"
           value={profilePicture}
+          onBlur={img1IsValid}
           onChange={(e) => setProfilePicture(e.target.value)}
           required
         />
