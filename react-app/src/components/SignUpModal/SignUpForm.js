@@ -22,8 +22,6 @@ function SignUpForm() {
     return emailRegex.test(loweremail);
 };
 const img1IsValid = (img) => {
-  console.log(img, "25");
-  console.log((img.target.value), '26');
     if(!img.target.value.length){
       setValidImg1(true)
       return
@@ -63,8 +61,7 @@ const img1IsValid = (img) => {
 
     if (!profilePicture) errors.push('Please enter a url for a profile picture.');
 
-    if ((profilePicture.length && (!checkURL(profilePicture) || !validImg1))){
-      console.log(validImg1, "67");
+    if ((profilePicture.length && (!checkURL(profilePicture) || !validImg1 || /^(ftp|http|https):\/\/[^ "]+$/.test(profilePicture) == false))){
       errors.push(`Profile picture is not a valid image url.`)
 
 
