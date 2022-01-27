@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {createGetaway} from '../../../store/getaways'
 import {loadGetaways} from '../../../store/getaways'
 import {authenticate} from '../../../store/session'
-import {checkURL, checkURLisReachable} from '../../../utils/helperFunctions'
+import {checkURL} from '../../../utils/helperFunctions'
 export const NewGetaway = () => {
   const [errors, setErrors] = useState([]);
   const [address, setAddress] = useState('');
@@ -40,7 +40,7 @@ export const NewGetaway = () => {
       setValidImg1(true)
       return
     }
-    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+    if (img.length && checkURL(img)) {
       setValidImg1(true)
       return 
     }
@@ -51,7 +51,7 @@ export const NewGetaway = () => {
       setValidImg2(true)
       return
     }
-    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+    if (img.length && checkURL(img)) {
       setValidImg2(true)
       return 
     }
@@ -62,7 +62,7 @@ export const NewGetaway = () => {
       setValidImg3(true)
       return
     }
-    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+    if (img.length && checkURL(img)) {
       setValidImg3(true)
       return 
     }
@@ -74,7 +74,7 @@ export const NewGetaway = () => {
       setValidImg4(true)
       return
     }
-    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+    if (img.length && checkURL(img)) {
       setValidImg4(true)
       return 
     }
@@ -86,7 +86,7 @@ export const NewGetaway = () => {
       setValidImg5(true)
       return
     }
-    if (img.length && checkURL(img) && checkURLisReachable(img)) {
+    if (img.length && checkURL(img)) {
       setValidImg5(true)
       return 
     }
