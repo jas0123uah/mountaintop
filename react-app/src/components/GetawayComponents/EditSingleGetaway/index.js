@@ -72,7 +72,7 @@ export const EditSingleGetaway = () => {
       setValidImg1(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value) && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true) {
       setValidImg1(true)
       return 
     }
@@ -84,7 +84,7 @@ export const EditSingleGetaway = () => {
       setValidImg2(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value)  && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true  ) {
       setValidImg2(true)
       return 
     }
@@ -96,7 +96,7 @@ export const EditSingleGetaway = () => {
       setValidImg3(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value) && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true ) {
       setValidImg3(true)
       return 
     }
@@ -110,7 +110,7 @@ export const EditSingleGetaway = () => {
       setValidImg4(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value)  && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true ) {
       setValidImg4(true)
       return 
     }
@@ -122,7 +122,7 @@ export const EditSingleGetaway = () => {
       setValidImg5(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value) && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true) {
       setValidImg5(true)
       return 
     }
