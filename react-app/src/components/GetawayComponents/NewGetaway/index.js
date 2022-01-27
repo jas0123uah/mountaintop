@@ -40,7 +40,7 @@ export const NewGetaway = () => {
       setValidImg1(true)
       return
     }
-    if (img.length && checkURL(img)) {
+    if (img.length && checkURL(img) && /^(ftp|http|https):\/\/[^ "]+$/.test(img) == true ) {
       setValidImg1(true)
       return 
     }
@@ -51,7 +51,7 @@ export const NewGetaway = () => {
       setValidImg2(true)
       return
     }
-    if (img.length && checkURL(img)) {
+    if (img.length && checkURL(img) && /^(ftp|http|https):\/\/[^ "]+$/.test(img) == true ) {
       setValidImg2(true)
       return 
     }
@@ -62,7 +62,7 @@ export const NewGetaway = () => {
       setValidImg3(true)
       return
     }
-    if (img.length && checkURL(img)) {
+    if (img.length && checkURL(img) && /^(ftp|http|https):\/\/[^ "]+$/.test(img) == true) {
       setValidImg3(true)
       return 
     }
@@ -74,7 +74,7 @@ export const NewGetaway = () => {
       setValidImg4(true)
       return
     }
-    if (img.length && checkURL(img)) {
+    if (img.length && checkURL(img) && /^(ftp|http|https):\/\/[^ "]+$/.test(img) == true) {
       setValidImg4(true)
       return 
     }
@@ -86,7 +86,7 @@ export const NewGetaway = () => {
       setValidImg5(true)
       return
     }
-    if (img.length && checkURL(img)) {
+    if (img.length && checkURL(img) && /^(ftp|http|https):\/\/[^ "]+$/.test(img) == true) {
       setValidImg5(true)
       return 
     }
