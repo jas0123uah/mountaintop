@@ -72,7 +72,7 @@ export const EditSingleGetaway = () => {
       setValidImg1(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value)) {
       setValidImg1(true)
       return 
     }
@@ -84,7 +84,7 @@ export const EditSingleGetaway = () => {
       setValidImg2(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value)) {
       setValidImg2(true)
       return 
     }
@@ -96,7 +96,7 @@ export const EditSingleGetaway = () => {
       setValidImg3(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value)) {
       setValidImg3(true)
       return 
     }
@@ -110,7 +110,7 @@ export const EditSingleGetaway = () => {
       setValidImg4(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value)) {
       setValidImg4(true)
       return 
     }
@@ -122,7 +122,7 @@ export const EditSingleGetaway = () => {
       setValidImg5(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value)) {
       setValidImg5(true)
       return 
     }

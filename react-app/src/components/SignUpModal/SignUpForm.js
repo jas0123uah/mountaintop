@@ -4,7 +4,7 @@ import { signUp } from '../../store/session';
 import {loadGetaways} from '../../store/getaways'
 import {authenticate, checkForEmail} from '../../store/session'
 import {useHistory} from 'react-router-dom';
-import {checkURL, checkURLisReachable} from '../../utils/helperFunctions'
+import {checkURL} from '../../utils/helperFunctions'
 function SignUpForm() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const img1IsValid = (img) => {
       setValidImg1(true)
       return
     }
-    if (img.target.value.length && checkURL(img.target.value) && checkURLisReachable(img.target.value)) {
+    if (img.target.value.length && checkURL(img.target.value)) {
       setValidImg1(true)
       return 
     }
