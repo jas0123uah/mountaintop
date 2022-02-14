@@ -10,6 +10,7 @@ import UsersList from './components/UsersList';
 import Footer from './components/Footer'
 import {EditSingleGetaway} from './components/GetawayComponents/EditSingleGetaway'
 import {NewGetaway} from './components/GetawayComponents/NewGetaway';
+import { MobileFooter } from './components/MobileFooter';
 import { authenticate } from './store/session';
 import {loadGetaways} from './store/getaways';
 import { SearchGetaways } from './components/SearchComponents/SearchGetaways';
@@ -24,7 +25,23 @@ import {ViewSingleGetaway} from './components/ViewSingleGetaway'
 import BrowseGetawaysPage from './components/BrowseGetawaysComponents/BrowseGetawaysPage'
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [isMobile, setisMobile] = useState(window.matchMedia('screen and (min-device-width : 320px) and (max-width : 768px) and (min-device-height : 480px) and (max-device-height : 1076px)'));
   const dispatch = useDispatch();
+  // const mq = window.matchMedia('screen and (min-device-width : 320px) and (max-width : 768px) and (min-device-height : 480px) and (max-device-height : 1076px)')
+
+  console.log(isMobile, "MOBILE");
+
+  isMobile.addEventListener('change', (e) => {
+    setisMobile((window.matchMedia('screen and (min-device-width : 320px) and (max-width : 768px) and (min-device-height : 480px) and (max-device-height : 1076px)')))
+  
+    //const mobileView = e.matches;
+  // if (mobileView) {
+  //   setNavInnerHTML(Component1);
+  // } else {
+  //   setNavInnerHTML(Component2);
+  // }
+});
+
 
   useEffect(() => {
     (async() => {
@@ -83,7 +100,8 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
-      <Footer></Footer>
+      {isMobile.matches ? <MobileFooter/> : <Footer/>}
+      {/* <Footer></Footer> */}
     </BrowserRouter>
   );
 }
