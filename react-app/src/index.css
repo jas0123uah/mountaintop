@@ -862,9 +862,20 @@ margin-bottom: 15px;
         .listingSnapshot{
             overflow-wrap: break-word;
         } */
-        /* .containerForPhotosContainer{
-            display: none;
-        } */
+        .containerForPhotosContainer{
+            overflow-y: hidden;
+        }
+        .reviewTexts::-webkit-scrollbar-thumb{
+            border-radius:10px;
+            /* height: 1px; */
+            width: 1px;
+            background: #999;
+        }
+        .reviewTexts::-webkit-scrollbar{
+            height:8px;
+            /* height: 1px; */
+
+        }
 
         .listingContainer{
             margin-top: 30px;
@@ -900,6 +911,36 @@ margin-bottom: 15px;
         .info {
             width: auto;
         }
+        .listingSnapshot{
+            overflow-wrap: break-word;
+            width: 100vw;
+            line-height: 1.6;
+            margin-top: 0;
+        }
+        ._2c50p{
+            display: none;
+        }
+        .getaway-info-reservationForm-flex{
+            padding: 0;
+            margin: 0;
+        }
+        .bookingContainer{
+            align-items: flex-start;
+        }
+        .reviewTexts{
+            flex-wrap: nowrap;
+            overflow-y: scroll;
+        }
+        .single-review{
+            margin-right: 70px;
+        }
+        .rating-container{
+            display: block;
+        }
+        .revContainer{
+            padding-left: 20px;
+        }
+
 
 
 
