@@ -853,15 +853,26 @@ margin-bottom: 15px;
 
 
 @media only screen 
-    and (device-width : 414px) 
-    and (device-height : 896px) 
-    and (-webkit-device-pixel-ratio : 2){
+    and (min-device-width : 320px)
+    and (max-width : 768px)
+    and (min-device-height : 480px)
+    and (max-device-height : 1076px)
+    {
         /* .listingContainer{
             width: 95%;
         }
         .listingSnapshot{
             overflow-wrap: break-word;
         } */
+        .mobileFooter{ 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #748048;
+        }
+        .createdBy{
+            font-weight: bold;
+        }
         .containerForPhotosContainer{
             overflow-y: hidden;
         }
