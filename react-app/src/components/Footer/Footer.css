@@ -27,8 +27,11 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* height: 100%; */
-    height: 100vh;
+    height: 100%;  
+    /* height: 100%;
+
+    /* display: grid;
+    grid-template-rows: 1fr auto; */
 }
 .github-icon,.linkedin-icon,.mail-icon{
     padding-left:8px;
