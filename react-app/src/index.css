@@ -72,6 +72,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     left: 83vh;
     /* bottom: 100vh; */
     top: 40vh;
+    display: none;
 
 }
 .browse-button{
@@ -531,7 +532,7 @@ div#getawayImgsSubmissions:empty{
     min-height: 700px;
 }
 .UpcomingReservations.maybe{
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
     max-width: 75vw;
 }
 .upcomingGetawayImage,.singleResultImage{
@@ -927,7 +928,7 @@ margin-bottom: 15px;
         }
         .listingSnapshot{
             overflow-wrap: break-word;
-            width: 100vw;
+            width: 85vw;
             line-height: 1.6;
             margin-top: 0;
         }
