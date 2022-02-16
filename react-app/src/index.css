@@ -894,6 +894,9 @@ margin-bottom: 15px;
     and (min-device-height : 480px)
     and (max-device-height : 1076px)
     {
+        div.searchResultsContainer#searchResultsContainer{
+            margin-top: 0 ; 
+        }
         /* .listingContainer{
             width: 95%;
         }
@@ -902,6 +905,7 @@ margin-bottom: 15px;
         } */
         .containerForSidebarAndMainContent{
             margin-top: 0;
+            flex-direction: column;
         }
         .active {
   background-color: #748048;
@@ -916,6 +920,13 @@ margin-bottom: 15px;
             align-items: center;
             background-color: #748048;
         }
+        .singleResult{
+            flex-direction: column;
+        }
+        div.singleResultInfo{
+            display: flex;
+        }
+
         .createdBy{
             font-weight: bold;
         }
@@ -949,6 +960,33 @@ margin-bottom: 15px;
         }
         .getawayDescription{
             margin-right: 25px;
+        }
+        .singleResultInfo{
+            margin-top: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-around;
+        }
+        button#hottub{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        div.singleResult{
+            align-items: flex-start;
+        }
+        div._2ILZE._3q7r8{
+            height:360px;
+            width: auto;
+            margin-left: 7%;
+            margin-right: 7%;
+        }
+        .amenitiesNav{
+            
+            display: flex;
+        }
+        .amenity-filter{
+            height: auto;
         }
 
 
@@ -1006,6 +1044,37 @@ margin-bottom: 15px;
         }
         .revContainer{
             padding-left: 20px;
+        }
+        div.profileSidebar#profileSidebar{
+            max-width: 100vw;
+        }
+        div img.profilePicture{
+            width: 40%;
+            max-width: fit-content;
+        }
+        /* .userInfo a {
+            padding-left: 3%;
+        } */
+        .userInfo{
+            display: flex;
+            flex-direction: column;
+        }
+        .upcomingResContainer h1.profileHeader, .profileMainContent h1{
+            text-align: center;
+        }
+        div.search-container{
+            left: 2em;
+        }
+        /* div.topnav{
+            display: flex;
+            align-items:flex-end;
+        } */
+        /* div.searchResultsContainer{
+            height: 100vh;
+        } */
+
+        .singleGetawayHost:last-of-type, .previousReservation:last-of-type{
+            margin-bottom: 20px;
         }
 
 
