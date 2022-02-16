@@ -1,25 +1,22 @@
 //import '../../../node_modules/mdbootstrap/css/bootstrap.css'
 // import ProfileButton from '../ProfileHamburger'
 import {searchGetaways} from '../../store/search'
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import React, {useState} from 'react';
+import LogoutButton from '../auth/LogoutButton';
+import LoginFormModal from '../LoginFormModal';
+import SignUpFormModal from '../SignUpModal'
+import * as sessionActions from "../../store/session";
+
 import './j.css'
 
-
-// function myFunction() {
-//   var x = document.getElementById("myLinks");
-//   if (x.style.display === "block") {
-//     x.style.display = "none";
-//   } else {
-//     x.style.display = "block";
-//   }
-// }
 
 
 export const MobileNavBar = () => {
     const dispatch = useDispatch();
-  const history = useHistory();
+    const history = useHistory();
+    const user = useSelector(state => state.session.user);
     const [disp, setDisp] = useState("none");
     const [searchTerm, setSearchTerm] = useState("");
     const onSearch = async (e) => {
@@ -28,6 +25,15 @@ export const MobileNavBar = () => {
     history.push(`/search/${searchTerm}`);
 
   }
+  const demoLogin = async () =>{
+    await dispatch(
+      sessionActions.login("demo@aa.io" , "password")
+    );
+    
+    history.push("/profile");
+
+  
+  };
 
   const handleEnter = async (e) => {
     if (e.charCode == 13) {
@@ -57,13 +63,12 @@ export const MobileNavBar = () => {
     <NavLink id="logo" to='/' exact={true} activeClassName='active'>
             Home
     </NavLink>
-    <NavLink id="logo" to='/profile' exact={true} activeClassName='active'>
+    {/* <NavLink id="logo" to='/profile' exact={true} activeClassName='active'>
             Profile
-    </NavLink>
-
-    {/* <a href="#news">Home</a> */}
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
+    </NavLink> */}
+    {user ?  <NavLink to="/profile" className="submitButton" id="home-button">Profile</NavLink> : <SignUpFormModal/>}   
+    {user ?  <LogoutButton/> :  <LoginFormModal/> }
+    {user ? null :<span id="demo-button-mobile" onClick={demoLogin}> Demo user</span>}  
   </div>
   <a href="javascript:void(0);" class="icon" style={{ fontSize:29}} onClick={adjustHamburger}>
     <i class="fa fa-bars"></i>
