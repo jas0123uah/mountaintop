@@ -10,12 +10,16 @@
 }
 
 /* Style navigation menu links */
-.topnav a {
+.topnav a, #mobileLogout, #mobileSignup, #mobileSignin, #demo-button-mobile {
   color: white;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
   display: block;
+}
+#mobileLogout, #mobileSignup, #mobileSignin, #demo-button-mobile{
+    font-weight: normal;
+    margin-right: 0;
 }
 
 /* Style the hamburger menu */
