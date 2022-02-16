@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -10,6 +11,7 @@ import UsersList from './components/UsersList';
 import Footer from './components/Footer'
 import {EditSingleGetaway} from './components/GetawayComponents/EditSingleGetaway'
 import {NewGetaway} from './components/GetawayComponents/NewGetaway';
+import {MobileNavBar} from './components/MobileNavBar'
 import { MobileFooter } from './components/MobileFooter';
 import { authenticate } from './store/session';
 import {loadGetaways} from './store/getaways';
@@ -57,7 +59,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+    {isMobile.matches ? <MobileNavBar/> : <NavBar/>}
+      {/* <NavBar /> */}
       <Switch>
         <Route path='/' exact={true}>
           <HomePage />
