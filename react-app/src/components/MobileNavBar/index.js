@@ -2,6 +2,7 @@
 // import ProfileButton from '../ProfileHamburger'
 import {searchGetaways} from '../../store/search'
 import { useDispatch, useSelector} from "react-redux";
+
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import React, {useState} from 'react';
 import LogoutButton from '../auth/LogoutButton';
@@ -60,17 +61,18 @@ export const MobileNavBar = () => {
           </div> */}
   
   <div id="myLinks" style={{ display:disp}} >
-    <NavLink id="logo" to='/' exact={true} activeClassName='active'>
+    <NavLink  to='/' exact={true} activeClassName='active'>
             Home
     </NavLink>
     {/* <NavLink id="logo" to='/profile' exact={true} activeClassName='active'>
             Profile
     </NavLink> */}
-    {user ?  <NavLink to="/profile" className="submitButton" id="home-button">Profile</NavLink> : <SignUpFormModal/>}   
+    {user ?  <NavLink to="/profile/getaways/" className="submitButton" id="home-button">My Getaways</NavLink> : null} 
+    {user ?  <NavLink to="/profile/reservations/" className="submitButton" id="home-button">My Reservations</NavLink> : <SignUpFormModal/>}   
     {user ?  <LogoutButton/> :  <LoginFormModal/> }
     {user ? null :<span id="demo-button-mobile" onClick={demoLogin}> Demo user</span>}  
   </div>
-  <a href="javascript:void(0);" class="icon" style={{ fontSize:29}} onClick={adjustHamburger}>
+  <a href="javascript:void(0);" class="icon" id="burger" style={{ fontSize:29}} onClick={adjustHamburger}>
     <i class="fa fa-bars"></i>
   </a>
 </div>
