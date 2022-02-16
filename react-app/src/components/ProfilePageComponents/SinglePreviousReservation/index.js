@@ -4,7 +4,7 @@ import NewReviewFormModal from "../../ReviewComponents/MappedReviews/NewReviewMo
 import EditReviewFormModal from "../../ReviewComponents/EditReviewModal"
 import {DeleteReviewButton} from '../../ReviewComponents/DeleteReviewButton'
 export const SinglePreviousReservation = ({reservation, getaways}) =>{
-    return (<div key={reservation?.id}>
+    return (<div  key={reservation?.id}>
             <h2 className="reservationsGetawayHeader">{getaways[reservation?.getawayId]?.name}</h2>
             <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}>
 

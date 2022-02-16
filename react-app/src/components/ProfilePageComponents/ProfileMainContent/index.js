@@ -5,11 +5,16 @@ export const ProfileMainContent = () => {
   return (
       <div className="profileMainContentContainer">
     <div className="profileMainContent">
+      <div className="upcomingResContainer">
+
       <h1 className="profileHeader"> Upcoming Reservations</h1>
       <div className="UpcomingReservations maybe">
           <div className="maybe2">
         <UpcomingUserReservations></UpcomingUserReservations>
           </div>
+
+
+      </div>
     </div>
     <h1>Previous Reservations</h1>
     <div className="UpcomingReservations maybe" >
