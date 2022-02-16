@@ -32,17 +32,11 @@ function App() {
   // const mq = window.matchMedia('screen and (min-device-width : 320px) and (max-width : 768px) and (min-device-height : 480px) and (max-device-height : 1076px)')
 
   console.log(isMobile, "MOBILE");
-
+  
   isMobile.addEventListener('change', (e) => {
     setisMobile((window.matchMedia('screen and (min-device-width : 320px) and (max-width : 768px) and (min-device-height : 480px) and (max-device-height : 1076px)')))
-  
-    //const mobileView = e.matches;
-  // if (mobileView) {
-  //   setNavInnerHTML(Component1);
-  // } else {
-  //   setNavInnerHTML(Component2);
-  // }
 });
+
 
 
   useEffect(() => {
@@ -77,6 +71,13 @@ function App() {
         <ProtectedRoute path='/profile/' exact={true} >
           <PF/>
         </ProtectedRoute>
+        <ProtectedRoute path='/profile/getaways/' exact={true} >
+          <PF/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/profile/reservations/' exact={true} >
+          <PF/>
+        </ProtectedRoute>
+        
         <Route path='/getaways/new' exact>
           <NewGetaway/>
         </Route>

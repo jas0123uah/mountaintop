@@ -36,5 +36,12 @@
   background-color: #ddd;
   color: black;
 }
+.topnav a#burger:hover {
+  background-color: black;
+  color: #ddd;
+}
+.topnav a#logo:hover {
+  background-color: #748048;
 
+}
 /* Style the active link (or home/logo) */

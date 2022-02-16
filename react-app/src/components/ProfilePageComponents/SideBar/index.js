@@ -6,7 +6,7 @@ import {AllUserGetaways} from '../UserGetawaysSideBar'
 export const SideBar = () => {  
   const user = useSelector(state => state.session.user);
   return (
-    <div className='profileSidebar'>
+    <div className='profileSidebar' id="profileSidebar" style={{'vw':100}}>
       <div className="userInfo">
 
       <h1>{`Hello ${user.firstName}!`}</h1>
