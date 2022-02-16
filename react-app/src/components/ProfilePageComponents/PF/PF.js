@@ -28,7 +28,7 @@ export const PF = () => {
     
       
   }
-  else if(isMobile && location.pathname.includes("/profile/getaways")==false){
+  else if(isMobile && location.pathname.includes("/profile/reservations")){
       content=<ProfileMainContent/>
 
   }
