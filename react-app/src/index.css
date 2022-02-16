@@ -368,12 +368,21 @@ display: flex;
     display: flex;
 
 }
+img#host-getaway-images.upcomingGetawayImage{
+width: 100%;
+height: auto;
+padding-right: 16px;
+}
+.singleGetawayHost div#deleteReservationForm{
+    padding-right:16px;
+}
 .UpcomingReservations *{
     margin: 0 5px;
 }
 .upcomingGetawayImage,.previousGetawayImage{
-    height:540px;
-    width: 720px;
+    /* height:540px; */
+    /* width: 720px; */
+    width: 60%;
 }
 .editReservationContainer, .viewGetawayContainer{
     margin-top:90px;
@@ -469,11 +478,24 @@ margin-top: 65px;
 }
 .maybe2 {
     display: flex;
-    min-height: min-content; /* needs vendor prefixes */
+    /* min-height: min-content;  */
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 5%;
+    /* height: 100%; */
+    height: 80vh;
+    justify-content: space-between;
+
     
     
-    overflow-x: auto;
+    /* overflow-x: auto; */
+    overflow-x: hidden;
 }
+/* .maybe2 { 
+    height: 540px;
+} */
 
 
 .maybe2::-webkit-scrollbar {
@@ -534,6 +556,9 @@ div#getawayImgsSubmissions:empty{
 .UpcomingReservations.maybe{
     /* overflow-x: scroll; */
     max-width: 75vw;
+    overflow-y: scroll;
+    flex-direction: column;
+    /* max-height: 75vh; */
 }
 .upcomingGetawayImage,.singleResultImage{
     border-radius:25px;
@@ -564,7 +589,7 @@ div#getawayImgsSubmissions:empty{
 
 }
 .singleGetawayHost{
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 /* .signup-inputs{
     position: relative;
@@ -581,6 +606,9 @@ div#getawayImgsSubmissions:empty{
     top: 0;
     left: 0;
 
+}
+#deleteReservationFormChild{
+    display: flex;
 }
 .containerForPreviouslyUploadedImage{
     position: relative;
@@ -809,7 +837,7 @@ grid-row-gap: 0px;
 }
 
 .profileMainContentContainer{
-    height: 100%;
+    /* height: 100%; */
    
 }
 .spacingDiv1{
@@ -872,6 +900,16 @@ margin-bottom: 15px;
         .listingSnapshot{
             overflow-wrap: break-word;
         } */
+        .containerForSidebarAndMainContent{
+            margin-top: 0;
+        }
+        .active {
+  background-color: #748048;
+  color: white;
+}
+.UpcomingReservations.maybe{
+    max-width: max-content;
+}
         .mobileFooter{ 
             display: flex;
             flex-direction: column;
@@ -895,6 +933,9 @@ margin-bottom: 15px;
             /* height: 1px; */
 
         }
+        .viewGetawayContainer{
+            margin-top: 0;
+        }
 
 
         .listingContainer{
@@ -902,6 +943,12 @@ margin-bottom: 15px;
             margin-left: -80px;
             display: flex;
             flex-direction: column;
+        }
+        .bookingContainer{
+            align-self: end;
+        }
+        .getawayDescription{
+            margin-right: 25px;
         }
 
 
@@ -966,3 +1013,7 @@ margin-bottom: 15px;
 
 
      }
+.singleRes{
+    height: 100%;
+    scroll-snap-align:start;
+}
