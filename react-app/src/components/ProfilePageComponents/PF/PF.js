@@ -23,16 +23,16 @@ export const PF = () => {
   let pfMainContent = null
   let content;
 
-  if (isMobile && location.pathname.includes("/profile/getaways")) {
+  if (isMobile.matches && location.pathname.includes("/profile/getaways")) {
       content = <SideBar/>
     
       
   }
-  else if(isMobile && location.pathname.includes("/profile/reservations")){
+  else if(isMobile.matches && location.pathname.includes("/profile/reservations")){
       content=<ProfileMainContent/>
 
   }
-  else if (isMobile){
+  else if (isMobile.matches){
       content = <SideBar/>
   }
   else{
