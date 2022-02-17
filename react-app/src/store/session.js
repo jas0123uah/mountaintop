@@ -13,6 +13,9 @@ const removeUser = () => ({
 
 export const createReservation = (reservationObj) => async (dispatch) => {
   const {userId, startDate,endDate, getawayId} = reservationObj
+  if (!userId || !startDate || !endDate || !getawayId) {
+    return
+  }
   const response = await fetch(`/api/getaways/${getawayId}/reservations/`, {
     method: 'POST',
     headers: {
@@ -22,12 +25,16 @@ export const createReservation = (reservationObj) => async (dispatch) => {
   });
   if (response.ok) {
     const user = await response.json();
-    if (user.errors) {
-      return user;
-    }
   
     dispatch(setUser(user));
     return user;
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
@@ -44,12 +51,16 @@ export const editReservation = (reservationObj) => async (dispatch) => {
     body: JSON.stringify({userId,startDate, endDate, getawayId})
   });
   if (response.ok) {
+    const user = await response.json(); 
+    dispatch(setUser(user));
+    return user;
+  }else if (response.status < 500) {
     const user = await response.json();
     if (user.errors) {
       return user;
-    }  
-    dispatch(setUser(user));
-    return user;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
@@ -63,11 +74,16 @@ export const deleteReservation = (reservationId) => async (dispatch) => {
   });
   if (response.ok) {
     const user = await response.json();
-    if (user.errors) {
-      return user;
-    }  
     dispatch(setUser(user));
     return user
+  }
+  else if (response.status < 500) {
+    const user = await response.json();
+    if (user.errors) {
+      return user;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
@@ -84,12 +100,18 @@ export const authenticate = () => async (dispatch) => {
   });
   if (response.ok) {
     const user = await response.json();
-    if (user.errors) {
-      return user;
-    }
-  
     dispatch(setUser(user));
     return user
+  }
+  else if (response.status < 500){
+    const data = response.json
+    if (data.errors) {
+      return data
+      
+    }
+  }
+  else {
+    return ['An error occurred.'];
   }
 }
 
@@ -130,6 +152,13 @@ export const logout = () => async (dispatch) => {
 
   if (response.ok) {
     dispatch(removeUser());
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 };
 
@@ -167,7 +196,6 @@ export const signUp = (signupInfo) => async (dispatch) => {
   }
 }
 
-let newState ={}
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:

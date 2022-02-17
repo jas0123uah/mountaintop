@@ -54,12 +54,17 @@ export const createReview = (newReviewObj) => async (dispatch) => {
   });
   if (response.ok) {
     const createdReview = await response.json();
-    if (createdReview.errors) {
-      return createdReview;
-    }
   
     dispatch(newReview(createdReview));
     return createdReview
+  }
+  else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
@@ -76,12 +81,16 @@ export const editReview = (editedReviewObj) => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
-    if (data.errors) {
-      return data;
-    }
   
     dispatch(editedReview(data));
     return data
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
@@ -96,18 +105,22 @@ export const deleteReview = (reviewId) => async (dispatch) => {
   });
   if (response.ok) {
     const deletedGetawayObj = await response.json();
-    if (deletedGetawayObj.errors) {
-      return deletedGetawayObj;
-    }
   
     dispatch(deletedGetaway(deletedGetawayObj));
     return deletedGetawayObj
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
 
 export const createGetaway = (newGetawayObj) => async (dispatch) => {
-    let {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace   } = newGetawayObj;
+    let {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5,  hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace   } = newGetawayObj;
 
 
   const response = await fetch(`/api/getaways/`, {
@@ -135,11 +148,6 @@ export const createGetaway = (newGetawayObj) => async (dispatch) => {
       img3, 
       img4, 
       img5, 
-      img6, 
-      img7, 
-      img8, 
-      img9, 
-      img10, 
       hasHotTub, 
       hasWifi, 
       hasPatio, 
@@ -149,13 +157,17 @@ export const createGetaway = (newGetawayObj) => async (dispatch) => {
   });
   if (response.ok) {
     const createdGetaway = await response.json();
-    if (createdGetaway.errors) {
-      return;
-    }
   
   
   
     dispatch(newGetaway(createdGetaway));
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
@@ -169,16 +181,20 @@ export const loadGetaways = () => async (dispatch) => {
   });
   if (response.ok) {
     const allGetaways = await response.json();
-    if (allGetaways.errors) {
-      return;
-    }
   
     dispatch(loadedGetaways(allGetaways));
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
 export const editGetaway = (editedGetawayObj) => async (dispatch) => {
-    const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId , img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace  } = editedGetawayObj;
+    const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId , img1, img2, img3, img4, img5, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace  } = editedGetawayObj;
 
   const response = await fetch(`/api/getaways/${getawayId}/`, {
     method: 'PUT',
@@ -205,11 +221,6 @@ export const editGetaway = (editedGetawayObj) => async (dispatch) => {
       img3, 
       img4, 
       img5, 
-      img6, 
-      img7, 
-      img8, 
-      img9, 
-      img10,
       hasHotTub, 
       hasWifi, 
       hasPatio, 
@@ -219,11 +230,16 @@ export const editGetaway = (editedGetawayObj) => async (dispatch) => {
   });
   if (response.ok) {
     const editedGetawayRes = await response.json();
-    if (editedGetawayRes.errors) {
-      return;
-    }
+
   
     dispatch(editedGetaway(editedGetawayRes));
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
@@ -236,11 +252,16 @@ export const deleteGetaway = (getawayId) => async (dispatch) => {
   });
   if (response.ok) {
     const deletedGetawayObj = await response.json();
-    if (deletedGetawayObj.errors) {
-      return;
-    }
+
   
     dispatch(deletedGetaway(deletedGetawayObj));
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
@@ -260,6 +281,7 @@ export default function reducer(state = initialState, action) {
     case EDIT_GETAWAY:
         newState = action.editedGetaway
         return newState
+        // Refactor to edit just one.
 
     case DELETE_GETAWAY:
         newState = action.deletedGetaway 
