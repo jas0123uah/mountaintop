@@ -897,6 +897,23 @@ margin-bottom: 15px;
         div.searchResultsContainer#searchResultsContainer{
             margin-top: 0 ; 
         }
+
+
+        .form-fields-flex{
+            align-items: center;
+            padding: 0;
+            width: 78vw;
+        }
+        div.form-fields-flex div{
+            display: flex;
+            flex-direction: column;
+        }
+        div button.createGetawaySubmitButton{
+            margin-left: 0;
+        }
+        div label{
+            text-align:start;
+        }
         /* .listingContainer{
             width: 95%;
         }

@@ -32,6 +32,9 @@ export const PF = () => {
       content=<ProfileMainContent/>
 
   }
+  else if (isMobile){
+      content = <SideBar/>
+  }
   else{
       content = <SideBar/>
       pfMainContent = <div class="div2" id="pf"><ProfileMainContent /> </div>
