@@ -30,17 +30,18 @@
     list-style: none;
 }
 .search-container{
-    position: relative;
-    left: 25px;
+    /* position: relative;
+    left: 25px; */
 }
 
 .search-icon {
-  position: absolute;
-  right: 3px; 
+  position: relative;
+  right: 20px;
+  /* right: 3px; 
   top: 7px;
   bottom: 3px;
   border: 0;
-  outline: none;
+  outline: none; */
   /* margin: 0;
   padding: 0 10px;
   border-radius: 100px; */
