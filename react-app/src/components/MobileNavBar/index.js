@@ -31,7 +31,7 @@ export const MobileNavBar = () => {
       sessionActions.login("demo@aa.io" , "password")
     );
     
-    history.push("/profile");
+    history.push("/profile/getaways/");
 
   
   };
