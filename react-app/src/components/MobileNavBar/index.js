@@ -49,17 +49,27 @@ export const MobileNavBar = () => {
     }
     return(
 <div class="topnav">
+  <div className="mobileTopContainer">
+
+
     <NavLink id="logo" to='/' exact={true} activeClassName='active'>
             <i  class="fas fa-mountain fa-2x"></i>
             
     </NavLink>
 
-    {/* <div className="search-container">
+    <div className="search-container">
 
           <input type="search" name="" id="" className="searchBar" placeholder="Find your next getaway..." value={searchTerm} onKeyPress={handleEnter}  onChange={event => setSearchTerm(event.target.value)}  />
          <i class="fa fa-search search-icon" onClick={onSearch} ></i>
-          </div> */}
-  
+          </div>
+  <a href="javascript:void(0);" class="icon" id="burger" style={{ fontSize:31}} onClick={adjustHamburger}>
+    <i class="fa fa-bars"></i>
+  </a>
+
+
+
+    
+  </div>
   <div id="myLinks" style={{ display:disp}} >
     <NavLink  to='/' exact={true} activeClassName='active'>
             Home
@@ -72,9 +82,9 @@ export const MobileNavBar = () => {
     {user ?  <LogoutButton/> :  <LoginFormModal/> }
     {user ? null :<span id="demo-button-mobile" onClick={demoLogin}> Demo user</span>}  
   </div>
-  <a href="javascript:void(0);" class="icon" id="burger" style={{ fontSize:29}} onClick={adjustHamburger}>
+  {/* <a href="javascript:void(0);" class="icon" id="burger" style={{ fontSize:29}} onClick={adjustHamburger}>
     <i class="fa fa-bars"></i>
-  </a>
+  </a> */}
 </div>
 
     )

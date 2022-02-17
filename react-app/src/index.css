@@ -897,6 +897,14 @@ margin-bottom: 15px;
         div.searchResultsContainer#searchResultsContainer{
             margin-top: 0 ; 
         }
+        div.search-container{
+            position: relative;
+            bottom: 4px;
+        }
+        div.mobileTopContainer{
+            display: flex;
+            align-items: baseline;
+        }
 
 
         .form-fields-flex{
