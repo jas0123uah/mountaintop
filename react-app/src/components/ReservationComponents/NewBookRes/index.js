@@ -107,8 +107,13 @@ const getValidEndDate = () => {
     e.preventDefault()
     setErrors([])
     const newReservation = await dispatch(createReservation({getawayId, startDate, endDate, userId}))
-    if (newReservation.errors) {
-      return setErrors(newReservation.errors)
+    if (newReservation?.errors || !newReservation) {
+      if (newReservation?.errors) {
+        return setErrors(newReservation.errors)
+        
+      }else{
+        return
+      }
     }
     await dispatch(loadGetaways())
     await dispatch(authenticate())
