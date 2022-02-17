@@ -263,14 +263,14 @@ export const getMonthandYear = (date) => {
   return startDateString
 }
 export const checkURL = (url) => {
-    return(url.match(/\.(jpeg|jpg|png)/) != null);
+    return(url.match(/\.(jpeg|jpg|png|.img)/) != null);
 }
 
 export const checkURLisReachable =(url) =>{
 const request = new XMLHttpRequest();
 try {
   request.open('GET', url, false);
-  request.send(); // there will be a 'pause' here until the response to come.
+  request.send(); 
   if (request.status === 200) {
     return true;
     
@@ -279,7 +279,18 @@ try {
   }
   
 } catch (error) {
-  console.log("Line 277");
   return false;
 }
+}
+export const throttle = (func, duration) => {
+  let shouldWait = false
+  return function (...args) {
+    if (!shouldWait) {
+      func.apply(this, args)
+      shouldWait = true
+      setTimeout(function () {
+        shouldWait = false
+      }, duration)
+    }
+  }
 }
