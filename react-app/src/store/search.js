@@ -15,11 +15,15 @@ export const searchGetaways = (term) => async (dispatch) => {
   });
   if (response.ok) {
     const searchResults = await response.json();
-    if (searchResults.errors) {
-      return;
-    }
   
     dispatch(searchGetaway(searchResults));
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 
@@ -31,11 +35,15 @@ export const browseGetaways = () => async (dispatch) => {
   });
   if (response.ok) {
     const browseResults = await response.json();
-    if (browseResults.errors) {
-      return;
-    }
   
     dispatch(searchGetaway(browseResults));
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
   }
 }
 

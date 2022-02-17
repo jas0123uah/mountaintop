@@ -4,6 +4,7 @@ import {useHistory, useParams } from 'react-router-dom';
 import {loadGetaways} from '../../../store/getaways'
 import {authenticate} from '../../../store/session'
 import {createReservation} from '../../../store/session'
+import {throttle} from '../../../utils/helperFunctions'
 import "jquery-ui";
 import 'jquery-ui/ui/widgets/datepicker'
 import 'jquery-ui/themes/base/core.css'
@@ -106,7 +107,7 @@ const removeBookedDays = (date) => {
 
 
   return (
-    <div className='formWrapper' id="bookResModal"onSubmit={  handleSubmitReservation}>
+    <div className='formWrapper' id="bookResModal"onSubmit={  throttle(handleSubmitReservation, 10000)}>
     <form>
       <fieldset className='formflex' id="formflex-bookRes">
         <legend>Book a reservation</legend>

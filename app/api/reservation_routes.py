@@ -12,6 +12,10 @@ def post_reservation_for_getaway(id):
     if form.validate_on_submit():
         userIdToFind=form.data['userId']
         newReservation = Reservation( userId=form.data['userId'], startDate=form.data['startDate'], endDate=form.data['endDate'], getawayId=form.data['getawayId'])
+        previouslyBookedStartDate=db.session.query(Reservation).filter(Reservation.startDate == form.data['startDate'] and Reservation.getawayId == form.data['getawayId']).first()
+        previouslyBookedEndDate=db.session.query(Reservation).filter(Reservation.startDate == form.data['endDate'] and Reservation.getawayId == form.data['getawayId']).first()
+        if previouslyBookedEndDate is not None or previouslyBookedStartDate is not None:
+            return {'errors': 'No double booking allowed'}, 400
         db.session.add(newReservation)
         db.session.commit()
         user = User.query.get(int(userIdToFind))
@@ -34,6 +38,14 @@ def edit_reservation_by_id(id):
         reservationToEdit.startDate = form.data['startDate']
         reservationToEdit.endDate = form.data['endDate']
         reservationToEdit.getawayId = form.data['getawayId']
+        
+        previouslyBookedStartDate=db.session.query(Reservation).filter(Reservation.startDate == form.data['startDate'] and Reservation.getawayId == form.data['getawayId']).first()
+        previouslyBookedEndDate=db.session.query(Reservation).filter(Reservation.startDate == form.data['endDate'] and Reservation.getawayId == form.data['getawayId']).first()
+        if previouslyBookedEndDate is not None or previouslyBookedStartDate is not None:
+            return {'errors': 'No double booking allowed'}, 400
+        
+        
+        
         db.session.add(reservationToEdit)
         db.session.commit()
         user = User.query.get(int(userIdToFind))

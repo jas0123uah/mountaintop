@@ -106,10 +106,15 @@ const getValidEndDate = () => {
     e.preventDefault()
     setErrors([])
     const editedReservation = await dispatch(editReservation({getawayId, startDate, endDate, userId, reservationId}))
-    if (editedReservation.errors) {
-      return setErrors(editedReservation.errors)
+    
 
-    }
+    if (editedReservation?.errors || !editedReservation) {
+      if (editedReservation?.errors) {
+        return setErrors(editedReservation.errors)
+        
+      }else{
+        return
+      }}
     await dispatch(loadGetaways())
     await dispatch(authenticate())
     history.push('/profile')
