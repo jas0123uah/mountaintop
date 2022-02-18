@@ -26,19 +26,25 @@ Mountaintop features a Python the backend that uses the ORM SQLAlchemy and Flask
 
 The JavaScript library React is used in combination with the state manager Redux on the frontend to allow for ease of access to data.
 
-### Backend Technology
-* [Python](https://docs.python.org/3/)
+
+### Frontend Technologies
+ * ![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+ * ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+ * ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+ * ![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
+ * ![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
+ * ![NODE JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+ * ![HEROKU](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
+
+### Backend Technologies
+* ![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
+* ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+* ![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 * [SQLAlchemy](https://docs.sqlalchemy.org/en/14/)
-* [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 * [WTForms](https://wtforms.readthedocs.io/en/2.3.x/)
-* [PostgreSQL](https://www.postgresql.org/docs/13/)
 
-
-### Frontend Technology
-* [React](https://v5.reactrouter.com/web/guides/quick-start)
-* [Redux](https://react-redux.js.org/)
-* [Node.js](https://nodejs.org/docs/latest-v12.x/api/)
-
+### Testing
+* [Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)
 
 ### Features
 * Getaways
