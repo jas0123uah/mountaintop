@@ -28,9 +28,17 @@ Mako = "==1.1.4"
 faker = "*"
 randomuser = "*"
 boto3 = "*"
+pytest = "*"
+requests = "*"
+flask-restful = "*"
+selenium = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"
+pytest = "*"
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+test = "pytest -v"

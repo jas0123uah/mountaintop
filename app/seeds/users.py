@@ -3,15 +3,33 @@ from randomuser import RandomUser
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+    user = RandomUser()
+    firstName = str(user.get_first_name())
+    lastName = str(user.get_last_name())
+    password = user.get_password()
+    profilePictureUrl = user.get_picture()
+    email = user.get_email()
     demo = User(
-        firstName='Jay', lastName='Spencer', profilePictureUrl="https://i.ibb.co/rsM01H6/download-2.png", email='demo@aa.io', password='password')
-    marnie = User(
-        firstName='Marnie', lastName='Martin', email='marnie@aa.io', profilePictureUrl="https://i.ibb.co/N19bxXR/Business-Headshot-Women-006.jpg", password='password')
-    joe = User(
-        firstName='Joe', lastName='Johnson', profilePictureUrl="https://i.ibb.co/37H19Lt/c0899a5fb5be4db614cf9387f2fede31.jpg", email='joe@aa.io', password='password')
+        firstName=firstName, lastName=lastName, profilePictureUrl=profilePictureUrl, email="demo@aa.io", password='password')
+    user = RandomUser()
+    firstName = str(user.get_first_name())
+    lastName = str(user.get_last_name())
+    password = user.get_password()
+    profilePictureUrl = user.get_picture()
+    email = user.get_email()
+    demo2 = User(
+        firstName=firstName, lastName=lastName, profilePictureUrl=profilePictureUrl, email=email, password='password')
+    user = RandomUser()
+    firstName = str(user.get_first_name())
+    lastName = str(user.get_last_name())
+    password = user.get_password()
+    profilePictureUrl = user.get_picture()
+    email = user.get_email()
+    demo3 = User(
+        firstName=firstName, lastName=lastName, profilePictureUrl=profilePictureUrl, email=email, password='password')
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(joe)
+    db.session.add(demo2)
+    db.session.add(demo3)
     for user in range(1,51):
         user = RandomUser()
         firstName = str(user.get_first_name())

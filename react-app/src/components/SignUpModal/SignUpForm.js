@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from '../../store/session';
-
+import {loadGetaways} from '../../store/getaways'
+import {authenticate, checkForEmail} from '../../store/session'
+import {useHistory} from 'react-router-dom';
+import {checkURL} from '../../utils/helperFunctions'
 function SignUpForm() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,13 +14,24 @@ function SignUpForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("")
   const [profilePicture, setProfilePicture] = useState('')
+  const [validImg1, setValidImg1]= useState(true)
   const [errors, setErrors] = useState([]);
   const validateEmail = (email) => {
     let loweremail = email.toLowerCase()
     const emailRegex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
     return emailRegex.test(loweremail);
 };
-
+const img1IsValid = (img) => {
+    if(!img.target.value.length){
+      setValidImg1(true)
+      return
+    }
+    if (img.target.value.length && checkURL(img.target.value)) {
+      setValidImg1(true)
+      return 
+    }
+    setValidImg1(false)
+  }
   useEffect(()=> {
     const user = {email, password, confirmPassword, firstName, lastName, profilePicture}
     const errors = [];
@@ -45,26 +60,35 @@ function SignUpForm() {
     if (!lastName.length) errors.push('Please enter your last name.');
 
     if (!profilePicture) errors.push('Please enter a url for a profile picture.');
+
+    if ((profilePicture.length && (!checkURL(profilePicture) || !validImg1 || /^(ftp|http|https):\/\/[^ "]+$/.test(profilePicture) == false))){
+      errors.push(`Profile picture is not a valid image url.`)
+
+
+    }
     
     
     setErrors(errors);
-  }, [email, password, confirmPassword, firstName, lastName, profilePicture])
+  }, [email, password, confirmPassword, firstName, lastName, profilePicture, validImg1])
 
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      const data = await dispatch(signUp({firstName, lastName, email, password, profilePicture}));
-      if (data) {
-        setErrors(data)
-      }
+    const data = await dispatch(signUp({firstName, lastName, email, password, profilePicture}))
+    if (data && data.errors){ 
+      setErrors(data.errors)
+
+    ;}
+        
+    await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push(`/profile`))
     }
   };
 
   return (
-    <div className='formWrapper'>
+    <div className='formWrapper' id="signup">
 
-    <form onSubmit={onSignUp}>
+    <form onSubmit={onSignUp} className="signUpFlex">
       <ul className="formErrors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
@@ -135,13 +159,14 @@ function SignUpForm() {
       </label>
       <br></br>
 
-      <label className="modal-label-signup-login">
+      <label  className={`is-red-${validImg1} modal-label-signup-login"`}>
         Profile Picture URL
         <input
         id="profilePictureField"
           type="text"
           className="modal-input-signup-login"
           value={profilePicture}
+          onBlur={img1IsValid}
           onChange={(e) => setProfilePicture(e.target.value)}
           required
         />

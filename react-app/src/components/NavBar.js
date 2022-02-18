@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
-import {AmenitiesFilterNavBar} from '../components/AmenitiesFilterNavBar'
+import {AmenitiesFilterNavBar} from '../components/AmenityComponents/AmenitiesFilterNavBar'
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './LoginFormModal';
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {searchGetaways} from "../store/search"
 const NavBar = () => {
   const location = useLocation();
-  const [searchTerm, setSearchTerm] = useState("Find your next getaway...");
+  const [searchTerm, setSearchTerm] = useState("");
   const[scrolled, setScrolled] = useState(false);
   
 
@@ -47,33 +47,36 @@ const NavBar = () => {
     history.push(`/search/${searchTerm}`);
 
   }
+
+  const handleEnter = async (e) => {
+    if (e.charCode == 13) {
+      await dispatch(searchGetaways(searchTerm))
+    history.push(`/search/${searchTerm}`);
+    }
+  };
   return (
     <div className="navContainer">
 
     <nav className={`navBar scrolledNavbar-${scrolled}`}>
       <ul className="navBar-list" id="nav-list">
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            <i class="fas fa-mountain fa-3x"></i>
+          <NavLink id="logo" to='/' exact={true} activeClassName='active'>
+            <i  class="fas fa-mountain fa-3x"></i>
           </NavLink>
         </li>
         <li>
           <div className="search-container">
 
-          <input type="search" name="" id="" className="searchBar" value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
-         <i class="fa fa-search search-icon" onClick={onSearch}></i>
+          <input type="search" name="" id="" className="searchBar" placeholder="Find your next getaway..." value={searchTerm} onKeyPress={handleEnter}  onChange={event => setSearchTerm(event.target.value)}  />
+         <i class="fa fa-search search-icon" onClick={onSearch} ></i>
           </div>
         </li>
         <div className="signuploginicons">
         <li>
-            {user ?  <NavLink to="/profile" className="submitButton"> <i class="fas fa-home fa-3x"></i></NavLink> : <SignUpFormModal/>}          
+            {user ?  <NavLink to="/profile" className="submitButton" id="home-button"> <i class="fas fa-home fa-3x"></i></NavLink> : <SignUpFormModal/>}          
         </li>
         <li>
-          {user ? null :<button id="demo-button" onClick={demoLogin}> Demo user</button>}
-          {/* {user ?  <LogoutButton/> :  <LoginFormModal/> } */}
-         
-
-
+          {user ? null :<button id="demo-button" onClick={demoLogin}> Demo user</button>}         
         </li>
         <li>
           {user ?  <LogoutButton/> :  <LoginFormModal/> }

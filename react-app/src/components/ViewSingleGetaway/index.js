@@ -1,30 +1,33 @@
-import {NewBookRes} from '../NewBookRes'
-import {EditRes} from '../EditRes'
-import {Reviews} from '../Reviews'
+import {NewBookRes} from '../ReservationComponents/NewBookRes'
+import {EditRes} from '../ReservationComponents/EditRes'
+import {Reviews} from '../ReviewComponents/Reviews'
 import { useSelector } from "react-redux";
 import {  useParams, useLocation } from 'react-router-dom';
 import {getGetawayImagesArray} from '../../utils/helperFunctions'
 import { getAverageReviewRating } from "../../utils/helperFunctions"
+import CarouselSingleGetaway from '../CarouselSingleGetaway'
 export const ViewSingleGetaway = () => {
 
     const getawaysObject = useSelector(state => state.getaways);
     const { getawayId }  = useParams();
     const currentGetaway = getawaysObject[getawayId];
     const guestOrGuests = currentGetaway.numGuests>1 ? "guests":"guest"
-
     const imagesArray = getGetawayImagesArray(currentGetaway)
     const averageRatingAndReviews= getAverageReviewRating(currentGetaway)
-
+    let averageRating = averageRatingAndReviews[0]
     const location = useLocation();
-    console.log(location, "Location");
     
     
      return(<div className="viewGetawayContainer">
          <div className="listingContainer">
         <h2 className="listingName">{currentGetaway.name}</h2>
-        <h4 className="listingSnapshot"> <i class="fas fa-star"></i> {`${averageRatingAndReviews[0]} (${averageRatingAndReviews[1]} reviews)`} <i class="fas fa-map-marker-alt"></i> {`${currentGetaway.city}, ${currentGetaway.state}`} <i class="fas fa-home"></i> {`${currentGetaway.numGuests} ${guestOrGuests}`} </h4>
+        <h4 className="listingSnapshot"> <i class="fas fa-star"></i> {`${averageRating} (${averageRatingAndReviews[1]} reviews)`} <i class="fas fa-map-marker-alt"></i> {`${currentGetaway.city}, ${currentGetaway.state}`} <i class="fas fa-home"></i> {`${currentGetaway.numGuests} ${guestOrGuests}`} </h4>
          </div>
         <div className="containerForPhotosContainer">
+        <div id="mobile-carousel">
+
+        <CarouselSingleGetaway/>
+        </div>
 
         <div className="photosContainer">
             <div >
@@ -42,24 +45,6 @@ export const ViewSingleGetaway = () => {
             </div>
         </div>
 
-
-
-
-        {/* <div className="photosContainer">
-            <div >
-                <img className="bigPic" src={imagesArray[5].src}></img>
-            </div>
-            <div className="smallerPics">
-                <div className="smallerPicsTop">
-                    <img className="smallerPic" src={imagesArray[6].src}></img>
-                    <img className="smallerPic" src={imagesArray[7].src}></img>
-                </div>
-                <div className="smallerPicsBottom">
-                    <img className="smallerPic" src={imagesArray[8].src}></img>
-                    <img className="smallerPic" src={imagesArray[9].src}></img>
-                </div>
-            </div>
-        </div> */}
         </div>
          <div className="getaway-info-reservationForm-flex">
         <div className="bookingContainer">

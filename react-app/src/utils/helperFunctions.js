@@ -122,14 +122,43 @@ export const getAverageReviewRating = (getaway)=> {
       numReviews++;
     }
   })
-const avgRating = (totalOverallRating / numReviews).toFixed(2)
+let avgRating = (totalOverallRating / numReviews).toFixed(2)
 totalCleanliness = (totalCleanliness/numReviews).toFixed(1)
 totalCommunication = (totalCommunication/numReviews).toFixed(1)
 totalCheckin = (totalCheckin/numReviews).toFixed(1)
 totalAccuracy = (totalAccuracy/numReviews).toFixed(1)
 totalLocation = (totalLocation/numReviews).toFixed(1)
 totalValue = (totalValue/numReviews).toFixed(1)
+if (isNaN(avgRating)) {
+  avgRating = 0
+  
+}
 
+if (isNaN(totalCleanliness)) {
+        totalCleanliness = 0
+        
+    }
+    if (isNaN(totalCommunication)) {
+        totalCommunication = 0
+        
+    }
+
+    if (isNaN(totalCheckin)) {
+        totalCheckin = 0
+        
+    }
+    if (isNaN(totalAccuracy)) {
+        totalAccuracy = 0
+        
+    }
+    if (isNaN(totalLocation)) {
+        totalLocation = 0
+        
+    }
+    if (isNaN(totalValue)) {
+        totalValue = 0
+        
+    }
 return [avgRating, numReviews, totalCleanliness, totalCommunication, totalCheckin, totalAccuracy, totalLocation, totalValue]
 }
 export const getReviewObjects =(userId, getaway) => {
@@ -143,17 +172,35 @@ export const getReviewObjects =(userId, getaway) => {
   if (userId) {
     reviewObjArray.sort(
       function (a, b) {
-        if((a.userId) ==  (userId)) {  
-          if (a.userId == b.userId) {
-             return new Date(a.startDate)  > new Date(b.startDate) ? -1 : 1
-  
-          }else{
-            return -1
-          }
+
+        if (a.userId ==userId && b.userId != userId) {
+          return -1
+          
         }
+        if (b.userId == userId && a.userId != userId) {
+          return 1
+          
+        }
+        if (a.userId == userId && b.userId == userId) {
+          return new Date(a.startDate)  > new Date(b.startDate) ? -1 : 1
+          
+        }
+        if (a.userId!=userId && b.userId!=userId) {
+          return new Date(a.startDate)  > new Date(b.startDate) ? -1 : 1
+          
+        }
+
+        // if((a.userId) ==  (userId)) {  
+        //   if (a.userId == b.userId) {
+        //      return new Date(a.startDate)  > new Date(b.startDate) ? -1 : 1
+  
+        //   }else{
+        //     return -1
+        //   }
+        // }
         
-        // return new Date(a.startDate) < new Date(b.startDate)
-        return new Date(a.startDate) >  new Date(b.startDate) ? -1 : 1
+        // // return new Date(a.startDate) < new Date(b.startDate)
+        // return new Date(a.startDate) >  new Date(b.startDate) ? -1 : 1
       }
     )
   }else{
@@ -214,4 +261,36 @@ export const getMonthandYear = (date) => {
   const startDateString =  monthNames[dateAsDateObject.getMonth()] + ' ' + dateAsDateObject.getFullYear()
 
   return startDateString
+}
+export const checkURL = (url) => {
+    return(url.match(/\.(jpeg|jpg|png|.img)/) != null);
+}
+
+export const checkURLisReachable =(url) =>{
+const request = new XMLHttpRequest();
+try {
+  request.open('GET', url, false);
+  request.send(); 
+  if (request.status === 200) {
+    return true;
+    
+  }else{
+    return false;
+  }
+  
+} catch (error) {
+  return false;
+}
+}
+export const throttle = (func, duration) => {
+  let shouldWait = false
+  return function (...args) {
+    if (!shouldWait) {
+      func.apply(this, args)
+      shouldWait = true
+      setTimeout(function () {
+        shouldWait = false
+      }, duration)
+    }
+  }
 }

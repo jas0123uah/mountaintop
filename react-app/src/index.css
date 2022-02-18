@@ -31,19 +31,12 @@
 }
 .search-container{
     position: relative;
-    left: 25px;
 }
 
 .search-icon {
   position: absolute;
-  right: 3px; 
-  top: 7px;
-  bottom: 3px;
-  border: 0;
-  outline: none;
-  /* margin: 0;
-  padding: 0 10px;
-  border-radius: 100px; */
+  bottom:16px;
+  right: 8px;
   z-index: 2;
 }
 input[type="search"]::-webkit-search-decoration,
@@ -56,7 +49,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .navBar{
     display: flex;
     position: fixed;
-    width: 100vw;
+    width: 100%;
 
 }
 .scrolledNavbar-false{
@@ -68,13 +61,15 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     border: 1px solid #a7a7a7;
 }
 .splashBlurb{
-    position: relative;
+    /* position: absolute; */
     left: 83vh;
-    bottom: 100vh;
+    /* bottom: 100vh; */
+    top: 40vh;
+
 
 }
 .browse-button{
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 700;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -104,11 +99,13 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 .navContainer{
     z-index: 10;
+    position: fixed;
 }
 .amenitiesNav{
     /* position: relative;
     left: 310px; */
     display: flex;
+
     margin-top: 8px;
 }
 .selected-amenity-filter-true.amenity-filter{
@@ -187,7 +184,7 @@ body{
 .reservationDates{
   margin-right: 10px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.25;
 }
 #deleteReservationForm{
     display: flex;
@@ -249,13 +246,16 @@ body {
 }
 .viewGetawayButton,#demo-button, .SignInButton, .addNewGetaway{
     background-color:  #8a8f2e;
-    height: 40px;
+    /* height: 40px; */
     border-radius: 25px;
     font-weight: bold;
     border: none;
 
 
-    width: 123.696px;
+    /* width: 123.696px; */
+
+    height: 3.13em;
+    width: 10.2em;
 }
 #demo-button{
     margin-left: 40px;
@@ -289,19 +289,22 @@ body {
 #LOGINBUTTON, #signupbtn{
     margin-left: 30px;
 }
-#signupbtn{
+/* #signupbtn{
     position: relative;
     left: 30px;
 }
 #signupbtn{
     margin-bottom:10px ;
-}
+} */
 /* #root :last-child {
   display: none;
 } */
 /* #root{
     background-color:black;
 } */
+html, body {
+    height: fit-content;
+}
 .getawayBlurb{
     position:absolute;
     top:350px;
@@ -336,6 +339,12 @@ body {
 
 .formWrapper{
 margin: 90px auto 45px auto;
+/* margin: 0px auto 10px auto; */
+width: fit-content;
+display: flex;
+}
+.formWrapper#signup{
+margin: 0px auto 10px auto;
 width: fit-content;
 display: flex;
 }
@@ -354,12 +363,21 @@ display: flex;
     display: flex;
 
 }
+img#host-getaway-images.upcomingGetawayImage{
+width: 100%;
+height: auto;
+padding-right: 16px;
+}
+.singleGetawayHost div#deleteReservationForm{
+    padding-right:16px;
+}
 .UpcomingReservations *{
     margin: 0 5px;
 }
 .upcomingGetawayImage,.previousGetawayImage{
-    height:540px;
-    width: 720px;
+    /* height:540px; */
+    /* width: 720px; */
+    width: 60%;
 }
 .editReservationContainer, .viewGetawayContainer{
     margin-top:90px;
@@ -387,15 +405,16 @@ display: flex;
 .revText{
     margin: 0;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 1rem;
+    overflow-wrap: anywhere;
 }
 .rating-num{
     width: 20px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
 }
 .rating-category{
-    font-size: 17px;justify-self: flex-start;
+    font-size: 1.063rem;justify-self: flex-start;
     color: #2c2c2c;
     font-weight: normal;
     margin: 0;
@@ -454,11 +473,24 @@ margin-top: 65px;
 }
 .maybe2 {
     display: flex;
-    min-height: min-content; /* needs vendor prefixes */
+    /* min-height: min-content;  */
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 5%;
+    /* height: 100%; */
+    height: 80vh;
+    justify-content: space-between;
+
     
     
-    overflow-x: auto;
+    /* overflow-x: auto; */
+    overflow-x: hidden;
 }
+/* .maybe2 { 
+    height: 540px;
+} */
 
 
 .maybe2::-webkit-scrollbar {
@@ -482,7 +514,15 @@ div#getawayImgsSubmissions:empty{
 .formErrors{
     color: red;
     font-weight: bold;
+    margin-bottom: 16px;
 
+}
+.is-red-false{
+    color: red;
+    font-weight: bold;
+}
+.amenities-fieldset{
+    margin-bottom: 15px ;
 }
 .createGetawaySubmitButton{
     background-color: #f28350;
@@ -505,10 +545,15 @@ div#getawayImgsSubmissions:empty{
     margin-top: 70px;
     display: flex;
     flex-direction: row;
+    height: fit-content;
+    min-height: 700px;
 }
 .UpcomingReservations.maybe{
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
     max-width: 75vw;
+    overflow-y: scroll;
+    flex-direction: column;
+    /* max-height: 75vh; */
 }
 .upcomingGetawayImage,.singleResultImage{
     border-radius:25px;
@@ -539,17 +584,26 @@ div#getawayImgsSubmissions:empty{
 
 }
 .singleGetawayHost{
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
-.signup-inputs{
+/* .signup-inputs{
     position: relative;
     left: 80px;
+} */
+.signUpFlex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
 }
 .deleteImgBtn{
     position: absolute;
     top: 0;
     left: 0;
 
+}
+#deleteReservationFormChild{
+    display: flex;
 }
 .containerForPreviouslyUploadedImage{
     position: relative;
@@ -603,6 +657,10 @@ grid-row-gap: 0px;
  }
 .listingContainer {
     align-self: baseline;
+
+
+
+    width: max-content;
 }
  .listingName,.listingSnapshot{
      padding-left:13px;
@@ -619,6 +677,7 @@ grid-row-gap: 0px;
      display:flex;
      gap: 8px;
      width: 100% ;
+     overflow: hidden;
  }
  .bigPic{
      height: 500px !important; 
@@ -669,7 +728,7 @@ grid-row-gap: 0px;
 }
 .reviewerName{
     text-align: left;
-    font-size: 17px;
+    font-size: 1.063rem;
     font-weight: 600;
     margin: 0;
 
@@ -677,7 +736,7 @@ grid-row-gap: 0px;
 .reviewDate, .bookingAvgRating, .bookingNumReviews, .checkin-out-Date{
     margin: 0;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 1rem;
 }
 .checkin-out-Date{
     margin: 5px 0px;
@@ -703,7 +762,7 @@ grid-row-gap: 0px;
     /* margin-left: 20px; */
 }
 .bookingPrice{
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 500;
     /* margin-left: 10px; */
     list-style: none;
@@ -733,13 +792,317 @@ grid-row-gap: 0px;
     width: 200px;
     margin-bottom: 10px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 1rem;
     margin-top: 5px;
+}
+.splashContainer{
+    display: flex;
+    background-image:url('https://i.ibb.co/GMVBPWx/pexels-kalen-kemp-9560057.jpg');
+    background-size: cover;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .totalFlex{
     display: flex;
     justify-content: space-between;
-    font-size: 17px;
+    font-size: 1.063rem;
     font-weight: 600;
     /* gap: 0px; */
+}
+.revModal#modal-content{
+    background: none;
+}
+
+#root{
+    /* height: 100%; */
+    height: 100vh;
+}
+
+.div2#pf{
+    width: 100%;
+}
+
+.profileMainContent{
+    height: 100%;
+     display: flex;
+    flex-direction: column;
+
+}
+
+.profileMainContentContainer{
+    /* height: 100%; */
+   
+}
+.spacingDiv1{
+    width:18em;
+}
+/* .spacingDiv2, .spacingDiv3{
+    width: 3em;
+} */
+.form-fields-flex{
+    padding-right: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.parentRev {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(3, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+margin-bottom: 15px;
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 2 / 1 / 3 / 2; }
+.div4 { grid-area: 2 / 2 / 3 / 3; }
+.div5 { grid-area: 3 / 1 / 4 / 2; }
+.div6 { grid-area: 3 / 2 / 4 / 3; }
+.div7 { grid-area: 1 / 3 / 2 / 4; }
+.div8 { grid-area: 1 / 4 / 2 / 5; }
+.div9 { grid-area: 2 / 3 / 3 / 4; }
+.div10 { grid-area: 2 / 4 / 3 / 5; }
+.div11 { grid-area: 3 / 3 / 4 / 4; }
+.div12 { grid-area: 3 / 4 / 4 / 5; }
+
+.far{
+    color: black;
+}
+.fa-star:hover {
+    color: black;
+
+}
+#mobile-carousel{
+    display: none;
+
+}
+
+
+@media only screen 
+    and (min-device-width : 320px)
+    and (max-width : 768px)
+    and (min-device-height : 480px)
+    and (max-device-height : 1076px)
+    {
+        div.searchResultsContainer#searchResultsContainer{
+            margin-top: 0 ; 
+        }
+        div.search-container{
+            position: relative;
+            bottom: 4px;
+        }
+        div.mobileTopContainer{
+            display: flex;
+            align-items: baseline;
+        }
+
+
+        .form-fields-flex{
+            align-items: center;
+            padding: 0;
+            width: 78vw;
+        }
+        div.form-fields-flex div{
+            display: flex;
+            flex-direction: column;
+        }
+        div button.createGetawaySubmitButton{
+            margin-left: 0;
+        }
+        div label{
+            text-align:start;
+        }
+        /* .listingContainer{
+            width: 95%;
+        }
+        .listingSnapshot{
+            overflow-wrap: break-word;
+        } */
+        .containerForSidebarAndMainContent{
+            margin-top: 0;
+            flex-direction: column;
+        }
+        .active {
+  background-color: #748048;
+  color: white;
+}
+.UpcomingReservations.maybe{
+    max-width: max-content;
+}
+        .mobileFooter{ 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #748048;
+        }
+        .singleResult{
+            flex-direction: column;
+        }
+        div.singleResultInfo{
+            display: flex;
+        }
+
+        .createdBy{
+            font-weight: bold;
+        }
+        .containerForPhotosContainer{
+            overflow-y: hidden;
+        }
+        .reviewTexts::-webkit-scrollbar-thumb{
+            border-radius:10px;
+            /* height: 1px; */
+            width: 1px;
+            background: #999;
+        }
+        .reviewTexts::-webkit-scrollbar{
+            height:8px;
+            /* height: 1px; */
+
+        }
+        .viewGetawayContainer{
+            margin-top: 0;
+        }
+
+
+        .listingContainer{
+            margin-top: 30px;
+            margin-left: -80px;
+            display: flex;
+            flex-direction: column;
+        }
+        .bookingContainer{
+            align-self: end;
+        }
+        .getawayDescription{
+            margin-right: 25px;
+        }
+        .singleResultInfo{
+            margin-top: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-around;
+        }
+        button#hottub{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        div.singleResult{
+            align-items: flex-start;
+        }
+        div._2ILZE._3q7r8{
+            height:360px;
+            width: auto;
+            margin-left: 7%;
+            margin-right: 7%;
+        }
+        .amenitiesNav{
+            
+            display: flex;
+        }
+        .amenity-filter{
+            height: auto;
+        }
+
+
+        #mobile-carousel{
+    display:contents;}
+        #mobile-carousel:first-child{
+            width: 600px;
+
+        }
+
+        .photosContainer{
+            display: none;
+        }
+        .getaway-info-reservationForm-flex{
+            width: 100vw;
+            margin-left: 100px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .bookingContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+        }
+        .info {
+            width: auto;
+        }
+        .listingSnapshot{
+            overflow-wrap: break-word;
+            width: 85vw;
+            line-height: 1.6;
+            margin-top: 0;
+        }
+        ._2c50p{
+            display: none;
+        }
+        .getaway-info-reservationForm-flex{
+            padding: 0;
+            margin: 0;
+        }
+        .bookingContainer{
+            align-items: flex-start;
+        }
+        .reviewTexts{
+            flex-wrap: nowrap;
+            overflow-y: scroll;
+        }
+        .single-review{
+            margin-right: 70px;
+        }
+        .rating-container{
+            display: block;
+        }
+        .revContainer{
+            padding-left: 20px;
+        }
+        div.profileSidebar#profileSidebar{
+            max-width: 100vw;
+        }
+        div img.profilePicture{
+            width: 40%;
+            max-width: fit-content;
+        }
+        /* .userInfo a {
+            padding-left: 3%;
+        } */
+        .userInfo{
+            display: flex;
+            flex-direction: column;
+        }
+        .upcomingResContainer h1.profileHeader, .profileMainContent h1{
+            text-align: center;
+        }
+        div.search-container{
+            left: 2em;
+        }
+        /* div.topnav{
+            display: flex;
+            align-items:flex-end;
+        } */
+        /* div.searchResultsContainer{
+            height: 100vh;
+        } */
+
+        .singleGetawayHost:last-of-type, .previousReservation:last-of-type{
+            margin-bottom: 20px;
+        }
+
+
+
+
+
+     }
+.singleRes{
+    height: 100%;
+    scroll-snap-align:start;
 }
