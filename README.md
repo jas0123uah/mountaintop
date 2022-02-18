@@ -4,8 +4,8 @@
 **Table of Contents**
 * [Mountaintop Overview](#mountaintop-overview)
 * [Technologies Used](#technologies-used)
-* [Backend Technologies](#backend-technologies)
 * [Frontend Technologies](#frontend-technologies)
+* [Backend Technologies](#backend-technologies)
 * [Conclusion](#conclusion)
 
 ## Mountaintop Overview
@@ -44,7 +44,7 @@ The JavaScript library React is used in combination with the state manager Redux
 * [WTForms](https://wtforms.readthedocs.io/en/2.3.x/)
 
 ### Testing
-* [Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)
+* ![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)
 
 ### Features
 * Getaways
