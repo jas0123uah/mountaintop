@@ -104,6 +104,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .amenitiesNav{
     /* position: relative;
     left: 310px; */
+    display: flex;
+
     margin-top: 8px;
 }
 .selected-amenity-filter-true.amenity-filter{
