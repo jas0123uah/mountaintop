@@ -30,21 +30,13 @@
     list-style: none;
 }
 .search-container{
-    /* position: relative;
-    left: 25px; */
+    position: relative;
 }
 
 .search-icon {
-  position: relative;
-  right: 20px;
-  /* right: 3px; 
-  top: 7px;
-  bottom: 3px;
-  border: 0;
-  outline: none; */
-  /* margin: 0;
-  padding: 0 10px;
-  border-radius: 100px; */
+  position: absolute;
+  bottom:16px;
+  right: 8px;
   z-index: 2;
 }
 input[type="search"]::-webkit-search-decoration,
