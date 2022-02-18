@@ -4,8 +4,8 @@
 **Table of Contents**
 * [Mountaintop Overview](#mountaintop-overview)
 * [Technologies Used](#technologies-used)
-* [Backend Technology](#backend-technology)
-* [Frontend Technology](#frontend-technology)
+* [Backend Technologies](#backend-technologies)
+* [Frontend Technologies](#frontend-technologies)
 * [Conclusion](#conclusion)
 
 ## Mountaintop Overview
@@ -22,7 +22,7 @@ The home page features a background of the Great Smoky Mountains
 
 
 ## Technologies Used
-Mountaintop features a Python the backend that uses the ORM SQLAlchemy and Flask. The database is made with PostgreSQL. 
+Mountaintop features a Python backend that uses the ORM SQLAlchemy and Flask for routing. The database is made with PostgreSQL. 
 
 The JavaScript library React is used in combination with the state manager Redux on the frontend to allow for ease of access to data.
 
