@@ -464,6 +464,7 @@ background-color: white;
 .searchResultsContainer{
     /* margin-top: 65px; */
     margin-top: 115px;
+    min-height: 100vh;
 }
 .searchResultsContainer-browse{
 margin-top: 65px;
