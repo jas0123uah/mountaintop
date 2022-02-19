@@ -4,7 +4,8 @@ import {searchGetaways} from '../../store/search'
 import { useDispatch, useSelector} from "react-redux";
 
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import useDebounce from '../../utils/useDebounce';
 import LogoutButton from '../auth/LogoutButton';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpModal'
@@ -20,6 +21,39 @@ export const MobileNavBar = () => {
     const user = useSelector(state => state.session.user);
     const [disp, setDisp] = useState("none");
     const [searchTerm, setSearchTerm] = useState("");
+    const [isSearching, setIsSearching] = useState(false);
+    const debouncedSearchTerm = useDebounce(searchTerm, 1000);
+
+    useEffect(
+      () => {
+        // Make sure we have a value (user has entered something in input)
+        if (debouncedSearchTerm) {
+          // Set isSearching state
+          setIsSearching(true);
+          // Fire off our API call
+
+          dispatch(searchGetaways(searchTerm)).then(result => {
+            setIsSearching(false);
+            history.push()
+          })
+
+          history.push(`/search/${searchTerm}`);
+
+          // searchCharacters(debouncedSearchTerm).then(results => {
+          //   // Set back to false since request finished
+          //   setIsSearching(false);
+          //   // Set results state
+          //   setResults(results);
+          // });
+        } 
+      },
+      // This is the useEffect input array
+      // Our useEffect function will only execute if this value changes ...
+      // ... and thanks to our hook it will only change if the original ...
+      // value (searchTerm) hasn't changed for more than 500ms.
+      [debouncedSearchTerm]
+    );
+
     const onSearch = async (e) => {
     e.preventDefault();
     await dispatch(searchGetaways(searchTerm))
