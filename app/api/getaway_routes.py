@@ -71,19 +71,19 @@ def create_getaway():
     
     
     
-    if form.data['hasHotTub'] is True:
+    if form.data['hasHotTub'] == 'true':
         db.session.add(Amenity(amenity='Hot Tub', getawayId=newGetaway.id))
         db.session.commit()
-    if form.data['hasWifi'] is True:
+    if form.data['hasWifi'] == 'true':
         db.session.add(Amenity(amenity='Wifi', getawayId=newGetaway.id))
         db.session.commit()
-    if form.data['hasPatio'] is True:
+    if form.data['hasPatio'] == 'true':
         db.session.add(Amenity(amenity='Patio', getawayId=newGetaway.id))
         db.session.commit()
-    if form.data['hasKitchen'] is True:
+    if form.data['hasKitchen'] == 'true':
         db.session.add(Amenity(amenity='Kitchen', getawayId=newGetaway.id))
         db.session.commit()
-    if form.data['hasFireplace'] is True:
+    if form.data['hasFireplace'] == 'true':
         db.session.add(Amenity(amenity='Fireplace', getawayId=newGetaway.id))
         db.session.commit()
             
@@ -167,19 +167,19 @@ def edit_getaway_by_id(id):
 
 
 
-    if form.data['hasHotTub'] is True:
+    if form.data['hasHotTub'] == 'true':
         db.session.add(Amenity(amenity='Hot Tub', getawayId=getawayToEdit.id))
         db.session.commit()
-    if form.data['hasWifi'] is True:
+    if form.data['hasWifi'] == 'true':
         db.session.add(Amenity(amenity='Wifi', getawayId=getawayToEdit.id))
         db.session.commit()
-    if form.data['hasPatio'] is True:
+    if form.data['hasPatio'] == 'true':
         db.session.add(Amenity(amenity='Patio', getawayId=getawayToEdit.id))
         db.session.commit()
-    if form.data['hasKitchen'] is True:
+    if form.data['hasKitchen'] == 'true':
         db.session.add(Amenity(amenity='Kitchen', getawayId=getawayToEdit.id))
         db.session.commit()
-    if form.data['hasFireplace'] is True:
+    if form.data['hasFireplace'] == 'true':
         db.session.add(Amenity(amenity='Fireplace', getawayId=getawayToEdit.id))
         db.session.commit()
     
