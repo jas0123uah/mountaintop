@@ -3,12 +3,15 @@ from app.models import db, Getaway, Image, Amenity
 from app.aws_upload import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 def uploadImage(img, form, newGetaway, imageNumber):
+    print("LINE 6")
     image = form.data[img]       
     image.filename = get_unique_filename(image.filename)
+    print(image, "LINE 9")
 
     upload = upload_file_to_s3(image)
 
     if "url" not in upload:
+        print(upload, "LINE 14")
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
