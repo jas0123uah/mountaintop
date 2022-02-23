@@ -17,9 +17,7 @@ export const AllUserGetaways = () => {
     );
   
   }
-  const getImageByNumber =(imageObjectsArray, imageNumber) => {
-    return imageObjectsArray.filter(imageObject => imageObject.imageNo == imageNumber)[0]
-  }
+  
   const userGetaways = Object.values(user?.getaways)
 
   const handleDeleteReservation =(reservationId) => {
@@ -40,8 +38,9 @@ export const AllUserGetaways = () => {
         {userGetaways?.map((getaway) =><div key={getaway?.id} className="singleGetawayHost">
             <h2 className="reservationsGetawayHeader">{getaway?.name}</h2>
             <NavLink to={`/getaways/${getaway?.id}`}>
+            
 
-            <img className="upcomingGetawayImage" id="host-getaway-images" alt="getaway" src={getImageByNumber(Object.values(getaway.images)).url}></img>
+            <img className="upcomingGetawayImage" id="host-getaway-images" alt="getaway" src={getImageByNumber(Object.values(getaway.images), 1).url}></img>
 
             </NavLink>
             <br></br>
