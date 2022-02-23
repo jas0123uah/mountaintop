@@ -120,40 +120,11 @@ export const deleteReview = (reviewId) => async (dispatch) => {
 
 
 export const createGetaway = (newGetawayObj) => async (dispatch) => {
-    let {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5,  hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace   } = newGetawayObj;
 
 
   const response = await fetch(`/api/getaways/`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ 
-      address, 
-      city, 
-      state, 
-      latitude, 
-      longitude, 
-      name, 
-      price, 
-      description, 
-      numGuests, 
-      numBeds, 
-      numBaths,  
-      numBedrooms, 
-      userId,
-      country: 'United States', 
-      img1, 
-      img2, 
-      img3, 
-      img4, 
-      img5, 
-      hasHotTub, 
-      hasWifi, 
-      hasPatio, 
-      hasKitchen, 
-      hasFireplace
-    })
+    body: newGetawayObj
   });
   if (response.ok) {
     const createdGetaway = await response.json();
@@ -194,39 +165,15 @@ export const loadGetaways = () => async (dispatch) => {
 }
 
 export const editGetaway = (editedGetawayObj) => async (dispatch) => {
-    const {address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, getawayId , img1, img2, img3, img4, img5, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace  } = editedGetawayObj;
+  const getawayId = editedGetawayObj.get('getawayId');
+  console.log(editedGetawayObj.get('hasHotTub'), "HOTTUB")
+  console.log(editedGetawayObj.get('hasPatio'), "PATIO")
+  const img5 = editedGetawayObj.get('img5');
+
 
   const response = await fetch(`/api/getaways/${getawayId}/`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ 
-      address, 
-      city, 
-      state, 
-      latitude, 
-      longitude, 
-      name, 
-      price, 
-      description, 
-      numGuests, 
-      numBeds, 
-      numBaths,  
-      numBedrooms, 
-      userId,
-      country: 'United States',
-      img1, 
-      img2, 
-      img3, 
-      img4, 
-      img5, 
-      hasHotTub, 
-      hasWifi, 
-      hasPatio, 
-      hasKitchen, 
-      hasFireplace
-    })
+    body: editedGetawayObj
   });
   if (response.ok) {
     const editedGetawayRes = await response.json();
