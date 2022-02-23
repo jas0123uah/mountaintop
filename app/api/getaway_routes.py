@@ -11,6 +11,13 @@ from .auth_routes import validation_errors_to_error_messages
 
 getaway_routes = Blueprint('getaways', __name__)
 
+def set_list(l, i, v):
+      try:
+          l[i] = v
+      except IndexError:
+          for _ in range(i-len(l)+1):
+              l.append(None)
+          l[i] = v
 @getaway_routes.route('/')
 def get_most_recent_getaways():
     all_getaways = db.session.query(Getaway)
@@ -53,6 +60,10 @@ def create_getaway():
             numBeds = form.data['numBeds'],
             numBaths = form.data['numBaths'],
             description = form.data['description'])
+        
+        getawayAtExistingAddress=db.session.query(Getaway).filter(Getaway.address == form.data['address'] and Getaway.address == form.data['address']).first()
+        if getawayAtExistingAddress is not None:
+            return {'errors': 'A getaway at this address already exists.'}, 400
 
 
         
@@ -121,37 +132,39 @@ def edit_getaway_by_id(id):
         db.session.commit()
     newImages = []
     uneditedImages = []
-    allImages = [form.data['img1'], form.data['img2'], form.data['img3'], form.data['img4'], form.data['img5']]
-    for image in allImages:
+    allImages = [form.data['img1'], form.data['img2'],form.data['img3'],form.data['img4'], form.data['img5']]
+    for imageNumber, image in enumerate(allImages, start=1): #oldImage
         if type(image) is str:
-            imageAsDict = json.loads(image)
-        
+            imageAsDict = json.loads(image)     
             uneditedImages.append(str(imageAsDict['id']))
             uneditedImages.append(imageAsDict['id'])
-        else:
-            newImages.append(image)
+        else: #newImage
+            set_list(newImages, int(imageNumber), image)
 
     editedImages = db.session.query(Image).filter(Image.getawayId == getawayToEdit.id)
+    removedImageNumbers=[]
     for image in editedImages:
         if image.id not in uneditedImages:
+            removedImageNumbers.append(image.imageNumber)
             db.session.delete(image)
             db.session.commit()
         
-    for image in newImages:   
-        image.filename = get_unique_filename(image.filename)
+    for idx, image in enumerate(newImages):
+        if image is not None:
+            image.filename = get_unique_filename(image.filename)
 
-        upload = upload_file_to_s3(image)
+            upload = upload_file_to_s3(image)
 
-        if "url" not in upload:
-            # if the dictionary doesn't have a url key
-            # it means that there was an error when we tried to upload
-            # so we send back that error message
-            return upload, 400
+            if "url" not in upload:
+                # if the dictionary doesn't have a url key
+                # it means that there was an error when we tried to upload
+                # so we send back that error message
+                return upload, 400
 
-        url = upload["url"]
-        
-        db.session.add(Image(url=url, getawayId=getawayToEdit.id))
-        db.session.commit()
+            url = upload["url"]
+            
+            db.session.add(Image(url=url, getawayId=getawayToEdit.id, imageNumber=idx))
+            db.session.commit()
         
         
         
