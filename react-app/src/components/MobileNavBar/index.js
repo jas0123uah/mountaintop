@@ -78,7 +78,6 @@ export const MobileNavBar = () => {
   };
     const adjustHamburger =() =>{
         const newdisp = disp == 'none'? 'block' : 'none'
-        console.log(newdisp)
         setDisp(newdisp);
     }
     return(
