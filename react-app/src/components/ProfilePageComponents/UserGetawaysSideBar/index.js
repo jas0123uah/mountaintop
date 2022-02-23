@@ -40,7 +40,7 @@ export const AllUserGetaways = () => {
             <NavLink to={`/getaways/${getaway?.id}`}>
             
 
-            <img className="upcomingGetawayImage" id="host-getaway-images" alt="getaway" src={getImageByNumber(Object.values(getaway.images), 1).url}></img>
+            <img className="upcomingGetawayImage" id="host-getaway-images" alt="getaway" src={getImageByNumber(Object.values(getaway.images), 1)?.url}></img>
 
             </NavLink>
             <br></br>
