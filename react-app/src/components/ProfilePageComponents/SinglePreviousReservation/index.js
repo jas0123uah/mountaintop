@@ -3,12 +3,15 @@ import React from 'react';
 import NewReviewFormModal from "../../ReviewComponents/MappedReviews/NewReviewModal"
 import EditReviewFormModal from "../../ReviewComponents/EditReviewModal"
 import {DeleteReviewButton} from '../../ReviewComponents/DeleteReviewButton'
+import { getImageByNumber } from "../../../utils/helperFunctions";
 export const SinglePreviousReservation = ({reservation, getaways}) =>{
     return (<div  key={reservation?.id} className="previousReservation">
             <h2 className="reservationsGetawayHeader">{getaways[reservation?.getawayId]?.name}</h2>
             <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}>
 
-            <img className="upcomingGetawayImage" src={Object.values((getaways[reservation?.getawayId]?.images))[0].url}></img>
+                
+
+            <img className="upcomingGetawayImage" src={getImageByNumber(Object.values((getaways[reservation?.getawayId]?.images)),1).url}></img>
 
             </NavLink>
             <br></br>
