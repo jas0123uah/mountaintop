@@ -29,10 +29,6 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [isMobile, setisMobile] = useState(window.matchMedia('screen and (min-device-width : 320px) and (max-width : 768px) and (min-device-height : 480px) and (max-device-height : 1076px)'));
   const dispatch = useDispatch();
-  // const mq = window.matchMedia('screen and (min-device-width : 320px) and (max-width : 768px) and (min-device-height : 480px) and (max-device-height : 1076px)')
-
-  console.log(isMobile, "MOBILE");
-  
   isMobile.addEventListener('change', (e) => {
     setisMobile((window.matchMedia('screen and (min-device-width : 320px) and (max-width : 768px) and (min-device-height : 480px) and (max-device-height : 1076px)')))
 });
