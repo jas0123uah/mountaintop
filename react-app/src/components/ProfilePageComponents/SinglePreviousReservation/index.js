@@ -11,7 +11,7 @@ export const SinglePreviousReservation = ({reservation, getaways}) =>{
 
                 
 
-            <img className="upcomingGetawayImage" src={getImageByNumber(Object.values((getaways[reservation?.getawayId]?.images)),1).url}></img>
+            <img className="upcomingGetawayImage" src={getImageByNumber(Object.values((getaways[reservation?.getawayId]?.images)),1)?.url}></img>
 
             </NavLink>
             <br></br>

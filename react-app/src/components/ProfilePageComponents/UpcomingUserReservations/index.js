@@ -28,7 +28,7 @@ let upcomingReservations = userReservations?.filter(reservation => new Date(rese
         { upcomingReservations.length ? upcomingReservations?.map((reservation) =><div className="singleRes" key={reservation?.id}>
             <h2 className="reservationsGetawayHeader">{getaways[reservation.getawayId]?.name}</h2>
             <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}>
-            <img className="upcomingGetawayImage" src={getImageByNumber(Object.values((getaways[reservation?.getawayId]?.images)),1).url}></img>
+            <img className="upcomingGetawayImage" src={getImageByNumber(Object.values((getaways[reservation?.getawayId]?.images)),1)?.url}></img>
             </NavLink>
             <br></br>
             <span classname="reservationDates">{`Check-in date: ${[reservation?.startDate?.split(" ")[2]+ " "+ reservation?.startDate.split(" ")[1]+", "+ reservation?.startDate.split(" ")[3]]}`}</span>

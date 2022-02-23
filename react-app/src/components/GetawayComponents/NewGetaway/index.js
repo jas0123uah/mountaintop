@@ -5,6 +5,8 @@ import {createGetaway} from '../../../store/getaways'
 import {loadGetaways} from '../../../store/getaways'
 import {authenticate} from '../../../store/session'
 import {checkURL, throttle} from '../../../utils/helperFunctions'
+//import throttle from 'lodash.throttle';
+
 import $ from 'jquery'
 export const NewGetaway = () => {
   const [errors, setErrors] = useState([]);
@@ -42,13 +44,6 @@ export const NewGetaway = () => {
   const [savedImg3Preview, setSavedImg3Preview] = useState('')
   const [savedImg4Preview, setSavedImg4Preview] = useState('')
   const [savedImg5Preview, setSavedImg5Preview] = useState('')
-  
-  
-  const [validImg1, setValidImg1] = useState(true)
-  const [validImg2, setValidImg2] = useState(true)
-  const [validImg3, setValidImg3] = useState(true)
-  const [validImg4, setValidImg4] = useState(true)
-  const [validImg5, setValidImg5] = useState(true)
   const [hasHotTub, setHasHotTub] = useState(false)
   const [hasWifi, setHasWifi] = useState(false)
   const [hasPatio, setHasPatio] = useState(false)
@@ -273,8 +268,8 @@ export const NewGetaway = () => {
 
   
 
-  const handleSubmitGetaway = async () => {
-    //e.preventDefault();
+  const handleSubmitGetaway = async (e) => {
+    e.preventDefault();
     if(!errors.length){
       const formData = new FormData()
       formData.append("img1", img1)
@@ -303,30 +298,19 @@ export const NewGetaway = () => {
       formData.append("hasFireplace", hasFireplace)
       formData.append("hasKitchen", hasKitchen)
       await dispatch(
-
-
-        
-
-
         createGetaway(formData)
         ).catch(async (res) => {
           const data = await res.json();if (data && data.errors) setErrors(data.errors);
         });
         await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push("/profile"))
         }
-        // if(!errors.length){
-          //   await dispatch(
-            //     createGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5,  hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace })
-            //     ).catch(async (res) => {
-              //       const data = await res.json();if (data && data.errors) setErrors(data.errors);
-              //     });
-              //     await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push("/profile"))
-              //     }
             }
-  const handlethrottlePost = throttle(handleSubmitGetaway,10000 )
+  const handleThrottlePost = async (e) => {
+    throttle(handleSubmitGetaway(e),10000 )
+  }
   return (
     <div className='formWrapper'>
-    <form onSubmit={handlethrottlePost} className='getawayForm'>
+    <form onSubmit={(e)=> handleThrottlePost(e)} className='getawayForm'>
       <fieldset className='formflex'>
         <legend>New Getaway</legend>
         <div className="form-fields-flex">
