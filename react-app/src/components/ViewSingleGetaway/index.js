@@ -13,6 +13,13 @@ export const ViewSingleGetaway = () => {
     const currentGetaway = getawaysObject[getawayId];
     const guestOrGuests = currentGetaway.numGuests>1 ? "guests":"guest"
     const imagesArray = getGetawayImagesArray(currentGetaway)
+    imagesArray.sort((a, b) =>{
+        if (a.imageNumber > b.imageNumber){
+            return 1
+        }else if(a.imageNumber < b.imageNumber){
+            return -1
+        }
+    })
     const averageRatingAndReviews= getAverageReviewRating(currentGetaway)
     let averageRating = averageRatingAndReviews[0]
     const location = useLocation();
