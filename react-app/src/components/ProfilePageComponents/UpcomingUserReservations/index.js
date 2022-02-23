@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import {deleteReservation} from '../../../store/session'
-
+import {getImageByNumber} from '../../../utils/helperFunctions'
 export const UpcomingUserReservations = () => {
  const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
@@ -28,7 +28,7 @@ let upcomingReservations = userReservations?.filter(reservation => new Date(rese
         { upcomingReservations.length ? upcomingReservations?.map((reservation) =><div className="singleRes" key={reservation?.id}>
             <h2 className="reservationsGetawayHeader">{getaways[reservation.getawayId]?.name}</h2>
             <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}>
-            <img className="upcomingGetawayImage" src={Object.values((getaways[reservation?.getawayId]?.images))[0].url}></img>
+            <img className="upcomingGetawayImage" src={getImageByNumber(Object.values((getaways[reservation?.getawayId]?.images)),1).url}></img>
             </NavLink>
             <br></br>
             <span classname="reservationDates">{`Check-in date: ${[reservation?.startDate?.split(" ")[2]+ " "+ reservation?.startDate.split(" ")[1]+", "+ reservation?.startDate.split(" ")[3]]}`}</span>
@@ -41,7 +41,7 @@ let upcomingReservations = userReservations?.filter(reservation => new Date(rese
               <button className="DeleteButton cancel-reservation-button"type="submit">Cancel Reservation</button>
             </form>
             </div>
-        </div>) : <h1>No upcoming reservations</h1>}
+        </div>) : <h1 className="NoReservations">No upcoming reservations</h1>}
       </>
   )
 }

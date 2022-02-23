@@ -7,6 +7,7 @@ import {editGetaway} from '../../../store/getaways'
 import {loadGetaways} from '../../../store/getaways'
 import {authenticate} from '../../../store/session'
 import {checkURL, checkURLisReachable} from '../../../utils/helperFunctions'
+import $ from 'jquery'
 export const EditSingleGetaway = () => {
 
   const user = useSelector(state => state.session.user);
@@ -56,92 +57,133 @@ export const EditSingleGetaway = () => {
   allImgUrls.push(image.url)
   });
   allImgUrls.sort().reverse()
-  const [img1, setImg1] = useState(allImgUrls[0])
-  const [img2, setImg2] = useState(allImgUrls[1])
-  const [img3, setImg3] = useState(allImgUrls[2])
-  const [img4, setImg4] = useState(allImgUrls[3])
-  const [img5, setImg5] = useState(allImgUrls[4])
-  const [validImg1, setValidImg1] = useState(true)
-  const [validImg2, setValidImg2] = useState(true)
-  const [validImg3, setValidImg3] = useState(true)
-  const [validImg4, setValidImg4] = useState(true)
-  const [validImg5, setValidImg5] = useState(true)
+  const [img1, setImg1] = useState(JSON.stringify(allImgObjs[0]))
+  const [img2, setImg2] = useState(JSON.stringify(allImgObjs[1]))
+  const [img3, setImg3] = useState(JSON.stringify(allImgObjs[2]))
+  const [img4, setImg4] = useState(JSON.stringify(allImgObjs[3]))
+  const [img5, setImg5] = useState(JSON.stringify(allImgObjs[4]))
 
-  const img1IsValid = (img) => {
-    if(!img.target.value.length){
-      setValidImg1(true)
-      return
-    }
-    if (img.target.value.length && checkURL(img.target.value) && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true) {
-      setValidImg1(true)
-      return 
-    }
-    setValidImg1(false)
-  }
 
-  const img2IsValid = (img) => {
-    if(!img.target.value.length){
-      setValidImg2(true)
-      return
-    }
-    if (img.target.value.length && checkURL(img.target.value)  && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true  ) {
-      setValidImg2(true)
-      return 
-    }
-    setValidImg2(false)
-  }
+ const [img1Preview, setImg1Preview] = useState(allImgUrls[0])
+  const [img2Preview, setImg2Preview] = useState(allImgUrls[1])
+  const [img3Preview, setImg3Preview] = useState(allImgUrls[2])
+  const [img4Preview, setImg4Preview] = useState(allImgUrls[3])
+  const [img5Preview, setImg5Preview] = useState(allImgUrls[4])
+  
+  const [savedImg1File, setSavedImg1File] = useState('')
+  const [savedImg2File, setSavedImg2File] = useState('')
+  const [savedImg3File, setSavedImg3File] = useState('')
+  const [savedImg4File, setSavedImg4File] = useState('')
+  const [savedImg5File, setSavedImg5File] = useState('')
+  const [savedImg1Preview, setSavedImg1Preview] = useState('')
+  const [savedImg2Preview, setSavedImg2Preview] = useState('')
+  const [savedImg3Preview, setSavedImg3Preview] = useState('')
+  const [savedImg4Preview, setSavedImg4Preview] = useState('')
+  const [savedImg5Preview, setSavedImg5Preview] = useState('')
 
-  const img3IsValid = (img) => {
-    if(!img.target.value.length){
-      setValidImg3(true)
-      return
-    }
-    if (img.target.value.length && checkURL(img.target.value) && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true ) {
-      setValidImg3(true)
-      return 
-    }
-    setValidImg3(false)
-  }
+
 
   
 
-  const img4IsValid = (img) => {
-    if(!img.target.value.length){
-      setValidImg4(true)
-      return
+
+const handleSetImg1 = (e) => {
+        let file = e.target.files[0];
+
+        setImg1(e.target.files[0]);
+        if (file) {
+            setSavedImg1File(file);
+
+            file = URL.createObjectURL(file);
+            setImg1Preview(file);
+            setSavedImg1Preview(file)
+        } else {
+            setImg1(savedImg1File);
+            setImg1Preview(savedImg1Preview);
+        }
     }
-    if (img.target.value.length && checkURL(img.target.value)  && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true ) {
-      setValidImg4(true)
-      return 
+  const handleSetImg2 = (e) => {
+        let file = e.target.files[0];
+
+        setImg2(e.target.files[0]);
+        if (file) {
+            setSavedImg2File(file);
+
+            file = URL.createObjectURL(file);
+            setImg2Preview(file);
+            setSavedImg2Preview(file)
+        } else {
+            setImg2(savedImg2File);
+            setImg2Preview(savedImg2Preview);
+        }
     }
-    setValidImg4(false)
+  const handleSetImg3 = (e) => {
+        let file = e.target.files[0];
+
+        setImg3(e.target.files[0]);
+        if (file) {
+            setSavedImg3File(file);
+
+            file = URL.createObjectURL(file);
+            setImg3Preview(file);
+            setSavedImg3Preview(file)
+        } else {
+            setImg3(savedImg3File);
+            setImg3Preview(savedImg3Preview);
+        }
+    }
+  const handleSetImg4 = (e) => {
+        let file = e.target.files[0];
+
+        setImg4(e.target.files[0]);
+        if (file) {
+            setSavedImg4File(file);
+
+            file = URL.createObjectURL(file);
+            setImg4Preview(file);
+            setSavedImg4Preview(file)
+        } else {
+            setImg4(savedImg4File);
+            setImg4Preview(savedImg4Preview);
+        }
+    }
+  const handleSetImg5 = (e) => {
+        let file = e.target.files[0];
+
+        setImg5(e.target.files[0]);
+        if (file) {
+            setSavedImg5File(file);
+
+            file = URL.createObjectURL(file);
+            setImg5Preview(file);
+            setSavedImg5Preview(file)
+        } else {
+            setImg5(savedImg5File);
+            setImg5Preview(savedImg5Preview);
+        }
+    }
+  const handleImg1Click = () => {
+    $('#img1Upload').trigger('click')
+
   }
+  const handleImg2Click = () => {
+    $('#img2Upload').trigger('click')
 
-  const img5IsValid = (img) => {
-    if(!img.target.value.length){
-      setValidImg5(true)
-      return
-    }
-    if (img.target.value.length && checkURL(img.target.value) && /^(ftp|http|https):\/\/[^ "]+$/.test(img.target.value) == true) {
-      setValidImg5(true)
-      return 
-    }
-    setValidImg5(false)
   }
+  const handleImg3Click = () => {
+    $('#img3Upload').trigger('click')
 
-  // useEffect(() => {
-  //   img1IsValid(img1)
-  //   img2IsValid(img2)
-  //   img3IsValid(img3)
-  //   img4IsValid(img4)
-  //   img5IsValid(img5)
+  }
+  const handleImg4Click = () => {
+    $('#img4Upload').trigger('click')
 
-  // }, [img1, img2, img3, img4, img5])
+  }
+  const handleImg5Click = () => {
+    $('#img5Upload').trigger('click')
 
-
+  }
 
   useEffect(()=> {
-    const getaway = {name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5}
+    const getaway = {name, address, city, state, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5}
     const errors = [];
     const allImages= [ img1 ? true : false, img2 ? true : false, img3 ? true : false, img4 ? true : false, img5 ? true : false]
     const numImages = allImages.reduce(function(n, val) {
@@ -176,10 +218,10 @@ export const EditSingleGetaway = () => {
       errors.push(`Please upload 5 images.`)
     }
 
-    if ((img1.length && !checkURL(img1)) || (img2.length && !checkURL(img2)) || (img3.length && !checkURL(img3)) || (img4.length && !checkURL(img4)) || (img5.length && !checkURL(img5)) || (img1.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img1) == false) || (img2.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false) ||(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img3) == false) || (img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img4) == false) || (img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img5) == false)) {
-      errors.push(`Fields in red are invalid image urls.`)
+    // if ((img1.length && !checkURL(img1)) || (img2.length && !checkURL(img2)) || (img3.length && !checkURL(img3)) || (img4.length && !checkURL(img4)) || (img5.length && !checkURL(img5)) || (img1.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img1) == false) || (img2.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img2) == false) ||(img3.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img3) == false) || (img4.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img4) == false) || (img5.length && /^(ftp|http|https):\/\/[^ "]+$/.test(img5) == false)) {
+    //   errors.push(`Fields in red are invalid image urls.`)
       
-    }
+    // }
     setErrors(errors);
   }, [name, address, city, state, name, price, description, numGuests, numBeds, numBaths, numBedrooms, img1, img2, img3, img4, img5])
 
@@ -195,22 +237,59 @@ export const EditSingleGetaway = () => {
 
 
   
-  
-
   const handleEditGetaway = async (e) => {
     e.preventDefault();
     if(!errors.length){
+      const formData = new FormData()
+      formData.append("img1", img1)
+      formData.append("img2", img2)
+      formData.append("address", address)
+      formData.append("city", city)
+      formData.append("state", state)
+      formData.append("latitude", latitude)
+      formData.append("longitude", longitude)
+      formData.append("name", name)
+      formData.append("price", price)
+      formData.append("description", description)
+      formData.append("numGuests", numGuests)
+      formData.append("numBeds", numBeds)
+      formData.append("numBaths", numBaths)
+      formData.append("numBedrooms", numBedrooms)
+      formData.append("userId", userId)
+      formData.append("img3", img3)
+      formData.append("img4", img4)
+      formData.append("img5", img5)
+      formData.append("getawayId", getawayId)
+      formData.append("country", "United States")
+      formData.append("hasHotTub", hasHotTub)
+      formData.append("hasWifi", hasWifi)
+      formData.append("hasPatio", hasPatio)
+      formData.append("hasFireplace", hasFireplace)
+      formData.append("hasKitchen", hasKitchen)
       await dispatch(
-        editGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, getawayId, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace })
+
+
+        
+
+
+        editGetaway(formData)
         ).catch(async (res) => {
-          const data = await res.json();if (data && data.errors) setErrors(data.errors);
+          // const data = await res.json();if (data && data.errors) setErrors(data.errors);
         });
         await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push("/profile"))
-        }
-    }
+    }}
+    // if(!errors.length){
+    //   await dispatch(
+    //     editGetaway({address, city, state, latitude, longitude, name, price, description, numGuests, numBeds, numBaths,  numBedrooms, userId, img1, img2, img3, img4, img5, getawayId, hasHotTub, hasWifi, hasPatio, hasKitchen, hasFireplace })
+    //     ).catch(async (res) => {
+    //       const data = await res.json();if (data && data.errors) setErrors(data.errors);
+    //     });
+    //     await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push("/profile"))
+    //     }
+    // }
   return (
     <div className='formWrapper'>
-    <form onSubmit={ (e) => handleEditGetaway(e)}>
+    <form className="getawayForm" onSubmit={ (e) => handleEditGetaway(e)}>
       <fieldset className='formflex'>
         <legend>Edit Getaway</legend>
       <div className='form-fields-flex'>
@@ -338,7 +417,7 @@ export const EditSingleGetaway = () => {
         />
       </div>
 
-      <fieldset className="amenities-fieldset">              
+      <fieldset className="amenities-fieldset" id = "amenities-fieldset">              
     <legend className="amenities-fieldset">Amenities</legend>             
     <input type="checkbox" id='hottub' checked={hasHotTub} onChange={(e) => {setHasHotTub(!hasHotTub)}}/>Hot tub
     <input type="checkbox" id='wifi' checked={hasWifi} onChange={(e) => {setHasWifi(!hasWifi)}}/>WiFi  
@@ -348,7 +427,7 @@ export const EditSingleGetaway = () => {
                     
   </fieldset> 
 
-      <div className="getawayImgFields">
+      {/* <div className="getawayImgFields">
         <label htmlFor='imgUrl' className={`is-red-${validImg1}`}>Image URL</label>
         <input id='img1' type="url" className="IMGS" name="imgUrl" value={img1}  onBlur={img1IsValid} onChange={(e)=>{setImg1(e.target.value)}} />
 
@@ -379,6 +458,48 @@ export const EditSingleGetaway = () => {
       <div className="getawayImgFields">
         <label htmlFor='imgUrl' className={`is-red-${validImg5}`}>Image URL</label>
         <input type="url" id='img5' className="IMGS" name="imgUrl" value={img5}    onBlur={img5IsValid} onChange={(e)=>{setImg5(e.target.value)}} />
+
+      </div> */}
+
+
+
+      <div className="getawayImgFields">
+        
+        <i class="fa fa-camera" onClick={handleImg1Click}></i>
+        <input type="file" id="img1Upload" className="fas fa-file-upload" name="imgUrl" accept=".jpg, .png, .jpeg"  onChange={(e)=>{handleSetImg1(e)}} />
+        {img1Preview ? <img src={img1Preview} className="getawayImageUpload" alt="" /> : <span>Upload an image</span>}
+
+      </div>
+
+      <div className="getawayImgFields">
+        
+        <i class="fa fa-camera" onClick={handleImg2Click}></i>
+        <input type="file" id="img2Upload" className="fas fa-file-upload" name="imgUrl" accept=".jpg, .png, .jpeg"  onChange={(e)=>{handleSetImg2(e)}} />
+        {img2Preview ? <img src={img2Preview} className="getawayImageUpload" alt="" /> : <span>Upload an image</span>}
+
+      </div>
+
+      <div className="getawayImgFields">
+        
+        <i class="fa fa-camera" onClick={handleImg3Click}></i>
+        <input type="file" id="img3Upload" className="fas fa-file-upload" name="imgUrl" accept=".jpg, .png, .jpeg"  onChange={(e)=>{handleSetImg3(e)}} />
+        {img3Preview ? <img className="getawayImageUpload" src={img3Preview} alt="" /> : <span>Upload an image</span>}
+
+      </div>
+
+      <div className="getawayImgFields">
+        
+        <i class="fa fa-camera" onClick={handleImg4Click}></i>
+        <input type="file" id="img4Upload" className="fas fa-file-upload" name="imgUrl" accept=".jpg, .png, .jpeg"  onChange={(e)=>{handleSetImg4(e)}} />
+        {img4Preview ? <img src={img4Preview} alt="" className="getawayImageUpload" /> : <span>Upload an image</span>}
+
+      </div>
+
+      <div className="getawayImgFields">
+        
+        <i class="fa fa-camera" onClick={handleImg5Click}></i>
+        <input type="file" id="img5Upload" className="fas fa-file-upload" name="imgUrl" accept=".jpg, .png, .jpeg"  onChange={(e)=>{handleSetImg5(e)}} />
+        {img5Preview ? <img src={img5Preview} className="getawayImageUpload" alt="" /> : <span>Upload an image</span>}
 
       </div>
 

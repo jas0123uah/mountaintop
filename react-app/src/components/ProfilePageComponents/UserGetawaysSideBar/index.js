@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink} from 'react-router-dom';
 import {deleteReservation} from '../../../store/session'
 import {deleteGetaway } from '../../../store/getaways'
+import {getImageByNumber} from '../../../utils/helperFunctions'
 export const AllUserGetaways = () => {
  const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
@@ -15,6 +16,9 @@ export const AllUserGetaways = () => {
       }
     );
   
+  }
+  const getImageByNumber =(imageObjectsArray, imageNumber) => {
+    return imageObjectsArray.filter(imageObject => imageObject.imageNo == imageNumber)[0]
   }
   const userGetaways = Object.values(user?.getaways)
 
@@ -37,7 +41,7 @@ export const AllUserGetaways = () => {
             <h2 className="reservationsGetawayHeader">{getaway?.name}</h2>
             <NavLink to={`/getaways/${getaway?.id}`}>
 
-            <img className="upcomingGetawayImage" id="host-getaway-images" src={Object.values(getaway.images)[0].url}></img>
+            <img className="upcomingGetawayImage" id="host-getaway-images" alt="getaway" src={getImageByNumber(Object.values(getaway.images)).url}></img>
 
             </NavLink>
             <br></br>

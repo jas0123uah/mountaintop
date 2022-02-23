@@ -2,6 +2,41 @@
 .fa-mountain, .fa-user-plus, .fa-sign-in, .fa-home{
     color: #000;
 }
+form.getawayForm{
+    width: 48vw;
+}
+div.getawayImgFields{
+    max-width: 50%;
+    flex-direction: row;
+    display: inline-flex;
+    margin-left: 93px;
+}
+.fa-camera{
+    margin-right: 6px;
+}
+fieldset.amenities-fieldset{
+    margin-left: 123px;
+}
+div.getawayImgFields img{
+    width: 100%;
+}
+div.getawayImgFields{
+    align-self: center;
+}
+div.form-fields-flex div.getawayImgFields{
+    flex-direction: row;
+}
+img.getawayImageUpload{
+    margin-bottom: 15px;
+    border-radius:15px;
+}
+
+div.form-fields-flex *{
+    align-self: center;
+}
+input[type="file"]{
+    display: none;
+}
 .fa-times{
     z-index: 4;
     position: relative;
@@ -890,8 +925,19 @@ margin-bottom: 15px;
     and (min-device-height : 480px)
     and (max-device-height : 1076px)
     {
+        div.form-fields-flex *{
+            align-self: initial;
+        }
+        fieldset.amenities-fieldset#amenities-fieldset{
+            margin-left: 0;
+        }
+        form.getawayForm{
+    width: auto;}
         div.searchResultsContainer#searchResultsContainer{
             margin-top: 0 ; 
+        }
+        div.getawayImgFields{
+            margin-left: 0;;
         }
         div.search-container{
             position: relative;

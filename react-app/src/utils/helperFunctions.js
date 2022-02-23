@@ -294,3 +294,10 @@ export const throttle = (func, duration) => {
     }
   }
 }
+
+
+export const getImageByNumber =(imageObjectsArray, imageNumber) => {
+    const x = imageObjectsArray.filter(imageObject => imageObject.imageNumber == imageNumber)[0]
+    return x
+
+  }

@@ -1,7 +1,11 @@
 from flask import Blueprint, request
 from app.forms import GetawayForm
 from app.models import db, Getaway, Image, Amenity
-
+import json
+import time
+from app.aws_upload import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
+from app.route_helper_functions import uploadImage, uploadAllImages, addAmenities, deleteExistingAmenities, getAllGetaways, checkForEditedImages, getImageFromFormWithId
 
 from .auth_routes import validation_errors_to_error_messages
 
@@ -9,11 +13,6 @@ getaway_routes = Blueprint('getaways', __name__)
 
 @getaway_routes.route('/')
 def get_most_recent_getaways():
-    # recent_getaways = db.session.query(Getaway).order_by(Getaway.id.desc()).limit(5)
-    # getawaydict ={}
-    # for getaway in recent_getaways:
-    #     getawaydict[getaway.id]=getaway.to_dict()
-    # return getawaydict
     all_getaways = db.session.query(Getaway)
     getawaydict ={}
     for getaway in all_getaways:
@@ -36,8 +35,8 @@ def get_getaway_by_id(id):
 @getaway_routes.route('/', methods=['POST'])
 def create_getaway():
     form = GetawayForm()
+
     form['csrf_token'].data = request.cookies['csrf_token']
-    
     
     if form.validate_on_submit():
         newGetaway = Getaway(userId = form.data['userId'],
@@ -54,62 +53,45 @@ def create_getaway():
             numBeds = form.data['numBeds'],
             numBaths = form.data['numBaths'],
             description = form.data['description'])
-        db.session.add(newGetaway)
-        db.session.commit()
-                
-        if form.data['img1'] is not None:
-            db.session.add(Image(url=form.data['img1'], getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['img2'] is not None:
-            db.session.add(Image(url=form.data['img2'], getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['img3'] is not None:
-            db.session.add(Image(url=form.data['img3'], getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['img4'] is not None:
-            db.session.add(Image(url=form.data['img4'], getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['img5'] is not None:
-            db.session.add(Image(url=form.data['img5'], getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['img6'] is not None:
-            db.session.add(Image(url=form.data['img6'], getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['img7'] is not None:
-            db.session.add(Image(url=form.data['img7'], getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['img8'] is not None:
-            db.session.add(Image(url=form.data['img8'], getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['img9'] is not None:
-            db.session.add(Image(url=form.data['img9'], getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['img10'] is not None:
-            db.session.add(Image(url=form.data['img10'], getawayId=newGetaway.id))
-            db.session.commit()
+
+
         
-        if form.data['hasHotTub'] is True:
-            db.session.add(Amenity(amenity='Hot Tub', getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['hasWifi'] is True:
-            db.session.add(Amenity(amenity='Wifi', getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['hasPatio'] is True:
-            db.session.add(Amenity(amenity='Patio', getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['hasKitchen'] is True:
-            db.session.add(Amenity(amenity='Kitchen', getawayId=newGetaway.id))
-            db.session.commit()
-        if form.data['hasFireplace'] is True:
-            db.session.add(Amenity(amenity='Fireplace', getawayId=newGetaway.id))
-            db.session.commit()
-        all_getaways = db.session.query(Getaway)
-        getawaydict ={}
-        for getaway in all_getaways:
-            getawaydict[getaway.id]=getaway.to_dict()
-        return getawaydict
-    else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    if "img1" not in form.data or "img2" not in form.data or "img3" not in form.data or "img4" not in form.data or "img5" not in form.data :
+            return {"errors": "5 images required"}, 400
+    for i in range(1, 6):
+        image = form.data[f'img{i}']
+        if hasattr(image, 'filename'):
+            if not allowed_file(image.filename):
+                return {"errors": "file type not permitted"}, 400
+    
+    db.session.add(newGetaway)
+    db.session.commit()
+    uploadAllImages(form, newGetaway)
+
+    
+    
+    
+    if form.data['hasHotTub'] == 'true':
+        db.session.add(Amenity(amenity='Hot Tub', getawayId=newGetaway.id))
+        db.session.commit()
+    if form.data['hasWifi'] == 'true':
+        db.session.add(Amenity(amenity='Wifi', getawayId=newGetaway.id))
+        db.session.commit()
+    if form.data['hasPatio'] == 'true':
+        db.session.add(Amenity(amenity='Patio', getawayId=newGetaway.id))
+        db.session.commit()
+    if form.data['hasKitchen'] == 'true':
+        db.session.add(Amenity(amenity='Kitchen', getawayId=newGetaway.id))
+        db.session.commit()
+    if form.data['hasFireplace'] == 'true':
+        db.session.add(Amenity(amenity='Fireplace', getawayId=newGetaway.id))
+        db.session.commit()
+            
+    all_getaways = db.session.query(Getaway)
+    getawaydict ={}
+    for getaway in all_getaways:
+        getawaydict[getaway.id]=getaway.to_dict()
+    return getawaydict
     
 
 
@@ -137,76 +119,74 @@ def edit_getaway_by_id(id):
         getawayToEdit.description = form.data['description']
         db.session.add(getawayToEdit)
         db.session.commit()
+    newImages = []
+    uneditedImages = []
+    allImages = [form.data['img1'], form.data['img2'], form.data['img3'], form.data['img4'], form.data['img5']]
+    for image in allImages:
+        if type(image) is str:
+            imageAsDict = json.loads(image)
         
-        currentImages = db.session.query(Image).filter(Image.getawayId == getawayToEdit.id)
-        for image in currentImages:
+            uneditedImages.append(str(imageAsDict['id']))
+            uneditedImages.append(imageAsDict['id'])
+        else:
+            newImages.append(image)
+
+    editedImages = db.session.query(Image).filter(Image.getawayId == getawayToEdit.id)
+    for image in editedImages:
+        if image.id not in uneditedImages:
             db.session.delete(image)
             db.session.commit()
         
-        if form.data['img1'] is not None:
-            db.session.add(Image(url=form.data['img1'], getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['img2'] is not None:
-            db.session.add(Image(url=form.data['img2'], getawayId=getawayToEdit.id))
-            db.session.commit()
-            
-        if form.data['img3'] is not None:
-            db.session.add(Image(url=form.data['img3'], getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['img4'] is not None:
-            db.session.add(Image(url=form.data['img4'], getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['img5'] is not None:
-            db.session.add(Image(url=form.data['img5'], getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['img6'] is not None:
-            db.session.add(Image(url=form.data['img6'], getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['img7'] is not None:
-            db.session.add(Image(url=form.data['img7'], getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['img8'] is not None:
-            db.session.add(Image(url=form.data['img8'], getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['img9'] is not None:
-            db.session.add(Image(url=form.data['img9'], getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['img10'] is not None:
-            db.session.add(Image(url=form.data['img10'], getawayId=getawayToEdit.id))
-            db.session.commit()
-        
-        
-        currentAmenities = db.session.query(Amenity).filter(Amenity.getawayId == getawayToEdit.id)
-        for amenity in currentAmenities:
-            db.session.delete(amenity)
-            db.session.commit()
+    for image in newImages:   
+        image.filename = get_unique_filename(image.filename)
 
-        if form.data['hasHotTub'] is True:
-            db.session.add(Amenity(amenity='Hot Tub', getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['hasWifi'] is True:
-            db.session.add(Amenity(amenity='Wifi', getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['hasPatio'] is True:
-            db.session.add(Amenity(amenity='Patio', getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['hasKitchen'] is True:
-            db.session.add(Amenity(amenity='Kitchen', getawayId=getawayToEdit.id))
-            db.session.commit()
-        if form.data['hasFireplace'] is True:
-            db.session.add(Amenity(amenity='Fireplace', getawayId=getawayToEdit.id))
-            db.session.commit()
-        
-        
-        
-        all_getaways = db.session.query(Getaway)
-        getawaydict ={}
-        for getaway in all_getaways:
-            getawaydict[getaway.id]=getaway.to_dict()
+        upload = upload_file_to_s3(image)
 
-        return getawaydict
-    else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+
+        url = upload["url"]
+        
+        db.session.add(Image(url=url, getawayId=getawayToEdit.id))
+        db.session.commit()
+        
+        
+        
+    
+    
+    
+    
+    
+    currentAmenities = db.session.query(Amenity).filter(Amenity.getawayId == getawayToEdit.id)
+    
+    deleteExistingAmenities(currentAmenities)
+
+
+
+
+    if form.data['hasHotTub'] == 'true':
+        db.session.add(Amenity(amenity='Hot Tub', getawayId=getawayToEdit.id))
+        db.session.commit()
+    if form.data['hasWifi'] == 'true':
+        db.session.add(Amenity(amenity='Wifi', getawayId=getawayToEdit.id))
+        db.session.commit()
+    if form.data['hasPatio'] == 'true':
+        db.session.add(Amenity(amenity='Patio', getawayId=getawayToEdit.id))
+        db.session.commit()
+    if form.data['hasKitchen'] == 'true':
+        db.session.add(Amenity(amenity='Kitchen', getawayId=getawayToEdit.id))
+        db.session.commit()
+    if form.data['hasFireplace'] == 'true':
+        db.session.add(Amenity(amenity='Fireplace', getawayId=getawayToEdit.id))
+        db.session.commit()
+    
+    
+    return get_all_getaways()
+    
+    
 
 @getaway_routes.route('/<int:id>/', methods=['DELETE'])
 def delete_getaway_by_id(id):

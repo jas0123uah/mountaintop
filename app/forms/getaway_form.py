@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, TextAreaField, DecimalField
+from wtforms import IntegerField, StringField, TextAreaField, FileField, DecimalField
 from wtforms.validators import DataRequired
 
 class GetawayForm(FlaskForm):
@@ -27,16 +27,16 @@ class GetawayForm(FlaskForm):
                                 DataRequired()])
     price = DecimalField("Price", places=2, validators=[
                                 DataRequired()])
-    img1 = TextAreaField("Image1", )
-    img2 = TextAreaField("Image2", )
-    img3 = TextAreaField("Image3", )
-    img4 = TextAreaField("Image4", )
-    img5 = TextAreaField("Image5", )
-    img6 = TextAreaField("Image6", )
-    img7 = TextAreaField("Image7", )
-    img8 = TextAreaField("Image8")
-    img9 = TextAreaField("Image9", )
-    img10 = TextAreaField("Image10")
+    img1 = FileField("Image1", validators=[
+                                DataRequired()])
+    img2 = FileField("Image2", validators=[
+                                DataRequired()])
+    img3 = FileField("Image3", validators=[
+                                DataRequired()])
+    img4 = FileField("Image4", validators=[
+                                DataRequired()])
+    img5 = FileField("Image5", validators=[
+                                DataRequired()])
     hasHotTub = StringField("Hot tub")
     hasWifi = StringField("WiFi")
     hasPatio = StringField("Patio")

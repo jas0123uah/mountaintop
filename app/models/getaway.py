@@ -106,6 +106,7 @@ class Getaway(db.Model):
             img_dict[image.id] = {"id":image.id,
                                         "getawayId":image.getawayId,
                                         "url":image.url,
+                                        "imageNumber":image.imageNumber
                                         }
         return img_dict
     
