@@ -47,16 +47,29 @@ export const EditSingleGetaway = () => {
   const [numBaths, setNumBaths] = useState(getawayBeforeEdits.numBaths)
   const [numBedrooms, setNumBedrooms] = useState(getawayBeforeEdits.numBedrooms)
   const allImgObjs = Object.values(getawayBeforeEdits.images)
+  allImgObjs.sort((a, b) =>{
+        if (a.imageNumber > b.imageNumber){
+            return 1
+        }else if(a.imageNumber < b.imageNumber){
+            return -1
+        }
+    })
+  console.log(allImgObjs, "ALL IMAGE OBJECTS")
   const allImgUrls = [];
   const [hasHotTub, setHasHotTub] = useState(amenitiesObject.HotTub)
   const [hasWifi, setHasWifi] = useState(amenitiesObject.Wifi)
   const [hasPatio, setHasPatio] = useState(amenitiesObject.Patio)
   const [hasFireplace, setHasFireplace] = useState(amenitiesObject.Fireplace)
   const [hasKitchen, setHasKitchen] = useState(amenitiesObject.Kitchen)
-  allImgObjs.forEach(image => {
-  allImgUrls.push(image.url)
-  });
-  allImgUrls.sort().reverse()
+  for (let index = 0; index < allImgObjs.length; index++) {
+    const image = allImgObjs[index];
+    allImgUrls.push(image.url)
+    
+  }
+  // allImgObjs.forEach(image => {
+  // allImgUrls.push(image.url)
+  // });
+  //allImgUrls.sort().reverse()
   const [img1, setImg1] = useState(JSON.stringify(allImgObjs[0]))
   const [img2, setImg2] = useState(JSON.stringify(allImgObjs[1]))
   const [img3, setImg3] = useState(JSON.stringify(allImgObjs[2]))
