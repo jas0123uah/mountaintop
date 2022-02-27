@@ -10,7 +10,7 @@ function SignUpFormModal() {
     setisMobile((window.matchMedia('screen and (min-device-width : 320px) and (max-width : 768px) and (min-device-height : 480px) and (max-device-height : 1076px)')))
   });
   
-  const isMobileSignup = isMobile.matches ?<span onClick={() => {setShowModal(true);}} className="mobileSignup" id="mobileSignup">Sign up</span>: <i class="fas fa-user-plus fa-3x" id="sign-up-button" onClick={() => {setShowModal(true);}}></i>
+  const isMobileSignup = <span onClick={() => {setShowModal(true);}} className="mobileSignup" id="mobileSignup">Sign up</span>
 
   return (
     <>

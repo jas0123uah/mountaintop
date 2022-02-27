@@ -10,7 +10,8 @@ let pastUserReservations = userReservations.filter(reservation => new Date(reser
 pastUserReservations = Object.values(pastUserReservations)
   return(
       <>
-      <div className="maybe2">
+      <h1 id="previousReservation">Previous Reservation</h1>
+      <div className="maybe2" id="previousReservationsBox">
         {pastUserReservations?.map((reservation) =>
         <SinglePreviousReservation reservation={reservation} getaways={getaways} key ={reservation.id}/>
         )}

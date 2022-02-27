@@ -16,7 +16,7 @@ export const DeleteReviewButton = ({reservation}) =>{
             return setErrors(deletedReview.errors)}
         await dispatch(loadGetaways())
         await dispatch(authenticate())
-        history.push('/profile')
+        history.push('/profile/previousreservations/')
     }
     const deleteButton = <button onClick={handleDeleteReview} className="DeleteButton delete-review-button">Delete Review</button>
     return (

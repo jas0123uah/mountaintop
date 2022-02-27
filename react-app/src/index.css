@@ -2,6 +2,26 @@
 .fa-mountain, .fa-user-plus, .fa-sign-in, .fa-home{
     color: #000;
 }
+.mobileTopContainer{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+div.browse{
+    display: flex;
+    flex-direction: column;
+}
+div.amenitiesNav{
+    align-self: center;
+}
+.topnav a.icon#burger{
+    position: static;
+}
+.div2,.div4,.div6,.div8,.div10,.div12{
+    display: flex;
+    margin-left: 4px;
+    margin-right: 4px;;
+}
 form.getawayForm{
     width: 48vw;
 }
@@ -221,13 +241,23 @@ body{
   font-weight: bold;
   font-size: 1.25;
 }
+.reservationDatesContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+    gap: 8px;
+    margin-bottom: 10px;
+}
 #deleteReservationForm{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin-top: 5px;
+    /* justify-content: center; */
     
 }
 .viewGetawayButton{
-    margin-right: 4vw;;
+    /* margin-right: 4vw;; */
     /* margin-left: 192px; */
 
 }
@@ -412,11 +442,12 @@ padding-right: 16px;
 .upcomingGetawayImage,.previousGetawayImage{
     /* height:540px; */
     /* width: 720px; */
-    width: 60%;
+    /* width: 60%; */
+    width: 100%;
 }
 .editReservationContainer, .viewGetawayContainer{
-    margin-top:90px;
-    margin-bottom:15px;
+    margin-top:15px;
+    margin-bottom:30px;
 }
 .viewGetawayContainer{
     /* margin-left:300px;
@@ -498,7 +529,7 @@ background-color: white;
 }
 .searchResultsContainer{
     /* margin-top: 65px; */
-    margin-top: 115px;
+    /* margin-top: 115px; */
     min-height: 100vh;
 }
 .searchResultsContainer-browse{
@@ -510,9 +541,10 @@ margin-top: 65px;
 .maybe2 {
     display: flex;
     /* min-height: min-content;  */
+    align-items: flex-start;
     flex-direction: column;
     overflow-y: auto;
-    scroll-snap-type: y mandatory;
+    /* scroll-snap-type: y mandatory; */
     -webkit-overflow-scrolling: touch;
     gap: 5%;
     /* height: 100%; */
@@ -523,6 +555,18 @@ margin-top: 65px;
     
     /* overflow-x: auto; */
     overflow-x: hidden;
+}
+
+h1#previousReservation{
+    padding-left: 33px;
+}
+
+.maybe2#previousReservationsBox{
+    padding-left:33px;
+    padding-right: 33px;
+}
+.previousReservation:last-of-type, .singleRes:last-of-type{
+    margin-bottom: 15px;
 }
 /* .maybe2 { 
     height: 540px;
@@ -539,6 +583,9 @@ width: 6px;
 }
 .getawayImages{
     display: flex;
+}
+div.Upcoming{
+    height: 100vh;
 }
 .newGetawayImg{
     width: 120px;
@@ -578,11 +625,13 @@ div#getawayImgsSubmissions:empty{
 
 }
 .containerForSidebarAndMainContent{
-    margin-top: 70px;
+  
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
+    flex-direction: column;
     height: fit-content;
     min-height: 700px;
+    /* margin-left: 15px; */
 }
 .UpcomingReservations.maybe{
     /* overflow-x: scroll; */
@@ -619,8 +668,10 @@ div#getawayImgsSubmissions:empty{
     margin-left: 50px;
 
 }
-.singleGetawayHost{
+.singleGetawayHost, .previousReservation{
     /* margin-left: 15px; */
+    /* width: 41%; */
+    width: 736px;
 }
 /* .signup-inputs{
     position: relative;
@@ -920,7 +971,7 @@ margin-bottom: 15px;
 
 
 @media only screen 
-    and (min-device-width : 320px)
+    and (min-device-width : 280px)
     and (max-width : 768px)
     and (min-device-height : 480px)
     and (max-device-height : 1076px)
@@ -931,6 +982,15 @@ margin-bottom: 15px;
         fieldset.amenities-fieldset#amenities-fieldset{
             margin-left: 0;
         }
+        div.singleGetawayHost{
+            width: 100%;
+        }
+        div.previousReservation{
+            width: 100%;
+        }
+        /* div#deleteReservationForm{
+            justify-content: center;
+        } */
         form.getawayForm{
     width: auto;}
         div.searchResultsContainer#searchResultsContainer{
@@ -1130,7 +1190,7 @@ margin-bottom: 15px;
             text-align: center;
         }
         div.search-container{
-            left: 2em;
+            /* left: 2em; */
         }
         /* div.topnav{
             display: flex;

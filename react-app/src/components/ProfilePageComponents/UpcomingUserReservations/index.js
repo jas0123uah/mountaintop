@@ -24,24 +24,35 @@ let upcomingReservations = userReservations?.filter(reservation => new Date(rese
   
 
   return(
-      <>
+    <>
+    <h1>Upcoming Reservations</h1>
+    
+      <div className="maybe2">
         { upcomingReservations.length ? upcomingReservations?.map((reservation) =><div className="singleRes" key={reservation?.id}>
             <h2 className="reservationsGetawayHeader">{getaways[reservation.getawayId]?.name}</h2>
             <NavLink to={`/getaways/${getaways[reservation.getawayId].id}`}>
             <img className="upcomingGetawayImage" src={getImageByNumber(Object.values((getaways[reservation?.getawayId]?.images)),1)?.url}></img>
             </NavLink>
             <br></br>
+            <div className="reservationDatesContainer">
+
+
             <span classname="reservationDates">{`Check-in date: ${[reservation?.startDate?.split(" ")[2]+ " "+ reservation?.startDate.split(" ")[1]+", "+ reservation?.startDate.split(" ")[3]]}`}</span>
             <span classname="reservationDates">{`Check-out date: ${[reservation.endDate.split(" ")[2]+ " "+ reservation.endDate.split(" ")[1]+", "+ reservation.endDate.split(" ")[3]]}`}</span>
-            <div id="deleteReservationForm">
 
-            <form onSubmit={ (reservation) =>{handleDeleteReservation(reservation.currentTarget.dataset.id)}} data-id={reservation.id} id="deleteReservationFormChild">
+            </div>
+
+            <form onSubmit={ (reservation) =>{handleDeleteReservation(reservation.currentTarget.dataset.id)}} data-id={reservation.id} id="deleteReservationForm">
            
                 <NavLink to={`/getaways/${getaways[reservation.getawayId].id}/reservations/${reservation.id}/edit`}><button className="viewGetawayButton edit-reservation-button">Edit Reservation</button></NavLink>
               <button className="DeleteButton cancel-reservation-button"type="submit">Cancel Reservation</button>
             </form>
-            </div>
+            
         </div>) : <h1 className="NoReservations">No upcoming reservations</h1>}
-      </>
+      </div>
+    
+    
+    
+    </>
   )
 }

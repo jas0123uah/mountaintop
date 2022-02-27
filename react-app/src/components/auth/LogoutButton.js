@@ -14,7 +14,7 @@ const LogoutButton = () => {
     await dispatch(logout());
     history.push('/')
   };
-  const isMobileLogout = isMobile.matches ?<span onClick={onLogout} className="mobileLogout" id="mobileLogout">Logout</span>: <i onClick={onLogout} class="fas fa-sign-out-alt fa-3x" id="sign-out-button"></i>
+  const isMobileLogout = <span onClick={onLogout} className="mobileLogout" id="mobileLogout">Logout</span>
 
   return  isMobileLogout ;
 };

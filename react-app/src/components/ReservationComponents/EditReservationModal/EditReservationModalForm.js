@@ -87,7 +87,7 @@ const removeBookedDays = (date) => {
     }
     await dispatch(loadGetaways())
     await dispatch(authenticate())
-    history.push('/profile')
+    history.push('/profile/upcomingreservations/')
   }
   return (
     <div className='formWrapper' id="bookResModal"onSubmit={  handleEditReservation}>

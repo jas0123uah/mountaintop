@@ -15,8 +15,14 @@ export const SinglePreviousReservation = ({reservation, getaways}) =>{
 
             </NavLink>
             <br></br>
+            <div className="reservationDatesContainer">
             <span classname="reservationDates">{`Check-in date: ${[reservation.startDate.split(" ")[2]+ " "+ reservation?.startDate.split(" ")[1]+", "+ reservation?.startDate.split(" ")[3]]}`}</span>
             <span classname="reservationDates">{`Check-out date: ${[reservation.endDate.split(" ")[2]+ " "+ reservation.endDate.split(" ")[1]+", "+ reservation.endDate.split(" ")[3]]}`}</span>
+
+
+
+
+            </div>
             <div id="deleteReservationForm">
             {reservation.reviewId ? <EditReviewFormModal reservationId={reservation.id} getawayId={reservation.getawayId} reviewId={reservation.reviewId}/> : <NewReviewFormModal reservationId={reservation.id} getawayId={reservation.getawayId}/>}
 

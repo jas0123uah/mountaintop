@@ -49,7 +49,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    {isMobile.matches ? <MobileNavBar/> : <NavBar/>}
+    {isMobile.matches ? <MobileNavBar/> : <MobileNavBar/>}
       {/* <NavBar /> */}
       <Switch>
         <Route path='/' exact={true}>
@@ -70,7 +70,11 @@ function App() {
         <ProtectedRoute path='/profile/getaways/' exact={true} >
           <PF/>
         </ProtectedRoute>
-        <ProtectedRoute path='/profile/reservations/' exact={true} >
+        <ProtectedRoute path='/profile/previousreservations/' exact={true} >
+          <PF/>
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/profile/upcomingreservations/' exact={true} >
           <PF/>
         </ProtectedRoute>
         

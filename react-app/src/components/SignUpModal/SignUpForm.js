@@ -81,7 +81,7 @@ const img1IsValid = (img) => {
 
     ;}
         
-    await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push(`/profile`))
+    await dispatch(loadGetaways()).then((res) => dispatch (authenticate())).then((res) => history.push(`/profile/getaways/`))
     }
   };
 
