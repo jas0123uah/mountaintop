@@ -14,7 +14,7 @@ function LoginModalForm() {
     if (data) {
       setErrors(data.errors);
     }
-    history.push("/profile")
+    history.push("/profile/getaways/")
     
   };
 
