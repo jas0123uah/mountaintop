@@ -27,7 +27,7 @@ useEffect(() => {
     const errors = [];
     const review = {reviewText}
     
-    if (reviewText.length < 100) errors.push('Review must be at least 100 characters.')
+    if (reviewText.length < 10) errors.push('Review must be at least 10 characters.')
     setErrors(errors);
 
 }, [reviewText])
