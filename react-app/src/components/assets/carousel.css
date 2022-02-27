@@ -279,10 +279,10 @@ ol, li {
   /* display: flex; */
   margin: 0;
   padding: 0;
-  max-width: 30vw;
+  /* max-width: 30vw; */
   /* background-color: WHITE; */
   /* background-color: #dfd9c4; */
-  background-color: rgb(204, 213, 205);
+  /* background-color: rgb(204, 213, 205); */
   /* background-color: rgb(49, 77, 88); */
   /* position: absolute; */
   /* z-index: 8;
@@ -290,8 +290,9 @@ ol, li {
   /* height: 100%; */
   overflow: auto;
   border-right: 1px solid #000;
-  padding-left: 15px;
+  padding-left: 33px;
   /* margin-top:-14px;  */
+  width: 100vw;
   
 
 
@@ -316,14 +317,17 @@ button{
   max-width: 13.5vw;
 }
 .addNewGetaway{
-  height: auto;
-  min-height: 5.5vh;
+  /* min-height: 5.5vh; */
+  margin-top: 9px;
 }
 .profileMainContent{
   /* margin-left: 30vw; */
   background-color: #dfd9c4;
   /* margin-top:-15px; */
   padding-left:15px
+}
+.singleGetawayHost:last-of-type{
+  margin-bottom: 15px;;
 }
 .profileHeader{
   margin: 0;
