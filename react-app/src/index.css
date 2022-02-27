@@ -745,6 +745,8 @@ grid-row-gap: 0px;
 .listingContainer {
     align-self: baseline;
 
+    padding-left: inherit;
+
 
 
     width: max-content;
@@ -767,9 +769,10 @@ grid-row-gap: 0px;
      overflow: hidden;
  }
  .bigPic{
-     height: 500px !important; 
+     height: 500px ; 
      object-fit: cover;
-     width: 100% !important;
+     width: 600px;
+     aspect-ratio: auto 600 / 500;
  }
  .smallerPicsTop{
      display: flex;
@@ -777,8 +780,9 @@ grid-row-gap: 0px;
      margin-bottom: 8px;
  }
  .smallerPic{
-     height: 245px !important;
-     width: 100% !important;
+     height: 245px ;
+     width: 250px;
+     aspect-ratio: auto 250 /245;
      object-fit:cover;
  }
  .smallerPicsBottom{
