@@ -85,7 +85,7 @@ export const MobileNavBar = () => {
   <div className="mobileTopContainer">
 
 
-    <NavLink id="logo" to='/' exact={true} activeClassName='active'>
+    <NavLink id="logo" to='/browse/' exact={true} activeClassName='active'>
             <i  class="fas fa-mountain fa-2x"></i>
             
     </NavLink>
@@ -110,8 +110,9 @@ export const MobileNavBar = () => {
     {/* <NavLink id="logo" to='/profile' exact={true} activeClassName='active'>
             Profile
     </NavLink> */}
-    {user ?  <NavLink to="/profile/getaways/" className="submitButton" id="home-button">My Getaways</NavLink> : null} 
-    {user ?  <NavLink to="/profile/reservations/" className="submitButton" id="home-button">My Reservations</NavLink> : <SignUpFormModal/>}   
+    {user ?  <NavLink to="/profile/getaways/" className="submitButton" id="home-button">My Getaways</NavLink> : null}
+    {user ?  <NavLink to="/profile/upcomingreservations/" className="submitButton" id="home-button">Upcoming Reservations</NavLink> : null} 
+    {user ?  <NavLink to="/profile/previousreservations/" className="submitButton" id="home-button">Previous Reservations</NavLink> : <SignUpFormModal/>}   
     {user ?  <LogoutButton/> :  <LoginFormModal/> }
     {user ? null :<span id="demo-button-mobile" onClick={demoLogin}> Demo user</span>}  
   </div>
