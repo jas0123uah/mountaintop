@@ -19,7 +19,8 @@ export const NewReviewForm = ({reservationId, getawayId}) => {
   const numStars = [1,2,3,4,5]
 useEffect(() => {
     const errors = [];    
-    if (reviewText.length < 100) errors.push('Review must be at least 100 characters.')
+    if (reviewText == "Review your stay") errors.push('Please enter a review.')
+    if (reviewText.length < 10) errors.push('Review must be at least 10 characters.')
     setErrors(errors);
 
 }, [reviewText])

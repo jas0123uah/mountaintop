@@ -29,6 +29,7 @@ useEffect(() => {
     
     if (reviewText.length < 10) errors.push('Review must be at least 10 characters.')
     setErrors(errors);
+    if (reviewText == "Review your stay") errors.push('Please enter a review.')
 
 }, [reviewText])
 
