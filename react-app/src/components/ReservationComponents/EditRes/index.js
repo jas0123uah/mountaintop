@@ -117,7 +117,7 @@ const getValidEndDate = () => {
       }}
     await dispatch(loadGetaways())
     await dispatch(authenticate())
-    history.push('/profile')
+    history.push('/profile/upcomingreservations/')
   }
   const onChange = (dates) => {
     const [start, end] = dates;
