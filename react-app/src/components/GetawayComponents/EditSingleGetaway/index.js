@@ -217,7 +217,7 @@ const handleSetImg1 = (e) => {
     
     if (description == "Enter a description here")errors.push('Please enter a description for your getaway.');
 
-    if (description.length < 10) errors.push('Getaway descriptons must be at least 100 characters.');
+    if (description.length < 10) errors.push('Getaway descriptons must be at least 10 characters.');
 
     if (numGuests < 1) errors.push('Getaway must house at least 1 guest.');
 
