@@ -4,6 +4,8 @@ import React, {useState} from 'react';
 import {useLocation} from 'react-router-dom'
 import SideBar from '../SideBar';
 import ProfileMainContent from '../ProfileMainContent'
+import { PreviousUserReservations } from '../PreviousReservations';
+import { UpcomingUserReservations } from '../UpcomingUserReservations';
 import './PF.css'
 export const PF = () => {
     const location = useLocation();
@@ -23,17 +25,17 @@ export const PF = () => {
   let pfMainContent = null
   let content;
 
-  if (isMobile.matches && location.pathname.includes("/profile/getaways")) {
+  if (location.pathname.includes("/profile/getaways")) {
       content = <SideBar/>
     
       
   }
-  else if(isMobile.matches && location.pathname.includes("/profile/reservations")){
-      content=<ProfileMainContent/>
+  else if(location.pathname.includes("/profile/upcomingreservations")){
+      content=<UpcomingUserReservations/>
 
   }
-  else if (isMobile.matches){
-      content = <SideBar/>
+  else if (location.pathname.includes("/profile/previousreservations")){
+      content = <PreviousUserReservations/>
   }
   else{
       content = <SideBar/>
