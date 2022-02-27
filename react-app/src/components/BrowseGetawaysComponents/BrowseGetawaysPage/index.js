@@ -16,7 +16,8 @@ const BrowseGetawaysPage = () => {
   return (
     <div className="browse">
       
-      {isMobile.matches ? <AmenitiesFilterNavBar/> :null}
+      {/* {isMobile.matches ? <AmenitiesFilterNavBar/> :null} */}
+      <AmenitiesFilterNavBar/>
       <SearchResultsFilter searchResults={getawaysArray}/>
     </div>
     
