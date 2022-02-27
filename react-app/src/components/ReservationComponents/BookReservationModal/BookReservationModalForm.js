@@ -98,7 +98,7 @@ const removeBookedDays = (date) => {
     }
     await dispatch(loadGetaways())
     await dispatch(authenticate())
-    history.push('/profile')
+    history.push('/profile/upcomingreservations/')
 
   }
 
