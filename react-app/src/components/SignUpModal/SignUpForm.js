@@ -5,6 +5,7 @@ import {loadGetaways} from '../../store/getaways'
 import {authenticate, checkForEmail} from '../../store/session'
 import {useHistory} from 'react-router-dom';
 import {checkURL} from '../../utils/helperFunctions'
+import $ from 'jquery'
 function SignUpForm() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -13,9 +14,16 @@ function SignUpForm() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("")
-  const [profilePicture, setProfilePicture] = useState('')
+  const [img1, setImg1] = useState('')
   const [validImg1, setValidImg1]= useState(true)
+  const [img1Preview, setImg1Preview] = useState('')
+  const [savedImg1File, setSavedImg1File] = useState('')
+  const [savedImg1Preview, setSavedImg1Preview] = useState('')
   const [errors, setErrors] = useState([]);
+  const handleImg1Click = () => {
+    $('#img1Upload').trigger('click')
+
+  }
   const validateEmail = (email) => {
     let loweremail = email.toLowerCase()
     const emailRegex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
@@ -32,8 +40,23 @@ const img1IsValid = (img) => {
     }
     setValidImg1(false)
   }
+  const handleSetImg1 = (e) => {
+        let file = e.target.files[0];
+
+        setImg1(e.target.files[0]);
+        if (file) {
+            setSavedImg1File(file);
+
+            file = URL.createObjectURL(file);
+            setImg1Preview(file);
+            setSavedImg1Preview(file)
+        } else {
+            setImg1(savedImg1File);
+            setImg1Preview(savedImg1Preview);
+        }
+    }
   useEffect(()=> {
-    const user = {email, password, confirmPassword, firstName, lastName, profilePicture}
+    const user = {email, password, confirmPassword, firstName, lastName, img1}
     const errors = [];
     if (!email) errors.push('Please enter an e-mail.');
 
@@ -59,23 +82,25 @@ const img1IsValid = (img) => {
 
     if (!lastName.length) errors.push('Please enter your last name.');
 
-    if (!profilePicture) errors.push('Please enter a url for a profile picture.');
+    if (!img1) errors.push('Please upload a profile picture.');
 
-    if ((profilePicture.length && (!checkURL(profilePicture) || !validImg1 || /^(ftp|http|https):\/\/[^ "]+$/.test(profilePicture) == false))){
-      errors.push(`Profile picture is not a valid image url.`)
-
-
-    }
+   
     
     
     setErrors(errors);
-  }, [email, password, confirmPassword, firstName, lastName, profilePicture, validImg1])
+  }, [email, password, confirmPassword, firstName, lastName, img1, validImg1])
 
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-    const data = await dispatch(signUp({firstName, lastName, email, password, profilePicture}))
+    const formData = new FormData()
+      formData.append("firstName", firstName)
+      formData.append("lastName", lastName)
+      formData.append("email", email)
+      formData.append("password", password)
+      formData.append("profilePicture", img1)
+    const data = await dispatch(signUp(formData))
     if (data && data.errors){ 
       setErrors(data.errors)
 
@@ -159,18 +184,13 @@ const img1IsValid = (img) => {
       </label>
       <br></br>
 
-      <label  className={`is-red-${validImg1} modal-label-signup-login"`}>
-        Profile Picture URL
-        <input
-        id="profilePictureField"
-          type="text"
-          className="modal-input-signup-login"
-          value={profilePicture}
-          onBlur={img1IsValid}
-          onChange={(e) => setProfilePicture(e.target.value)}
-          required
-        />
-      </label>
+      <div className="getawayImgFields" id="signUpImage">
+        
+        <i class="fa fa-camera" onClick={handleImg1Click}></i>
+        <input type="file" id="img1Upload" className="fas fa-file-upload" name="imgUrl" accept=".jpg, .png, .jpeg"  onChange={(e)=>{handleSetImg1(e)}} />
+        {img1 ? <img src={img1Preview} className="getawayImageUpload" alt="" /> : <span>Upload an image</span>}
+
+      </div>
       <br></br>
       </div>
       <button className="modal-input-signup-login" id="signupbtn" disabled={errors.length ? true : false}  type="submit">Sign Up</button>
