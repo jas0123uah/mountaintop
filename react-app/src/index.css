@@ -130,10 +130,9 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     border: 1px solid #a7a7a7;
 }
 .splashBlurb{
-    /* position: absolute; */
-    left: 83vh;
-    /* bottom: 100vh; */
-    top: 40vh;
+   display:flex;
+   flex-direction: column;
+   align-items: center;
 
 
 }
@@ -146,14 +145,27 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     border-radius: 30px;
     margin-top: 8px;
     border: none;
-    position: relative;
-    left: 45px;
     /* width: 180px; */
     text-align: center;
     background-color: #6f7f8b;
 }
+.noGetawaysFound{
+    display: flex;
+    justify-content: center;
+    gap: 13px;
+    align-items: center;
+
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 .splashText{
     color: white;
+    font-family: mako;
+    font-size: 38px;
 }
 .SignInButton{
     margin-left: 5px;
@@ -195,6 +207,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 .searchBar{
     margin-bottom: 10px;
+    width: 200px;
 }
 
 #login-sign-up{
