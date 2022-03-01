@@ -22,7 +22,15 @@ export const SearchResultsFilter = ({searchResults}) => {
       {filteredLocations.length ? filteredLocations.map( getaway => { 
         if(getaway && isMobile.matches){return <MobileSingleGetawaySearchOrBrowseResult getaway={getaway} key={getaway.id}/>}else if(getaway && !isMobile.matches){return <SingleGetawaySearchOrBrowseResult getaway={getaway} key={getaway.id}/>}
         // return <SingleGetawaySearchOrBrowseResult getaway={getaway} key={getaway.id}/>
-      }): <h1>No getaways found</h1>}
+      }): 
+      
+      <div className="noGetawaysFound">
+
+        <h1>No getaways found</h1>
+        <i className="fa fa-search fa-2x"></i>
+
+
+      </div>}
     </div>
     
     </>
