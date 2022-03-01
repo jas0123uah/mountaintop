@@ -19,6 +19,7 @@ export const MobileNavBar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.session.user);
+    const userErrors = user?.errors || null
     const [disp, setDisp] = useState("none");
     const [searchTerm, setSearchTerm] = useState("");
     const [isSearching, setIsSearching] = useState(false);
@@ -110,11 +111,11 @@ export const MobileNavBar = () => {
     {/* <NavLink id="logo" to='/profile' exact={true} activeClassName='active'>
             Profile
     </NavLink> */}
-    {user ?  <NavLink to="/profile/getaways/" className="submitButton" id="home-button">My Getaways</NavLink> : null}
-    {user ?  <NavLink to="/profile/upcomingreservations/" className="submitButton" id="home-button">Upcoming Reservations</NavLink> : null} 
-    {user ?  <NavLink to="/profile/previousreservations/" className="submitButton" id="home-button">Previous Reservations</NavLink> : <SignUpFormModal/>}   
-    {user ?  <LogoutButton/> :  <LoginFormModal/> }
-    {user ? null :<span id="demo-button-mobile" onClick={demoLogin}> Demo user</span>}  
+    {user && !userErrors ?  <NavLink to="/profile/getaways/" className="submitButton" id="home-button">My Getaways</NavLink> : null}
+    {user && !userErrors ? <NavLink to="/profile/upcomingreservations/" className="submitButton" id="home-button">Upcoming Reservations</NavLink> : null} 
+    {user && !userErrors ?  <NavLink to="/profile/previousreservations/" className="submitButton" id="home-button">Previous Reservations</NavLink> : <SignUpFormModal/>}   
+    {user && !userErrors ?  <LogoutButton/> :  <LoginFormModal/> }
+    {user && !userErrors ? null :<span id="demo-button-mobile" onClick={demoLogin}> Demo user</span>}  
   </div>
   {/* <a href="javascript:void(0);" class="icon" id="burger" style={{ fontSize:29}} onClick={adjustHamburger}>
     <i class="fa fa-bars"></i>
