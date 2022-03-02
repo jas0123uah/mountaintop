@@ -6,6 +6,7 @@
 * [Technologies Used](#technologies-used)
 * [Frontend Technologies](#frontend-technologies)
 * [Backend Technologies](#backend-technologies)
+* [Testing](#testing)
 * [Conclusion](#conclusion)
 
 ## Mountaintop Overview
@@ -39,6 +40,7 @@ The JavaScript library React is used in combination with the state manager Redux
 ### Backend Technologies
 * ![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
 * ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+* ![AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
 * ![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 * [SQLAlchemy](https://docs.sqlalchemy.org/en/14/)
 * [WTForms](https://wtforms.readthedocs.io/en/2.3.x/)
@@ -50,11 +52,8 @@ The JavaScript library React is used in combination with the state manager Redux
 * Getaways
 * Reservations
 * Reviews
-* Search
-
-### Planned features
+* Dynamic search
 * AWS for image uploads
-
 
 ## Conclusion
 As a brief aside I greatly enjoyed working on this project as it allowed me to showcase my home area and work in my first coding language, Python. My favorite part of full-stack applications is without a doubt witnessing the data flow all the way from the database to the frontend. Additionally, this project allowed me to work on developing my CSS skills and develop an appreciation for flexbox.  
