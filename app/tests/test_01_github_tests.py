@@ -24,30 +24,30 @@ PATH = "/usr/bin/chromedriver"
 # caps['record_video'] = 'true'
 
 
-caps=[{
+caps={
       'os_version': '10',
       'os': 'Windows',
       'browser': 'chrome',
       'browser_version': 'latest',
       'name': 'Parallel Test1', # test name
       'build': 'browserstack-build-1' # Your tests will be organized within this build
-      },
-      {
+      ,
+      
       'os_version': '10',
       'os': 'Windows',
       'browser': 'firefox',
       'browser_version': 'latest',
       'name': 'Parallel Test2',
       'build': 'browserstack-build-1'
-      },
-      {
+      ,
+      
       'os_version': 'Big Sur',
       'os': 'OS X',
       'browser': 'safari',
       'browser_version': 'latest',
       'name': 'Parallel Test3',
       'build': 'browserstack-build-1'
-}]
+}
 
 driver = webdriver.Remote(desired_capabilities = caps, command_executor='https://jayspencer_NfPy0E:7KPgMNB7gprXUJs58PPs@hub-cloud.browserstack.com/wd/hub')
 
