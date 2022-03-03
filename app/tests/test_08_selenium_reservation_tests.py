@@ -43,7 +43,7 @@ def test_create_reservation(driver):
 
 @pytest.mark.parametrize("driver", [(driver)])
 def test_delete_reservation(driver):
-    cancel_reservation_button = get_elements_by_class("cancel-reservation-button")
+    cancel_reservation_button = get_last_element_in_class("cancel-reservation-button")
     
     deleted_reservation_start_date = get_start_date_20_months_from_today()
     
