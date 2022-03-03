@@ -10,4 +10,7 @@ class Config:
     # so the connection uri must be updated here
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL').replace('postgres://', 'postgresql://')
+    CURRENT_PATH = os.environ.get('GITHUB_WORKSPACE')
+    if CURRENT_PATH:
+        print("THIS IS CURRENT_PATH JAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", CURRENT_PATH)
     #SQLALCHEMY_ECHO = True
