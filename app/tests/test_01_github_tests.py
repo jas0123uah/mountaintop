@@ -96,11 +96,11 @@ def test_create_getaway(driver):
     check_or_uncheck_amenity("kitchen", driver)
     check_or_uncheck_amenity("fireplace", driver)
     dirname = os.path.dirname(__file__)
-    test_image_1 = os.path.join(dirname, '/testImage1.jpeg')
-    test_image_2 = os.path.join(dirname, '/testImage2.jpeg')
-    test_image_3 = os.path.join(dirname, '/testImage3.jpeg')
-    test_image_4 = os.path.join(dirname, '/testImage4.jpeg')
-    test_image_5 = os.path.join(dirname, '/testImage5.jpeg')
+    test_image_1 = './testImage1.jpeg'
+    test_image_2 = './testImage2.jpeg'
+    test_image_3 = './testImage3.jpeg'
+    test_image_4 = './testImage4.jpeg'
+    test_image_5 = './testImage5.jpeg'
     upload_image("img1Upload", test_image_1, driver)
     upload_image("img2Upload", test_image_2, driver)
     upload_image("img3Upload", test_image_3, driver)
