@@ -15,15 +15,41 @@ PATH = "/usr/bin/chromedriver"
 #driver=Service(PATH)
 #driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=chrome_options)
 
-caps = {}
+# caps = {}
 
-caps['name'] = 'GitHub Actions Example'
-caps['browserName'] = 'Chrome'
-caps['platform'] = 'Windows 10'
-caps['screenResolution'] = '1366x768'
-caps['record_video'] = 'true'
+# caps['name'] = 'GitHub Actions Example'
+# caps['browserName'] = 'Chrome'
+# caps['platform'] = 'Windows 10'
+# caps['screenResolution'] = '1366x768'
+# caps['record_video'] = 'true'
 
-driver = webdriver.Remote(desired_capabilities = caps, command_executor="http://hub.crossbrowsertesting.com:80/wd/hub")
+
+caps=[{
+      'os_version': '10',
+      'os': 'Windows',
+      'browser': 'chrome',
+      'browser_version': 'latest',
+      'name': 'Parallel Test1', # test name
+      'build': 'browserstack-build-1' # Your tests will be organized within this build
+      },
+      {
+      'os_version': '10',
+      'os': 'Windows',
+      'browser': 'firefox',
+      'browser_version': 'latest',
+      'name': 'Parallel Test2',
+      'build': 'browserstack-build-1'
+      },
+      {
+      'os_version': 'Big Sur',
+      'os': 'OS X',
+      'browser': 'safari',
+      'browser_version': 'latest',
+      'name': 'Parallel Test3',
+      'build': 'browserstack-build-1'
+}]
+
+driver = webdriver.Remote(desired_capabilities = caps, command_executor='https://jayspencer_NfPy0E:7KPgMNB7gprXUJs58PPs@hub-cloud.browserstack.com/wd/hub')
 
 @pytest.mark.parametrize("driver", [(driver)])
 def test_demo_login(driver):
