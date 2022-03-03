@@ -6,19 +6,24 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-# from selenium.webdriver.chrome.options import Options
-# chrome_options = Options()
-# chrome_options.add_argument("--remote-debugging-port=9222")  # this
-# chrome_options.add_argument('--no-sandbox')
-# chrome_options.add_argument("start-maximized")
+import requests
+import os
 import pytest
 from dateutil.relativedelta import *
 from ..pytest_helper_functions import *
 PATH = "/usr/bin/chromedriver"
 #driver=Service(PATH)
 #driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=chrome_options)
-driver = webdriver.Chrome(executable_path = PATH)
 
+caps = {}
+
+caps['name'] = 'GitHub Actions Example'
+caps['browserName'] = 'Chrome'
+caps['platform'] = 'Windows 10'
+caps['screenResolution'] = '1366x768'
+caps['record_video'] = 'true'
+
+driver = webdriver.Remote(desired_capabilities = caps, command_executor="http://hub.crossbrowsertesting.com:80/wd/hub")
 
 @pytest.mark.parametrize("driver", [(driver)])
 def test_demo_login(driver):
