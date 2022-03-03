@@ -4,12 +4,14 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service
 import pytest
 from dateutil.relativedelta import *
 import datetime
 from ..pytest_helper_functions import *
 PATH = "/usr/bin/chromedriver"
-driver = webdriver.Chrome(PATH)
+#driver = webdriver.Chrome(PATH)
+driver=Service(PATH)
 @pytest.mark.parametrize("driver", [(driver)])
 def test_create_getaway(driver):
     add_getaway_button = get_element_by_id("add-new-getaway-button")
@@ -54,6 +56,6 @@ def test_demo_edit_getaway(driver):
 
 @pytest.mark.parametrize("driver", [(driver)])
 def test_delete_getaway(driver):
-    delete_getaway_button = get_elements_by_class("delete-getaway-button")
+    delete_getaway_button = get_last_element_in_class("delete-getaway-button")
     delete_getaway_button.click()
     assert 'Selenium Testing' not in driver.page_source, "Selenium Testing was found in profile page"
