@@ -7,6 +7,7 @@ reservation_routes = Blueprint('reservations', __name__)
 
 @reservation_routes.route('getaways/<int:id>/reservations/', methods=['POST'])
 def post_reservation_for_getaway(id):
+    print("test commit on github")
     form = ReservationForm() 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
