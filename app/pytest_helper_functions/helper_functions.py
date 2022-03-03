@@ -62,7 +62,7 @@ def get_element_by_css_selector(selector, driver):
         EC.presence_of_element_located((By.CSS_SELECTOR, selector))
     )
     driver.find_element_by_css_selector(selector)
-def get_elements_by_class(class_name, driver):
+def get_last_element_in_class(class_name, driver):
     element = WebDriverWait(driver, 10).until(
         EC.presence_of_all_elements_located((By.CLASS_NAME, class_name))
     )
@@ -79,13 +79,13 @@ def get_date_suffix(datetime_obj):
     else:
         suffix = ["st", "nd", "rd"][datetime_obj % 10 - 1]
     return suffix
-def analyze_field(id_string, error_message, new_text):
-    address = get_element_by_id(id_string)
+def analyze_field(id_string, error_message, new_text, driver):
+    address = get_element_by_id(id_string, driver)
     clear_element_field(address)
-    check_for_error_message(error_message)
-    populate_text_field(address, new_text)
-def submit_edited_getaway(id_string):
-    edit_getaway_button = get_element_by_id(id_string)
+    check_for_error_message(error_message, driver)
+    populate_text_field(address, new_text, driver)
+def submit_edited_getaway(id_string, driver):
+    edit_getaway_button = get_element_by_id(id_string, driver)
     edit_getaway_button.click()
 def undo_edit_getaway(driver):
     edit_getaway_button = get_element_by_class("edit-getaway-button")
@@ -101,7 +101,7 @@ def undo_edit_getaway(driver):
     analyze_field("name", "Getaway names should be at least 10 characters.", "Lookout Loft")
     analyze_field("description", "Getaway descriptons must be at least 100 characters.","""Lookout Loft is a brand new luxurious cabin with mountain views that you've been dreaming of! Our cabin is located just 3 miles to downtown Gatlinburg. Designed with a 'slow' pace in mind. Our hope is that you enjoy every part of your stay at our cabin; from enjoying your morning cup of coffee to curling up by the fire as the sun sets over the mountains. Our cabin is a cozy place for friends and family to gather for a memorable stay in the mountains!""")
     analyze_field("price","Getaway must cost at least $100 a night.", "400")
-    submit_edited_getaway('edit-getaway-submit-button')
+    submit_edited_getaway('edit-getaway-submit-button', driver)
 
 def log_out_old_users(driver):
     try:
@@ -135,3 +135,46 @@ def create_aria_label_to_search_for_searching_calendar(datetime_obj, date_suffix
 
 def get_profile_page_reservation_date_strings(start_datetime_obj, end_datetime_obj):
     return [start_datetime_obj.strftime(f'%b %d, %Y'), end_datetime_obj.strftime(f'%b %d, %Y')]
+
+
+
+def get_first_element_in_class(class_name, driver):
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_all_elements_located((By.CLASS_NAME, class_name))
+    )
+    return element[0]
+
+def get_nth_element_in_class(class_name, n, driver):
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_all_elements_located((By.CLASS_NAME, class_name))
+    )
+    return element[n-1]
+def get_nth_child_of_type(parent, child_type, n):
+    all_children_of_type = parent.find_elements_by_tag_name(child_type)
+    return all_children_of_type[n-1]
+    
+    
+def get_last_element_in_class(class_name, driver):
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_all_elements_located((By.CLASS_NAME, class_name))
+    )
+    return element[-1]
+
+def upload_image(id_string, image_path, driver):
+    image_field = get_element_by_id(id_string, driver)
+    image_field.send_keys(image_path)
+
+    
+def check_or_uncheck_amenity(id_string, driver):
+    amenity_check_button = get_element_by_id(id_string, driver)
+    amenity_check_button.click()
+def get_number_of_elements_in_class(class_name, driver):
+    try:
+        
+        deleteButtons = WebDriverWait(driver, 10).until(
+            EC.presence_of_all_elements_located((By.CLASS_NAME, class_name))
+        )
+        return len(deleteButtons)
+    except Exception as e:
+        return 0
+        
