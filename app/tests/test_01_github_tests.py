@@ -97,7 +97,7 @@ def test_create_getaway(driver):
     check_or_uncheck_amenity("fireplace", driver)
     imgdir = os.path.dirname(os.path.realpath(__file__))
     print("THIS IS IMG DIR", imgdir)
-    test_image_1 = f'{imgdir}/testtestImage1.jpeg'
+    test_image_1 = f'{imgdir}/testImage1.jpeg'
     test_image_2 = f'{imgdir}/testImage2.jpeg'
     test_image_3 = f'{imgdir}/testImage3.jpeg'
     test_image_4 = f'{imgdir}/testImage4.jpeg'
