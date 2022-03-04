@@ -95,12 +95,13 @@ def test_create_getaway(driver):
     check_or_uncheck_amenity("patio", driver)
     check_or_uncheck_amenity("kitchen", driver)
     check_or_uncheck_amenity("fireplace", driver)
-    dirname = os.path.dirname(__file__)
-    test_image_1 = './testImage1.jpeg'
-    test_image_2 = './testImage2.jpeg'
-    test_image_3 = './testImage3.jpeg'
-    test_image_4 = './testImage4.jpeg'
-    test_image_5 = './testImage5.jpeg'
+    imgdir = os.path.dirname(os.path.realpath(__file__))
+    print("THIS IS IMG DIR", imgdir)
+    test_image_1 = f'{imgdir}/testtestImage1.jpeg'
+    test_image_2 = f'{imgdir}/testImage2.jpeg'
+    test_image_3 = f'{imgdir}/testImage3.jpeg'
+    test_image_4 = f'{imgdir}/testImage4.jpeg'
+    test_image_5 = f'{imgdir}/testImage5.jpeg'
     upload_image("img1Upload", test_image_1, driver)
     upload_image("img2Upload", test_image_2, driver)
     upload_image("img3Upload", test_image_3, driver)
